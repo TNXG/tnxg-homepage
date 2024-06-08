@@ -1,19 +1,30 @@
 <template>
 
   <div>
-    <mdui-navigation-rail alignment="center" divider contained :collapsed="isCollapsed">
-      <mdui-button-icon icon="menu" slot="top"></mdui-button-icon>
-      <mdui-button-icon icon="settings" slot="bottom"></mdui-button-icon>
-      <mdui-navigation-rail-item id="home-button" autofocus icon="home">首页</mdui-navigation-rail-item>
-      <mdui-navigation-rail-item id="about-button" autofocus icon="account_circle">关于</mdui-navigation-rail-item>
-      <mdui-navigation-rail-item id="friends-button" autofocus icon="diversity_2">朋友</mdui-navigation-rail-item>
-    </mdui-navigation-rail>
+    <mdui-navigation-drawer close-on-overlay-click class="example-drawer">
+      <mdui-navigation-rail alignment="center" divider contained>
+        <mdui-button-icon id="close-menu-button" icon="menu" slot="top"></mdui-button-icon>
+        <mdui-button-icon icon="settings" slot="bottom"></mdui-button-icon>
+        <mdui-navigation-rail-item id="home-button" autofocus icon="home">首页</mdui-navigation-rail-item>
+        <mdui-navigation-rail-item id="about-button" autofocus icon="account_circle">关于</mdui-navigation-rail-item>
+        <mdui-navigation-rail-item id="friends-button" autofocus icon="diversity_2">朋友</mdui-navigation-rail-item>
+      </mdui-navigation-rail>
+    </mdui-navigation-drawer>
+    <mdui-button-icon id="open-menu-button" icon="menu" variant="filled" class="mb-4"></mdui-button-icon>
     <div style="height: 600px;overflow: auto">
       <router-view></router-view>
     </div>
   </div>
 </template>
+<style scoped>
+mdui-navigation-drawer {
+  width: 75px;
+}
 
+mdui-navigation-rail {
+  width: 75px;
+}
+</style>
 <script>
 import { useRouter } from 'vue-router';
 import { watchEffect } from 'vue';
@@ -25,21 +36,53 @@ import { decode } from 'blurhash';
 export default {
   mounted() {
     const router = useRouter()
+    const navigationDrawer = document.querySelector(".example-drawer");
+    const openMenuButton = document.getElementById("open-menu-button");
+
+    openMenuButton.style.display = "none"
+    navigationDrawer.open = true
+
+    // 添加一个watcher来监听路由的变化
+    router.afterEach((to, from) => {
+      // 移除所有按钮的激活状态
+      ['home-button', 'about-button', 'friends-button'].forEach(id => {
+        document.getElementById(id).removeAttribute('active');
+      });
+
+      // 根据当前路由设置按钮的激活状态
+      if (to.path === '/') {
+        document.getElementById('home-button').setAttribute('active', '');
+      } else if (to.path === '/about') {
+        document.getElementById('about-button').setAttribute('active', '');
+      } else if (to.path === '/friends') {
+        document.getElementById('friends-button').setAttribute('active', '');
+      }
+    });
 
     this.$nextTick(function () {
-      document.getElementById('home-button').addEventListener("click", (event) => {
+      document.getElementById('home-button').addEventListener("click", () => {
         console.log('home-button click event')
         router.push('/')
       });
 
-      document.getElementById('about-button').addEventListener("click", (event) => {
+      document.getElementById('about-button').addEventListener("click", () => {
         console.log('about-button click event')
         router.push('/about')
       });
 
-      document.getElementById('friends-button').addEventListener("click", (event) => {
+      document.getElementById('friends-button').addEventListener("click", () => {
         console.log('friends-button click event')
         router.push('/friends')
+      });
+
+      document.getElementById("close-menu-button").addEventListener("click", () => {
+        navigationDrawer.open = false
+        openMenuButton.style.display = ""
+      });
+
+      document.getElementById("open-menu-button").addEventListener("click", () => {
+        navigationDrawer.open = true
+        openMenuButton.style.display = "none"
       });
     })
   },
@@ -49,9 +92,6 @@ export default {
     };
   },
   methods: {
-    toggleCollapse() {
-      this.isCollapsed = !this.isCollapsed;
-    },
     blurredImage(blurhash) {
       if (!blurhash) return '';
       const pixels = decode(blurhash, 32, 32);

@@ -50,7 +50,8 @@ export default {
 </template>
 <style scoped>
 p {
-    max-width: 300px;
+    max-width: 280px;
+    min-width: 280px;
     overflow-wrap: break-word;
 }
 </style>
