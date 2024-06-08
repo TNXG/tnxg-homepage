@@ -1,6 +1,5 @@
 <template>
-
-  <div>
+  <div class="navigation">
     <mdui-navigation-drawer class="drawer">
       <mdui-navigation-rail alignment="center" divider contained>
         <mdui-button-icon id="close-menu-button" icon="menu" slot="top"></mdui-button-icon>
@@ -10,7 +9,7 @@
         <mdui-navigation-rail-item id="friends-button" autofocus icon="diversity_2">朋友</mdui-navigation-rail-item>
       </mdui-navigation-rail>
     </mdui-navigation-drawer>
-    <mdui-button-icon id="open-menu-button" icon="menu" variant="filled" class="mb-4"></mdui-button-icon>
+    <mdui-button-icon id="open-menu-button" icon="menu" variant="filled" class="fixed top-0 left-0 mt-4 ml-4 z-20"></mdui-button-icon>
     <div style="height: 600px;overflow: auto">
       <router-view></router-view>
     </div>
