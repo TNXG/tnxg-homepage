@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <mdui-navigation-drawer close-on-overlay-click class="example-drawer">
+    <mdui-navigation-drawer class="drawer">
       <mdui-navigation-rail alignment="center" divider contained>
         <mdui-button-icon id="close-menu-button" icon="menu" slot="top"></mdui-button-icon>
         <mdui-button-icon icon="settings" slot="bottom"></mdui-button-icon>
@@ -17,12 +17,24 @@
   </div>
 </template>
 <style scoped>
-mdui-navigation-drawer {
-  width: 75px;
+@media (max-width: 600px) {
+  mdui-navigation-drawer {
+    width: 21%;
+  }
+
+  mdui-navigation-rail {
+    width: 100%;
+  }
 }
 
-mdui-navigation-rail {
-  width: 75px;
+@media (min-width: 601px) {
+  mdui-navigation-drawer {
+    width: 75px;
+  }
+
+  mdui-navigation-rail {
+    width: 75px;
+  }
 }
 </style>
 <script>
@@ -36,11 +48,17 @@ import { decode } from 'blurhash';
 export default {
   mounted() {
     const router = useRouter()
-    const navigationDrawer = document.querySelector(".example-drawer");
+    const navigationDrawer = document.querySelector(".drawer");
     const openMenuButton = document.getElementById("open-menu-button");
 
-    openMenuButton.style.display = "none"
-    navigationDrawer.open = true
+    //在电脑上默认展开菜单
+    if (window.innerWidth > 600) {
+      navigationDrawer.open = true
+      openMenuButton.style.display = "none"
+    } else if (window.innerWidth > 600) {
+      navigationDrawer.open = false
+      openMenuButton.style.display = ""
+    }
 
     // 添加一个watcher来监听路由的变化
     router.afterEach((to, from) => {
@@ -61,28 +79,31 @@ export default {
 
     this.$nextTick(function () {
       document.getElementById('home-button').addEventListener("click", () => {
-        console.log('home-button click event')
-        router.push('/')
+        console.log('home-button click event');
+        router.push('/');
       });
 
       document.getElementById('about-button').addEventListener("click", () => {
-        console.log('about-button click event')
-        router.push('/about')
+        console.log('about-button click event');
+        router.push('/about');
       });
 
       document.getElementById('friends-button').addEventListener("click", () => {
-        console.log('friends-button click event')
-        router.push('/friends')
+        console.log('friends-button click event');
+        router.push('/friends');
       });
 
       document.getElementById("close-menu-button").addEventListener("click", () => {
-        navigationDrawer.open = false
-        openMenuButton.style.display = ""
+        navigationDrawer.open = false;
+        openMenuButton.style.display = "";
       });
 
       document.getElementById("open-menu-button").addEventListener("click", () => {
-        navigationDrawer.open = true
-        openMenuButton.style.display = "none"
+        navigationDrawer.open = true;
+        openMenuButton.style.display = "none";
+        document.querySelector("#app > div > mdui-navigation-drawer").shadowRoot.querySelector("div").remove()
+
+
       });
     })
   },

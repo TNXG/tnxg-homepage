@@ -1,32 +1,18 @@
 <script>
 import { useBlurHashStore } from '../store/blurHashStore';
-import { computed, ref, onMounted, onUnmounted } from 'vue';
-import Activity from '@/components/Activity.vue';
+import { computed } from 'vue';
+import SelfCard from '@/components/SelfCard.vue';
 
 export default {
     components: {
-        Activity,
+        SelfCard,
     },
     setup() {
         const store = useBlurHashStore();
         const blurredImageData = computed(() => store.hash);
-        const activityKey = ref(0); // 创建一个响应式引用
-
-        let intervalId;
-
-        onMounted(() => {
-            intervalId = setInterval(() => {
-                activityKey.value++; // 每隔10秒更新activityKey
-            }, 5000);
-        });
-
-        onUnmounted(() => {
-            clearInterval(intervalId); // 组件卸载时清除定时器
-        });
 
         return {
             blurredImageData,
-            activityKey,
         };
     }
 };
@@ -34,46 +20,9 @@ export default {
 <template>
     <mdui-card ref="backgroundImage" class="centered max-w-4xl mx-auto px-4 py-8"
         :style="{ backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8)), url(${blurredImageData})` }">
-        <div class="flex items-start max-w-4xl mx-auto px-4 py-8">
-            <img src="https://api-space.tnxg.top/avatar?s=qq" class="w-24 h-24 object-cover" alt="avatar" />
-            <div class="ml-4">
-                <h1 class="text-6xl font-bold">Hello</h1>
-                <div class="flex items-center space-x-2">
-                    <h2 class="text-5xl font-bold mt-4">I'm</h2>
-                    <h2 class="text-5xl font-bold text-[#007acc] mt-4">
-                        <sup class="text-xs">いゆくるず iykrzu</sup><br>天翔TNXG
-                    </h2>
-                    <span class="text-2xl font-medium">TiaNXianG</span>
-                </div>
-                <br />
-                <p class="text-xl mt-2">明日尚未到来，希望凝于心上</p>
-                <div class="flex flex-wrap items-center gap-4 mt-4">
-                    <i class="ri-link text-2xl text-gray-600">
-                        <a href="#" class="text-xl text-gray-600">https://tnxg.top</a>
-                    </i>
-                    <i class="ri-github-line text-2xl text-gray-600">
-                        <a href="#" class="text-xl text-gray-600">@TNXG</a>
-                    </i>
-                    <i class="ri-twitter-x-line text-2xl text-gray-600">
-                        <a href="#" class="text-xl text-gray-600">@iykrzu</a>
-                    </i>
-                    <i class="ri-telegram-line text-2xl text-gray-600">
-                        <a href="#" class="text-xl text-gray-600">@tianxiang_tnxg</a>
-                    </i>
-                </div>
-            </div>
-            <Suspense>
-                <template #default>
-                    <Activity :key="activityKey" />
-                </template>
-                <template #fallback>
-                    <div>Loading...</div>
-                </template>
-            </Suspense>
-        </div>
+        <SelfCard />
     </mdui-card>
 </template>
-
 <style scoped>
 @font-face {
     src: url("https://cdn.tnxg.top/fonts/moonbridge.woff2") format('woff2');
@@ -90,5 +39,12 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     background-size: cover;
+}
+
+/* 添加媒体查询以在小屏幕设备上为 mdui-card 添加上边距 */
+@media (max-width: 600px) {
+    mdui-card {
+        margin-top: 80px;
+    }
 }
 </style>
