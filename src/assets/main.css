@@ -221,6 +221,7 @@ html::view-transition-old(root) {
 }
 
 #background {
+  z-index: -100;
   position: fixed;
   will-change: filter;
   top: -30px;
@@ -232,7 +233,7 @@ html::view-transition-old(root) {
 }
 
 #background .background-image {
-  z-index: -99;
+  z-index: -100;
   background-image: var(--bg_img);
   opacity: 0.5;
   position: absolute;

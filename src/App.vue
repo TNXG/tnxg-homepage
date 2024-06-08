@@ -10,7 +10,7 @@
       </mdui-navigation-rail>
     </mdui-navigation-drawer>
     <mdui-button-icon id="open-menu-button" icon="menu" variant="filled" class="fixed top-0 left-0 mt-4 ml-4 z-20"></mdui-button-icon>
-    <div style="height: 600px;overflow: auto">
+    <div style="overflow: auto">
       <!-- 以下是主页面组件 -->
       <router-view></router-view>
     </div>
