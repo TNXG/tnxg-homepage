@@ -62,7 +62,7 @@ export default {
                     <Activity :key="activityKey" />
                 </template>
                 <template #fallback>
-                    <div>Loading...</div>
+                    <div></div>
                 </template>
             </Suspense>
         </div>

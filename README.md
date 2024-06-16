@@ -38,7 +38,7 @@ tnxg-homepages 是一个基于 Vue 3 和 Vite 的现代前端项目，提供了�
 ## 其他
 
 - 本项目状态上报基于 [Mix-Space](https://mx-space.js.org/themes/shiro/extra#%E6%88%91%E7%9A%84%E5%8A%A8%E6%80%81)，欢迎 PR 一个更加微型的后端用于替换。
-- 本项目部分样式参考了 [sukkaW 的主页图](https://github.com/sukkaW/sukkaW)、[S23.moe](https://s23.moe)。
+- 本项目部分样式参考了 [sukkaW 的主页图](https://github.com/sukkaW/sukkaW)、[S23.moe](https://s23.moe)、[云游君的小站](https://yunyoujun.cn/)。
 
 ## 版权授权
 

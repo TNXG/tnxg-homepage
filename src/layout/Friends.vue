@@ -16,7 +16,7 @@ export default {
                 <Friends />
             </template>
             <template #fallback>
-                <div>Loading...</div>
+                <div></div>
             </template>
         </Suspense>
     </div>

@@ -9,8 +9,9 @@
         <mdui-navigation-rail-item id="friends-button" autofocus icon="diversity_2">朋友</mdui-navigation-rail-item>
       </mdui-navigation-rail>
     </mdui-navigation-drawer>
-    <mdui-button-icon id="open-menu-button" icon="menu" variant="filled" class="fixed top-0 left-0 mt-4 ml-4 z-20"></mdui-button-icon>
-    <div style="overflow: auto">
+    <mdui-button-icon id="open-menu-button" icon="menu" variant="filled"
+      class="fixed top-0 left-0 mt-4 ml-4 z-20"></mdui-button-icon>
+    <div id="main" style="overflow: auto">
       <!-- 以下是主页面组件 -->
       <router-view></router-view>
     </div>
@@ -111,21 +112,6 @@ export default {
     return {
       isCollapsed: false,
     };
-  },
-  methods: {
-    blurredImage(blurhash) {
-      if (!blurhash) return '';
-      const pixels = decode(blurhash, 32, 32);
-      const canvas = document.createElement('canvas');
-      canvas.width = 32;
-      canvas.height = 32;
-      const ctx = canvas.getContext('2d');
-      const imageData = ctx.createImageData(32, 32);
-      imageData.data.set(pixels);
-      ctx.putImageData(imageData, 0, 0);
-      return canvas.toDataURL();
-    },
-
   },
   setup() {
     const store = useBlurHashStore();
