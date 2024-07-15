@@ -1,7 +1,12 @@
+<script setup>
+onMounted(() => {
+    
+});
+</script>
 <template>
-    <div class="flex flex-col md:flex-row items-start mx-auto px-4 py-8">
+    <div class="flex flex-col md:flex-row items-start justify-center mx-auto px-4 py-8 pt-16">
         <div class="avatar">
-            <div class="mask mask-squircle w-24">
+            <div class="mask mask-squircle w-24 -z-10">
                 <img src="https://api-space.tnxg.top/avatar?s=qq" class="w-24 h-24 object-cover" alt="avatar" />
             </div>
         </div>
@@ -10,32 +15,39 @@
             <div class="flex items-center space-x-2">
                 <h2 class="text-5xl font-bold mt-4">I'm</h2>
                 <h2 class="text-5xl font-bold text-[#007acc] mt-4">
-                    <sup class="text-xs">いゆくるず iykrzu</sup><br>天翔TNXG
+                    <sup class="text-xs -z-10">いゆくるず iykrzu</sup><br>天翔TNXG
                 </h2>
                 <span class="text-2xl font-medium">TiaNXianG</span>
             </div>
             <br />
             <p class="text-xl mt-2">明日尚未到来，希望凝于心上</p>
-            <div class="flex flex-wrap items-center gap-4 mt-4">
-                <i class="ri-link text-2xl text-gray-600">
-                    <a href="#" class="text-xl text-gray-600">https://tnxgmoe.com</a>
-                </i>
-                <i class="ri-github-line text-2xl text-gray-600">
-                    <a href="#" class="text-xl text-gray-600">@TNXG</a>
-                </i>
-                <i class="ri-twitter-x-line text-2xl text-gray-600">
-                    <a href="#" class="text-xl text-gray-600">@iykrzu</a>
-                </i>
-                <i class="ri-telegram-line text-2xl text-gray-600">
-                    <a href="#" class="text-xl text-gray-600">@iykrzu</a>
-                </i>
+            <div class="flex flex-wrap items-center gap-12 mt-4">
+                <div class="text-gray-600">
+                    <a href="https://tnxgmoe.com" role="button" class="btn">
+                        <Icon name="fa6-solid:blog" />Blog
+                    </a>&nbsp;
+                    <a href="https://github.com/TNXG" role="button" class="btn">
+                        <Icon name="ri:github-line" />Github
+                    </a>&nbsp;
+                    <a href="https://github.com/TNXG" role="button" class="btn">
+                        <Icon name="ri-twitter-line" />twitter
+                    </a>&nbsp;
+                    <a href="https://github.com/TNXG" role="button" class="btn">
+                        <Icon name="ri-telegram-line" />Telegram
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </template>
+
 <style scoped>
 @font-face {
     src: url("https://cdn.tnxg.top/fonts/moonbridge.woff2") format('woff2');
+    font-family: "moonbridge";
+}
+
+* {
     font-family: "moonbridge";
 }
 </style>

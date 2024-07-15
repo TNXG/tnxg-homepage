@@ -1,22 +1,24 @@
 <script setup>
 import Sidebar from '@/components/Sidebar.vue'
 import { MobileStatus } from '@/stores'
-import { onMounted, watch, ref, nextTick } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const mainClass = ref({ 'ml-60': !MobileStatus.get() });
 
-onMounted(() => {
+const handleResize = () => {
   MobileStatus.set(window.innerWidth <= 768);
-  console.log(window.innerWidth, '草', MobileStatus.get())
   mainClass.value = { 'ml-60': !MobileStatus.get() };
-})
+};
 
-watch(MobileStatus, (newValue) => {
-  console.log('MobileStatus changed:', newValue);
-  nextTick(() => {
-    mainClass.value = { 'ml-60': !newValue };
+onMounted(() => {
+  handleResize(); // 初始检查窗口大小
+  window.addEventListener('resize', handleResize);
+
+  onUnmounted(() => {
+    clearInterval(intervalId);
+    window.removeEventListener('resize', handleResize);
   });
-})
+});
 
 </script>
 

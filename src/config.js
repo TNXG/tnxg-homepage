@@ -17,17 +17,17 @@ export const SidebarConfig = {
         {
             name: '首页',
             icon: 'mdi:home',
-            link: '/'
+            path: '/'
         },
         {
             name: '关于',
             icon: 'mdi:about-circle-outline',
-            link: '/about'
+            path: '/about'
         },
         {
             name: '项目',
             icon: 'codicon:github-project',
-            link: '/projects'
+            path: '/projects'
         }
     ],
     copyright: {

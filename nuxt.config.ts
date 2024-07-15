@@ -17,5 +17,5 @@ export default defineNuxtConfig({
   icon: {
     collections: ['mdi', 'codicon'],
   },
-  modules: ["nuxt-icon-tw", "@nuxtjs/tailwindcss"]
+  modules: ["@nuxtjs/tailwindcss", "nuxt-icon-tw"]
 });

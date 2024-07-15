@@ -1,5 +1,6 @@
 <script setup>
-import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import Avatar from '@/components/Avatar.vue';
 import { getReportMsg, getAppdesc } from '@/middleware/ReportService';
 import { SidebarConfig, SiteConfig } from '@/config';
@@ -31,8 +32,8 @@ const handleResize = () => {
 
 onMounted(() => {
   fetchReportData();
-  handleResize(); // 初始检查窗口大小
-  const intervalId = setInterval(fetchReportData, 10000);
+  handleResize();
+  const intervalId = setInterval(fetchReportData, 5000);
   window.addEventListener('resize', handleResize);
 
   onUnmounted(() => {
@@ -67,9 +68,9 @@ onMounted(() => {
                 </div>
                 <ul class="menu text-base bg-base-200 w-56">
                   <li v-for="(item, index) in SidebarConfig.sections" :key="index" class="mb-2">
-                    <a class="mb-2 flex items-center">
+                    <NuxtLink :to="item.path" :class="{ 'active': $route.path === item.path }" class="mb-2 flex items-center">
                       <Icon :name="item.icon" class="w-6 h-6 mr-2" /> {{ item.name }}
-                    </a>
+                    </NuxtLink>
                   </li>
                 </ul>
               </div>
@@ -95,9 +96,9 @@ onMounted(() => {
           </div>
           <ul class="menu text-base bg-base-200 w-56">
             <li v-for="(item, index) in SidebarConfig.sections" :key="index" class="mb-2">
-              <a class="mb-2 flex items-center">
+              <NuxtLink :to="item.path" :class="{ 'active': $route.path === item.path }" class="mb-2 flex items-center">
                 <Icon :name="item.icon" class="w-6 h-6 mr-2" /> {{ item.name }}
-              </a>
+              </NuxtLink>
             </li>
           </ul>
         </div>
@@ -109,3 +110,4 @@ onMounted(() => {
     </aside>
   </div>
 </template>
+
