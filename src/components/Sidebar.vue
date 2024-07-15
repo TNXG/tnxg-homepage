@@ -55,7 +55,7 @@ onMounted(() => {
         <div class="drawer-side">
           <label for="my-drawer" class="drawer-overlay"></label>
           <aside
-            class="bg-gray-100 w-60 h-screen p-4 flex flex-col justify-between border-r border-gray-300 fixed top-0 left-0 z-50">
+            class="bg-gray-100 w-60 h-screen p-4 flex flex-col justify-between border-r border-gray-300 fixed top-0 left-0 z-50 dark:bg-gray-800 dark:border-gray-950">
             <div>
               <div class="flex flex-col items-center">
                 <div class="text-base font-bold mb-4 flex items-center">
@@ -67,7 +67,8 @@ onMounted(() => {
                 </div>
                 <ul class="menu text-base bg-base-200 w-56">
                   <li v-for="(item, index) in SidebarConfig.sections" :key="index" class="mb-2">
-                    <NuxtLink :to="item.path" :class="{ 'active': $route.path === item.path }" class="mb-2 flex items-center">
+                    <NuxtLink :to="item.path" :class="{ 'active': $route.path === item.path }"
+                      class="mb-2 flex items-center">
                       <Icon :name="item.icon" class="w-6 h-6 mr-2" /> {{ item.name }}
                     </NuxtLink>
                   </li>
@@ -83,7 +84,7 @@ onMounted(() => {
       </div>
     </div>
     <aside v-else
-      class="bg-gray-100 w-60 h-screen p-4 flex flex-col justify-between border-r border-gray-300 fixed top-0 left-0 z-50">
+      class="bg-gray-100 w-60 h-screen p-4 flex flex-col justify-between border-r border-gray-300 fixed top-0 left-0 z-50 dark:bg-gray-800 dark:border-gray-950">
       <div>
         <div class="flex flex-col items-center">
           <div class="text-base font-bold mb-4 flex items-center">
@@ -109,4 +110,3 @@ onMounted(() => {
     </aside>
   </div>
 </template>
-

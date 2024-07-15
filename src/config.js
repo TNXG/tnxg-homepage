@@ -1,6 +1,7 @@
 export const SiteConfig = {
     title: '天翔TNXGの自留地',
-    SiteURL: 'https://tnxgmoe.com',
+    description: '明日尚未到来，希望凝于心上',
+    SiteURL: 'https://tnxg.com',
     Language: 'zh-CN',
     Author: {
         Name: '天翔TNXG',
