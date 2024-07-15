@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
 import Avatar from '@/components/Avatar.vue';
 import { getReportMsg, getAppdesc } from '@/middleware/ReportService';
 import { SidebarConfig, SiteConfig } from '@/config';
