@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "tnxg-homepages",
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,6 +13,7 @@
     "@nuxt/kit": "^3.12.3",
     "@nuxtjs/seo": "2.0.0-rc.12",
     "@nuxtjs/sitemap": "^5.3.2",
+    "fuse.js": "^7.0.0",
     "nanostores": "^0.10.3",
     "nuxt": "^3.12.3",
     "nuxt-icon-tw": "^0.1.4",

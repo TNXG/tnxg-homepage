@@ -1,27 +1,27 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import Avatar from '@/components/Avatar.vue';
 import { getReportMsg, getAppdesc } from '@/middleware/ReportService';
 import { SidebarConfig, SiteConfig } from '@/config';
-import { ReportStatus, MobileStatus } from '@/stores'
+import { ReportStatus, MobileStatus } from '@/stores';
 
 const curYear = new Date().getFullYear();
 const copyrightText = SidebarConfig.copyright.text.replace('{{date}}', `${curYear}`);
 
-const isOnline = ref(false)
-const ReportMessage = ref()
-const isMobile = ref(false)
+const isOnline = ref(false);
+const ReportMessage = ref();
+const isMobile = ref(false);
 
 const fetchReportData = async () => {
   const ReportMsg = await getReportMsg();
   if (ReportMsg.processName != null) {
     ReportStatus.set(true);
     const Appdesc = (await getAppdesc(ReportMsg.processName)) || '';
-    ReportMessage.value = `Master 正在使用 ${ReportMsg.processName} ${Appdesc}`
+    ReportMessage.value = `Master 正在使用 ${ReportMsg.processName} ${Appdesc}`;
   } else {
     ReportStatus.set(false);
   }
-  isOnline.value = ReportStatus.get()
+  isOnline.value = ReportStatus.get();
 };
 
 const handleResize = () => {
@@ -31,7 +31,7 @@ const handleResize = () => {
 
 onMounted(() => {
   fetchReportData();
-  isMobile.value = MobileStatus.get();
+  handleResize(); // 初始检查窗口大小
   const intervalId = setInterval(fetchReportData, 10000);
   window.addEventListener('resize', handleResize);
 
@@ -48,7 +48,9 @@ onMounted(() => {
       <div class="drawer">
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content">
-          <label for="my-drawer" class="btn btn-primary drawer-button">打开侧边栏</label>
+          <label for="my-drawer">
+            <Icon name="solar:sidebar-code-bold" class="w-8 h-8 m-4" />
+          </label>
         </div>
         <div class="drawer-side">
           <label for="my-drawer" class="drawer-overlay"></label>
