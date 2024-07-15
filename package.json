@@ -10,13 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.227",
     "@nuxt/kit": "^3.12.3",
     "@nuxtjs/seo": "2.0.0-rc.12",
     "@nuxtjs/sitemap": "^5.3.2",
     "nanostores": "^0.10.3",
     "nuxt": "^3.12.3",
-    "nuxt-icon": "1.0.0-beta.7",
     "nuxt-icon-tw": "^0.1.4",
     "nuxt-simple-robots": "4.0.0-rc.20",
     "nuxt-site-config": "^2.2.14",

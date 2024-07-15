@@ -1,7 +1,7 @@
 <script setup>
-import Sidebar from '@/components/Sidebar.vue'
+import Home from '@/layout/Home.vue'
 </script>
 
 <template>
-    <Sidebar />
+    <Home />
 </template>

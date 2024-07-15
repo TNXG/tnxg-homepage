@@ -3,12 +3,8 @@ import daisyui from "daisyui"
 
 const twConfig = {
   content: [
-    "**/components/**/*.{js,vue,ts}",
-    "**/layouts/**/*.vue",
-    "**/pages/**/*.vue",
-    "**/plugins/**/*.{js,ts}",
-    "**/app.vue",
-    "**/error.vue",
+    "**/**/*.{js,vue,ts}",
+    "**/*{js,vue,ts}",
   ],
   theme: {
     extend: {},
