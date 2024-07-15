@@ -1,5 +1,5 @@
 import { fileURLToPath } from 'url'
-import { SiteConfig } from '@/config';
+import { SiteConfig } from './src/config';
 
 export default defineNuxtConfig({
   app: {
