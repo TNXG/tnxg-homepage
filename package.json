@@ -11,16 +11,16 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.12.3",
-    "@nuxtjs/seo": "2.0.0-rc.12",
-    "@nuxtjs/sitemap": "^5.3.2",
+    "@nuxtjs/seo": "2.0.0-rc.14",
+    "@nuxtjs/sitemap": "^5.3.4",
     "fuse.js": "^7.0.0",
     "markdown-it": "^14.1.0",
     "nanostores": "^0.10.3",
     "nuxt": "^3.12.3",
     "nuxt-icon-tw": "^0.1.4",
-    "nuxt-simple-robots": "4.0.0-rc.20",
+    "nuxt-simple-robots": "4.0.1",
     "nuxt-site-config": "^2.2.14",
-    "vue": "latest"
+    "vue": "^3.4.31"
   },
   "devDependencies": {
     "@iconify-json/codicon": "^1.1.49",
@@ -31,6 +31,6 @@
     "globals": "^15.8.0",
     "postcss": "^8.4.39",
     "sass": "^1.77.8",
-    "tailwindcss": "^3.4.4"
+    "tailwindcss": "^3.4.5"
   }
 }
