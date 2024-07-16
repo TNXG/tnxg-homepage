@@ -47,7 +47,7 @@ await fetchData();
 
 onMounted(() => {
   fetchData();
-  const intervalId = setInterval(fetchReportData, 5000);
+  const intervalId = setInterval(fetchData, 5000);
 
   onUnmounted(() => {
     clearInterval(intervalId);
@@ -93,17 +93,30 @@ onMounted(() => {
           <div class="card-body items-center text-center">
             <h2 class="card-title">{{ ReportMsg.mediaInfo.title }}</h2>
             <p>艺术家: {{ ReportMsg.mediaInfo.artist }}</p>
-            <img :src="MediaInfo.image" alt="专辑封面" class="w-24 h-24">
+            <div class="avatar">
+              <div class="w-24 h-24 rounded-xl">
+                <img :src="MediaInfo.image" alt="专辑封面">
+              </div>
+            </div>
           </div>
         </div>
         <div v-if="HealthData" class="card bg-base-200 flex flex-col justify-end mt-4">
           <div class="card-body items-center text-center">
             <h2 class="card-title">健康信息</h2>
-            <p>心率: {{ HealthData.xiaomiwatch_heartrate.state }} {{
-              HealthData.xiaomiwatch_heartrate.attributes.unit_of_measurement }}</p>
-            <p>血氧饱和度: {{ HealthData.xiaomiwatch_spo2.state }} {{
-              HealthData.xiaomiwatch_spo2.attributes.unit_of_measurement }}</p>
-            <p>压力: {{ HealthData.xiaomiwatch_stress.state }}</p>
+            <p>
+              <Icon :name="HealthData.xiaomiwatch_heartrate.attributes.icon" />心率: {{
+                HealthData.xiaomiwatch_heartrate.state }} {{
+                HealthData.xiaomiwatch_heartrate.attributes.unit_of_measurement }}
+            </p>
+            <p>
+              <Icon :name="HealthData.xiaomiwatch_spo2.attributes.icon" />血氧饱和度: {{
+                HealthData.xiaomiwatch_spo2.state }} {{
+                HealthData.xiaomiwatch_spo2.attributes.unit_of_measurement }}
+            </p>
+            <p>
+              <Icon :name="HealthData.xiaomiwatch_stress.attributes.icon" />压力: {{
+                HealthData.xiaomiwatch_stress.state }}
+            </p>
           </div>
         </div>
         <div class="text-center mt-4 text-sm">
