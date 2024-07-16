@@ -45,10 +45,8 @@ const fetchData = async () => {
 
 await fetchData();
 
-console.log(ReportMsg)
-
 onMounted(() => {
-  fetchReportData();
+  fetchData();
   const intervalId = setInterval(fetchReportData, 5000);
 
   onUnmounted(() => {
