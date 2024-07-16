@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: {
-        lang: SiteConfig.Language // 设置为中文
+        lang: SiteConfig.Language
       },
       title: SiteConfig.title,
       meta: [

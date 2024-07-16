@@ -1,5 +1,6 @@
 export const SiteConfig = {
     title: '天翔TNXGの自留地',
+    master: '天翔TNXG',
     description: '明日尚未到来，希望凝于心上',
     SiteURL: 'https://tnxg.com',
     Language: 'zh-CN',
@@ -21,14 +22,14 @@ export const SidebarConfig = {
             path: '/'
         },
         {
-            name: '关于',
-            icon: 'mdi:about-circle-outline',
-            path: '/about'
+            name: '动态',
+            icon: 'mingcute:bubble-line',
+            path: '/recently/'
         },
         {
             name: '项目',
             icon: 'codicon:github-project',
-            path: '/projects'
+            path: '/projects/'
         }
     ],
     copyright: {
@@ -40,3 +41,7 @@ export const SidebarConfig = {
         }
     }
 };
+
+export const mxConfig = {
+    endpoint: 'https://mx.tnxg.top/api/v2',
+}
