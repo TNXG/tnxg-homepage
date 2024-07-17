@@ -7,12 +7,12 @@ import { ReportStatus } from '@/stores';
 const curYear = new Date().getFullYear();
 const copyrightText = SidebarConfig.copyright.text.replace('{{date}}', `${curYear}`);
 
-let ReportMsg
-let HealthData
-let MediaInfo
-let latestmusic;
+const ReportMsg = ref(null);
+const HealthData = ref(null);
+const MediaInfo = ref(null);
+const latestmusic = ref('');
 const isOnline = ref(false);
-const ReportMessage = ref();
+const ReportMessage = ref('');
 
 const appdesc = fetch(`https://cdn.jsdelivr.net/gh/Innei/reporter-assets@main/app-desc.json`)
   .then((res) => res.json());
@@ -25,16 +25,16 @@ const getAppdesc = (AppName) => {
 };
 
 const fetchData = async () => {
-  ReportMsg = await $fetch('/api/getReportMsg');
-  HealthData = await $fetch('/api/getBodyinfo');
-  if (ReportMsg.processName != null) {
+  ReportMsg.value = await $fetch('/api/getReportMsg');
+  HealthData.value = await $fetch('/api/getBodyinfo');
+  if (ReportMsg.value.processName != null) {
     ReportStatus.set(true);
-    const Appdesc = getAppdesc(ReportMsg.processName) || '';
-    ReportMessage.value = `Master 正在使用 ${ReportMsg.processName} ${Appdesc}`;
-    if (ReportMsg.mediaInfo) {
-      if (latestmusic != ReportMsg.mediaInfo.title) {
-        latestmusic = ReportMsg.mediaInfo.title;
-        MediaInfo = await $fetch(`/api/getMediainfo?songName=${ReportMsg.mediaInfo.title}&artist=${ReportMsg.mediaInfo.artist}`);
+    const Appdesc = getAppdesc(ReportMsg.value.processName) || '';
+    ReportMessage.value = `Master 正在使用 ${ReportMsg.value.processName} ${Appdesc}`;
+    if (ReportMsg.value.mediaInfo) {
+      if (latestmusic.value !== ReportMsg.value.mediaInfo.title) {
+        latestmusic.value = ReportMsg.value.mediaInfo.title;
+        MediaInfo.value = await $fetch(`/api/getMediainfo?songName=${ReportMsg.value.mediaInfo.title}&artist=${ReportMsg.value.mediaInfo.artist}`);
       }
     }
   } else {
@@ -42,8 +42,6 @@ const fetchData = async () => {
   }
   isOnline.value = ReportStatus.get();
 };
-
-await fetchData();
 
 onMounted(() => {
   fetchData();
@@ -74,7 +72,7 @@ onMounted(() => {
               <div class="tooltip tooltip-right" :data-tip="ReportMessage" v-if="isOnline">
                 <Avatar class="w-10 h-10 mr-2" :isOnline="isOnline" />
               </div>
-              <Avatar class="w-10 h-10 mr-2" :isOnline="isOnline" v-if="!isOnline" />
+              <Avatar class="w-10 h-10 mr-2" :isOnline="isOnline" v-else />
               {{ SiteConfig.title }}
             </div>
             <div class="w-56 max-w-56">
@@ -89,15 +87,17 @@ onMounted(() => {
             </div>
           </div>
         </div>
-        <div v-if="ReportMsg.mediaInfo" class="card bg-base-200 flex flex-col justify-end">
+        <div v-if="ReportMsg && ReportMsg.mediaInfo" class="card bg-base-200 flex flex-col justify-end">
           <div class="card-body items-center text-center">
-            <h2 class="card-title">{{ ReportMsg.mediaInfo.title }}</h2>
-            <p>艺术家: {{ ReportMsg.mediaInfo.artist }}</p>
-            <div class="avatar">
+            <h2 class="card-title">{{ MediaInfo?.name || ReportMsg.mediaInfo.title }}</h2>
+            <p v-if="ReportMsg.mediaInfo.artist || MediaInfo?.artist">艺术家: {{ ReportMsg.mediaInfo.artist ||
+              MediaInfo?.artist }}</p>
+            <div v-if="MediaInfo?.image" class="avatar">
               <div class="w-24 h-24 rounded-xl">
                 <img :src="MediaInfo.image" alt="专辑封面">
               </div>
             </div>
+            <p v-if="MediaInfo.tns" class="text-sm text-gray-700">{{ MediaInfo?.tns }}</p>
           </div>
         </div>
         <div v-if="HealthData" class="card bg-base-200 flex flex-col justify-end mt-4">

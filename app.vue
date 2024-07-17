@@ -20,7 +20,7 @@ onMounted(() => {
     <Sidebar>
       <div class="ml-0 lg:ml-60" id="main">
         <NuxtPage />
-        <div id="background" class="fixed bottom-0 right-0 w-1/4 h-full bg-cover bg-no-repeat bg-center -z-10"></div>
+        <div id="background" class="max-w-[50vw] w-auto aspect-[0.5] fixed bottom-0 right-0 h-full bg-cover bg-no-repeat bg-center -z-10 object-cover"></div>
       </div>
     </Sidebar>
   </div>

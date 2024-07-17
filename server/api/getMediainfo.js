@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
     try {
         const { songName, artist } = getQuery(event);
-        const searchkey = `${songName} - ${artist}`;
+        const searchkey = `${songName.replace('-天翔TNXG-歌曲-哔哩哔哩视频', '')} - ${artist}`;
         const searchResponse = await fetch(`https://api-ncm.prts.top/search?keywords=${searchkey}`);
         const searchData = await searchResponse.json();
         if (!searchData.result.songs || searchData.result.songs.length === 0) {
@@ -18,9 +18,9 @@ export default defineEventHandler(async (event) => {
         return {
             name: returndata.name,
             artist: artistNames,
-            album: returndata.al.name,
-            image: returndata.al.picUrl,
-            tns: returndata.tns[0],
+            album: returndata.al.name || null,
+            image: returndata.al.picUrl || null,
+            tns: returndata.tns ? returndata.tns[0] || null : null,
         };
     } catch (error) {
         console.error('Error fetching media info:', error);

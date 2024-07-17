@@ -2,6 +2,7 @@ import { fileURLToPath } from 'url'
 import { SiteConfig } from './src/config';
 
 export default defineNuxtConfig({
+  modules: ["@nuxtjs/tailwindcss", "nuxt-icon-tw", "nuxt-delay-hydration"],
   app: {
     head: {
       htmlAttrs: {
@@ -28,8 +29,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  icon: {
-    collections: ['mdi', 'codicon'],
-  },
-  modules: ["@nuxtjs/tailwindcss", "nuxt-icon-tw"]
+  delayHydration: {
+    mode: 'init'
+  }
 });
