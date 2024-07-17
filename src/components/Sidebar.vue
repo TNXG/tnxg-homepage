@@ -91,12 +91,13 @@ onMounted(() => {
           <div class="card-body items-center text-center p-4">
             <h2 class="card-title text-lg lg:text-xl">{{ MediaInfo?.name || ReportMsg.mediaInfo.title }}</h2>
             <p v-if="ReportMsg.mediaInfo.artist || MediaInfo?.artist" class="text-sm lg:text-base">艺术家: {{
-              ReportMsg.mediaInfo.artist || MediaInfo?.artist}}</p>
+              ReportMsg.mediaInfo.artist || MediaInfo?.artist }}</p>
             <div v-if="MediaInfo?.image" class="avatar mt-2">
               <div class="w-24 h-24 rounded-xl">
                 <img :src="MediaInfo.image" alt="专辑封面">
               </div>
             </div>
+            <p v-if="MediaInfo.tns" class="text-sm text-gray-700">{{ MediaInfo?.tns }}</p>
           </div>
         </div>
         <div v-if="HealthData" class="card bg-base-200 flex flex-col justify-end mt-4">
