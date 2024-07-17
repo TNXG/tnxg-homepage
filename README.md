@@ -1,10 +1,4 @@
-### README.md
-
----
-
 # **tnxg-homepages**
-
-## **简介**
 
 `tnxg-homepages` 是由 天翔TNXG 创建并维护的个人网站，部分内容依赖 [Mix-Space](https://github.com/mx-space)。旨在展示个人信息、动态、项目等内容。该项目由 `Nuxt.js` 框架构建，使用了多种现代前端技术，为用户提供了一个美观、响应式的个人主页。
 
