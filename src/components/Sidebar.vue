@@ -20,7 +20,7 @@ const getAppdesc = (AppName) => {
   try {
     return appdesc[AppName];
   } catch (error) {
-    return;
+    return '';
   }
 };
 
@@ -75,11 +75,11 @@ onMounted(() => {
               <Avatar class="w-10 h-10 mr-2" :isOnline="isOnline" v-else />
               {{ SiteConfig.title }}
             </div>
-            <div class="w-56 max-w-56">
-              <ul class="menu text-base bg-base-200">
+            <div class="w-full lg:w-56 max-w-56">
+              <ul class="menu rounded-[1rem] text-base bg-base-200 w-full">
                 <li v-for="(item, index) in SidebarConfig.sections" :key="index" class="mb-2">
                   <NuxtLink :to="item.path" :class="{ 'active': $route.path === item.path }"
-                    class="mb-2 flex items-center">
+                    class="mb-2 flex items-center w-full">
                     <Icon :name="item.icon" class="w-6 h-6 mr-2" /> {{ item.name }}
                   </NuxtLink>
                 </li>
@@ -87,39 +87,38 @@ onMounted(() => {
             </div>
           </div>
         </div>
-        <div v-if="ReportMsg && ReportMsg.mediaInfo" class="card bg-base-200 flex flex-col justify-end">
-          <div class="card-body items-center text-center">
-            <h2 class="card-title">{{ MediaInfo?.name || ReportMsg.mediaInfo.title }}</h2>
-            <p v-if="ReportMsg.mediaInfo.artist || MediaInfo?.artist">艺术家: {{ ReportMsg.mediaInfo.artist ||
-              MediaInfo?.artist }}</p>
-            <div v-if="MediaInfo?.image" class="avatar">
+        <div v-if="ReportMsg && ReportMsg.mediaInfo" class="card bg-base-200 flex flex-col justify-end mt-4 lg:mt-0">
+          <div class="card-body items-center text-center p-4">
+            <h2 class="card-title text-lg lg:text-xl">{{ MediaInfo?.name || ReportMsg.mediaInfo.title }}</h2>
+            <p v-if="ReportMsg.mediaInfo.artist || MediaInfo?.artist" class="text-sm lg:text-base">艺术家: {{
+              ReportMsg.mediaInfo.artist || MediaInfo?.artist}}</p>
+            <div v-if="MediaInfo?.image" class="avatar mt-2">
               <div class="w-24 h-24 rounded-xl">
                 <img :src="MediaInfo.image" alt="专辑封面">
               </div>
             </div>
-            <p v-if="MediaInfo.tns" class="text-sm text-gray-700">{{ MediaInfo?.tns }}</p>
           </div>
         </div>
         <div v-if="HealthData" class="card bg-base-200 flex flex-col justify-end mt-4">
-          <div class="card-body items-center text-center">
-            <h2 class="card-title">健康信息</h2>
-            <p>
-              <Icon :name="HealthData.xiaomiwatch_heartrate.attributes.icon" />心率: {{
+          <div class="card-body items-center text-center p-4">
+            <h2 class="card-title text-lg lg:text-xl">健康信息</h2>
+            <p class="text-sm lg:text-base">
+              <Icon :name="HealthData.xiaomiwatch_heartrate.attributes?.icon" />心率: {{
                 HealthData.xiaomiwatch_heartrate.state }} {{
-                HealthData.xiaomiwatch_heartrate.attributes.unit_of_measurement }}
+                HealthData.xiaomiwatch_heartrate.attributes?.unit_of_measurement }}
             </p>
-            <p>
-              <Icon :name="HealthData.xiaomiwatch_spo2.attributes.icon" />血氧饱和度: {{
+            <p class="text-sm lg:text-base">
+              <Icon :name="HealthData.xiaomiwatch_spo2.attributes?.icon" />血氧饱和度: {{
                 HealthData.xiaomiwatch_spo2.state }} {{
-                HealthData.xiaomiwatch_spo2.attributes.unit_of_measurement }}
+                HealthData.xiaomiwatch_spo2.attributes?.unit_of_measurement }}
             </p>
-            <p>
-              <Icon :name="HealthData.xiaomiwatch_stress.attributes.icon" />压力: {{
+            <p class="text-sm lg:text-base">
+              <Icon :name="HealthData.xiaomiwatch_stress.attributes?.icon" />压力: {{
                 HealthData.xiaomiwatch_stress.state }}
             </p>
           </div>
         </div>
-        <div class="text-center mt-4 text-sm">
+        <div class="text-center mt-4 text-sm lg:text-base">
           <div class="divider mb-2"></div>
           {{ copyrightText }}
         </div>
