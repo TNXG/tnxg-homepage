@@ -14,17 +14,25 @@ const latestmusic = ref('');
 const isOnline = ref(false);
 const ReportMessage = ref('');
 
-const appdesc = fetch(`https://cdn.jsdelivr.net/gh/Innei/reporter-assets@main/app-desc.json`)
-  .then((res) => res.json());
+let appdesc = null;
+
+const fetchAppDesc = async () => {
+  const response = await fetch(`https://cdn.jsdelivr.net/gh/Innei/reporter-assets@main/app-desc.json`);
+  appdesc = await response.json();
+};
+
 const getAppdesc = (AppName) => {
   try {
-    return appdesc[AppName];
+    return appdesc && appdesc[AppName] ? appdesc[AppName] : '';
   } catch (error) {
     return '';
   }
 };
 
 const fetchData = async () => {
+  if (!appdesc) {
+    await fetchAppDesc();
+  }
   ReportMsg.value = await $fetch('/api/getReportMsg');
   HealthData.value = await $fetch('/api/getBodyinfo');
   if (ReportMsg.value.processName != null) {
@@ -52,6 +60,7 @@ onMounted(() => {
   });
 });
 </script>
+
 
 <template>
   <div class="drawer lg:drawer-open">
@@ -94,10 +103,10 @@ onMounted(() => {
               ReportMsg.mediaInfo.artist || MediaInfo?.artist }}</p>
             <div v-if="MediaInfo?.image" class="avatar mt-2">
               <div class="w-24 h-24 rounded-xl">
-                <img :src="MediaInfo.image" alt="专辑封面">
+                <img :src="MediaInfo?.image" alt="专辑封面">
               </div>
             </div>
-            <p v-if="MediaInfo.tns" class="text-sm text-gray-700">{{ MediaInfo?.tns }}</p>
+            <p v-if="MediaInfo?.tns" class="text-sm text-gray-700">{{ MediaInfo?.tns }}</p>
           </div>
         </div>
         <div v-if="HealthData" class="card bg-base-200 flex flex-col justify-end mt-4">

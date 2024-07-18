@@ -12,7 +12,7 @@
                 <h2 class="text-5xl font-bold text-[#007acc] mt-4">
                     <sup class="text-xs -z-10">いゆくるず iykrzu</sup><br>天翔TNXG
                 </h2>
-                <span class="text-2xl font-medium">TiaNXianG</span>
+                <span class="text-2xl font-medium break-words">TiaNXianG</span>
             </div>
             <br />
             <p class="text-xl mt-2">明日尚未到来，希望凝于心上</p>
