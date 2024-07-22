@@ -27,9 +27,9 @@ export const SidebarConfig = {
             path: '/recently/'
         },
         {
-            name: '项目',
-            icon: 'codicon:github-project',
-            path: '/projects/'
+            name: '友链',
+            icon: 'carbon:friendship',
+            path: '/friends/'
         }
     ],
     copyright: {

@@ -3,14 +3,14 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import Avatar from '@/components/Avatar.vue';
 import { SidebarConfig, SiteConfig } from '@/config';
 import { ReportStatus } from '@/stores';
+import HealthInfo from '@/components/HealthInfo.vue';
+import MediaInfo from '@/components/MediaInfo.vue';
 
 const curYear = new Date().getFullYear();
 const copyrightText = SidebarConfig.copyright.text.replace('{{date}}', `${curYear}`);
 
 const ReportMsg = ref(null);
-const HealthData = ref(null);
-const MediaInfo = ref(null);
-const latestmusic = ref('');
+const latestMusic = ref('');
 const isOnline = ref(false);
 const ReportMessage = ref('');
 
@@ -34,15 +34,13 @@ const fetchData = async () => {
     await fetchAppDesc();
   }
   ReportMsg.value = await $fetch('/api/getReportMsg');
-  HealthData.value = await $fetch('/api/getBodyinfo');
   if (ReportMsg.value.processName != null) {
     ReportStatus.set(true);
     const Appdesc = getAppdesc(ReportMsg.value.processName) || '';
     ReportMessage.value = `Master 正在使用 ${ReportMsg.value.processName} ${Appdesc}`;
     if (ReportMsg.value.mediaInfo) {
-      if (latestmusic.value !== ReportMsg.value.mediaInfo.title) {
-        latestmusic.value = ReportMsg.value.mediaInfo.title;
-        MediaInfo.value = await $fetch(`/api/getMediainfo?songName=${ReportMsg.value.mediaInfo.title}&artist=${ReportMsg.value.mediaInfo.artist}`);
+      if (latestMusic.value !== ReportMsg.value.mediaInfo.title) {
+        latestMusic.value = ReportMsg.value.mediaInfo.title;
       }
     }
   } else {
@@ -61,7 +59,6 @@ onMounted(() => {
 });
 </script>
 
-
 <template>
   <div class="drawer lg:drawer-open">
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
@@ -78,10 +75,26 @@ onMounted(() => {
         <div>
           <div class="flex flex-col items-center">
             <div class="text-base font-bold mb-4 flex items-center">
-              <div class="tooltip tooltip-right" :data-tip="ReportMessage" v-if="isOnline">
+              <button data-popover-target="popover-avatar" type="button" class="relative text-center">
                 <Avatar class="w-10 h-10 mr-2" :isOnline="isOnline" />
+              </button>
+              <div data-popover id="popover-avatar" role="tooltip"
+                class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                <div
+                  class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                  <h3 class="font-semibold text-gray-900 dark:text-white">详细信息</h3>
+                </div>
+                <div class="px-3 py-2">
+                  <div class="card bg-base-200 flex flex-col justify-end mt-4 mb-4 lg:mt-0">
+                    <div class="card-body items-center text-center p-4">
+                      <p>{{ ReportMessage }}</p>
+                    </div>
+                  </div>
+                  <MediaInfo :reportMsg="ReportMsg" :latestMusic="latestMusic" />
+                  <HealthInfo />
+                </div>
+                <div data-popper-arrow></div>
               </div>
-              <Avatar class="w-10 h-10 mr-2" :isOnline="isOnline" v-else />
               {{ SiteConfig.title }}
             </div>
             <div class="w-full lg:w-56 max-w-56">
@@ -94,38 +107,6 @@ onMounted(() => {
                 </li>
               </ul>
             </div>
-          </div>
-        </div>
-        <div v-if="ReportMsg && ReportMsg.mediaInfo" class="card bg-base-200 flex flex-col justify-end mt-4 lg:mt-0">
-          <div class="card-body items-center text-center p-4">
-            <h2 class="card-title text-lg lg:text-xl">{{ MediaInfo?.name || ReportMsg.mediaInfo.title }}</h2>
-            <p v-if="ReportMsg.mediaInfo.artist || MediaInfo?.artist" class="text-sm lg:text-base">艺术家: {{
-              ReportMsg.mediaInfo.artist || MediaInfo?.artist }}</p>
-            <div v-if="MediaInfo?.image" class="avatar mt-2">
-              <div class="w-24 h-24 rounded-xl">
-                <img :src="MediaInfo?.image" alt="专辑封面">
-              </div>
-            </div>
-            <p v-if="MediaInfo?.tns" class="text-sm text-gray-700">{{ MediaInfo?.tns }}</p>
-          </div>
-        </div>
-        <div v-if="HealthData" class="card bg-base-200 flex flex-col justify-end mt-4">
-          <div class="card-body items-center text-center p-4">
-            <h2 class="card-title text-lg lg:text-xl">健康信息</h2>
-            <p class="text-sm lg:text-base">
-              <Icon :name="HealthData.xiaomiwatch_heartrate.attributes?.icon" />心率: {{
-                HealthData.xiaomiwatch_heartrate.state }} {{
-                HealthData.xiaomiwatch_heartrate.attributes?.unit_of_measurement }}
-            </p>
-            <p class="text-sm lg:text-base">
-              <Icon :name="HealthData.xiaomiwatch_spo2.attributes?.icon" />血氧饱和度: {{
-                HealthData.xiaomiwatch_spo2.state }} {{
-                HealthData.xiaomiwatch_spo2.attributes?.unit_of_measurement }}
-            </p>
-            <p class="text-sm lg:text-base">
-              <Icon :name="HealthData.xiaomiwatch_stress.attributes?.icon" />压力: {{
-                HealthData.xiaomiwatch_stress.state }}
-            </p>
           </div>
         </div>
         <div class="text-center mt-4 text-sm lg:text-base">
