@@ -1,8 +1,27 @@
 import { fileURLToPath } from 'url'
-import { SiteConfig } from './src/config';
+import { SiteConfig } from './src/config'
 
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss", "nuxt-icon-tw", "nuxt-delay-hydration"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "nuxt-icon-tw",
+    "nuxt-delay-hydration",
+    "@nuxtjs/sitemap",
+    "@nuxtjs/robots",
+    "nuxt-lazy-load"
+  ],
+  site: {
+    url: 'https://tnxg.top',
+  },
+  sitemap: {
+    xslTips: false,
+    xslColumns: [
+      { label: 'URL', width: '75%' },
+      { label: 'Last Modified', select: 'sitemap:lastmod', width: '25%' },
+      { label: 'Priority', select: 'sitemap:priority', width: '12.5%' },
+      { label: 'Change Frequency', select: 'sitemap:changefreq', width: '12.5%' },
+    ],
+  },
   app: {
     head: {
       htmlAttrs: {
@@ -34,5 +53,19 @@ export default defineNuxtConfig({
   },
   delayHydration: {
     mode: 'mount'
+  },
+  lazyLoad: {
+    images: true,
+    videos: false,
+    audios: false,
+    iframes: false,
+    native: false,
+    directiveOnly: false,
+
+    defaultImage: 'https://cdn.tnxg.top/images/avatar/none.jpg',
+
+    loadingClass: 'isLoading',
+    loadedClass: 'isLoaded',
+    appendClass: 'lazyLoad',
   }
 });

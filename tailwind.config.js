@@ -4,8 +4,9 @@ import daisyui from "daisyui";
 const twConfig = {
   darkMode: 'media',
   content: [
-    "**/**/*.{js,vue,ts}",
-    "**/*{js,vue,ts}",
+    "**/pages/*.{js,vue,ts}",
+    "**/src/*.{js,vue,ts}",
+    "**/src/**/*.{js,vue,ts}",
     "./node_modules/flowbite/**/*.{js,ts}",
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",

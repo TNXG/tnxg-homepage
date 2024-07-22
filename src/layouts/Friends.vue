@@ -1,3 +1,20 @@
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const friends = ref([]);
+
+onMounted(async () => {
+    friends.value = await $fetch('/api/getFriends');
+    shuffleArray(friends.value);
+});
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+</script>
 <template>
     <div class="container mx-auto px-4 py-12 flex flex-col items-center">
         <h1 class="text-3xl font-bold mb-16 text-gray-800 dark:text-gray-200">
@@ -31,21 +48,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { ref, onMounted } from 'vue';
-
-const friends = ref([]);
-
-onMounted(async () => {
-    friends.value = await $fetch('/api/getFriends');
-    shuffleArray(friends.value);
-});
-
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-</script>
