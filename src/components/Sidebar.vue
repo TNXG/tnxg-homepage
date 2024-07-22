@@ -64,14 +64,14 @@ onMounted(() => {
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
       <label for="my-drawer" class="drawer-button lg:hidden">
-        <Icon name="solar:sidebar-code-bold" class="w-8 h-8 m-4" />
+        <Icon icon="solar:sidebar-code-bold" class="w-8 h-8 m-4" />
       </label>
       <slot />
     </div>
     <div class="drawer-side">
       <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
       <aside
-        class="bg-gray-100 max-w-60 w-60 h-screen p-4 flex flex-col justify-between border-r border-gray-300 fixed top-0 left-0 z-50 dark:bg-gray-800 dark:border-gray-950 md:flex">
+        class="bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-950 max-w-60 w-60 h-screen p-4 flex flex-col justify-between border-r fixed top-0 left-0 z-50 md:flex">
         <div>
           <div class="flex flex-col items-center">
             <div class="text-base font-bold mb-4 flex items-center">

@@ -52,6 +52,7 @@
 - **Vue.js**: 用于构建用户界面的渐进式 JavaScript 框架。
 - **Tailwind CSS**: 用于快速构建响应式布局的实用工具类 CSS 框架。
 - **DaisyUI**: 用于快速构建美观的 UI 组件。
+- **Flowbite**: 基于 Tailwind CSS 的组件库，用于构建现代化的 UI 组件。
 - **Autoprefixer**: 自动添加 CSS 前缀的工具。
 - **Sass**: CSS 预处理器，用于增强 CSS 的功能。
 - **PostCSS**: 用于转换 CSS 代码的工具。

@@ -2,6 +2,7 @@
 import daisyui from "daisyui";
 
 const twConfig = {
+  darkMode: 'media',
   content: [
     "**/**/*.{js,vue,ts}",
     "**/*{js,vue,ts}",
