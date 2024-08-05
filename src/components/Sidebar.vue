@@ -85,7 +85,7 @@ onMounted(() => {
                   <h3 class="font-semibold text-gray-900 dark:text-white">详细信息</h3>
                 </div>
                 <div class="px-3 py-2">
-                  <div class="card bg-base-200 flex flex-col justify-end mt-4 mb-4 lg:mt-0">
+                  <div v-if="ReportMessage" class="card bg-base-200 flex flex-col justify-end mt-4 mb-4 lg:mt-0">
                     <div class="card-body items-center text-center p-4">
                       <p>{{ ReportMessage }}</p>
                     </div>
@@ -111,7 +111,13 @@ onMounted(() => {
         </div>
         <div class="text-center mt-4 text-sm lg:text-base">
           <div class="divider mb-2"></div>
-          {{ copyrightText }}
+          <p class="text-gray-700 dark:text-gray-300 mb-2">
+            {{ copyrightText }}
+          </p>
+          <p class="text-sm text-gray-700 dark:text-gray-300">
+            Designed by <a href="https://github.com/TNXG/tnxg-homepage" target="_blank"
+              class="text-blue-500 hover:text-blue-700 dark:text-blue-300 dark:hover:text-blue-500">tnxg-homepage</a>
+          </p>
         </div>
       </aside>
     </div>

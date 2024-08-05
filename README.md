@@ -59,11 +59,17 @@
 - **Nanostores**: 用于状态管理的轻量级库。
 - **Markdown-it**: 用于解析 Markdown 的库。
 
-## **鸣谢 & 许可**
+## **鸣谢**
+
+### 后端构成
 
 - [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 - [Mix-Space](https://github.com/mx-space)
 - [Home Assistant](https://github.com/home-assistant)
+
+## 样式参考
+
+- [ZhiluSite](https://github.com/L33Z22L11/ZhiluSite)
 
 ## 联系我们
 

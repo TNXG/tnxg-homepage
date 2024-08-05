@@ -12,7 +12,13 @@ const twConfig = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'blue-green': {
+          DEFAULT: 'linear-gradient(to right, #00f260, #0575e6)',
+        },
+      },
+    },
   },
   plugins: [
     daisyui,

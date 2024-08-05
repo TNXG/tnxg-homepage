@@ -18,16 +18,16 @@
             <p class="text-xl mt-2">明日尚未到来，希望凝于心上</p>
             <div class="flex flex-wrap items-center gap-12 mt-4 mb-4">
                 <div class="text-gray-600">
-                    <a href="https://tnxgmoe.com" role="button" class="btn mt-4 mb-2">
+                    <a href="https://tnxgmoe.com" target="_blank" role="button" class="btn mt-4 mb-2">
                         <Icon name="fa6-solid:blog" />Blog
                     </a>&nbsp;
-                    <a href="https://github.com/TNXG" role="button" class="btn mt-4 mb-2">
+                    <a href="https://github.com/TNXG" target="_blank" role="button" class="btn mt-4 mb-2">
                         <Icon name="ri:github-line" />Github
                     </a>&nbsp;
-                    <a href="https://github.com/TNXG" role="button" class="btn mt-4 mb-2">
+                    <a href="https://github.com/TNXG" target="_blank" role="button" class="btn mt-4 mb-2">
                         <Icon name="ri-twitter-line" />Twitter
                     </a>&nbsp;
-                    <a href="https://github.com/TNXG" role="button" class="btn mt-4 mb-2">
+                    <a href="https://github.com/TNXG" target="_blank" role="button" class="btn mt-4 mb-2">
                         <Icon name="ri-telegram-line" />Telegram
                     </a>
                 </div>
