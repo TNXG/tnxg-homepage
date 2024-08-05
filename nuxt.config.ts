@@ -8,7 +8,6 @@ export default defineNuxtConfig({
     "nuxt-delay-hydration",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
-    "nuxt-lazy-load"
   ],
   site: {
     url: 'https://tnxg.top',
@@ -53,19 +52,5 @@ export default defineNuxtConfig({
   },
   delayHydration: {
     mode: 'mount'
-  },
-  lazyLoad: {
-    images: true,
-    videos: false,
-    audios: false,
-    iframes: false,
-    native: false,
-    directiveOnly: false,
-
-    defaultImage: 'https://cdn.tnxg.top/images/avatar/none.jpg',
-
-    loadingClass: 'isLoading',
-    loadedClass: 'isLoaded',
-    appendClass: 'lazyLoad',
   }
 });
