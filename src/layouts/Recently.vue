@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import MarkdownRender from '@/components/Markdown.vue';
-const recentlies = ref(await useFetch('/api/getRecentlies').data);
+const recentlies = ref(useFetch('/api/getRecentlies').data);
 import { SiteConfig } from '@/config';
 </script>
 

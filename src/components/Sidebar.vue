@@ -50,11 +50,20 @@ const fetchData = async () => {
 };
 
 onMounted(() => {
+
+  const setViewportHeight = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+
+  setViewportHeight();
   fetchData();
   const intervalId = setInterval(fetchData, 5000);
+  window.addEventListener('resize', setViewportHeight);
 
   onUnmounted(() => {
     clearInterval(intervalId);
+    window.removeEventListener('resize', setViewportHeight);
   });
 });
 </script>
@@ -71,7 +80,7 @@ onMounted(() => {
     <div class="drawer-side">
       <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
       <aside
-        class="bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-950 max-w-60 w-60 h-screen p-4 flex flex-col justify-between border-r fixed top-0 left-0 z-50 md:flex">
+        class="bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-950 max-w-60 w-60 h-[calc(var(--vh,1vh)*100)] p-4 flex flex-col justify-between border-r fixed top-0 left-0 z-50 md:flex">
         <div>
           <div class="flex flex-col items-center">
             <div class="text-base font-bold mb-4 flex items-center">
@@ -98,7 +107,7 @@ onMounted(() => {
               {{ SiteConfig.title }}
             </div>
             <div class="w-full lg:w-56 max-w-56">
-              <ul class="menu rounded-[1rem] text-base bg-base-200 w-full">
+              <ul class="menu rounded-[1rem] text-base bg-base-300 w-full">
                 <li v-for="(item, index) in SidebarConfig.sections" :key="index" class="mb-2">
                   <NuxtLink :to="item.path" :class="{ 'active': $route.path === item.path }"
                     class="mb-2 flex items-center w-full">

@@ -1,3 +1,80 @@
+@import url("https://cdn.tnxg.top/fonts/HarmonyOS_Regular.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  font-family: "HarmonyOS_Regular";
+}
+
+.gradient-card {
+  position: relative;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+      60deg,
+      var(--c-accent-1),
+      var(--c-primary-2),
+      transparent 70%
+    )
+    no-repeat 100%/400%;
+  transition: all 0.2s;
+  z-index: 0;
+}
+
+.gradient-card::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: calc(0.5rem - 2px);
+  transition: all 0.5s;
+  z-index: -1;
+}
+
+.gradient-card:hover,
+.gradient-card.active {
+  background-position: 0;
+}
+
+.gradient-card:hover::before,
+.gradient-card.active::before {
+  background-color: var(--c-bg-a75);
+  transition: all 0.1s;
+}
+
+:root,
+.light {
+  --c-text-1: hsl(0deg 0% 20%);
+  --c-text-2: hsl(0deg 0% 50%);
+  --c-text-3: hsl(0deg 0% 70%);
+  --c-bg-1: hsl(0deg 0% 100%);
+  --c-bg-2: hsl(200deg 20% 98%);
+  --c-bg-3: hsl(200deg 10% 94%);
+  --c-border: hsl(200deg 5% 90%);
+  --c-bg-a50: hsl(200deg 20% 98% / 50%);
+  --c-bg-a75: hsl(200deg 20% 98% / 75%);
+  --c-bg-a100: hsl(200deg 20% 98% / 0%);
+  --c-primary-1: hsl(220deg 100% 55%);
+  --c-primary-2: hsl(210deg 100% 50% / 30%);
+  --c-primary-3: hsl(215deg 100% 60% / 15%);
+  --c-primary-soft: hsl(240deg 20% 20% / 10%);
+  --c-accent-1: hsl(180deg 70% 60%);
+}
+
+.dark {
+  --c-text-1: hsl(0deg 0% 90%);
+  --c-text-2: hsl(0deg 0% 50%);
+  --c-text-3: hsl(0deg 0% 40%);
+  --c-bg-1: hsl(0deg 0% 10%);
+  --c-bg-2: hsl(0deg 0% 7%);
+  --c-bg-3: hsl(0deg 0% 15%);
+  --c-border: hsl(0deg 0% 20%);
+  --c-bg-a50: hsl(0deg 0% 0% / 50%);
+  --c-bg-a75: hsl(0deg 0% 0% / 75%);
+  --c-bg-a100: hsl(0deg 0% 0% / 100%);
+  --c-primary-1: hsl(220deg 100% 70%);
+  --c-primary-2: hsl(210deg 100% 70% / 30%);
+  --c-primary-3: hsl(215deg 100% 60% / 20%);
+  --c-primary-soft: hsl(220deg 100% 95% / 15%);
+  color-scheme: dark;
+}

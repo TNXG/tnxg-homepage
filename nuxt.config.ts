@@ -7,10 +7,14 @@ export default defineNuxtConfig({
     "nuxt-icon-tw",
     "nuxt-delay-hydration",
     "@nuxtjs/sitemap",
-    "@nuxtjs/robots",
+    "@nuxt/image"
   ],
   site: {
-    url: 'https://tnxg.top',
+    url: SiteConfig.SiteURL,
+  },
+  image: {
+    domains: [SiteConfig.SiteURL],
+    format: ['avif', 'webp'],
   },
   sitemap: {
     xslTips: false,
@@ -32,15 +36,13 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { hid: 'description', name: 'description', content: SiteConfig.description }
       ],
-      script: [
-        { src: 'https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js', type: 'text/javascript' }
-      ]
     }
   },
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  css: ['~/assets/css/main.css'],
-
+  css: [
+    '~/assets/css/main.css'
+  ],
   alias: {
     '@': fileURLToPath(new URL('./src', import.meta.url)),
   },

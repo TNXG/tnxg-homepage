@@ -1,0 +1,100 @@
+<script setup>
+import { format, isSameYear } from 'date-fns'
+import { ref, computed, onMounted, nextTick } from 'vue';
+
+const props = defineProps({
+    useUpdated: Boolean,
+    title: String,
+    created: String,
+    modified: String,
+    summary: String,
+    cover: String,
+    id: String,
+    url: String,
+})
+
+const mainDate = computed(() => (props.useUpdated ? props.modified : props.created))
+const dateLabel = computed(() => format(new Date(mainDate.value), 'MM-dd'))
+const auxDateLabel = computed(() => (format(new Date(props.created), isSameYear(new Date(props.modified), new Date(props.created)) ? 'MM-dd' : 'yyyy-MM-dd')))
+
+const articleCard = ref(null)
+
+function isExtLink(url) {
+    return !!url?.match(':')
+}
+
+onMounted(async () => {
+    await nextTick();
+    const popoverTrigger = document.querySelector(`[data-popover-target="popover-${props.id}"]`);
+    const popoverContent = document.querySelector(`[data-popover="popover-${props.id}"]`);
+    if (!popoverTrigger || !popoverContent) {
+        console.error(`The popover element with id "popover-${props.id}" does not exist. Please check the data-popover-target attribute.`);
+    } else {
+        new Popover(popoverTrigger, {
+            content: popoverContent,
+            placement: 'top',
+            triggerType: 'hover',
+        });
+    }
+});
+</script>
+
+<template>
+    <li class="article-line grid items-center gap-2 my-1">
+        <time class="inline-block" :datetime="mainDate">{{ dateLabel }}</time>
+        <NuxtLink ref="articleCard" class="article-link gradient-card" :to="url"
+            :target="isExtLink(url) ? '_blank' : undefined" :data-popover-target="`popover-${id}`">
+            <span class="article-title">
+                {{ title }}
+            </span>
+            <time v-if="useUpdated && dateLabel !== auxDateLabel" class="aux-date" :datetime="created">／{{ auxDateLabel
+                }}</time>
+            <NuxtImg v-if="cover" class="article-cover absolute top-0 right-0 h-full m-0 object-cover z-[-1] opacity-80"
+                :src="cover" :alt="title" />
+        </NuxtLink>
+        <div :data-popover="`popover-${id}`" role="tooltip"
+            class="hidden z-10 w-64 text-sm text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+            <div
+                class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                <h3 class="font-semibold text-gray-900 dark:text-white">{{ title }}</h3>
+            </div>
+            <div class="px-3 py-2">{{ summary }}</div>
+            <div data-popper-arrow></div>
+        </div>
+    </li>
+</template>
+
+<style lang="scss" scoped>
+.article-line {
+    grid-template-columns: auto 1fr;
+    text-shadow: 0 0 4px var(--c-bg-1);
+
+    time {
+        color: var(--c-text-3);
+        transition: color 0.2s;
+    }
+
+    &:hover>time {
+        color: var(--c-text-1);
+    }
+}
+
+.article-link {
+    overflow: hidden;
+    padding: 0.3rem 0.6rem;
+
+    &:hover {
+        .article-cover {
+            opacity: 1;
+            width: 50%;
+            object-position: center 44%;
+        }
+    }
+}
+
+.article-cover {
+    width: min(50%, 180px);
+    mask: linear-gradient(to right, transparent, var(--c-bg-a50));
+    transition: 0.2s;
+}
+</style>

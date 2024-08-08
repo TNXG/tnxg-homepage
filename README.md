@@ -69,7 +69,8 @@
 
 ## 样式参考
 
-- [ZhiluSite](https://github.com/L33Z22L11/ZhiluSite)
+- [L33Z22L11/homepage-v5](https://github.com/L33Z22L11/homepage-v5)
+- [L33Z22L11/blog-v3](https://github.com/L33Z22L11/blog-v3)
 
 ## 联系我们
 
