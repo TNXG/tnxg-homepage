@@ -23,9 +23,5 @@ useSeoMeta({
 </script>
 
 <template>
-    <div class="flex justify-center">
-        <div class="w-1/2">
-            <Archive />
-        </div>
-    </div>
+    <Archive />
 </template>

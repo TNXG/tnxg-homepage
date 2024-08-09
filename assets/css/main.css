@@ -8,6 +8,19 @@ html {
   font-family: "HarmonyOS_Regular";
 }
 
+mark {
+  animation: line-spread 0.5s;
+  background: linear-gradient(var(--c-primary-2), var(--c-primary-2)) no-repeat
+    0 100%/100% 0.3em;
+  color: var(--c-primary-1);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+mark:hover {
+  background-size: 100% 50%;
+}
+
 .gradient-card {
   position: relative;
   border-radius: 0.5rem;
