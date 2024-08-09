@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  html:has(.drawer-auto-gutter .drawer-toggle:checked) {
+    scrollbar-gutter: auto;
+  }
+}
+
 html {
   font-family: "HarmonyOS_Regular";
 }
@@ -19,6 +25,10 @@ mark {
 
 mark:hover {
   background-size: 100% 50%;
+}
+
+body.drawer-open {
+  overflow: hidden;
 }
 
 .gradient-card {

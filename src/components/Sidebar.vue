@@ -69,7 +69,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="drawer lg:drawer-open">
+  <div class="drawer lg:drawer-open drawer-auto-gutter">
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
       <label for="my-drawer" class="drawer-button lg:hidden">

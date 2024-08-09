@@ -28,19 +28,17 @@ const groupedList = computed(
     <div class="relative mt-20">
         <div class="flex justify-center">
             <div class="md:w-full lg:w-1/2">
-                <div class="archive m-4">
-                    <!-- 按年份分组显示文章 -->
-                    <div v-for="[year, yearGroup] in groupedList" :key="year" class="archive-group">
-                        <h2
-                            class="archive-year sticky top-0 opacity-50 -mb-8 text-8xl text-transparent -z-[1] font-bold my-4">
-                            {{ year }}
-                            <span class="absolute right-0">{{ yearGroup?.length }}</span>
-                        </h2>
-                        <ul class="archive-list">
-                            <ArchivePanel v-for="article in yearGroup" :key="article.id" v-bind="article"
-                                :to="article.url" />
-                        </ul>
-                    </div>
+                <!-- 按年份分组显示文章 -->
+                <div v-for="[year, yearGroup] in groupedList" :key="year" class="archive-group">
+                    <h2
+                        class="archive-year sticky top-0 opacity-50 -mb-8 text-8xl text-transparent -z-[1] font-bold my-4">
+                        {{ year }}
+                        <span class="absolute right-0">{{ yearGroup?.length }}</span>
+                    </h2>
+                    <ul class="archive-list">
+                        <ArchivePanel v-for="article in yearGroup" :key="article.id" v-bind="article"
+                            :to="article.url" />
+                    </ul>
                 </div>
             </div>
         </div>
@@ -48,10 +46,6 @@ const groupedList = computed(
 </template>
 
 <style scoped>
-.archive {
-    mask: linear-gradient(var(--c-bg-1) 50%, #fff);
-}
-
 .archive-group {
     margin: 1rem 0;
 }
