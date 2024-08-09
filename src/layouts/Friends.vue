@@ -20,7 +20,7 @@ function shuffleArray(array) {
     <div class="w-full flex justify-start mb-6">
         <h1 class="absolute text-4xl m-6"><mark class="line">友情链接</mark></h1>
     </div>
-    <div class="container mx-auto px-4 py-12 flex flex-col items-center animate-fade-in">
+    <div class="container mx-auto mt-20 px-4 py-12 flex flex-col items-center animate-fade-in">
         <div id="friend-card" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <div v-for="friend in friends" :key="friend.id" class="flex">
                 <a v-if="!friend.hide" :href="friend.url" target="_blank"

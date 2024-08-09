@@ -25,7 +25,7 @@ const groupedList = computed(
     <div class="w-full flex justify-start mb-6">
         <h1 class="absolute text-4xl m-6"><mark class="line">归档</mark></h1>
     </div>
-    <div class="relative">
+    <div class="relative mt-20">
         <div class="flex justify-center">
             <div class="md:w-full lg:w-1/2">
                 <div class="archive m-4">
