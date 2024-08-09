@@ -20,6 +20,13 @@ const articleCard = ref(null)
 function isExtLink(url) {
     return !!url?.match(':')
 }
+
+const summaryFontSize = computed(() => {
+    const length = props.summary.length;
+    if (length < 50) return '1rem';
+    if (length < 100) return '0.875rem';
+    return '0.75rem';
+});
 </script>
 
 <template>
@@ -30,21 +37,20 @@ function isExtLink(url) {
             <span class="article-title">
                 {{ title }}
             </span>
-            <time v-if="modified">／Modified: {{ modifiedFormat
-                }}</time>
+            <time v-if="modified">／Modified: {{ modifiedFormat }}</time>
             <NuxtImg v-if="cover" class="article-cover absolute top-0 right-0 h-full m-0 object-cover z-[-1]"
                 :src="cover" :alt="title" />
         </NuxtLink>
         <div data-popover :id="`popover-${id}`" role="tooltip"
-            class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+            class="absolute z-50 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
             <div
                 class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
                 <h3 class="font-semibold text-gray-900 dark:text-white">{{ title }}</h3>
             </div>
-            <div class="px-3 py-2">
+            <div class="px-3 py-2" :style="{ fontSize: summaryFontSize }">
                 <p>{{ summary }}</p>
             </div>
-            <div data-popper-arrow></div>
+            <div data-popper-arrow class="z-50"></div>
         </div>
     </li>
 </template>
