@@ -35,6 +35,7 @@ export default defineEventHandler(async () => {
             title: note.title, // 标题
             url: `https://tnxgmoe.com/notes/${note.nid}`,
             summary: summary.summary, // 摘要
+            cover: note.images && note.images[0] ? note.images[0].src : '',
         };
     }));
     const transformedPosts = allBlogPosts.map(post => ({

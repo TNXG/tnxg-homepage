@@ -1,14 +1,20 @@
 <script setup>
-// 导入必要的模块和类型
 import { group } from 'radash'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
+
 import ArchivePanel from '@/components/ArchivePanel.vue'
 
 // 初始化数据
-const data = ref(await $fetch('/api/getArchiveinfo'))
+const props = defineProps({
+    data: {
+        type: Array,
+        required: true
+    }
+});
+
 
 // 计算排序后的列表
-const list = computed(() => data.value.slice().sort(
+const list = computed(() => props.data.slice().sort(
     (a, b) => b['created'].localeCompare(a['created'])
 ))
 

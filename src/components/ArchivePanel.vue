@@ -39,7 +39,7 @@ const summaryFontSize = computed(() => {
             </span>
             <time v-if="modified">／Modified: {{ modifiedFormat }}</time>
             <NuxtImg v-if="cover" class="article-cover absolute top-0 right-0 h-full m-0 object-cover z-[-1]"
-                :src="cover" :alt="title" />
+                :src="cover" :alt="title" loading="lazy" />
         </NuxtLink>
         <div data-popover :id="`popover-${id}`" role="tooltip"
             class="popover absolute z-50 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">

@@ -1,8 +1,13 @@
 <script setup>
-import Friends from '@/layouts/Friends.vue'
 import { SiteConfig, SidebarConfig } from '@/config'
 import { useRoute } from 'vue-router'
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
+
+import Friends from '@/layouts/Friends.vue';
+import Loading from '@/components/Loading.vue';
+
+const friends = ref([]);
+const isLoading = ref(true);
 
 const route = useRoute();
 const currentPath = route.path;
@@ -17,8 +22,14 @@ useSeoMeta({
     ogTitle: SiteConfig.title,
     description: SiteConfig.description,
 })
+
+onMounted(async () => {
+    friends.value = await $fetch('/api/getFriends');
+    isLoading.value = false;
+});
 </script>
 
 <template>
-    <Friends />
+    <Loading v-if="isLoading" />
+    <Friends v-else :friends="friends" />
 </template>

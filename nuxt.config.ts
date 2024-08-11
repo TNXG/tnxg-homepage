@@ -13,8 +13,14 @@ export default defineNuxtConfig({
     url: SiteConfig.SiteURL,
   },
   image: {
+    format: ['avif', 'webp', 'jpeg', 'png'],
     domains: [SiteConfig.SiteURL],
-    format: ['avif', 'webp'],
+    provider: 'ipx',
+    ipx: {
+      modifiers: {
+        format: 'avif',
+      },
+    },
   },
   sitemap: {
     xslTips: false,

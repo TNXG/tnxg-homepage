@@ -1,8 +1,13 @@
 <script setup>
-import Recently from '@/layouts/Recently.vue'
 import { SiteConfig, SidebarConfig } from '@/config'
 import { useRoute } from 'vue-router'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+
+import Recently from '@/layouts/Recently.vue';
+import Loading from '@/components/Loading.vue';
+
+const recentlies = ref([]);
+const isLoading = ref(true);
 
 const route = useRoute();
 const currentPath = route.path;
@@ -17,8 +22,15 @@ useSeoMeta({
     ogTitle: SiteConfig.title,
     description: SiteConfig.description,
 })
+
+onMounted(async () => {
+    recentlies.value = await $fetch('/api/getRecentlies');
+    isLoading.value = false;
+});
+
 </script>
 
 <template>
-    <Recently />
+    <Loading v-if="isLoading" />
+    <Recently v-else :recentlies="recentlies" />
 </template>

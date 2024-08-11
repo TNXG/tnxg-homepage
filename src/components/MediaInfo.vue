@@ -6,7 +6,7 @@
                 reportMsg.mediaInfo.artist || mediaInfo?.artist }}</p>
             <div v-if="mediaInfo?.image" class="avatar mt-2">
                 <div class="w-24 h-24 rounded-xl">
-                    <img :src="mediaInfo?.image" alt="专辑封面">
+                    <NuxtImg :src="mediaInfo?.image" alt="专辑封面" loading="lazy" />
                 </div>
             </div>
             <p v-if="mediaInfo?.tns" class="text-sm text-gray-700">{{ mediaInfo?.tns }}</p>
