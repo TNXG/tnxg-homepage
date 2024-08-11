@@ -1,9 +1,6 @@
 import {
-    AggregateController,
     NoteController,
-    PageController,
     PostController,
-    CategoryController,
     createClient,
     AIController
 } from '@mx-space/api-client'
@@ -14,9 +11,6 @@ export const apiClient = createClient(fetchAdaptor)('https://mx.tnxg.top/api/v2'
     controllers: [
         PostController,
         NoteController,
-        PageController,
-        CategoryController,
-        AggregateController,
         AIController
     ],
 })
