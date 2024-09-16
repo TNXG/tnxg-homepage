@@ -1,8 +1,6 @@
 <script setup>
 import { SiteConfig } from '@/config';
 
-import MarkdownRender from '@/components/Markdown.vue';
-
 const props = defineProps({
     recentlies: {
         type: Array,
@@ -22,7 +20,7 @@ const props = defineProps({
                 <time class="text-xs opacity-50">{{ new Date(recently.created).toLocaleString() }}</time>
             </div>
             <div class="chat-bubble">
-                <MarkdownRender :content="recently.content"></MarkdownRender>
+                <MDC :value="recently.content" tag="article" />
             </div>
             <div class="chat-footer opacity-50">{{ recently.id }}
             </div>

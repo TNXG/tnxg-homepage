@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     "nuxt-icon-tw",
     "nuxt-delay-hydration",
     "@nuxtjs/sitemap",
-    "@nuxt/image"
+    "@nuxt/image",
+    "seiunsodou_mdc"
   ],
   site: {
     url: SiteConfig.SiteURL,
