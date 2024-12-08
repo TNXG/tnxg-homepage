@@ -1,18 +1,15 @@
-import React from "react";
+import { Button } from "@/components/ui/button";
+import { SiteConfig } from "@/config";
 import { Icon } from "@iconify/react";
 
-import { SiteConfig } from "@/config";
+import React from "react";
 
-const Home = () => {
+export const HomeLayout: React.FC = () => {
 	return (
-		<div className="flex flex-col md:flex-row items-start justify-center mx-auto px-4 py-8 pt-16">
+		<div className="flex flex-col md:flex-row items-start justify-center mx-auto px-4 py-8 pt-16 font-[moonbridge]">
 			<div className="avatar">
-				<div className="mask mask-squircle w-24 -z-10">
-					<img
-						src={SiteConfig.Avatar}
-						className="w-24 h-24 object-cover"
-						alt="avatar"
-					/>
+				<div className="mask mask-squircle w-24 -z-1">
+					<img src={SiteConfig.Avatar} className="w-24 h-24 object-cover" alt="avatar" />
 				</div>
 			</div>
 			<div className="ml-0 md:ml-4 mt-4 md:mt-0">
@@ -28,50 +25,47 @@ const Home = () => {
 				</div>
 				<br />
 				<p className="text-xl mt-2">明日尚未到来，希望凝于心上</p>
-				<div className="flex flex-wrap items-center gap-12 mt-4 mb-4">
-					<div className="text-gray-600">
-						<a
-							href="https://tnxgmoe.com"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="btn mt-4 mb-2"
-						>
-							<Icon icon="mingcute:book-line" width="24" height="24" /> Blog
+				<div className="flex flex-wrap items-center gap-4 mt-4 mb-4 font-sans">
+					<Button
+						asChild
+						className="gap-2"
+					>
+						<a href="https://tnxgmoe.com" target="_blank" rel="noopener noreferrer">
+							<Icon icon="mingcute:book-line" width="24" height="24" />
+							<span>Blog</span>
 						</a>
-						&nbsp;
-						<a
-							href="https://github.com/TNXG"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="btn mt-4 mb-2"
-						>
-							<Icon icon="mingcute:github-line" width="24" height="24" /> Github
+					</Button>
+					<Button
+						asChild
+						className="gap-2"
+					>
+						<a href="https://github.com/TNXG" target="_blank" rel="noopener noreferrer">
+							<Icon icon="mingcute:github-line" width="24" height="24" />
+							<span>Github</span>
 						</a>
-						&nbsp;
-						<a
-							href="https://twitter.com/TNXG"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="btn mt-4 mb-2"
-						>
-							<Icon icon="mingcute:twitter-line" width="24" height="24" />{" "}
-							Twitter
+					</Button>
+					<Button
+						asChild
+						className="gap-2"
+					>
+						<a href="https://twitter.com/TNXG" target="_blank" rel="noopener noreferrer">
+							<Icon icon="mingcute:twitter-line" width="24" height="24" />
+							<span>Twitter</span>
 						</a>
-						&nbsp;
-						<a
-							href="https://telegram.me/TNXG"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="btn mt-4 mb-2"
-						>
-							<Icon icon="mingcute:telegram-line" width="24" height="24" />{" "}
-							Telegram
+					</Button>
+					<Button
+						asChild
+						className="gap-2"
+					>
+						<a href="https://telegram.me/TNXG" target="_blank" rel="noopener noreferrer">
+							<Icon icon="mingcute:telegram-line" width="24" height="24" />
+							<span>Telegram</span>
 						</a>
-					</div>
+					</Button>
 				</div>
 			</div>
 		</div>
 	);
 };
 
-export default Home;
+export default HomeLayout;

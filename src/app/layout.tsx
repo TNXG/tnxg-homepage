@@ -1,23 +1,17 @@
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import { Background } from "@/components/background";
 import { SidebarLayout } from "@/components/sidebar";
-import Background from "@/components/background";
+import { ThemeProvider } from "@/components/theme-provider";
+import "./globals.css";
 
-const images = ["https://cdn.tnxg.top/images/cover/119207866_p0_nst.png"];
-
-const image = images[Math.floor(Math.random() * images.length)];
-
-export default function RootLayout({
-	children,
-}: { children: React.ReactNode }) {
+export function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="zh" suppressHydrationWarning>
 			<body>
-				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+				<ThemeProvider attribute={["class", "data-theme"]} defaultTheme="system" enableSystem storageKey="theme" disableTransitionOnChange={true}>
 					<SidebarLayout>
-						<div className="ml-0 lg:ml-60" id="main">
+						<div className="ml-0 lg:ml-96">
 							{children}
-							<Background imageUrl={image} />
+							<Background />
 						</div>
 					</SidebarLayout>
 				</ThemeProvider>
@@ -25,3 +19,5 @@ export default function RootLayout({
 		</html>
 	);
 }
+
+export default RootLayout;

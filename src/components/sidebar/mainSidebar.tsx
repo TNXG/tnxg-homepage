@@ -1,41 +1,26 @@
 "use client";
 
-import * as React from "react";
-import { Icon } from "@iconify/react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-	Drawer,
-	DrawerClose,
-	DrawerContent,
-	DrawerDescription,
-	DrawerFooter,
-	DrawerHeader,
-	DrawerTitle,
-	DrawerTrigger,
-} from "@/components/ui/drawer";
-import {
-	Sidebar,
-	SidebarContent,
-	SidebarFooter,
-	SidebarHeader,
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
-	SidebarProvider,
-} from "@/components/ui/sidebar";
 
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
-
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider } from "@/components/ui/sidebar";
 import { SidebarConfig, SiteConfig } from "@/config";
+import { Icon } from "@iconify/react";
+import Link from "next/link";
+
+import { usePathname } from "next/navigation";
+
+import * as React from "react";
 
 export default function SidebarLayout({
 	children,
-}: { children: React.ReactNode }) {
+}: {
+	children: React.ReactNode;
+}) {
 	const pathname = usePathname();
 	const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
@@ -43,12 +28,16 @@ export default function SidebarLayout({
 		<Card className="mx-2">
 			<CardContent>
 				<SidebarMenu className="mt-2">
-					{SidebarConfig.sections.map((item) => (
-						<SidebarMenuItem key={item.name} className="mt-2">
-							<SidebarMenuButton asChild isActive={pathname === item.href}>
-								<Link href={item.href}>
-									<Icon icon={item.icon} className="mr-2 h-4 w-4" />
-									{item.name}
+					{SidebarConfig.sections.map(item => (
+						<SidebarMenuItem key={item.name} className="mt-1">
+							<SidebarMenuButton
+								asChild
+								isActive={pathname === item.href}
+								className="flex h-10 w-full items-center justify-center text-lg"
+							>
+								<Link href={item.href} className="flex items-center">
+									<Icon icon={item.icon} className="h-6 w-6" />
+									<span>{item.name}</span>
 								</Link>
 							</SidebarMenuButton>
 						</SidebarMenuItem>
@@ -74,22 +63,16 @@ export default function SidebarLayout({
 						<Navigation />
 					</SidebarContent>
 					<SidebarFooter>
-						<Separator className="mx-4 border-2" />
+						<div className="flex justify-center mt-4 md:mt-0">
+							<ThemeSwitcher />
+						</div>
+						<Separator />
 						<div className="text-center mt-5 text-sm lg:text-base mb-2">
-							<p>
-								{SidebarConfig.copyright.text.replace(
-									"{{date}}",
-									`${new Date().getFullYear()}`,
-								)}
-							</p>
+							<p>{SidebarConfig.copyright.text.replace("{{date}}", `${new Date().getFullYear()}`)}</p>
 							<p className="text-sm">
-								Designed by{" "}
-								<a
-									href="https://github.com/TNXG/tnxg-homepage"
-									target="_blank"
-									rel="noreferrer"
-									className="text-blue-500 hover:text-blue-700 dark:text-blue-300 dark:hover:text-blue-500"
-								>
+								Designed by
+								{" "}
+								<a href="https://github.com/TNXG/tnxg-homepage" target="_blank" rel="noreferrer" className="text-blue-500 hover:text-blue-700 dark:text-blue-300 dark:hover:text-blue-500">
 									tnxg-homepage
 								</a>
 							</p>
@@ -99,15 +82,8 @@ export default function SidebarLayout({
 
 				<Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
 					<DrawerTrigger asChild>
-						<Button
-							variant="outline"
-							size="icon"
-							className="fixed left-4 top-4 md:hidden"
-						>
-							<Icon
-								icon="mingcute:menu-line"
-								className="h-[1.2rem] w-[1.2rem]"
-							/>
+						<Button variant="outline" size="icon" className="fixed left-4 top-4 md:hidden">
+							<Icon icon="mingcute:menu-line" className="h-[1.2rem] w-[1.2rem]" />
 						</Button>
 					</DrawerTrigger>
 					<DrawerContent>
