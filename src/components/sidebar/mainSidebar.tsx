@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider } from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider } from "@/components/ui/sidebar";
 import { SidebarConfig, SiteConfig } from "@/config";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
@@ -82,7 +82,7 @@ export default function SidebarLayout({
 
 				<Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
 					<DrawerTrigger asChild>
-						<Button variant="outline" size="icon" className="fixed left-4 top-4 md:hidden">
+						<Button variant="outline" size="icon" className="fixed left-4 top-4 md:hidden z-10">
 							<Icon icon="mingcute:menu-line" className="h-[1.2rem] w-[1.2rem]" />
 						</Button>
 					</DrawerTrigger>
@@ -101,7 +101,9 @@ export default function SidebarLayout({
 						</DrawerFooter>
 					</DrawerContent>
 				</Drawer>
-				<main>{children}</main>
+				<SidebarInset>
+					<main>{children}</main>
+				</SidebarInset>
 			</div>
 		</SidebarProvider>
 	);

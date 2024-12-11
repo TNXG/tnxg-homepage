@@ -20,7 +20,7 @@ export const SidebarConfig = {
 		{ name: "首页", icon: "mingcute:home-6-line", href: "/" },
 		{ name: "动态", icon: "mingcute:bubble-line", href: "/recently/" },
 		{ name: "友链", icon: "mingcute:link-fill", href: "/friends/" },
-		{ name: "归档", icon: "mingcute:archive-line", href: "/archive/" },
+		// { name: "归档", icon: "mingcute:archive-line", href: "/archive/" },
 	],
 	copyright: {
 		StartDate: 2019,

@@ -1,7 +1,18 @@
+import type { Metadata } from "next";
 import { Background } from "@/components/background";
 import { SidebarLayout } from "@/components/sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
+
+import { SiteConfig } from "@/config";
+
 import "./globals.css";
+
+export const metadata: Metadata = {
+	title: {
+		template: `%s | ${SiteConfig.title}`,
+		default: `${SiteConfig.title} - ${SiteConfig.description}`,
+	},
+};
 
 export function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
@@ -9,10 +20,8 @@ export function RootLayout({ children }: { children: React.ReactNode }) {
 			<body>
 				<ThemeProvider attribute={["class", "data-theme"]} defaultTheme="system" enableSystem storageKey="theme" disableTransitionOnChange={true}>
 					<SidebarLayout>
-						<div className="ml-0 lg:ml-96">
-							{children}
-							<Background />
-						</div>
+						{children}
+						<Background />
 					</SidebarLayout>
 				</ThemeProvider>
 			</body>
