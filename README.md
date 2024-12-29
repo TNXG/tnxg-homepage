@@ -16,7 +16,7 @@
 1. 克隆项目到本地：
 
 ```bash
-   git clone <repository_url>
+   git clone https://github.com/TNXG/tnxg-homepage.git
 ```
 
 2. 安装依赖：
