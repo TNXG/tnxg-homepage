@@ -1,6 +1,7 @@
 import type { LinkModel } from "@mx-space/api-client";
 import FriendsLayout from "@/components/layouts/friends";
 import { cache } from "react";
+import "server-only";
 
 export const revalidate = 60 * 60 * 24 * 2;
 
@@ -30,9 +31,9 @@ const getFriends = async (): Promise<Friend[]> => {
 };
 
 // 异步获取并渲染好友列表
-export async function Friends() {
+export const Friends = async () => {
 	const friends = await getFriends();
 	return (<div className="ml-0 xl:ml-96"><FriendsLayout friends={friends} /></div>);
-}
+};
 
 export default Friends;
