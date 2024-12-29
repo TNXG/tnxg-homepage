@@ -3,8 +3,6 @@ import FriendsLayout from "@/components/layouts/friends";
 import { cache } from "react";
 import "server-only";
 
-export const revalidate = 60 * 60 * 24 * 2;
-
 export const metadata = {
 	title: "友情链接",
 };
