@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 天翔TNXGの自留地
 
-## Getting Started
+## 简介
 
-First, run the development server:
+`天翔TNXGの自留地`是一个个人网站，由 天翔TNXG 创建并维护的个人网站，展示了其个人信息、动态、友链等内容。网站采用现代化的前端技术栈构建，提供了流畅的用户体验和美观的界面设计，部分内容依赖 [Mix-Space](https://github.com/mx-space)。
+
+## 部署方式
+
+### 环境要求
+
+- Node.js 版本 19.0.0
+- pnpm 版本 9.15.0
+
+### 本地开发
+
+1. 克隆项目到本地：
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   git clone <repository_url>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. 安装依赖：
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. 启动开发服务器：
 
-## Learn More
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. 在浏览器中访问 [http://localhost:3000](http://localhost:3000) 查看效果。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 生产环境部署
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. 构建项目：
 
-## Deploy on Vercel
+```bash
+pnpm build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. 启动生产服务器：
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm start
+```
+
+## 技术栈
+
+- **框架**: Next.js
+- **包管理器**: pnpm
+- **前端库**: React, Tailwind CSS, Framer Motion
+- **UI组件**: Radix UI, DaisyUI, shadcn/ui
+- **图标库**: Iconify
+- **其他工具**: TypeScript, ESLint, PostCSS
+
+## **鸣谢**
+
+### 后端构成
+
+- [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
+- [Mix-Space](https://github.com/mx-space)
+
+## 样式参考
+
+- [L33Z22L11/homepage-v5](https://github.com/L33Z22L11/homepage-v5)
+- [L33Z22L11/blog-v3](https://github.com/L33Z22L11/blog-v3)
+
+## 联系我们
+
+- 个人博客: [tnxgmoe.com](https://tnxgmoe.com/about-me#:re:%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F)
+
+2024 © TNXG 本项目遵循 AGPL 3.0 license 开源
+
+如有任何问题或建议，欢迎通过以上方式联系我们。感谢您的支持！
+
+本 README 部分内容由ai生成，请注意甄别内容。

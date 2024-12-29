@@ -1,7 +1,7 @@
 "use client";
 
+import { SidebarAvatar } from "@/components/sidebar/SidebarAvatar";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
@@ -12,6 +12,7 @@ import { SidebarConfig, SiteConfig } from "@/config";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import * as React from "react";
 
 export default function SidebarLayout({
@@ -26,7 +27,6 @@ export default function SidebarLayout({
 		<Card className="mx-2">
 			<CardContent>
 				<SidebarMenu className="mt-2">
-					{/* External Links */}
 					<div className="flex justify-around mb-2">
 						<TooltipProvider delayDuration={100}>
 							{SidebarConfig.externalLinks.map(item => (
@@ -72,9 +72,7 @@ export default function SidebarLayout({
 				<Sidebar className="hidden w-60 border-r md:block">
 					<SidebarHeader className="p-4">
 						<div className="flex items-center space-x-2">
-							<Avatar>
-								<AvatarImage src={SiteConfig.Avatar} alt="Avatar" />
-							</Avatar>
+							<SidebarAvatar />
 							<h1 className="text-base font-bold">{SiteConfig.title}</h1>
 						</div>
 					</SidebarHeader>

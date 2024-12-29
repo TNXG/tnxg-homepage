@@ -54,7 +54,7 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 									<CardHeader>
 										<div className="flex items-center space-x-4">
 											<Avatar>
-												<AvatarImage src="/avatar.png" alt={SiteConfig.master} />
+												<AvatarImage src={SiteConfig.Avatar} alt={SiteConfig.master} />
 												<AvatarFallback>{SiteConfig.master[0]}</AvatarFallback>
 											</Avatar>
 											<div>
