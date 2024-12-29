@@ -3,7 +3,7 @@ import RecentlyLayout from "@/components/layouts/recently";
 import { MarkdownRender } from "@/components/render/markdown";
 import { cache } from "react";
 
-export const revalidate = 60 * 60 * 24 * 2;
+// export const revalidate = 60 * 60 * 24 * 2;
 
 export const metadata = {
 	title: "动态",
@@ -32,7 +32,7 @@ const getRecentlies = async (): Promise<RecentlyModel[]> => {
 // 异步获取并渲染好友列表
 export async function Recently() {
 	const Recentlies = await getRecentlies();
-	return <RecentlyLayout Recentlies={Recentlies} />;
+	return (<div className="ml-0 xl:ml-96"><RecentlyLayout Recentlies={Recentlies} /></div>);
 }
 
 export default Recently;

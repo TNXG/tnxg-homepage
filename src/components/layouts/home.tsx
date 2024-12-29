@@ -17,7 +17,7 @@ export const HomeLayout: React.FC = () => {
 					<h1 className="text-6xl font-bold">Hello</h1>
 					<div className="flex items-center space-x-2">
 						<h2 className="text-5xl font-bold mt-4">I'm</h2>
-						<h2 className="text-5xl font-bold text-[#007acc] mt-4">
+						<h2 className="text-5xl font-bold text-[#77BBDD] mt-4">
 							<sup className="text-xs">いゆくるず iykrzu</sup>
 							<br />
 							天翔TNXG

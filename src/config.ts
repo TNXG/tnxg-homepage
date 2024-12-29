@@ -18,8 +18,8 @@ export const SiteConfig = {
 export const SidebarConfig = {
 	sections: [
 		{ name: "首页", icon: "mingcute:home-6-line", href: "/" },
-		{ name: "动态", icon: "mingcute:bubble-line", href: "/recently/" },
-		{ name: "友链", icon: "mingcute:link-fill", href: "/friends/" },
+		{ name: "动态", icon: "mingcute:bubble-line", href: "/recently" },
+		{ name: "友链", icon: "mingcute:link-fill", href: "/friends" },
 		// { name: "归档", icon: "mingcute:archive-line", href: "/archive/" },
 	],
 	copyright: {
@@ -30,4 +30,9 @@ export const SidebarConfig = {
 			url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
 		},
 	},
+	externalLinks: [
+		{ name: "QQ", icon: "mingcute:qq-line", href: "https://jq.qq.com/?_wv=1027&k=hc3OKNED" },
+		{ name: "Blog", icon: "mingcute:book-6-line", href: "https://tnxgmoe.com" },
+		{ name: "GitHub", icon: "mingcute:github-line", href: "https://github.com/TNXG" },
+	],
 };

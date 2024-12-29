@@ -4,16 +4,14 @@ import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider } from "@/components/ui/sidebar";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { SidebarConfig, SiteConfig } from "@/config";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-
 import { usePathname } from "next/navigation";
-
 import * as React from "react";
 
 export default function SidebarLayout({
@@ -28,6 +26,27 @@ export default function SidebarLayout({
 		<Card className="mx-2">
 			<CardContent>
 				<SidebarMenu className="mt-2">
+					{/* External Links */}
+					<div className="flex justify-around mb-2">
+						<TooltipProvider delayDuration={100}>
+							{SidebarConfig.externalLinks.map(item => (
+								<Tooltip key={item.name}>
+									<TooltipTrigger asChild>
+										<Link href={item.href} target="_blank" rel="noopener noreferrer">
+											<Button variant="ghost" size="icon">
+												<Icon icon={item.icon} className="h-5 w-5" />
+												<span className="sr-only">{item.name}</span>
+											</Button>
+										</Link>
+									</TooltipTrigger>
+									<TooltipContent>
+										<p>{item.name}</p>
+									</TooltipContent>
+								</Tooltip>
+							))}
+						</TooltipProvider>
+					</div>
+					<Separator className="my-2" />
 					{SidebarConfig.sections.map(item => (
 						<SidebarMenuItem key={item.name} className="mt-1">
 							<SidebarMenuButton
@@ -72,9 +91,9 @@ export default function SidebarLayout({
 							<p className="text-sm">
 								Designed by
 								{" "}
-								<a href="https://github.com/TNXG/tnxg-homepage" target="_blank" rel="noreferrer" className="text-blue-500 hover:text-blue-700 dark:text-blue-300 dark:hover:text-blue-500">
+								<Link href="https://github.com/TNXG/tnxg-homepage" target="_blank" className="underline text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110">
 									tnxg-homepage
-								</a>
+								</Link>
 							</p>
 						</div>
 					</SidebarFooter>

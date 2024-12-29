@@ -101,9 +101,14 @@ body {
 mark {
 	animation: line-spread 0.5s;
 	background: linear-gradient(var(--c-primary-2), var(--c-primary-2)) no-repeat 0 100%/100% 0.3em;
-	color: var(--c-primary-1);
+	color: #3388bb;
 	text-decoration: none;
 	transition: 0.2s;
+}
+
+Link {
+	color: var(--c-primary-2);
+	text-decoration: none;
 }
 
 mark:hover {

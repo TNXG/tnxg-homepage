@@ -3,6 +3,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 interface FriendsProps {
@@ -52,13 +53,17 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 				transition={{ duration: 0.5 }}
 			>
 				<mark className="line">友情链接</mark>
-				<p className="mt-4 text-sm text-muted-foreground max-w-2xl">
-					I read the articles from my friend links through RSS feeds.
-					I have created an OPML aggregation for the site's friend links, which can be imported into your RSS reader or Follow List.
-					Subscribe on Follow.
+				<p className="mt-6 text-sm text-muted-foreground max-w-2xl">
+					你可以点击
+					{" "}
+					<Link href="https://tnxgmoe.com/friends" target="_blank" className="underline text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110">
+						朋友们 - 天翔TNXGの空间站
+					</Link>
+					{" "}
+					来申请友链哦！
 				</p>
 			</motion.h1>
-			<div className="container mx-auto mt-5 px-4 py-12 flex flex-col items-center animate-in fade-in duration-500">
+			<div className="container mx-auto mt-2 px-4 py-12 flex flex-col items-center animate-in fade-in duration-500">
 				<div
 					id="friend-card"
 					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
