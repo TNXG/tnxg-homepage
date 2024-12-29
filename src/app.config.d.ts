@@ -1,5 +1,3 @@
-import type { RecentlyModel } from "@mx-space/api-client";
-
 declare global {
 	interface Friend {
 		id: string;
