@@ -32,24 +32,24 @@ export const SiteConfig = {
 			{
 				name: "Blog",
 				icon: "mingcute:book-line",
-				url: "https://tnxgmoe.com"
+				url: "https://tnxgmoe.com",
 			},
 			{
 				name: "Github",
 				icon: "mingcute:github-line",
-				url: "https://github.com/TNXG"
+				url: "https://github.com/TNXG",
 			},
 			{
 				name: "Twitter",
 				icon: "mingcute:twitter-line",
-				url: "https://twitter.com/iykrzu"
+				url: "https://twitter.com/iykrzu",
 			},
 			{
 				name: "Telegram",
 				icon: "mingcute:telegram-line",
-				url: "https://telegram.me/iykrzu"
-			}
-		]
+				url: "https://telegram.me/iykrzu",
+			},
+		],
 	},
 	BackgroundConfig: {
 		images: [
@@ -89,10 +89,10 @@ export const FriendsConfig = {
 		text: "你可以点击",
 		link: {
 			text: "朋友们 - 天翔TNXGの空间站",
-			url: "https://tnxgmoe.com/friends"
+			url: "https://tnxgmoe.com/friends",
 		},
-		suffix: "来申请友链哦！"
-	}
+		suffix: "来申请友链哦！",
+	},
 };
 
 export const RecentlyConfig = {
@@ -104,13 +104,13 @@ export const RecentlyConfig = {
 偶尔迷失，也不过是寻找到更好的自己 | 在平凡的日子里，悄然期待着某个瞬间的不同
 只是那些小小的坚持，让一切变得真实而温暖 | 直到有一天，所有的点滴拼凑成属于我的故事。
 
-今天的我，正一步一步走向明天的自己`
+今天的我，正一步一步走向明天的自己`,
 };
 
 export const APIConfig = {
 	baseURL: "https://mx.tnxg.top/api/v2",
 	endpoints: {
 		recently: "https://mx.tnxg.top/api/v2/recently/all",
-		friends: "https://mx.tnxg.top/api/v2/links?page=1&size=50"
-	}
+		friends: "https://mx.tnxg.top/api/v2/links?page=1&size=50",
+	},
 };

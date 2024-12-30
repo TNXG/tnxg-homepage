@@ -4,7 +4,7 @@ import type { RecentlyModel } from "@mx-space/api-client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { SiteConfig, RecentlyConfig } from "@/config";
+import { RecentlyConfig, SiteConfig } from "@/config";
 import { motion } from "framer-motion";
 import { Clock, MessageCircle } from "lucide-react";
 import React from "react";

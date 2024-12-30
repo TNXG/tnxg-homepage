@@ -1,9 +1,9 @@
 import type { RecentlyModel } from "@mx-space/api-client";
 import RecentlyLayout from "@/components/layouts/recently";
 import { MarkdownRender } from "@/components/render/markdown";
+import { APIConfig } from "@/config";
 import { cache } from "react";
 import "server-only";
-import { APIConfig } from "@/config";
 
 export const metadata = {
 	title: "动态",
@@ -24,14 +24,15 @@ const getRecentlies = cache(async (): Promise<RecentlyModel[]> => {
 
 		// 处理 markdown 内容
 		const RecentliesData = await Promise.all(
-			data.map(async (recently) => ({
+			data.map(async recently => ({
 				...recently,
 				content: await MarkdownRender(recently.content),
-			}))
+			})),
 		);
 
 		return RecentliesData;
-	} catch (error) {
+	}
+	catch (error) {
 		console.error("Error fetching recently data:", error);
 		return [];
 	}
@@ -40,7 +41,7 @@ const getRecentlies = cache(async (): Promise<RecentlyModel[]> => {
 // 重命名为 Page 组件（Next.js 13+ 约定）
 export default async function Page() {
 	const recentlies = await getRecentlies();
-	
+
 	return (
 		<div className="ml-0 xl:ml-96">
 			<RecentlyLayout Recentlies={recentlies} />

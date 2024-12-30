@@ -1,7 +1,7 @@
 "use client";
 
 import { AvatarImage, Avatar as UIAvatar } from "@/components/ui/avatar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { SiteConfig } from "@/config";
 import { cn } from "@/lib/utils";

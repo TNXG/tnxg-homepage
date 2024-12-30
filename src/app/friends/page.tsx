@@ -1,8 +1,8 @@
 import type { LinkModel } from "@mx-space/api-client";
 import FriendsLayout from "@/components/layouts/friends";
+import { APIConfig } from "@/config";
 import { cache } from "react";
 import "server-only";
-import { APIConfig } from "@/config";
 
 export const metadata = {
 	title: "友情链接",
