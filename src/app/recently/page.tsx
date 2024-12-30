@@ -12,7 +12,7 @@ export const metadata = {
 // 使用 cache 包装整个数据获取函数
 const getRecentlies = cache(async (): Promise<RecentlyModel[]> => {
 	try {
-		const res = await fetch(`${APIConfig.baseURL}${APIConfig.endpoints.recently}`, {
+		const res = await fetch(APIConfig.endpoints.recently, {
 			next: { revalidate: 60 }, // 添加缓存控制
 		});
 

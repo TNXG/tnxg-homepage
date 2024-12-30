@@ -110,7 +110,7 @@ export const RecentlyConfig = {
 export const APIConfig = {
 	baseURL: "https://mx.tnxg.top/api/v2",
 	endpoints: {
-		recently: "/recently/all",
-		friends: "/links?page=1&size=50"
+		recently: "https://mx.tnxg.top/api/v2/recently/all",
+		friends: "https://mx.tnxg.top/api/v2/links?page=1&size=50"
 	}
 };

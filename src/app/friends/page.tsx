@@ -11,7 +11,7 @@ export const metadata = {
 // 获取朋友数据
 const getFriends = async (): Promise<Friend[]> => {
 	const response = cache(async () => {
-		const res = await fetch(`${APIConfig.baseURL}${APIConfig.endpoints.friends}`);
+		const res = await fetch(APIConfig.endpoints.friends);
 		const data: LinkModel[] = (await res.json()).data;
 		return data;
 	});
