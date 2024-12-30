@@ -69,6 +69,10 @@ export const SidebarAvatar = () => {
 	};
 
 	useEffect(() => {
+		if (!SiteConfig.Features.StatusAPI) {
+			return;
+		}
+
 		const initializeAppDesc = async () => {
 			if (!appDescCache) {
 				await fetchAppDesc();
@@ -170,12 +174,14 @@ export const SidebarAvatar = () => {
 					</TooltipContent>
 				</Tooltip>
 			</TooltipProvider>
-			<span
-				className={cn(
-					"absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white",
-					ReportStatus ? "bg-green-500" : "bg-gray-300",
-				)}
-			/>
+			{SiteConfig.Features.StatusDot && (
+				<span
+					className={cn(
+						"absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white",
+						ReportStatus ? "bg-green-500" : "bg-gray-300",
+					)}
+				/>
+			)}
 		</div>
 	);
 };

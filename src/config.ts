@@ -5,6 +5,10 @@ export const SiteConfig = {
 	SiteURL: "https://tnxg.top",
 	Language: "zh-CN",
 	Avatar: "https://api-space.tnxg.top/avatar?s=qq",
+	Features: {
+		StatusDot: false,
+		StatusAPI: false,
+	},
 	Author: {
 		Name: "天翔TNXG",
 		Email: "tnxg@outlook.jp",
