@@ -17,6 +17,11 @@ export const SiteConfig = {
 		Twitter: "https://twitter.com/iykrzu",
 		GitHub: "https://github.com/tnxg",
 	},
+	favicon: {
+		default: "/favicon.ico",
+		dark: "/favicon.ico",
+		apple: "/favicon.ico",
+	},
 };
 
 export const SidebarConfig = {
