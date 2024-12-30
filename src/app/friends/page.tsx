@@ -2,6 +2,7 @@ import type { LinkModel } from "@mx-space/api-client";
 import FriendsLayout from "@/components/layouts/friends";
 import { cache } from "react";
 import "server-only";
+import { APIConfig } from "@/config";
 
 export const metadata = {
 	title: "友情链接",
@@ -10,7 +11,7 @@ export const metadata = {
 // 获取朋友数据
 const getFriends = async (): Promise<Friend[]> => {
 	const response = cache(async () => {
-		const res = await fetch("https://mx.tnxg.top/api/v2/links?page=1&size=50");
+		const res = await fetch(`${APIConfig.baseURL}${APIConfig.endpoints.friends}`);
 		const data: LinkModel[] = (await res.json()).data;
 		return data;
 	});

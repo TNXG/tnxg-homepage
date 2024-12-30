@@ -46,7 +46,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
     }, [friends]);
 
     return (
-        <div className="container mx-auto mt-2 px-4 py-12 flex flex-col items-center animate-in fade-in duration-500">
+        <div className="w-full flex flex-col items-start mb-6 px-4 sm:px-6 lg:px-8">
             <motion.h1
                 className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-10"
                 initial={{ opacity: 0, y: -50 }}
@@ -66,52 +66,58 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
                     {FriendsConfig.description.suffix}
                 </p>
             </motion.h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-                {shuffledFriends.map(friend =>
-                    friend.hide === false && friend.state === 0
-                        ? (
-                            <Card
-                                key={friend.id}
-                                className="relative overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 group"
-                            >
-                                <CardContent className="p-4">
-                                    <a
-                                        href={friend.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block"
-                                    >
-                                        <div className="flex flex-col items-center">
-                                            <Avatar className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mb-3 sm:mb-4 transition-all duration-300 group-hover:opacity-40 group-hover:blur-sm">
-                                                <AvatarImage src={friend.avatar} alt={friend.name} />
-                                                <AvatarFallback>{friend.name[0]}</AvatarFallback>
-                                            </Avatar>
-                                            <h3 className="text-base sm:text-lg font-semibold text-center">{friend.name}</h3>
-                                        </div>
-                                        <div
-                                            id="friend-card-hover"
-                                            className="absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-background/60 backdrop-blur-md p-4"
+            <div className="container mx-auto mt-2 px-4 py-12 flex flex-col items-center animate-in fade-in duration-500">
+                <div
+                    id="friend-card"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
+                >
+
+                    {shuffledFriends.map(friend =>
+                        friend.hide === false && friend.state === 0
+                            ? (
+                                <Card
+                                    key={friend.id}
+                                    className="relative overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 group"
+                                >
+                                    <CardContent className="p-4">
+                                        <a
+                                            href={friend.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block"
                                         >
-                                            <h3 className="text-base sm:text-lg font-semibold mb-2">
-                                                {friend.name}
-                                            </h3>
-                                            <p className="text-muted-foreground text-sm sm:text-base mb-2 sm:mb-4 line-clamp-3">
-                                                {friend.description}
-                                            </p>
-                                            <p className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-4 truncate max-w-full">
-                                                {friend.url}
-                                            </p>
+                                            <div className="flex flex-col items-center">
+                                                <Avatar className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mb-3 sm:mb-4 transition-all duration-300 group-hover:opacity-40 group-hover:blur-sm">
+                                                    <AvatarImage src={friend.avatar} alt={friend.name} />
+                                                    <AvatarFallback>{friend.name[0]}</AvatarFallback>
+                                                </Avatar>
+                                                <h3 className="text-base sm:text-lg font-semibold text-center">{friend.name}</h3>
+                                            </div>
                                             <div
-                                                className="absolute inset-0 opacity-30 bg-cover bg-center group-hover:blur-md transition-all duration-300"
-                                                style={{ backgroundImage: `url(${friend.avatar})` }}
-                                            />
-                                        </div>
-                                    </a>
-                                </CardContent>
-                            </Card>
-                        )
-                        : null,
-                )}
+                                                id="friend-card-hover"
+                                                className="absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-background/60 backdrop-blur-md p-4"
+                                            >
+                                                <h3 className="text-base sm:text-lg font-semibold mb-2">
+                                                    {friend.name}
+                                                </h3>
+                                                <p className="text-muted-foreground text-sm sm:text-base mb-2 sm:mb-4 line-clamp-3">
+                                                    {friend.description}
+                                                </p>
+                                                <p className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-4 truncate max-w-full">
+                                                    {friend.url}
+                                                </p>
+                                                <div
+                                                    className="absolute inset-0 opacity-30 bg-cover bg-center group-hover:blur-md transition-all duration-300"
+                                                    style={{ backgroundImage: `url(${friend.avatar})` }}
+                                                />
+                                            </div>
+                                        </a>
+                                    </CardContent>
+                                </Card>
+                            )
+                            : null,
+                    )}
+                </div>
             </div>
         </div>
     );

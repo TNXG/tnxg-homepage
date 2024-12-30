@@ -48,3 +48,23 @@ export const FriendsConfig = {
 		suffix: "来申请友链哦！"
 	}
 };
+
+export const RecentlyConfig = {
+	title: "动态",
+	description: `"每一步都在寻找，属于自己的光。"
+
+在这条路上，悄悄走过每个晨曦 | 不需要大声宣告，也不怕孤单
+不必急于追寻远方，步伐已在心中轻轻起舞 | 每一次转身，都是心底的坚定
+偶尔迷失，也不过是寻找到更好的自己 | 在平凡的日子里，悄然期待着某个瞬间的不同
+只是那些小小的坚持，让一切变得真实而温暖 | 直到有一天，所有的点滴拼凑成属于我的故事。
+
+今天的我，正一步一步走向明天的自己`
+};
+
+export const APIConfig = {
+	baseURL: "https://mx.tnxg.top/api/v2",
+	endpoints: {
+		recently: "/recently/all",
+		friends: "/links?page=1&size=50"
+	}
+};
