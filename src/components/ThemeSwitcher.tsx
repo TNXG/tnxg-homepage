@@ -75,26 +75,6 @@ const DarkIcon = () => (
 	</svg>
 );
 
-export const ThemeSwitcher = () => {
-	const { theme, setTheme, resolvedTheme } = useTheme();
-	const [mounted, setMounted] = useState(false);
-
-	// 确保组件在客户端渲染后才运行
-	useEffect(() => {
-		setMounted(true);
-	}, []);
-
-	if (!mounted)
-		return null;
-
-	return (
-		<div className="relative inline-block">
-			<ThemeIndicator theme={resolvedTheme ?? theme ?? "system"} />
-			<ButtonGroup theme={theme ?? "system"} setTheme={setTheme} />
-		</div>
-	);
-};
-
 const ThemeIndicator = ({ theme }: { theme: string }) => (
 	<motion.div
 		className="absolute top-[4px] z-[-1] size-[32px] rounded-full bg-base-100 shadow-[0_1px_2px_0_rgba(127.5,127.5,127.5,.2),_0_1px_3px_0_rgba(127.5,127.5,127.5,.1)]"
@@ -154,6 +134,25 @@ const ButtonGroup = ({
 					</motion.div>
 				</motion.button>
 			))}
+		</div>
+	);
+};
+export const ThemeSwitcher = () => {
+	const { theme, setTheme, resolvedTheme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+
+	// 确保组件在客户端渲染后才运行
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!mounted)
+		return null;
+
+	return (
+		<div className="relative inline-block">
+			<ThemeIndicator theme={resolvedTheme ?? theme ?? "system"} />
+			<ButtonGroup theme={theme ?? "system"} setTheme={setTheme} />
 		</div>
 	);
 };

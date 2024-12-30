@@ -76,6 +76,18 @@ export const SidebarAvatar = () => {
 	};
 
 	useEffect(() => {
+		if (!SiteConfig.Features.StatusAPI) {
+			return;
+		}
+
+		const initializeAppDesc = async () => {
+			if (!appDescCache) {
+				await fetchAppDesc();
+			}
+		};
+
+		initializeAppDesc();
+
 		const intervalId = setInterval(() => {
 			fetch("/api/getReportMsg")
 				.then((response) => {

@@ -4,7 +4,7 @@ import type { RecentlyModel } from "@mx-space/api-client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { SiteConfig } from "@/config";
+import { RecentlyConfig, SiteConfig } from "@/config";
 import { motion } from "framer-motion";
 import { Clock, MessageCircle } from "lucide-react";
 import React from "react";
@@ -23,20 +23,13 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5 }}
 				>
-					<mark className="line">动态</mark>
+					<mark className="line">{RecentlyConfig.title}</mark>
 					<div className="mt-4 text-sm text-muted-foreground max-w-2xl whitespace-pre-line">
-						{`"每一步都在寻找，属于自己的光。"
-
-在这条路上，悄悄走过每个晨曦 | 不需要大声宣告，也不怕孤单
-不必急于追寻远方，步伐已在心中轻轻起舞 | 每一次转身，都是心底的坚定
-偶尔迷失，也不过是寻找到更好的自己 | 在平凡的日子里，悄然期待着某个瞬间的不同
-只是那些小小的坚持，让一切变得真实而温暖 | 直到有一天，所有的点滴拼凑成属于我的故事。
-
-今天的我，正一步一步走向明天的自己`}
+						{RecentlyConfig.description}
 					</div>
 				</motion.h1>
 			</div>
-			<div className="ml-24 ontainer mx-auto px-4 py-8 max-w-4xl">
+			<div className="ml-8 mr-24 mx-auto px-4 py-8 max-w-4xl">
 				<div className="relative mt-5">
 					{/* Timeline line */}
 					<div className="absolute left-0 w-0.5 h-full bg-gray-200" />

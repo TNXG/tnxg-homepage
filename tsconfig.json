@@ -1,14 +1,14 @@
 {
 	"compilerOptions": {
 		"incremental": true,
-		"target": "ES2024",
+		"target": "ESNext",
 		"jsx": "preserve",
 		"lib": [
 			"dom",
 			"dom.iterable",
-			"esnext"
+			"ESNext"
 		],
-		"module": "esnext",
+		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"paths": {
 			"@/*": [

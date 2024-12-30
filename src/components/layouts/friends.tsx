@@ -2,6 +2,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
+import { FriendsConfig } from "@/config";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -17,7 +18,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 		const shuffleArray = (array: Friend[]) => {
 			for (let i = array.length - 1; i > 0; i--) {
 				const j = Math.floor(Math.random() * (i + 1))
-					;[array[i], array[j]] = [array[j], array[i]];
+                    ;[array[i], array[j]] = [array[j], array[i]];
 			}
 		};
 
@@ -52,15 +53,19 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
 			>
-				<mark className="line">友情链接</mark>
+				<mark className="line">{FriendsConfig.title}</mark>
 				<p className="mt-6 text-sm text-muted-foreground max-w-2xl">
-					你可以点击
+					{FriendsConfig.description.text}
 					{" "}
-					<Link href="https://tnxgmoe.com/friends" target="_blank" className="underline text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110">
-						朋友们 - 天翔TNXGの空间站
+					<Link
+						href={FriendsConfig.description.link.url}
+						target="_blank"
+						className="underline text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
+					>
+						{FriendsConfig.description.link.text}
 					</Link>
 					{" "}
-					来申请友链哦！
+					{FriendsConfig.description.suffix}
 				</p>
 			</motion.h1>
 			<div className="container mx-auto mt-2 px-4 py-12 flex flex-col items-center animate-in fade-in duration-500">
@@ -68,6 +73,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 					id="friend-card"
 					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
 				>
+
 					{shuffledFriends.map(friend =>
 						friend.hide === false && friend.state === 0
 							? (
