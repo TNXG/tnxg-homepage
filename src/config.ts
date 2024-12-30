@@ -22,6 +22,35 @@ export const SiteConfig = {
 		dark: "/favicon.ico",
 		apple: "/favicon.ico",
 	},
+	HomeConfig: {
+		greeting: "Hello",
+		namePrefix: "I'm",
+		nameJP: "いゆくるず iykrzu",
+		nameEN: "TiaNXianG",
+		motto: "明日尚未到来，希望凝于心上",
+		socialLinks: [
+			{
+				name: "Blog",
+				icon: "mingcute:book-line",
+				url: "https://tnxgmoe.com"
+			},
+			{
+				name: "Github",
+				icon: "mingcute:github-line",
+				url: "https://github.com/TNXG"
+			},
+			{
+				name: "Twitter",
+				icon: "mingcute:twitter-line",
+				url: "https://twitter.com/iykrzu"
+			},
+			{
+				name: "Telegram",
+				icon: "mingcute:telegram-line",
+				url: "https://telegram.me/iykrzu"
+			}
+		]
+	}
 };
 
 export const SidebarConfig = {
