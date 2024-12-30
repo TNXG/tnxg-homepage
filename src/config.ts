@@ -50,7 +50,15 @@ export const SiteConfig = {
 				url: "https://telegram.me/iykrzu"
 			}
 		]
-	}
+	},
+	BackgroundConfig: {
+		images: [
+			"https://cdn.tnxg.top/images/cover/119207866_p0_nst.png",
+			"https://cdn.tnxg.top/images/cover/tomori_nst.png",
+			"https://cdn.tnxg.top/images/cover/MyGo!!!!!_Kaisou_Soyo.nst.png",
+		],
+		opacity: 0.5,
+	},
 };
 
 export const SidebarConfig = {
