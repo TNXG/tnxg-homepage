@@ -36,3 +36,15 @@ export const SidebarConfig = {
 		{ name: "GitHub", icon: "mingcute:github-line", href: "https://github.com/TNXG" },
 	],
 };
+
+export const FriendsConfig = {
+	title: "友情链接",
+	description: {
+		text: "你可以点击",
+		link: {
+			text: "朋友们 - 天翔TNXGの空间站",
+			url: "https://tnxgmoe.com/friends"
+		},
+		suffix: "来申请友链哦！"
+	}
+};
