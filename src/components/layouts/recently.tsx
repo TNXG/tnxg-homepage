@@ -29,7 +29,7 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 					</div>
 				</motion.h1>
 			</div>
-			<div className="ml-24 ontainer mx-auto px-4 py-8 max-w-4xl">
+			<div className="ml-8 mr-24 mx-auto px-4 py-8 max-w-4xl">
 				<div className="relative mt-5">
 					{/* Timeline line */}
 					<div className="absolute left-0 w-0.5 h-full bg-gray-200" />
