@@ -16,7 +16,7 @@ interface RecentliesProps {
 export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }) => {
 	return (
 		<>
-			<div className="w-full flex flex-col items-start mb-6 px-4 sm:px-6 lg:px-8">
+			<div className="w-full mt-5 flex flex-col items-start mb-6 px-4 sm:px-6 lg:px-8">
 				<motion.h1
 					className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-10"
 					initial={{ opacity: 0, y: -50 }}
@@ -24,7 +24,7 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 					transition={{ duration: 0.5 }}
 				>
 					<mark className="line">{RecentlyConfig.title}</mark>
-					<div className="mt-4 text-sm text-muted-foreground max-w-2xl whitespace-pre-line">
+					<div className="mt-4 text-sm text-muted-foreground max-w-2xl whitespace-pre-wrap break-words">
 						{RecentlyConfig.description}
 					</div>
 				</motion.h1>

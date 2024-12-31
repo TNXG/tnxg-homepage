@@ -24,7 +24,7 @@ export default function SidebarLayout({
 	const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
 	const Navigation = () => (
-		<Card className="mx-2">
+		<Card className="mx-2 dark:bg-gray-700">
 			<CardContent>
 				<SidebarMenu className="mt-2">
 					<div className="flex justify-around mb-2">
@@ -33,7 +33,7 @@ export default function SidebarLayout({
 								<Tooltip key={item.name}>
 									<TooltipTrigger asChild>
 										<Link href={item.href} target="_blank" rel="noopener noreferrer">
-											<Button variant="ghost" size="icon">
+											<Button variant="ghost" size="icon" className="dark:text-gray-300 dark:hover:bg-gray-600">
 												<Icon icon={item.icon} className="h-5 w-5" />
 												<span className="sr-only">{item.name}</span>
 											</Button>
@@ -46,16 +46,16 @@ export default function SidebarLayout({
 							))}
 						</TooltipProvider>
 					</div>
-					<Separator className="my-2" />
+					<Separator className="my-2 dark:bg-gray-600" />
 					{SidebarConfig.sections.map(item => (
 						<SidebarMenuItem key={item.name} className="mt-1">
 							<SidebarMenuButton
 								asChild
 								isActive={pathname === item.href}
-								className="flex h-10 w-full items-center justify-center text-lg"
+								className="flex h-10 w-full items-center justify-center text-lg dark:text-gray-300 dark:hover:bg-gray-600"
 							>
 								<Link href={item.href} className="flex items-center">
-									<Icon icon={item.icon} className="h-6 w-6" />
+									<Icon icon={item.icon} className="h-6 w-6 mr-2" />
 									<span>{item.name}</span>
 								</Link>
 							</SidebarMenuButton>
@@ -83,13 +83,13 @@ export default function SidebarLayout({
 						<div className="flex justify-center mt-4 md:mt-0">
 							<ThemeSwitcher />
 						</div>
-						<Separator />
-						<div className="text-center mt-5 text-sm lg:text-base mb-2">
+						<Separator className="dark:bg-gray-600" />
+						<div className="text-center mt-5 text-sm lg:text-base mb-2 dark:text-gray-300">
 							<p>{SidebarConfig.copyright.text.replace("{{date}}", `${new Date().getFullYear()}`)}</p>
 							<p className="text-sm">
 								Designed by
 								{" "}
-								<Link href="https://github.com/TNXG/tnxg-homepage" target="_blank" className="underline text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110">
+								<Link href="https://github.com/TNXG/tnxg-homepage" target="_blank" className="underline text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110 dark:text-[#66BBFF] dark:hover:text-[#FF7744]">
 									tnxg-homepage
 								</Link>
 							</p>
@@ -103,17 +103,17 @@ export default function SidebarLayout({
 							<Icon icon="mingcute:menu-line" className="h-[1.2rem] w-[1.2rem]" />
 						</Button>
 					</DrawerTrigger>
-					<DrawerContent>
+					<DrawerContent className="dark:bg-gray-800">
 						<DrawerHeader>
-							<DrawerTitle>{SiteConfig.title}</DrawerTitle>
-							<DrawerDescription>{SiteConfig.description}</DrawerDescription>
+							<DrawerTitle className="dark:text-white">{SiteConfig.title}</DrawerTitle>
+							<DrawerDescription className="dark:text-gray-300">{SiteConfig.description}</DrawerDescription>
 						</DrawerHeader>
 						<div className="p-4">
 							<Navigation />
 						</div>
 						<DrawerFooter>
 							<DrawerClose asChild>
-								<Button variant="outline">Close</Button>
+								<Button variant="outline" className="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">Close</Button>
 							</DrawerClose>
 						</DrawerFooter>
 					</DrawerContent>

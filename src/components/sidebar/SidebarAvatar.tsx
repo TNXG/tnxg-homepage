@@ -136,10 +136,10 @@ export const SidebarAvatar = () => {
 											<AvatarImage src={SiteConfig.Avatar} alt="Avatar" />
 										</UIAvatar>
 									</TooltipTrigger>
-									<TooltipContent side="right" sideOffset={10} className="w-72 p-0">
-										<Card className="border-none shadow-lg">
+									<TooltipContent side="right" sideOffset={10} className="w-72 p-0 dark:bg-gray-800 dark:border-gray-700">
+										<Card className="border-none shadow-lg dark:bg-gray-800">
 											<CardContent className="p-4 space-y-4">
-												<div className="bg-primary/10 rounded-lg p-3 text-sm">
+												<div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-3 text-sm dark:text-gray-200">
 													{reportMessage}
 												</div>
 												{mediaInfoResponse
@@ -155,10 +155,10 @@ export const SidebarAvatar = () => {
 																<div className="flex-1 min-w-0">
 																	<p className="text-base font-semibold truncate">{mediaInfoResponse.name}</p>
 																	{mediaInfoResponse.artist && (
-																		<p className="text-sm text-muted-foreground truncate">{mediaInfoResponse.artist}</p>
+																		<p className="text-sm text-muted-foreground dark:text-gray-400 truncate">{mediaInfoResponse.artist}</p>
 																	)}
 																	{mediaInfoResponse.album && (
-																		<p className="text-xs text-muted-foreground truncate">{mediaInfoResponse.album}</p>
+																		<p className="text-xs text-muted-foreground dark:text-gray-500 truncate">{mediaInfoResponse.album}</p>
 																	)}
 																</div>
 															</div>
