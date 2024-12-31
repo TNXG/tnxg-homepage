@@ -24,7 +24,7 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 					transition={{ duration: 0.5 }}
 				>
 					<mark className="line">{RecentlyConfig.title}</mark>
-					<div className="mt-4 text-sm text-muted-foreground max-w-2xl whitespace-pre-wrap break-words">
+					<div className="mt-4 text-sm text-muted-foreground whitespace-pre-wrap break-words max-w-[80%]">
 						{RecentlyConfig.description}
 					</div>
 				</motion.h1>
