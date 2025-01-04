@@ -14,17 +14,21 @@ export async function generateMetadata(): Promise<Metadata> {
 	const locale = await getLocale();
 	const t = await getTranslations({ locale });
 
+	const title = `${t(SiteConfig.title)} - ${t(SiteConfig.description)}`;
+	const description = t(SiteConfig.description);
+
 	return {
 		title: {
 			template: `%s | ${t(SiteConfig.title)}`,
-			default: `${t(SiteConfig.title)} - ${t(SiteConfig.description)}`,
+			default: title,
 		},
+		description,
+		keywords: SiteConfig.keywords,
 	};
 }
 
 export async function RootLayout({ children }: { children: React.ReactNode }) {
 	const locale = await getLocale();
-
 	const messages = await getMessages();
 
 	return (

@@ -8,6 +8,7 @@ export const SiteConfig = {
 		StatusDot: false,
 		StatusAPI: false,
 	},
+	keywords: ["天翔TNXG", "TNXG", "个人主页", "天翔TNXGの自留地", "homepage", "nextjs"],
 	Author: {
 		Name: "site.author.name",
 		Email: "tnxg@outlook.jp",

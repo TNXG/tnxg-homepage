@@ -1,6 +1,6 @@
 "use client";
 
-import { AvatarImage, Avatar as UIAvatar } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { SiteConfig } from "@/config";
@@ -28,7 +28,7 @@ interface MediaInfoResponse {
 }
 
 export const SidebarAvatar = () => {
-	const t = useTranslations("sidebar.status");
+	const t = useTranslations();
 	const [reportMessage, setReportMessage] = useState<string | null>(null);
 	const [mediaInfo, setMediaInfo] = useState<MediaInfo | null>(null);
 	const [appDescCache, setAppDescCache] = useState<Record<string, string> | null>(null);
@@ -99,7 +99,7 @@ export const SidebarAvatar = () => {
 				.then(async (data: ProcessData) => {
 					if (data.processName) {
 						const message = await fixProcessMessage(data.processName);
-						setReportMessage(t("masterUsing", { message })); // 使用翻译
+						setReportMessage(t("sidebar.status.masterUsing", { message })); // 使用翻译
 					}
 
 					if (data.mediaInfo) {
@@ -130,9 +130,10 @@ export const SidebarAvatar = () => {
 						<TooltipProvider delayDuration={300}>
 							<Tooltip>
 								<TooltipTrigger asChild>
-									<UIAvatar className="transition-transform hover:scale-105">
-										<AvatarImage src={SiteConfig.Avatar} alt={t("avatarAlt")} />
-									</UIAvatar>
+									<Avatar className="transition-transform hover:scale-105 rounded-full">
+										<AvatarImage src={SiteConfig.Avatar} alt={t("sidebar.status.avatarAlt")} loading="lazy" />
+										<AvatarFallback>{t(SiteConfig.master)[0]}</AvatarFallback>
+									</Avatar>
 								</TooltipTrigger>
 								<TooltipContent side="right" sideOffset={10} className="w-72 p-0 dark:bg-gray-800 dark:border-gray-700">
 									<Card className="border-none shadow-lg dark:bg-gray-800">
@@ -146,7 +147,7 @@ export const SidebarAvatar = () => {
 															{mediaInfoResponse.image && (
 																<img
 																	src={mediaInfoResponse.image}
-																	alt={t("albumAlt")}
+																	alt={t("sidebar.status.albumAlt")}
 																	className="w-16 h-16 rounded-md object-cover"
 																/>
 															)}
@@ -180,9 +181,10 @@ export const SidebarAvatar = () => {
 						</TooltipProvider>
 					)
 				: (
-						<UIAvatar className="transition-transform hover:scale-105">
-							<AvatarImage src={SiteConfig.Avatar} alt={t("avatarAlt")} />
-						</UIAvatar>
+						<Avatar className="transition-transform hover:scale-105 rounded-full">
+							<AvatarImage src={SiteConfig.Avatar} alt={t("sidebar.status.avatarAlt")} loading="lazy" />
+							<AvatarFallback>{t(SiteConfig.master)[0]}</AvatarFallback>
+						</Avatar>
 					)}
 			<span
 				className={cn(

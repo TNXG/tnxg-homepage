@@ -1,5 +1,6 @@
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { SiteConfig } from "@/config";
 import { Icon } from "@iconify/react";
@@ -14,9 +15,10 @@ export const HomeLayout: React.FC = () => {
 		<div className="w-full flex flex-col items-start mb-6 px-4 sm:px-6 lg:px-8">
 			<div className="flex flex-col md:flex-row items-start justify-center mx-auto px-4 py-8 pt-16 font-[moonbridge]">
 				<div className="avatar">
-					<div className="mask mask-squircle w-24 -z-1">
-						<img src={SiteConfig.Avatar} className="w-24 h-24 object-cover" alt="avatar" />
-					</div>
+					<Avatar className="w-24 h-24 mask mask-squircle -z-1">
+						<AvatarImage src={SiteConfig.Avatar} alt={t(SiteConfig.master)} loading="lazy" className="h-24 w-24 object-cover" />
+						<AvatarFallback>{t(SiteConfig.master)[0]}</AvatarFallback>
+					</Avatar>
 				</div>
 				<div className="ml-0 md:ml-4 mt-4 md:mt-0">
 					<h1 className="text-6xl font-bold">{t(SiteConfig.HomeConfig.greeting)}</h1>
