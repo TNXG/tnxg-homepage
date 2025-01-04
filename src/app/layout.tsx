@@ -3,30 +3,43 @@ import { Background } from "@/components/background";
 import { SidebarLayout } from "@/components/sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Favicon } from "@/components/ui/favicon";
-
 import { SiteConfig } from "@/config";
+import { NextIntlClientProvider } from "next-intl";
+
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 
 import "./globals.css";
 
-export const metadata: Metadata = {
-	title: {
-		template: `%s | ${SiteConfig.title}`,
-		default: `${SiteConfig.title} - ${SiteConfig.description}`,
-	},
-};
+export async function generateMetadata(): Promise<Metadata> {
+	const locale = await getLocale();
+	const t = await getTranslations({ locale });
 
-export function RootLayout({ children }: { children: React.ReactNode }) {
+	return {
+		title: {
+			template: `%s | ${t(SiteConfig.title)}`,
+			default: `${t(SiteConfig.title)} - ${t(SiteConfig.description)}`,
+		},
+	};
+}
+
+export async function RootLayout({ children }: { children: React.ReactNode }) {
+	const locale = await getLocale();
+
+	const messages = await getMessages();
+
 	return (
-		<html lang="zh" suppressHydrationWarning>
+		<html lang={locale} suppressHydrationWarning>
 			<head>
 				<Favicon />
 			</head>
 			<body>
 				<ThemeProvider attribute={["class", "data-theme"]} defaultTheme="system" enableSystem storageKey="theme" disableTransitionOnChange={true}>
-					<SidebarLayout>
-						{children}
-						<Background />
-					</SidebarLayout>
+					<NextIntlClientProvider messages={messages}>
+						<SidebarLayout>
+							{children}
+							<Background />
+						</SidebarLayout>
+					</NextIntlClientProvider>
 				</ThemeProvider>
 			</body>
 		</html>

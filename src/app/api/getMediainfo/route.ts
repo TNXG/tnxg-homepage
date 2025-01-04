@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server";
+import { APIConfig } from "@/config";
 import { NextResponse } from "next/server";
 
 export const revalidate = 86400;
@@ -9,13 +10,13 @@ export const GET = async (req: NextRequest) => {
 		const songName = query.get("songName") || "";
 		const artist = query.get("artist") || "";
 		const searchkey = `${songName.replace("-天翔TNXG-歌曲-哔哩哔哩视频", "")} - ${artist}`;
-		const searchResponse = await fetch(`https://api-ncm.prts.top/search?keywords=${searchkey}`);
+		const searchResponse = await fetch(`${APIConfig.endpoints.ncm}/search?keywords=${searchkey}`);
 		const searchData = await searchResponse.json();
 		if (!searchData.result.songs || searchData.result.songs.length === 0) {
 			return NextResponse.json({ error: "No songs found" });
 		}
 		const songId = searchData.result.songs[0].id;
-		const detailResponse = await fetch(`https://api-ncm.prts.top/song/detail?ids=${songId}`);
+		const detailResponse = await fetch(`${APIConfig.endpoints.ncm}/song/detail?ids=${songId}`);
 		const detailData = await detailResponse.json();
 		if (!detailData.songs || detailData.songs.length === 0) {
 			throw new Error("No song details found");

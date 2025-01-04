@@ -1,12 +1,19 @@
 import type { LinkModel } from "@mx-space/api-client";
+import type { Metadata } from "next";
 import FriendsLayout from "@/components/layouts/friends";
 import { APIConfig } from "@/config";
+import { getLocale, getTranslations } from "next-intl/server";
 import { cache } from "react";
 import "server-only";
 
-export const metadata = {
-	title: "友情链接",
-};
+export async function generateMetadata(): Promise<Metadata> {
+	const locale = await getLocale();
+	const t = await getTranslations({ locale });
+
+	return {
+		title: t("sidebar.sections.friends"),
+	};
+}
 
 // 获取朋友数据
 const getFriends = async (): Promise<Friend[]> => {
@@ -30,9 +37,7 @@ const getFriends = async (): Promise<Friend[]> => {
 };
 
 // 异步获取并渲染好友列表
-export const Friends = async () => {
+export default async function Page() {
 	const friends = await getFriends();
 	return (<div className="ml-0 xl:ml-96"><FriendsLayout friends={friends} /></div>);
 };
-
-export default Friends;

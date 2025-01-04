@@ -1,0 +1,81 @@
+{
+	"site": {
+		"title": "天翔TNXGの自留地",
+		"master": "天翔TNXG",
+		"description": "明日はまだ来ない、希望を心に込めて",
+		"author": {
+			"name": "天翔TNXG"
+		},
+		"home": {
+			"greeting": "こんにちは",
+			"namePrefix": "私は",
+			"nameJP": "いゆくるず iykrzu",
+			"nameEN": "TiaNXianG",
+			"motto": "明日はまだ来ない、希望を心に込めて",
+			"socialLinks": {
+				"blog": "ブログ",
+				"github": "GitHub",
+				"twitter": "Twitter",
+				"telegram": "Telegram"
+			}
+		}
+	},
+	"sidebar": {
+		"sections": {
+			"home": "ホーム",
+			"recently": "動向",
+			"friends": "リンク"
+		},
+		"copyright": {
+			"text": "© {date} 天翔TNXG."
+		},
+		"externalLinks": {
+			"qq": "QQ",
+			"blog": "ブログ",
+			"github": "GitHub"
+		},
+		"status": {
+			"masterUsing": "Master は {message} を使用中",
+			"avatarAlt": "アバター",
+			"albumAlt": "アルバムジャケット"
+		}
+	},
+	"friends": {
+		"title": "リンク",
+		"description": {
+			"text": "クリックして",
+			"link": {
+				"text": "朋友们 - 天翔TNXGの空间站"
+			},
+			"suffix": "でリンクを申請できます！"
+		}
+	},
+	"recently": {
+		"title": "動向",
+		"description": "一歩一歩、自分の光を探し続けている。\n\nこの道を歩む中で、静かに朝を迎える | 大声で宣言する必要も、孤独を恐れることもない\n遠くを追い求める必要はない、心の中で足取りが軽やかに舞い踊る | ひとたび振り返ると、それは心の中の確固たる信念\n時に迷子になることもあるが、それはより良い自分を見つけるための過程 | 普通の日々の中で、ふとした瞬間の違いを楽しみにしている\nただ小さな決意が、すべてをリアルで温かくしてくれる | いつか、すべての点が集まって、私の物語を作り上げる。\n\n今日の私は、一歩一歩明日の自分に向かって進んでいる"
+	},
+	"common": {
+		"switchLanguage": "言語を切り替え"
+	},
+	"languages": {
+		"en": "英語",
+		"zh": "中国語",
+		"ja": "日本語",
+		"searchLanguages": "言語を検索",
+		"noLanguageFound": "言語が存在しません"
+	},
+	"currentLanguage": "現在の言語",
+	"settings": "設定",
+	"settingsDescription": "ここでお好みを選んでください",
+	"theme": "テーマ",
+	"themes": {
+		"light": "ライト",
+		"dark": "ダーク",
+		"system": "システムに従う",
+		"noThemeFound": "テーマが見つかりません",
+		"searchThemes": "テーマを検索",
+		"selectTheme": "テーマを選択"
+	},
+	"currentTheme": "現在のテーマ",
+	"language": "言語"
+}

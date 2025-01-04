@@ -1,7 +1,7 @@
 "use client";
 
+import { SettingsModal } from "@/components/sidebar/setting/SettingsModal";
 import { SidebarAvatar } from "@/components/sidebar/SidebarAvatar";
-import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
@@ -10,6 +10,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarInset, Si
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { SidebarConfig, SiteConfig } from "@/config";
 import { Icon } from "@iconify/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -20,6 +21,7 @@ export default function SidebarLayout({
 }: {
 	children: React.ReactNode;
 }) {
+	const t = useTranslations();
 	const pathname = usePathname();
 	const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
@@ -30,17 +32,17 @@ export default function SidebarLayout({
 					<div className="flex justify-around mb-2">
 						<TooltipProvider delayDuration={100}>
 							{SidebarConfig.externalLinks.map(item => (
-								<Tooltip key={item.name}>
+								<Tooltip key={t(item.name)}>
 									<TooltipTrigger asChild>
 										<Link href={item.href} target="_blank" rel="noopener noreferrer">
 											<Button variant="ghost" size="icon" className="dark:text-gray-300 dark:hover:bg-gray-600">
 												<Icon icon={item.icon} className="h-5 w-5" />
-												<span className="sr-only">{item.name}</span>
+												<span className="sr-only">{t(item.name)}</span>
 											</Button>
 										</Link>
 									</TooltipTrigger>
 									<TooltipContent>
-										<p>{item.name}</p>
+										<p>{t(item.name)}</p>
 									</TooltipContent>
 								</Tooltip>
 							))}
@@ -48,7 +50,7 @@ export default function SidebarLayout({
 					</div>
 					<Separator className="my-2 dark:bg-gray-600" />
 					{SidebarConfig.sections.map(item => (
-						<SidebarMenuItem key={item.name} className="mt-1">
+						<SidebarMenuItem key={t(item.name)} className="mt-1">
 							<SidebarMenuButton
 								asChild
 								isActive={pathname === item.href}
@@ -56,7 +58,7 @@ export default function SidebarLayout({
 							>
 								<Link href={item.href} className="flex items-center">
 									<Icon icon={item.icon} className="h-6 w-6 mr-2" />
-									<span>{item.name}</span>
+									<span>{t(item.name)}</span>
 								</Link>
 							</SidebarMenuButton>
 						</SidebarMenuItem>
@@ -73,19 +75,19 @@ export default function SidebarLayout({
 					<SidebarHeader className="p-4">
 						<div className="flex items-center space-x-2">
 							<SidebarAvatar />
-							<h1 className="text-base font-bold">{SiteConfig.title}</h1>
+							<h1 className="text-base font-bold">{t(SiteConfig.title)}</h1>
 						</div>
 					</SidebarHeader>
 					<SidebarContent>
 						<Navigation />
 					</SidebarContent>
 					<SidebarFooter>
-						<div className="flex justify-center mt-4 md:mt-0">
-							<ThemeSwitcher />
+						<div className="flex justify-center space-x-2 mb-4">
+							<SettingsModal />
 						</div>
 						<Separator className="dark:bg-gray-600" />
 						<div className="text-center mt-5 text-sm lg:text-base mb-2 dark:text-gray-300">
-							<p>{SidebarConfig.copyright.text.replace("{{date}}", `${new Date().getFullYear()}`)}</p>
+							<p>{t(SidebarConfig.copyright.text, { date: new Date().getFullYear() })}</p>
 							<p className="text-sm">
 								Designed by
 								{" "}
@@ -105,8 +107,8 @@ export default function SidebarLayout({
 					</DrawerTrigger>
 					<DrawerContent className="dark:bg-gray-800">
 						<DrawerHeader>
-							<DrawerTitle className="dark:text-white">{SiteConfig.title}</DrawerTitle>
-							<DrawerDescription className="dark:text-gray-300">{SiteConfig.description}</DrawerDescription>
+							<DrawerTitle className="dark:text-white">{t(SiteConfig.title)}</DrawerTitle>
+							<DrawerDescription className="dark:text-gray-300">{t(SiteConfig.description)}</DrawerDescription>
 						</DrawerHeader>
 						<div className="p-4">
 							<Navigation />

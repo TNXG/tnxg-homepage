@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { RecentlyConfig, SiteConfig } from "@/config";
 import { motion } from "framer-motion";
 import { Clock, MessageCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 interface RecentliesProps {
@@ -14,6 +15,7 @@ interface RecentliesProps {
 }
 
 export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }) => {
+	const t = useTranslations();
 	return (
 		<>
 			<div className="w-full mt-5 flex flex-col items-start mb-6 px-4 sm:px-6 lg:px-8">
@@ -23,9 +25,9 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5 }}
 				>
-					<mark className="line">{RecentlyConfig.title}</mark>
+					<mark className="line">{t(RecentlyConfig.title)}</mark>
 					<div className="mt-4 text-sm text-muted-foreground whitespace-pre-wrap break-words max-w-[80%]">
-						{RecentlyConfig.description}
+						{t(RecentlyConfig.description)}
 					</div>
 				</motion.h1>
 			</div>
@@ -47,11 +49,11 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 									<CardHeader>
 										<div className="flex items-center space-x-4">
 											<Avatar>
-												<AvatarImage src={SiteConfig.Avatar} alt={SiteConfig.master} />
-												<AvatarFallback>{SiteConfig.master[0]}</AvatarFallback>
+												<AvatarImage src={SiteConfig.Avatar} alt={t(SiteConfig.master)} />
+												<AvatarFallback>{t(SiteConfig.master)[0]}</AvatarFallback>
 											</Avatar>
 											<div>
-												<p className="text-sm font-medium">{SiteConfig.master}</p>
+												<p className="text-sm font-medium">{t(SiteConfig.master)}</p>
 												<p className="text-xs text-muted-foreground">
 													<Clock className="inline-block w-3 h-3 mr-1" />
 													{new Date(recently.created).toLocaleString()}

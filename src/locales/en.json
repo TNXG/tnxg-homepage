@@ -1,0 +1,81 @@
+{
+	"site": {
+		"title": "TNXG's Space",
+		"master": "天翔TNXG",
+		"description": "Tomorrow has yet to come, may hope remain in the heart",
+		"author": {
+			"name": "天翔TNXG"
+		},
+		"home": {
+			"greeting": "Hello",
+			"namePrefix": "I'm",
+			"nameJP": "いゆくるず iykrzu",
+			"nameEN": "TiaNXianG",
+			"motto": "Tomorrow has yet to come, may hope remain in the heart",
+			"socialLinks": {
+				"blog": "Blog",
+				"github": "GitHub",
+				"twitter": "Twitter",
+				"telegram": "Telegram"
+			}
+		}
+	},
+	"sidebar": {
+		"sections": {
+			"home": "Home",
+			"recently": "Recently",
+			"friends": "Links"
+		},
+		"copyright": {
+			"text": "© {date} TiaNXianG."
+		},
+		"externalLinks": {
+			"qq": "QQ",
+			"blog": "Blog",
+			"github": "GitHub"
+		},
+		"status": {
+			"masterUsing": "Master is using {message}",
+			"avatarAlt": "Avatar",
+			"albumAlt": "Album Cover"
+		}
+	},
+	"friends": {
+		"title": "Links",
+		"description": {
+			"text": "You can click",
+			"link": {
+				"text": "朋友们 - 天翔TNXGの空间站"
+			},
+			"suffix": "to apply for a link!"
+		}
+	},
+	"recently": {
+		"title": "Recently",
+		"description": "Every step is a search for my own light.\n\nOn this path, I quietly walk through every dawn | No need to announce loudly, nor fear loneliness\nNo rush to chase the distant, as my steps already dance gently in my heart | Every turn I take is a firm belief deep within me\nSometimes lost, but it's only to find a better version of myself | In ordinary days, I quietly await the moment when things feel different\nIt's those small, persistent efforts that make everything real and warm | Until one day, all the little pieces come together to form my story.\n\nToday, I am taking one step closer to the person I will be tomorrow"
+	},
+	"common": {
+		"switchLanguage": "Switch Language"
+	},
+	"languages": {
+		"en": "English",
+		"zh": "Chinese",
+		"ja": "Japanese",
+		"searchLanguages": "Search Languages",
+		"noLanguageFound": "Language not found"
+	},
+	"currentLanguage": "Current Language",
+	"settings": "Settings",
+	"settingsDescription": "Choose your preferences here",
+	"theme": "Theme",
+	"themes": {
+		"light": "Light",
+		"dark": "Dark",
+		"system": "Follow System",
+		"noThemeFound": "Theme not found",
+		"searchThemes": "Search Themes",
+		"selectTheme": "Select Theme"
+	},
+	"currentTheme": "Current Theme",
+	"language": "Language"
+}

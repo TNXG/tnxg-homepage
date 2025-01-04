@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { FriendsConfig } from "@/config";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -12,6 +13,7 @@ interface FriendsProps {
 }
 
 export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
+	const t = useTranslations();
 	const [shuffledFriends, setShuffledFriends] = useState<Friend[]>([]);
 
 	useEffect(() => {
@@ -53,19 +55,19 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
 			>
-				<mark className="line">{FriendsConfig.title}</mark>
+				<mark className="line">{t(FriendsConfig.title)}</mark>
 				<p className="mt-6 text-sm text-muted-foreground max-w-2xl">
-					{FriendsConfig.description.text}
+					{t(FriendsConfig.description.text)}
 					{" "}
 					<Link
 						href={FriendsConfig.description.link.url}
 						target="_blank"
 						className="underline text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
 					>
-						{FriendsConfig.description.link.text}
+						{t(FriendsConfig.description.link.text)}
 					</Link>
 					{" "}
-					{FriendsConfig.description.suffix}
+					{t(FriendsConfig.description.suffix)}
 				</p>
 			</motion.h1>
 			<div className="container mx-auto mt-2 px-4 py-12 flex flex-col items-center animate-in fade-in duration-500">

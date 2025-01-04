@@ -1,0 +1,81 @@
+{
+	"site": {
+		"title": "天翔TNXGの自留地",
+		"master": "天翔TNXG",
+		"description": "明日尚未到来，希望凝于心上",
+		"author": {
+			"name": "天翔TNXG"
+		},
+		"home": {
+			"greeting": "Hello",
+			"namePrefix": "I'm",
+			"nameJP": "いゆくるず iykrzu",
+			"nameEN": "TiaNXianG",
+			"motto": "明日尚未到来，希望凝于心上",
+			"socialLinks": {
+				"blog": "Blog",
+				"github": "GitHub",
+				"twitter": "Twitter",
+				"telegram": "Telegram"
+			}
+		}
+	},
+	"sidebar": {
+		"sections": {
+			"home": "首页",
+			"recently": "动态",
+			"friends": "友链"
+		},
+		"copyright": {
+			"text": "© {date} 天翔TNXG."
+		},
+		"externalLinks": {
+			"qq": "QQ",
+			"blog": "博客",
+			"github": "GitHub"
+		},
+		"status": {
+			"masterUsing": "Master 正在使用 {message}",
+			"avatarAlt": "头像",
+			"albumAlt": "专辑封面"
+		}
+	},
+	"friends": {
+		"title": "友情链接",
+		"description": {
+			"text": "你可以点击",
+			"link": {
+				"text": "朋友们 - 天翔TNXGの空间站"
+			},
+			"suffix": "来申请友链哦！"
+		}
+	},
+	"recently": {
+		"title": "动态",
+		"description": "每一步都在寻找，属于自己的光。\n\n在这条路上，悄悄走过每个晨曦 | 不需要大声宣告，也不怕孤单\n不必急于追寻远方，步伐已在心中轻轻起舞 | 每一次转身，都是心底的坚定\n偶尔迷失，也不过是寻找到更好的自己 | 在平凡的日子里，悄然期待着某个瞬间的不同\n只是那些小小的坚持，让一切变得真实而温暖 | 直到有一天，所有的点滴拼凑成属于我的故事。\n\n今天的我，正一步一步走向明天的自己"
+	},
+	"common": {
+		"switchLanguage": "切换语言"
+	},
+	"languages": {
+		"en": "English",
+		"zh": "中文",
+		"ja": "日本語",
+		"searchLanguages": "搜索语言",
+		"noLanguageFound": "语言不存在"
+	},
+	"currentLanguage": "当前语言",
+	"settings": "设置",
+	"settingsDescription": "在这里选择您的偏好",
+	"theme": "主题",
+	"themes": {
+		"light": "亮色",
+		"dark": "暗色",
+		"system": "跟随系统",
+		"noThemeFound": "没有找到主题",
+		"searchThemes": "搜索主题",
+		"selectTheme": "选择主题"
+	},
+	"currentTheme": "当前主题",
+	"language": "语言"
+}

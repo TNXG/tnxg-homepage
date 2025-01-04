@@ -1,9 +1,7 @@
 import HomeLayout from "@/components/layouts/home";
 
-export const Home = () => {
+export default async function Page() {
 	return (
 		<div className="ml-0 xl:ml-96"><HomeLayout /></div>
 	);
 };
-
-export default Home;
