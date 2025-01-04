@@ -26,14 +26,13 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 					transition={{ duration: 0.5 }}
 				>
 					<mark className="line">{t(RecentlyConfig.title)}</mark>
-					<div className="mt-4 text-sm text-muted-foreground whitespace-pre-wrap break-words max-w-[80%]">
+					<div className="mt-4 text-sm text-muted-foreground whitespace-pre-wrap break-words max-w-full">
 						{t(RecentlyConfig.description)}
 					</div>
 				</motion.h1>
 			</div>
-			<div className="ml-8 mr-24 mx-auto px-4 py-8 max-w-4xl">
+			<div className="ml-8 mr-8 mx-auto px-4 py-8 max-w-full">
 				<div className="relative mt-5">
-					{/* Timeline line */}
 					<div className="absolute left-0 w-0.5 h-full bg-gray-200" />
 
 					{Recentlies.map((recently, index) => (
