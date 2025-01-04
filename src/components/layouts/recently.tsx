@@ -26,12 +26,12 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 					transition={{ duration: 0.5 }}
 				>
 					<mark className="line">{t(RecentlyConfig.title)}</mark>
-					<div className="mt-4 text-sm text-muted-foreground whitespace-pre-wrap break-words max-w-full">
+					<div className="mt-4 text-sm text-muted-foreground whitespace-pre-wrap break-words max-w-[80%]">
 						{t(RecentlyConfig.description)}
 					</div>
 				</motion.h1>
 			</div>
-			<div className="ml-8 mr-8 mx-auto px-4 py-8 max-w-full">
+			<div className="ml-8 mx-auto px-4 py-8 max-w-4xl">
 				<div className="relative mt-5">
 					<div className="absolute left-0 w-0.5 h-full bg-gray-200" />
 
@@ -47,8 +47,8 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 								<Card className="w-full">
 									<CardHeader>
 										<div className="flex items-center space-x-4">
-											<Avatar>
-												<AvatarImage src={SiteConfig.Avatar} alt={t(SiteConfig.master)} loading="lazy" />
+											<Avatar className="rounded-full">
+												<AvatarImage src={SiteConfig.Avatar} alt={t(SiteConfig.master)} />
 												<AvatarFallback>{t(SiteConfig.master)[0]}</AvatarFallback>
 											</Avatar>
 											<div>

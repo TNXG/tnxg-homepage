@@ -25,20 +25,26 @@ export function SettingsModal() {
 					<span className="sr-only">{t("settings")}</span>
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="sm:max-w-[425px] bg-white dark:bg-gray-800">
+			<DialogContent className="sm:max-w-[425px] max-w-[90vw] bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
 				<DialogHeader>
-					<DialogTitle className="dark:text-white">{t("settings")}</DialogTitle>
-					<DialogDescription className="dark:text-gray-300">
+					<DialogTitle className="dark:text-white text-lg sm:text-xl font-semibold">
+						{t("settings")}
+					</DialogTitle>
+					<DialogDescription className="dark:text-gray-300 text-sm sm:text-base mt-2">
 						{t("settingsDescription")}
 					</DialogDescription>
 				</DialogHeader>
-				<div className="grid gap-4 py-4">
-					<div className="flex flex-col items-start gap-4">
-						<h3 className="text-sm font-medium dark:text-white">{t("language")}</h3>
+				<div className="grid gap-6 sm:gap-8 py-4">
+					<div className="flex flex-col gap-4">
+						<h3 className="text-sm sm:text-base font-medium text-gray-700 dark:text-white">
+							{t("language")}
+						</h3>
 						<LanguageSwitcher />
 					</div>
-					<div className="flex flex-col items-start gap-4">
-						<h3 className="text-sm font-medium dark:text-white">{t("theme")}</h3>
+					<div className="flex flex-col gap-4">
+						<h3 className="text-sm sm:text-base font-medium text-gray-700 dark:text-white">
+							{t("theme")}
+						</h3>
 						<ThemeSwitcher />
 					</div>
 				</div>

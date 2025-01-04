@@ -17,7 +17,7 @@ export const HomeLayout: React.FC = () => {
 				<div className="avatar">
 					<Avatar className="w-24 h-24 mask mask-squircle -z-1">
 						<AvatarImage src={SiteConfig.Avatar} alt={t(SiteConfig.master)} loading="lazy" className="h-24 w-24 object-cover" />
-						<AvatarFallback>{t(SiteConfig.master)[0]}</AvatarFallback>
+						<AvatarFallback className="mask mask-squircle">{t(SiteConfig.master)[0]}</AvatarFallback>
 					</Avatar>
 				</div>
 				<div className="ml-0 md:ml-4 mt-4 md:mt-0">

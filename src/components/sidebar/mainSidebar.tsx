@@ -114,12 +114,16 @@ export default function SidebarLayout({
 							<Navigation />
 						</div>
 						<DrawerFooter>
-							<DrawerClose asChild>
-								<Button variant="outline" className="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">Close</Button>
-							</DrawerClose>
+							<div className="flex justify-between w-full">
+								<SettingsModal />
+								<DrawerClose asChild>
+									<Button variant="outline" className="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">Close</Button>
+								</DrawerClose>
+							</div>
 						</DrawerFooter>
 					</DrawerContent>
 				</Drawer>
+
 				<SidebarInset>
 					<main>{children}</main>
 				</SidebarInset>
