@@ -34,6 +34,6 @@ export const GET = async (req: NextRequest) => {
 	}
 	catch (error) {
 		console.error("Error fetching media info:", error);
-		return { error: "Failed to fetch media info" };
+		return NextResponse.json({ error: "Failed to fetch media info" });
 	}
 };
