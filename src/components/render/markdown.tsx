@@ -1,6 +1,8 @@
 import type { ShikiTransformerContext } from "@shikijs/core";
 import type { RehypeShikiOptions } from "@shikijs/rehype";
 import type { Element } from "hast";
+import type { BundledLanguage } from "shiki";
+import { SiteConfig } from "@/config";
 import rehypeShiki from "@shikijs/rehype";
 import { cache } from "react";
 import rehypeKatex from "rehype-katex";
@@ -16,7 +18,7 @@ export const MarkdownRender = cache(async (content: string): Promise<string> => 
 	try {
 		const options: RehypeShikiOptions = {
 			theme: "dark-plus",
-			langs: ["python", "javascript", "json"],
+			langs: SiteConfig.Shiki.langs as BundledLanguage[],
 			transformers: [
 				{
 					code(this: ShikiTransformerContext, node: Element) {
@@ -26,7 +28,7 @@ export const MarkdownRender = cache(async (content: string): Promise<string> => 
 
 						// 保留原有的类名
 						const originalClassName
-                            = (node.properties?.className as string[]) || [];
+							= (node.properties?.className as string[]) || [];
 
 						// 添加新的类名，同时保留原有的类名
 						node.properties = {

@@ -5,8 +5,8 @@ export const SiteConfig = {
 	SiteURL: "https://tnxg.top",
 	Avatar: "https://api-space.tnxg.top/avatar?s=qq",
 	Features: {
-		StatusDot: false,
-		StatusAPI: false,
+		StatusDot: true,
+		StatusAPI: true,
 	},
 	keywords: ["天翔TNXG", "TNXG", "个人主页", "天翔TNXGの自留地", "homepage", "nextjs"],
 	Author: {
@@ -58,6 +58,9 @@ export const SiteConfig = {
 			"https://cdn.tnxg.top/images/cover/MyGo!!!!!_Kaisou_Soyo.nst.png",
 		],
 		opacity: 0.5,
+	},
+	Shiki: {
+		langs: ["bat", "c", "cpp", "css", "diff", "html", "ini", "java", "js", "json", "log", "makefile", "matlab", "md", "mdc", "powershell", "python", "sh", "sql", "ssh-config", "toml", "ts", "tsx", "vb", "vue", "xml", "yaml"],
 	},
 };
 

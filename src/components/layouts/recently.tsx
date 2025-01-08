@@ -76,7 +76,6 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 									</CardFooter>
 								</Card>
 							</div>
-							{/* Timeline dot */}
 							<div className="absolute left-0 top-6 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full" />
 						</motion.div>
 					))}
