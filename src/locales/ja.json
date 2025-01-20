@@ -48,6 +48,14 @@
 				"text": "朋友们 - 天翔TNXGの空间站"
 			},
 			"suffix": "でリンクを申請できます！"
+		},
+		"opml": {
+			"text": "私はサイトの",
+			"link": {
+				"text": "友達リンクソース OPML 集合"
+			},
+			"suffix": "を作成しました。リーダーにインポートするか",
+			"followList": "Follow List. を購読する"
 		}
 	},
 	"recently": {

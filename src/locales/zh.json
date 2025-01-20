@@ -48,6 +48,14 @@
 				"text": "朋友们 - 天翔TNXGの空间站"
 			},
 			"suffix": "来申请友链哦！"
+		},
+		"opml": {
+			"text": "我制作了本站的",
+			"link": {
+				"text": "友链源 OPML 聚合"
+			},
+			"suffix": "可导入阅读器或",
+			"followList": "订阅 Follow List."
 		}
 	},
 	"recently": {

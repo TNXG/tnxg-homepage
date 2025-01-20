@@ -75,7 +75,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 					{" "}
 					{t(FriendsConfig.description.suffix)}
 					<br />
-					我制作了本站的
+					{t("friends.opml.text")}
 					{" "}
 					<mark>
 						<Link
@@ -83,11 +83,11 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 							target="_blank"
 							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
 						>
-							友链源 OPML 聚合
+							{t("friends.opml.link.text")}
 						</Link>
 					</mark>
 					{" "}
-					可导入阅读器或
+					{t("friends.opml.suffix")}
 					{" "}
 					<mark>
 						<Link
@@ -95,7 +95,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 							target="_blank"
 							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
 						>
-							订阅 Follow List.
+							{t("friends.opml.followList")}
 						</Link>
 					</mark>
 				</p>
