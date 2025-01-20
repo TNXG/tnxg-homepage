@@ -3,6 +3,7 @@ export const SiteConfig = {
 	master: "site.master",
 	description: "site.description",
 	SiteURL: "https://tnxg.top",
+	masterEmail: "tnxg@outlook.jp",
 	Avatar: "https://api-space.tnxg.top/avatar?s=qq",
 	Features: {
 		StatusDot: true,
@@ -106,9 +107,9 @@ export const APIConfig = {
 	baseURL: "https://mx.tnxg.top/api/v2",
 	endpoints: {
 		ncm: "https://api-ncm.prts.top", // 某个还能用的网易云音乐API
+		friends: "https://api-space.tnxg.top/links", // 自制的友链后端api，详见https://github.com/TNXG/space-api/blob/master/src/routes/links/index.ts
 		// 实际上以下的api都是Mix-Space提供的，这里提供一个方便更换的接口
 		recently: "https://mx.tnxg.top/api/v2/recently/all",
-		friends: "https://mx.tnxg.top/api/v2/links?page=1&size=50",
 		status: "https://mx.tnxg.top/api/v2/fn/ps/update",
 	},
 };

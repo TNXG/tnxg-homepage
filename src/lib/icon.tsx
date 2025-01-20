@@ -4,6 +4,7 @@ import { SiteConfig } from "@/config";
 
 const archIcons = {
 	"服务器": "ph:hard-drives-fill",
+	"Server": "ph:hard-drives-fill",
 	"国内 CDN": "ph:cloud-check-fill",
 	"虚拟主机": "ph:file-cloud-bold",
 	"Astro": "simple-icons:astro",

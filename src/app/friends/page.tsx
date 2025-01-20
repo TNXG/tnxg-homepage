@@ -1,4 +1,3 @@
-import type { LinkModel } from "@mx-space/api-client";
 import type { Metadata } from "next";
 import FriendsLayout from "@/components/layouts/friends";
 import { APIConfig } from "@/config";
@@ -19,21 +18,13 @@ export async function generateMetadata(): Promise<Metadata> {
 const getFriends = async (): Promise<Friend[]> => {
 	const response = cache(async () => {
 		const res = await fetch(APIConfig.endpoints.friends);
-		const data: LinkModel[] = (await res.json()).data;
+		const data: Friend[] = (await res.json()).data;
 		return data;
 	});
 
-	const friendsData: Friend[] = (await response()).map(friend => ({
-		id: friend.id,
-		name: friend.name,
-		url: friend.url,
-		avatar: friend.avatar,
-		description: friend.description || "",
-		hide: friend.hide,
-		state: friend.state,
-	}));
-
-	return friendsData;
+	const friendsData: Friend[] = await response();
+	const filteredFriends = friendsData.filter(friend => friend.state === 0);
+	return filteredFriends;
 };
 
 // 异步获取并渲染好友列表

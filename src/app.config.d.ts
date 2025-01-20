@@ -5,8 +5,11 @@ declare global {
 		url: string;
 		avatar: string;
 		description: string;
-		hide: boolean;
 		state: number;
+		techstack: string[];
+		email?: string;
+		created: string;
+		rssurl: string | null;
 	}
 
 	interface MediaInfoResponse {
