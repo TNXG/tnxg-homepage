@@ -91,7 +91,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 					{" "}
 					<mark>
 						<Link
-							href="/tnxg.opml"
+							href="https://app.follow.is/share/lists/104218695533715456"
 							target="_blank"
 							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
 						>
