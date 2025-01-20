@@ -91,9 +91,11 @@ export default function SidebarLayout({
 							<p className="text-sm">
 								Designed by
 								{" "}
-								<Link href="https://github.com/TNXG/tnxg-homepage" target="_blank" className="underline text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110 dark:text-[#66BBFF] dark:hover:text-[#FF7744]">
-									tnxg-homepage
-								</Link>
+								<mark>
+									<Link href="https://github.com/TNXG/tnxg-homepage" target="_blank" className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110 dark:text-[#66BBFF] dark:hover:text-[#FF7744]">
+										tnxg-homepage
+									</Link>
+								</mark>
 							</p>
 						</div>
 					</SidebarFooter>
