@@ -4,7 +4,7 @@ import type React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { FriendsConfig } from "@/config";
+import { FriendsConfig, SiteConfig } from "@/config";
 import { type Arch, getArchIcon } from "@/lib/icon";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
@@ -79,7 +79,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 					{" "}
 					<mark>
 						<Link
-							href="/tnxg.opml"
+							href={SiteConfig.opmlURL}
 							target="_blank"
 							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
 						>
@@ -91,7 +91,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 					{" "}
 					<mark>
 						<Link
-							href="https://app.follow.is/share/lists/104218695533715456"
+							href={SiteConfig.followListURL}
 							target="_blank"
 							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
 						>

@@ -5,6 +5,8 @@ export const SiteConfig = {
 	SiteURL: "https://tnxg.top",
 	masterEmail: "tnxg@outlook.jp",
 	Avatar: "https://api-space.tnxg.top/avatar?s=qq",
+	followListURL: "https://app.follow.is/share/lists/104218695533715456",
+	opmlURL: "/tnxg.opml",
 	Features: {
 		StatusDot: true,
 		StatusAPI: true,
