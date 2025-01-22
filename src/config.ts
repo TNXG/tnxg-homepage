@@ -85,6 +85,7 @@ export const SidebarConfig = {
 		{ name: "sidebar.externalLinks.qq", icon: "mingcute:qq-line", href: "https://jq.qq.com/?_wv=1027&k=hc3OKNED" },
 		{ name: "sidebar.externalLinks.blog", icon: "mingcute:book-6-line", href: "https://tnxgmoe.com" },
 		{ name: "sidebar.externalLinks.github", icon: "mingcute:github-line", href: "https://github.com/TNXG" },
+		{ name: "sidebar.externalLinks.telegram", icon: "mingcute:telegram-line", href: "https://t.me/illusion_ash" },
 	],
 };
 

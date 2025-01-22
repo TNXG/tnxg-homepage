@@ -30,9 +30,10 @@
 			"text": "© {date} 天翔TNXG."
 		},
 		"externalLinks": {
-			"qq": "QQ",
+			"qq": "QQ群",
 			"blog": "博客",
-			"github": "GitHub"
+			"github": "GitHub",
+			"telegram": "TG群"
 		},
 		"status": {
 			"masterUsing": "Master 正在使用 {message}",
