@@ -36,9 +36,12 @@
 			"telegram": "TG群"
 		},
 		"status": {
-			"masterUsing": "Master 正在使用 {message}",
+			"masterUsing": "{master} 正在使用 {message}",
 			"avatarAlt": "头像",
-			"albumAlt": "专辑封面"
+			"albumAlt": "专辑封面",
+			"busy": "正忙于",
+			"codingAt": "编码于 {time}",
+			"usingEditorOnPlatform": "使用 {editor} 在 {platform} 上编码"
 		}
 	},
 	"friends": {

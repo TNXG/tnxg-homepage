@@ -36,9 +36,12 @@
 			"telegram": "Telegram Group"
 		},
 		"status": {
-			"masterUsing": "Master is using {message}",
+			"masterUsing": "{master} is using {message}",
 			"avatarAlt": "Avatar",
-			"albumAlt": "Album Cover"
+			"albumAlt": "Album Cover",
+			"busy": "is busy with",
+			"codingAt": "Coding at {time}",
+			"usingEditorOnPlatform": "Using {editor} on {platform}"
 		}
 	},
 	"friends": {

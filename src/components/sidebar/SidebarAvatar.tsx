@@ -4,9 +4,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { SiteConfig } from "@/config";
-import { SelfIcon } from "@/lib/icon";
+import { APIConfig, SiteConfig } from "@/config";
+import { getLangIcon, SelfIcon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
+import { Icon } from "@iconify/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
@@ -14,6 +15,23 @@ interface MediaInfo {
 	SourceAppName: string;
 	artist: string;
 	title: string;
+	AlbumThumbnail: string;
+	AlbumTitle: string;
+	AlbumArtist: string;
+}
+
+interface CodeEvent {
+	id: number;
+	uid: number;
+	eventTime: number;
+	language: string;
+	project: string;
+	relativeFile: string;
+	absoluteFile: string;
+	editor: string;
+	platform: string;
+	gitOrigin: string;
+	gitBranch: string;
 }
 
 interface ProcessData {
@@ -21,22 +39,54 @@ interface ProcessData {
 	mediaInfo?: MediaInfo;
 }
 
-interface MediaInfoResponse {
-	name: string;
-	artist: string;
-	album: string | null;
-	image: string | null;
-	tns: string | null;
+interface CodeEvent {
+	id: number;
+	uid: number;
+	eventTime: number;
+	language: string;
+	project: string;
+	relativeFile: string;
+	absoluteFile: string;
+	editor: string;
+	platform: string;
+	gitOrigin: string;
+	gitBranch: string;
 }
+
+const CodeEventStatus = ({ codeEvent }: { codeEvent: CodeEvent }) => {
+	const t = useTranslations();
+	const { platform, editor, project, language, eventTime } = codeEvent;
+
+	return (
+		<div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-3 text-sm dark:text-gray-200">
+			<div>
+				{t(SiteConfig.master)}
+				{" "}
+				<Icon icon={getLangIcon(language)} className="text-lg inline-block" />
+				{" "}
+				<span className="text-xs text-muted-foreground dark:text-gray-400">{language}</span>
+				{" "}
+				{t("sidebar.status.busy")}
+				{" "}
+			</div>
+			<p className="font-bold">{project}</p>
+			<p className="mt-1 text-xs text-muted-foreground dark:text-gray-400">
+				{t("sidebar.status.codingAt", { time: new Date(eventTime).toLocaleString() })}
+			</p>
+			<p className="mt-1 text-xs text-muted-foreground dark:text-gray-400">
+				{t("sidebar.status.usingEditorOnPlatform", { editor, platform })}
+			</p>
+		</div>
+	);
+};
 
 export const SidebarAvatar = () => {
 	const t = useTranslations();
 	const [reportMessage, setReportMessage] = useState<string | null>(null);
 	const [mediaInfo, setMediaInfo] = useState<MediaInfo | null>(null);
 	const [appDescCache, setAppDescCache] = useState<Record<string, string> | null>(null);
-	const [lastFetchedMedia, setLastFetchedMedia] = useState<MediaInfo | null>(null);
-	const [mediaInfoResponse, setMediaInfoResponse] = useState<MediaInfoResponse | null>(null);
 	const [imageLoading, setImageLoading] = useState(true);
+	const [codeEvent, setCodeEvent] = useState<CodeEvent | null>(null);
 	const imgRef = useRef<HTMLImageElement | null>(null);
 
 	const fetchAppDesc = async () => {
@@ -65,20 +115,6 @@ export const SidebarAvatar = () => {
 		return message;
 	};
 
-	const fetchMediaInfo = async (songName: string, artist: string) => {
-		try {
-			const response = await fetch(`/api/getMediainfo?songName=${encodeURIComponent(songName)}&artist=${encodeURIComponent(artist)}`);
-			if (!response.ok)
-				throw new Error("Failed to fetch media info");
-			const data: MediaInfoResponse = await response.json();
-			setMediaInfoResponse(data);
-		}
-		catch (error) {
-			console.error("Failed to fetch media info:", error);
-			setImageLoading(false);
-		}
-	};
-
 	useEffect(() => {
 		if (!SiteConfig.Features.StatusAPI) {
 			return;
@@ -94,24 +130,32 @@ export const SidebarAvatar = () => {
 
 		const fetchReportMessage = async () => {
 			try {
-				const response = await fetch("/api/getReportMsg");
-				if (!response.ok) {
-					console.error("Failed to fetch report message:", response.statusText);
+				const [reportResponse, codeEventResponse] = await Promise.all([
+					fetch("/api/getReportMsg"),
+					fetch(APIConfig.endpoints.space_status),
+				]);
+				if (!reportResponse.ok) {
+					console.error("Failed to fetch report message:", reportResponse.statusText);
 					return;
 				}
-				const data: ProcessData = await response.json();
+				if (!codeEventResponse.ok) {
+					console.error("Failed to fetch code event:", codeEventResponse.statusText);
+					return;
+				}
+				const data: ProcessData = await reportResponse.json();
+				const codeEventData: CodeEvent | null = (await codeEventResponse.json()).data;
+
+				if (codeEventData) {
+					setCodeEvent(codeEventData);
+				}
+
 				if (data.processName) {
 					const message = await fixProcessMessage(data.processName);
-					setReportMessage(t("sidebar.status.masterUsing", { message }));
+					setReportMessage(t("sidebar.status.masterUsing", { master: t(SiteConfig.master), message }));
 				}
 
 				if (data.mediaInfo) {
-					const newMediaInfo = data.mediaInfo;
-					if (!lastFetchedMedia || lastFetchedMedia.title !== newMediaInfo.title || lastFetchedMedia.artist !== newMediaInfo.artist) {
-						setMediaInfo(newMediaInfo);
-						setLastFetchedMedia(newMediaInfo);
-						await fetchMediaInfo(newMediaInfo.title, newMediaInfo.artist);
-					}
+					setMediaInfo(data.mediaInfo);
 				}
 			}
 			catch (error) {
@@ -127,7 +171,7 @@ export const SidebarAvatar = () => {
 		return () => {
 			clearInterval(intervalId);
 		};
-	}, [appDescCache, lastFetchedMedia]);
+	}, [appDescCache, SiteConfig.Features.StatusAPI]);
 
 	useEffect(() => {
 		if (imgRef.current) {
@@ -141,6 +185,21 @@ export const SidebarAvatar = () => {
 		}
 	}, [imgRef.current]);
 
+	const getAlbumImage = () => {
+		if (!mediaInfo?.AlbumThumbnail)
+			return null;
+
+		// 检测是否是base64格式
+		if (!mediaInfo.AlbumThumbnail.startsWith("https") && !mediaInfo.AlbumThumbnail.startsWith("http")) {
+			// 添加base64前缀
+			const mimeType = mediaInfo.AlbumThumbnail.startsWith("/9j/") ? "image/jpeg" : "image/png";
+			return `data:${mimeType};base64,${mediaInfo.AlbumThumbnail}`;
+		}
+
+		return mediaInfo.AlbumThumbnail;
+	};
+
+	const albumImage = getAlbumImage();
 	return (
 		<div className="relative">
 			{reportMessage
@@ -159,52 +218,48 @@ export const SidebarAvatar = () => {
 											<div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-3 text-sm dark:text-gray-200">
 												{reportMessage}
 											</div>
-											{mediaInfoResponse
-												? (
-														<div className="flex items-center space-x-4">
-															{mediaInfoResponse.image
-																? (
-																		<div className="relative w-16 h-16">
-																			{imageLoading && (
-																				<Skeleton className="absolute inset-0 w-full h-full rounded-md" />
-																			)}
-																			<img
-																				ref={imgRef}
-																				src={mediaInfoResponse.image}
-																				alt={t("sidebar.status.albumAlt")}
-																				className={`w-16 h-16 rounded-md object-cover ${imageLoading ? "hidden" : "block"}`}
-																				onLoad={() => setImageLoading(false)}
-																				onError={() => setImageLoading(false)}
-																			/>
-																		</div>
-																	)
-																: (
-																		<div className="w-16 h-16 rounded-md">
-																			<SelfIcon name="MyGO!!!!!_Icon" />
-																		</div>
-																	)}
 
-															<div className="flex-1 min-w-0">
-																<p className="text-base font-semibold truncate">{mediaInfoResponse.name}</p>
-																{mediaInfoResponse.artist && (
-																	<p className="text-sm text-muted-foreground dark:text-gray-400 truncate">
-																		{mediaInfoResponse.artist}
-																	</p>
+											{codeEvent && <CodeEventStatus codeEvent={codeEvent} />}
+
+											{mediaInfo && (
+												<div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-3 text-sm dark:text-gray-200">
+													<div className="flex items-center space-x-4">
+														{albumImage
+															? (
+																	<div className="relative w-16 h-16">
+																		{imageLoading && <Skeleton className="absolute inset-0 w-full h-full rounded-md" />}
+																		<img
+																			ref={imgRef}
+																			src={albumImage || "/placeholder.svg"}
+																			alt={t("sidebar.status.albumAlt")}
+																			className={`w-16 h-16 rounded-md object-cover ${imageLoading ? "hidden" : "block"}`}
+																			onLoad={() => setImageLoading(false)}
+																			onError={() => setImageLoading(false)}
+																		/>
+																	</div>
+																)
+															: (
+																	<div className="w-16 h-16 rounded-md">
+																		<SelfIcon name="MyGO!!!!!_Icon" />
+																	</div>
 																)}
-																{mediaInfoResponse.album && (
-																	<p className="text-xs text-muted-foreground dark:text-gray-500 truncate">
-																		{mediaInfoResponse.album}
-																	</p>
-																)}
-															</div>
+
+														<div className="flex-1 min-w-0">
+															<p className="text-base font-semibold truncate">{mediaInfo.title}</p>
+															{mediaInfo.artist && (
+																<p className="text-sm text-muted-foreground dark:text-gray-400 truncate">
+																	{mediaInfo.artist}
+																</p>
+															)}
+															{mediaInfo.AlbumTitle && (
+																<p className="text-xs text-muted-foreground dark:text-gray-500 truncate">
+																	{mediaInfo.AlbumTitle}
+																</p>
+															)}
 														</div>
-													)
-												: mediaInfo && (
-													<div className="text-sm">
-														<p className="font-semibold">{mediaInfo.title}</p>
-														{mediaInfo.artist && <p className="text-muted-foreground">{mediaInfo.artist}</p>}
 													</div>
-												)}
+												</div>
+											)}
 										</CardContent>
 									</Card>
 								</TooltipContent>
@@ -217,14 +272,25 @@ export const SidebarAvatar = () => {
 							<AvatarFallback>{t(SiteConfig.master)[0]}</AvatarFallback>
 						</Avatar>
 					)}
-			{SiteConfig.Features.StatusDot
-			&& (
-				<span
-					className={cn(
-						"absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white",
-						reportMessage ? "bg-green-500" : "bg-gray-300",
-					)}
-				/>
+			{SiteConfig.Features.StatusDot && (
+				<span className="absolute top-0 right-0">
+					<span className="relative flex h-2.5 w-2.5">
+						{/* 脉冲动画层 */}
+						<span
+							className={cn(
+								"absolute inline-flex h-full w-full animate-ping rounded-full opacity-75",
+								reportMessage ? "bg-green-400" : "hidden",
+							)}
+						/>
+						{/* 实心中心点 */}
+						<span
+							className={cn(
+								"relative inline-flex h-2.5 w-2.5 rounded-full",
+								reportMessage ? "bg-green-500" : "bg-gray-300",
+							)}
+						/>
+					</span>
+				</span>
 			)}
 		</div>
 	);

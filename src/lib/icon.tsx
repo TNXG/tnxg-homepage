@@ -103,14 +103,17 @@ const ext2lang: Record<string, string> = {
 	"sh": "bash",
 	"ssh-config": "properties",
 	"ts": "typescript",
-	"tsx": "typescript",
+	"tsx": "typescript-react",
+	"typescriptreact": "typescript-react",
+	"jsx": "javascript-react",
+	"javascriptreact": "javascript-react",
 	"vb": "visual-studio",
 };
 
 export function getLangIcon(extension?: string): string {
-	if (!extension || !(SiteConfig.Shiki.langs).includes(extension))
+	if (!extension) {
 		extension = "file";
-
+	}
 	const fileType = ext2lang[extension] || extension;
 	return `catppuccin:${fileType}`;
 }

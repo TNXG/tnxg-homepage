@@ -15,13 +15,13 @@ export default antfu({
 		// 忽略 antfu/top-level-function 规则
 		"antfu/top-level-function": "off",
 	},
-	"env": {
-		"browser": true,
-		"es2021": true
+	env: {
+		browser: true,
+		esnext: true,
 	},
-	"extends": [
+	extends: [
 		"eslint:recommended",
 		"plugin:react/recommended",
-		"plugin:@next/next/recommended"
-	]
+		"plugin:@next/next/recommended",
+	],
 });

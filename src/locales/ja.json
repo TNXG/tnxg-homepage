@@ -36,9 +36,12 @@
 			"telegram": "TG グループ"
 		},
 		"status": {
-			"masterUsing": "Master は {message} を使用中",
+			"masterUsing": "{master} は {message} を使用中",
 			"avatarAlt": "アバター",
-			"albumAlt": "アルバムジャケット"
+			"albumAlt": "アルバムジャケット",
+			"busy": "作業中",
+			"codingAt": "{time} にコーディング",
+			"usingEditorOnPlatform": "{editor} を使用し {platform} でコーディング"
 		}
 	},
 	"friends": {
