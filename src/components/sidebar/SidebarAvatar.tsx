@@ -202,7 +202,7 @@ export const SidebarAvatar = () => {
 	const albumImage = getAlbumImage();
 	return (
 		<div className="relative">
-			{reportMessage
+			{reportMessage || mediaInfo || codeEvent
 				? (
 						<TooltipProvider delayDuration={300}>
 							<Tooltip>
