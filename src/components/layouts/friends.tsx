@@ -1,11 +1,12 @@
 "use client";
 
+import type { Arch } from "@/lib/icon";
 import type React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { FriendsConfig, SiteConfig } from "@/config";
-import { type Arch, getArchIcon } from "@/lib/icon";
+import { getArchIcon } from "@/lib/icon";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
