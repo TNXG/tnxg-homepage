@@ -200,9 +200,12 @@ export const SidebarAvatar = () => {
 	};
 
 	const albumImage = getAlbumImage();
+
+	const onlineStatus = reportMessage || mediaInfo || codeEvent;
+
 	return (
 		<div className="relative">
-			{reportMessage || mediaInfo || codeEvent
+			{onlineStatus
 				? (
 						<TooltipProvider delayDuration={300}>
 							<Tooltip>
@@ -215,9 +218,12 @@ export const SidebarAvatar = () => {
 								<TooltipContent side="right" sideOffset={10} className="w-72 p-0 dark:bg-gray-800 dark:border-gray-700">
 									<Card className="border-none shadow-lg dark:bg-gray-800">
 										<CardContent className="p-4 space-y-4">
-											<div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-3 text-sm dark:text-gray-200">
-												{reportMessage}
-											</div>
+
+											{reportMessage && (
+												<div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-3 text-sm dark:text-gray-200">
+													{reportMessage}
+												</div>
+											)}
 
 											{codeEvent && <CodeEventStatus codeEvent={codeEvent} />}
 
@@ -279,14 +285,14 @@ export const SidebarAvatar = () => {
 						<span
 							className={cn(
 								"absolute inline-flex h-full w-full animate-ping rounded-full opacity-75",
-								reportMessage ? "bg-green-400" : "hidden",
+								onlineStatus ? "bg-green-400" : "hidden",
 							)}
 						/>
 						{/* 实心中心点 */}
 						<span
 							className={cn(
 								"relative inline-flex h-2.5 w-2.5 rounded-full",
-								reportMessage ? "bg-green-500" : "bg-gray-300",
+								onlineStatus ? "bg-green-500" : "bg-gray-300",
 							)}
 						/>
 					</span>
