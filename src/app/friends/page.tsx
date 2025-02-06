@@ -30,5 +30,10 @@ const getFriends = async (): Promise<Friend[]> => {
 // 异步获取并渲染好友列表
 export default async function Page() {
 	const friends = await getFriends();
-	return (<div className="ml-0 xl:ml-96"><FriendsLayout friends={friends} /></div>);
+
+	return (
+		<div className="flex justify-center items-center min-h-screen">
+			<FriendsLayout friends={friends} />
+		</div>
+	);
 };

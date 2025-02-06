@@ -70,66 +70,64 @@ export default function SidebarLayout({
 
 	return (
 		<SidebarProvider>
-			<div className="flex min-h-screen flex-col md:flex-row">
-				<Sidebar className="hidden w-60 border-r md:block">
-					<SidebarHeader className="p-4">
-						<div className="flex items-center space-x-2">
-							<SidebarAvatar />
-							<h1 className="text-base font-bold">{t(SiteConfig.title)}</h1>
-						</div>
-					</SidebarHeader>
-					<SidebarContent>
+			<Sidebar className="hidden w-60 border-r md:block">
+				<SidebarHeader className="p-4">
+					<div className="flex items-center space-x-2">
+						<SidebarAvatar />
+						<h1 className="text-base font-bold">{t(SiteConfig.title)}</h1>
+					</div>
+				</SidebarHeader>
+				<SidebarContent>
+					<Navigation />
+				</SidebarContent>
+				<SidebarFooter>
+					<div className="flex justify-center space-x-2 mb-4">
+						<SettingsModal />
+					</div>
+					<Separator className="dark:bg-gray-600" />
+					<div className="text-center mt-5 text-sm lg:text-base mb-2 dark:text-gray-300">
+						<p>{t(SidebarConfig.copyright.text, { date: new Date().getFullYear() })}</p>
+						<p className="text-sm">
+							Designed by
+							{" "}
+							<mark>
+								<Link href="https://github.com/TNXG/tnxg-homepage" target="_blank" className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110 dark:text-[#66BBFF] dark:hover:text-[#FF7744]">
+									tnxg-homepage
+								</Link>
+							</mark>
+						</p>
+					</div>
+				</SidebarFooter>
+			</Sidebar>
+
+			<Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+				<DrawerTrigger asChild>
+					<Button variant="outline" size="icon" className="fixed left-4 top-4 md:hidden z-10">
+						<Icon icon="mingcute:menu-line" className="h-[1.2rem] w-[1.2rem]" />
+					</Button>
+				</DrawerTrigger>
+				<DrawerContent className="dark:bg-gray-800">
+					<DrawerHeader>
+						<DrawerTitle className="dark:text-white">{t(SiteConfig.title)}</DrawerTitle>
+						<DrawerDescription className="dark:text-gray-300">{t(SiteConfig.description)}</DrawerDescription>
+					</DrawerHeader>
+					<div className="p-4">
 						<Navigation />
-					</SidebarContent>
-					<SidebarFooter>
-						<div className="flex justify-center space-x-2 mb-4">
+					</div>
+					<DrawerFooter>
+						<div className="flex justify-between w-full">
 							<SettingsModal />
+							<DrawerClose asChild>
+								<Button variant="outline" className="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">Close</Button>
+							</DrawerClose>
 						</div>
-						<Separator className="dark:bg-gray-600" />
-						<div className="text-center mt-5 text-sm lg:text-base mb-2 dark:text-gray-300">
-							<p>{t(SidebarConfig.copyright.text, { date: new Date().getFullYear() })}</p>
-							<p className="text-sm">
-								Designed by
-								{" "}
-								<mark>
-									<Link href="https://github.com/TNXG/tnxg-homepage" target="_blank" className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110 dark:text-[#66BBFF] dark:hover:text-[#FF7744]">
-										tnxg-homepage
-									</Link>
-								</mark>
-							</p>
-						</div>
-					</SidebarFooter>
-				</Sidebar>
+					</DrawerFooter>
+				</DrawerContent>
+			</Drawer>
 
-				<Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
-					<DrawerTrigger asChild>
-						<Button variant="outline" size="icon" className="fixed left-4 top-4 md:hidden z-10">
-							<Icon icon="mingcute:menu-line" className="h-[1.2rem] w-[1.2rem]" />
-						</Button>
-					</DrawerTrigger>
-					<DrawerContent className="dark:bg-gray-800">
-						<DrawerHeader>
-							<DrawerTitle className="dark:text-white">{t(SiteConfig.title)}</DrawerTitle>
-							<DrawerDescription className="dark:text-gray-300">{t(SiteConfig.description)}</DrawerDescription>
-						</DrawerHeader>
-						<div className="p-4">
-							<Navigation />
-						</div>
-						<DrawerFooter>
-							<div className="flex justify-between w-full">
-								<SettingsModal />
-								<DrawerClose asChild>
-									<Button variant="outline" className="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">Close</Button>
-								</DrawerClose>
-							</div>
-						</DrawerFooter>
-					</DrawerContent>
-				</Drawer>
-
-				<SidebarInset>
-					<main>{children}</main>
-				</SidebarInset>
-			</div>
+			<SidebarInset className="flex-1 overflow-hidden">
+				<div className="h-full overflow-y-auto">{children}</div>
+			</SidebarInset>
 		</SidebarProvider>
 	);
 }

@@ -25,7 +25,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 		const shuffleArray = (array: Friend[]) => {
 			for (let i = array.length - 1; i > 0; i--) {
 				const j = Math.floor(Math.random() * (i + 1))
-					;[array[i], array[j]] = [array[j], array[i]];
+        ;[array[i], array[j]] = [array[j], array[i]];
 			}
 		};
 
@@ -46,14 +46,14 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 
 		return () => {
 			cards.forEach((card) => {
-				card.removeEventListener("touchstart", () => { });
-				card.removeEventListener("touchend", () => { });
+				card.removeEventListener("touchstart", () => {});
+				card.removeEventListener("touchend", () => {});
 			});
 		};
 	}, [friends]);
 
 	return (
-		<div className="w-full mt-5 flex flex-col items-start mb-6 px-4 sm:px-6 lg:px-8">
+		<div className="mt-5 flex flex-col items-start mb-6 px-4 sm:px-6 lg:px-8">
 			<motion.h1
 				className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-10"
 				initial={{ opacity: 0, y: -50 }}
@@ -121,14 +121,16 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 										id="friend-card-hover"
 										className="absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-background/60 backdrop-blur-md p-4"
 									>
-										<h3 className="text-base sm:text-lg font-semibold mb-2">{friend.name}</h3>
+										<h3 className="text-base sm:text-lg font-semibold mb-2 text-shadow-sm">{friend.name}</h3>
 										<p
-											className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-4 overflow-hidden text-ellipsis"
+											className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-4 overflow-hidden text-ellipsis text-shadow-sm"
 											style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical" }}
 										>
 											{friend.description}
 										</p>
-										<p className="text-muted-foreground text-xs mb-2 sm:mb-4 truncate max-w-full">{friend.url}</p>
+										<p className="text-muted-foreground text-xs mb-2 sm:mb-4 truncate max-w-full text-shadow-sm">
+											{friend.url}
+										</p>
 										<div className="flex flex-wrap justify-center gap-2 mt-2">
 											{friend.techstack.map((tech, index) => (
 												<TooltipProvider key={index} delayDuration={100}>

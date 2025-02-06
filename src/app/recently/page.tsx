@@ -50,8 +50,10 @@ export default async function Page() {
 	const recentlies = await getRecentlies();
 
 	return (
-		<div className="ml-0 xl:ml-96">
-			<RecentlyLayout Recentlies={recentlies} />
+		<div className="flex justify-center items-center min-h-screen">
+			<div className="w-full max-w-4xl">
+				<RecentlyLayout Recentlies={recentlies} />
+			</div>
 		</div>
 	);
 }
