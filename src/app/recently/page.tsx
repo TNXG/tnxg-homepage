@@ -19,19 +19,59 @@ export async function generateMetadata(): Promise<Metadata> {
 // 使用 cache 包装整个数据获取函数
 const getRecentlies = cache(async (): Promise<RecentlyModel[]> => {
 	try {
+		// 获取原有数据
 		const res = await fetch(APIConfig.endpoints.recently, {
-			next: { revalidate: 60 }, // 添加缓存控制
+			next: { revalidate: 60 },
 		});
 
 		if (!res.ok) {
 			throw new Error(`Failed to fetch recently data: ${res.status}`);
 		}
 
-		const data: RecentlyModel[] = (await res.json()).data;
+		const originalData: RecentlyModel[] = (await res.json()).data;
+
+		// 获取 Misskey 数据
+		const misskeyRes = await fetch(`${APIConfig.endpoints.misskey}/api/users/notes`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				userId: APIConfig.misskey.user,
+				limit: 40,
+				i: APIConfig.misskey.token,
+			}),
+		});
+
+		let combinedData = [...originalData];
+
+		if (misskeyRes.ok) {
+			const misskeyData = await misskeyRes.json();
+			const misskeyRecentlies: RecentlyModel[] = misskeyData.map((note: any) => {
+				// 处理图片
+				const imageUrls = note.files?.map((file: any) => file.url) || [];
+				const imageMarkdown = imageUrls.length
+					? `\n\n${imageUrls.map((url: string) => `![image](${url})`).join("\n")}`
+					: "";
+
+				return {
+					id: `misskey-${note.id}`,
+					content: (note.text || "") + imageMarkdown,
+					created: new Date(note.createdAt).toISOString(),
+					modified: new Date(note.createdAt).toISOString(),
+				};
+			});
+			combinedData = [...combinedData, ...misskeyRecentlies];
+		}
+
+		// 按时间排序
+		combinedData.sort((a, b) =>
+			new Date(b.created).getTime() - new Date(a.created).getTime(),
+		);
 
 		// 处理 markdown 内容
 		const RecentliesData = await Promise.all(
-			data.map(async recently => ({
+			combinedData.map(async recently => ({
 				...recently,
 				content: await MarkdownRender(recently.content),
 			})),
@@ -40,7 +80,7 @@ const getRecentlies = cache(async (): Promise<RecentlyModel[]> => {
 		return RecentliesData;
 	}
 	catch (error) {
-		console.error("Error fetching recently data:", error);
+		console.error("Error fetching data:", error);
 		return [];
 	}
 });

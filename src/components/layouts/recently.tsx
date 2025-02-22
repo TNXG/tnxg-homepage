@@ -17,27 +17,27 @@ interface RecentliesProps {
 export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }) => {
 	const t = useTranslations();
 	return (
-		<div className="w-full mt-5 flex flex-col items-start mb-6 px-4 sm:px-6 lg:px-8">
+		<div className="w-full mt-5 flex flex-col items-start mb-6 px-2 sm:px-4 lg:px-6">
 			<motion.h1
-				className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-10"
+				className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-8 sm:mt-10"
 				initial={{ opacity: 0, y: -50 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
 			>
 				<mark className="line">{t(RecentlyConfig.title)}</mark>
-				<div className="mt-4 text-sm text-muted-foreground whitespace-pre-wrap break-words max-w-[80%]">
+				<div className="mt-4 text-sm text-muted-foreground whitespace-pre-wrap break-words max-w-full sm:max-w-[80%]">
 					{t(RecentlyConfig.description)}
 				</div>
 			</motion.h1>
 
-			<div className="ml-8 mx-auto px-4 py-8 max-w-4xl">
+			<div className="w-full ml-4 sm:ml-8 px-2 sm:px-4 py-6 sm:py-8 max-w-[95%] sm:max-w-2xl lg:max-w-4xl mx-auto">
 				<div className="relative mt-5">
 					<div className="absolute left-0 w-0.5 h-full bg-gray-200" />
 
 					{Recentlies.map((recently, index) => (
 						<motion.div
 							key={recently.id}
-							className="mb-8 flex items-start w-full relative pl-8"
+							className="mb-6 sm:mb-8 flex items-start w-full relative pl-6 sm:pl-8"
 							initial={{ opacity: 0, x: -50 }}
 							animate={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.5, delay: index * 0.1 }}

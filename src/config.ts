@@ -1,3 +1,8 @@
+import process from "node:process";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 export const SiteConfig = {
 	title: "site.title",
 	master: "site.master",
@@ -107,12 +112,18 @@ export const RecentlyConfig = {
 };
 
 export const APIConfig = {
+	misskey: {
+		user: "a3yf78qadjmq0009",
+		token: process.env.MISSKEY_TOKEN,
+	},
 	baseURL: "https://mx.tnxg.top/api/v2",
 	endpoints: {
 		ncm: "https://api-ncm.prts.top", // 某个还能用的网易云音乐API
 		// 自制的后端api，详见https://github.com/TNXG/space-api/
 		friends: "https://api-space.tnxg.top/links",
 		space_status: "https://api-space.tnxg.top/status", // 实际获取无参和带s=n的状态
+		// misskeyapi接口
+		misskey: "https://afhub.top",
 		// 实际上以下的api都是Mix-Space提供的，这里提供一个方便更换的接口
 		recently: "https://mx.tnxg.top/api/v2/recently/all",
 		status: "https://mx.tnxg.top/api/v2/fn/ps/update",
