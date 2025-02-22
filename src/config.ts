@@ -1,4 +1,3 @@
-import process from "node:process";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -114,6 +113,7 @@ export const RecentlyConfig = {
 export const APIConfig = {
 	misskey: {
 		user: "a3yf78qadjmq0009",
+		// eslint-disable-next-line node/prefer-global/process
 		token: process.env.MISSKEY_TOKEN,
 	},
 	baseURL: "https://mx.tnxg.top/api/v2",
