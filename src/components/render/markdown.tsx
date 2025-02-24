@@ -132,10 +132,14 @@ export const MarkdownRender = cache(async (content: string): Promise<string> => 
 				visit(tree, "element", (node: any) => {
 					if (node.tagName === "img") {
 						const originalClassName = (node.properties?.className || []) as string[];
-						node.properties.className = [
-							...originalClassName,
-							"my-4", // 添加上下间距
-						];
+						node.properties = {
+							...node.properties,
+							className: [
+								...originalClassName,
+								"my-4",
+							],
+							loading: "lazy",
+						};
 					}
 
 					if (node.tagName === "a" && node.properties?.href) {
@@ -164,45 +168,46 @@ export const MarkdownRender = cache(async (content: string): Promise<string> => 
 					: videoInfo.desc.trim();
 
 				const videoHtml = `
-          <div class="mt-6 relative rounded-lg border bg-card text-card-foreground shadow-sm mb-4">
-              <div class="flex flex-col sm:flex-row">
-                  <div class="w-full sm:w-[180px] h-[200px] sm:h-[160px] flex-shrink-0 relative overflow-hidden">
-                      <img 
-                          src="${videoInfo.cover}" 
-                          alt="${videoInfo.title}" 
-                          class="absolute inset-0 w-full h-full object-cover object-center rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none" 
-                          referrerpolicy="no-referrer" 
-                      />
-                  </div>
-                  <div class="flex-1 p-3 sm:p-4 min-h-0">
-                      <div class="flex flex-col h-full">
-                          <div class="flex-1 min-h-0">
-                              <h3 class="font-semibold leading-tight text-base mb-1 line-clamp-1">${videoInfo.title}</h3>
-                              <p class="text-sm text-muted-foreground line-clamp-2 sm:line-clamp-3 overflow-hidden">${processedDesc}</p>
-                          </div>
-                          <div class="flex items-center gap-2 mt-2 pt-2 border-t">
-                              <span class="inline-flex items-center text-xs text-muted-foreground">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-3 w-3">
-                                      <circle cx="12" cy="12" r="10"/>
-                                      <path d="M12 16v-4"/>
-                                      <path d="M12 8h.01"/>
-                                  </svg>
-                                  作者: ${videoInfo.author}
-                              </span>
-                              <span class="text-xs text-muted-foreground">•</span>
-                              <a href="${url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs text-primary hover:underline">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-3 w-3">
-                                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-                                  </svg>
-                                  查看原视频
-                              </a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        `;
+					<div class="mt-6 relative rounded-lg border bg-card text-card-foreground shadow-sm mb-4">
+						<div class="flex flex-col sm:flex-row">
+							<div class="w-full sm:w-[180px] h-[200px] sm:h-[160px] flex-shrink-0 relative overflow-hidden">
+								<img 
+									src="${videoInfo.cover}" 
+									alt="${videoInfo.title}" 
+									class="absolute inset-0 w-full h-full object-cover object-center rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none" 
+									referrerpolicy="no-referrer"
+									loading="lazy"
+								/>
+							</div>
+							<div class="flex-1 p-3 sm:p-4 min-h-0">
+								<div class="flex flex-col h-full">
+									<div class="flex-1 min-h-0">
+										<h3 class="font-semibold leading-tight text-base mb-1 line-clamp-1">${videoInfo.title}</h3>
+										<p class="text-sm text-muted-foreground line-clamp-2 sm:line-clamp-3 overflow-hidden">${processedDesc}</p>
+									</div>
+									<div class="flex items-center gap-2 mt-2 pt-2 border-t">
+										<span class="inline-flex items-center text-xs text-muted-foreground">
+											<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-3 w-3">
+												<circle cx="12" cy="12" r="10"/>
+												<path d="M12 16v-4"/>
+												<path d="M12 8h.01"/>
+											</svg>
+											作者: ${videoInfo.author}
+										</span>
+										<span class="text-xs text-muted-foreground">•</span>
+										<a href="${url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs text-primary hover:underline">
+											<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-3 w-3">
+												<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+												<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+											</svg>
+											查看原视频
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				`;
 				htmlContent = htmlContent.replace(`<a href="${url}">${url}</a>`, videoHtml);
 			}
 		}
