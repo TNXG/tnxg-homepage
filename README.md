@@ -1,4 +1,6 @@
 # 天翔TNXGの自留地
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FTNXG%2Ftnxg-homepage.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FTNXG%2Ftnxg-homepage?ref=badge_shield)
+
 
 ## 简介
 
@@ -77,3 +79,7 @@ pnpm start
 如有任何问题或建议，欢迎通过以上方式联系我们。感谢您的支持！
 
 本 README 部分内容由ai生成，请注意甄别内容。
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FTNXG%2Ftnxg-homepage.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FTNXG%2Ftnxg-homepage?ref=badge_large)
