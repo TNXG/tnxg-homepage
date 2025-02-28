@@ -1,11 +1,19 @@
 import antfu from "@antfu/eslint-config";
 import eslintPluginNext from "@next/eslint-plugin-next";
+import tailwind from "eslint-plugin-tailwindcss";
 
 export default antfu({
+	react: true,
 	plugins: {
 		"@next/next": eslintPluginNext,
 	},
-	formatters: true,
+	formatters: {
+		css: true,
+		html: true,
+		prettierOptions: {
+			plugins: ["prettier-plugin-tailwindcss"],
+		},
+	},
 	stylistic: {
 		indent: "tab",
 		quotes: "double",
@@ -15,13 +23,27 @@ export default antfu({
 		// 忽略 antfu/top-level-function 规则
 		"antfu/top-level-function": "off",
 	},
-	env: {
-		browser: true,
-		esnext: true,
+}, [
+	...tailwind.configs["flat/recommended"],
+	{
+		settings: {
+			tailwindcss: {
+				callees: ["classnames", "clsx", "ctl"],
+				config: "tailwind.config.js",
+				cssFiles: [
+					"**/*.css",
+					"!**/node_modules",
+					"!**/.*",
+					"!**/dist",
+					"!**/build",
+				],
+				cssFilesRefreshRate: 5_000,
+				removeDuplicates: true,
+				skipClassAttribute: false,
+				whitelist: [],
+				tags: [],
+				classRegex: "^class(Name)?$",
+			},
+		},
 	},
-	extends: [
-		"eslint:recommended",
-		"plugin:react/recommended",
-		"plugin:@next/next/recommended",
-	],
-});
+]);

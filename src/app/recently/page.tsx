@@ -90,7 +90,7 @@ export default async function Page() {
 	const recentlies = await getRecentlies();
 
 	return (
-		<div className="flex justify-center items-center min-h-screen">
+		<div className="flex min-h-screen items-center justify-center">
 			<div className="w-full max-w-4xl">
 				<RecentlyLayout Recentlies={recentlies} />
 			</div>

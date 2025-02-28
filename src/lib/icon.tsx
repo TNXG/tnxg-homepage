@@ -1,7 +1,5 @@
 // 部分代码来自Zhilu(L33Z22L11)
 
-import { SiteConfig } from "@/config";
-
 const archIcons = {
 	"服务器": "ph:hard-drives-fill",
 	"Server": "ph:hard-drives-fill",

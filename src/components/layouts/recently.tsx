@@ -17,27 +17,27 @@ interface RecentliesProps {
 export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }) => {
 	const t = useTranslations();
 	return (
-		<div className="w-full mt-5 flex flex-col items-start mb-6 px-2 sm:px-4 lg:px-6">
+		<div className="mb-6 mt-5 flex w-full flex-col items-start px-2 sm:px-4 lg:px-6">
 			<motion.h1
-				className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-8 sm:mt-10"
+				className="mt-8 text-2xl font-bold sm:mt-10 sm:text-3xl lg:text-4xl"
 				initial={{ opacity: 0, y: -50 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
 			>
 				<mark className="line">{t(RecentlyConfig.title)}</mark>
-				<div className="mt-4 text-sm text-muted-foreground whitespace-pre-wrap break-words max-w-full sm:max-w-[80%]">
+				<div className="text-muted-foreground mt-4 max-w-full whitespace-pre-wrap break-words text-sm sm:max-w-[80%]">
 					{t(RecentlyConfig.description)}
 				</div>
 			</motion.h1>
 
-			<div className="w-full ml-4 sm:ml-8 px-2 sm:px-4 py-6 sm:py-8 max-w-[95%] sm:max-w-2xl lg:max-w-4xl mx-auto">
+			<div className="mx-auto ml-4 w-full max-w-[95%] px-2 py-6 sm:ml-8 sm:max-w-2xl sm:px-4 sm:py-8 lg:max-w-4xl">
 				<div className="relative mt-5">
-					<div className="absolute left-0 w-0.5 h-full bg-gray-200" />
+					<div className="absolute left-0 h-full w-0.5 bg-gray-200" />
 
 					{Recentlies.map((recently, index) => (
 						<motion.div
 							key={recently.id}
-							className="mb-6 sm:mb-8 flex items-start w-full relative pl-6 sm:pl-8"
+							className="relative mb-6 flex w-full items-start pl-6 sm:mb-8 sm:pl-8"
 							initial={{ opacity: 0, x: -50 }}
 							animate={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -52,8 +52,8 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 											</Avatar>
 											<div>
 												<p className="text-sm font-medium">{t(SiteConfig.master)}</p>
-												<p className="text-xs text-muted-foreground">
-													<Clock className="inline-block w-3 h-3 mr-1" />
+												<p className="text-muted-foreground text-xs">
+													<Clock className="mr-1 inline-block size-3" />
 													{new Date(recently.created).toLocaleString()}
 												</p>
 											</div>
@@ -66,8 +66,8 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 										/>
 									</CardContent>
 									<Separator className="my-2" />
-									<CardFooter className="text-sm text-muted-foreground">
-										<MessageCircle className="w-4 h-4 mr-2" />
+									<CardFooter className="text-muted-foreground text-sm">
+										<MessageCircle className="mr-2 size-4" />
 										<span>
 											ID:
 											{recently.id}
@@ -75,7 +75,7 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 									</CardFooter>
 								</Card>
 							</div>
-							<div className="absolute left-0 top-6 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full" />
+							<div className="bg-primary absolute left-0 top-6 size-4 -translate-x-1/2 rounded-full" />
 						</motion.div>
 					))}
 				</div>

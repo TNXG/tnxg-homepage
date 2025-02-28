@@ -54,14 +54,14 @@ export function ThemeSwitcher() {
 					variant="outline"
 					role="combobox"
 					aria-expanded={open}
-					className="justify-between dark:text-gray-300 dark:bg-gray-900"
+					className="justify-between dark:bg-gray-900 dark:text-gray-300"
 				>
 					<Icon
 						icon={
 							themes.find(themeItem => themeItem.value === value)?.icon
 							|| "mingcute:sun-line"
 						}
-						className="mr-2 h-4 w-4"
+						className="mr-2 size-4"
 					/>
 					{`${t("currentTheme")}: ${t(`themes.${themes.find(themeItem => themeItem.value === value)?.value}`)
 					}`}
@@ -87,7 +87,7 @@ export function ThemeSwitcher() {
 										setOpen(false);
 									}}
 								>
-									<Icon icon={themeItem.icon} className="mr-2 h-4 w-4" />
+									<Icon icon={themeItem.icon} className="mr-2 size-4" />
 									<span>{t(`themes.${themeItem.value}`)}</span>
 									<Icon
 										icon="mingcute:check-line"

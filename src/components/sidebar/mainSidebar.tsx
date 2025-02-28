@@ -29,14 +29,14 @@ export default function SidebarLayout({
 		<Card className="mx-2 dark:bg-gray-700">
 			<CardContent>
 				<SidebarMenu className="mt-2">
-					<div className="flex justify-around mb-2">
+					<div className="mb-2 flex justify-around">
 						<TooltipProvider delayDuration={100}>
 							{SidebarConfig.externalLinks.map(item => (
 								<Tooltip key={t(item.name)}>
 									<TooltipTrigger asChild>
 										<Link href={item.href} target="_blank" rel="noopener noreferrer">
 											<Button variant="ghost" size="icon" className="dark:text-gray-300 dark:hover:bg-gray-600">
-												<Icon icon={item.icon} className="h-5 w-5" />
+												<Icon icon={item.icon} className="size-5" />
 												<span className="sr-only">{t(item.name)}</span>
 											</Button>
 										</Link>
@@ -57,7 +57,7 @@ export default function SidebarLayout({
 								className="flex h-10 w-full items-center justify-center text-lg dark:text-gray-300 dark:hover:bg-gray-600"
 							>
 								<Link href={item.href} className="flex items-center">
-									<Icon icon={item.icon} className="h-6 w-6 mr-2" />
+									<Icon icon={item.icon} className="mr-2 size-6" />
 									<span>{t(item.name)}</span>
 								</Link>
 							</SidebarMenuButton>
@@ -81,17 +81,17 @@ export default function SidebarLayout({
 					<Navigation />
 				</SidebarContent>
 				<SidebarFooter>
-					<div className="flex justify-center space-x-2 mb-4">
+					<div className="mb-4 flex justify-center space-x-2">
 						<SettingsModal />
 					</div>
 					<Separator className="dark:bg-gray-600" />
-					<div className="text-center mt-5 text-sm lg:text-base mb-2 dark:text-gray-300">
+					<div className="mb-2 mt-5 text-center text-sm lg:text-base dark:text-gray-300">
 						<p>{t(SidebarConfig.copyright.text, { date: new Date().getFullYear() })}</p>
 						<p className="text-sm">
 							Designed by
 							{" "}
 							<mark>
-								<Link href="https://github.com/TNXG/tnxg-homepage" target="_blank" className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110 dark:text-[#66BBFF] dark:hover:text-[#FF7744]">
+								<Link href="https://github.com/TNXG/tnxg-homepage" target="_blank" className="text-[#3388BB] transition-all duration-300 ease-in-out hover:scale-110 hover:text-[#FF5522] dark:text-[#66BBFF] dark:hover:text-[#FF7744]">
 									tnxg-homepage
 								</Link>
 							</mark>
@@ -102,8 +102,8 @@ export default function SidebarLayout({
 
 			<Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
 				<DrawerTrigger asChild>
-					<Button variant="outline" size="icon" className="fixed left-4 top-4 md:hidden z-10">
-						<Icon icon="mingcute:menu-line" className="h-[1.2rem] w-[1.2rem]" />
+					<Button variant="outline" size="icon" className="fixed left-4 top-4 z-10 md:hidden">
+						<Icon icon="mingcute:menu-line" className="size-[1.2rem]" />
 					</Button>
 				</DrawerTrigger>
 				<DrawerContent className="dark:bg-gray-800">
@@ -115,7 +115,7 @@ export default function SidebarLayout({
 						<Navigation />
 					</div>
 					<DrawerFooter>
-						<div className="flex justify-between w-full">
+						<div className="flex w-full justify-between">
 							<SettingsModal />
 							<DrawerClose asChild>
 								<Button variant="outline" className="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">Close</Button>

@@ -21,28 +21,28 @@ export function SettingsModal() {
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button variant="outline" size="icon">
-					<Settings className="h-[1.2rem] w-[1.2rem]" />
+					<Settings className="size-[1.2rem]" />
 					<span className="sr-only">{t("settings")}</span>
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="sm:max-w-[425px] max-w-[90vw] bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+			<DialogContent className="max-w-[90vw] rounded-lg bg-white p-6 shadow-lg sm:max-w-[425px] dark:bg-gray-800">
 				<DialogHeader>
-					<DialogTitle className="dark:text-white text-lg sm:text-xl font-semibold">
+					<DialogTitle className="text-lg font-semibold sm:text-xl dark:text-white">
 						{t("settings")}
 					</DialogTitle>
-					<DialogDescription className="dark:text-gray-300 text-sm sm:text-base mt-2">
+					<DialogDescription className="mt-2 text-sm sm:text-base dark:text-gray-300">
 						{t("settingsDescription")}
 					</DialogDescription>
 				</DialogHeader>
-				<div className="grid gap-6 sm:gap-8 py-4">
+				<div className="grid gap-6 py-4 sm:gap-8">
 					<div className="flex flex-col gap-4">
-						<h3 className="text-sm sm:text-base font-medium text-gray-700 dark:text-white">
+						<h3 className="text-sm font-medium text-gray-700 sm:text-base dark:text-white">
 							{t("language")}
 						</h3>
 						<LanguageSwitcher />
 					</div>
 					<div className="flex flex-col gap-4">
-						<h3 className="text-sm sm:text-base font-medium text-gray-700 dark:text-white">
+						<h3 className="text-sm font-medium text-gray-700 sm:text-base dark:text-white">
 							{t("theme")}
 						</h3>
 						<ThemeSwitcher />

@@ -37,7 +37,7 @@ export async function RootLayout({ children }: { children: React.ReactNode }) {
 				<Favicon />
 			</head>
 			<body>
-				<ThemeProvider attribute={["class", "data-theme"]} defaultTheme="system" enableSystem storageKey="theme" disableTransitionOnChange={true}>
+				<ThemeProvider attribute={["class", "data-theme"]} defaultTheme="system" enableSystem storageKey="theme" disableTransitionOnChange>
 					<NextIntlClientProvider messages={messages}>
 						<SidebarLayout>
 							{children}

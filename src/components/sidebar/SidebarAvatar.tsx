@@ -62,18 +62,18 @@ const CodeEventStatus = ({ codeEvent }: { codeEvent: CodeEvent }) => {
 			<div>
 				{t(SiteConfig.master)}
 				{" "}
-				<Icon icon={getLangIcon(language)} className="text-lg inline-block" />
+				<Icon icon={getLangIcon(language)} className="inline-block text-lg" />
 				{" "}
-				<span className="text-xs text-muted-foreground dark:text-gray-400">{language}</span>
+				<span className="text-muted-foreground text-xs dark:text-gray-400">{language}</span>
 				{" "}
 				{t("sidebar.status.busy")}
 				{" "}
 			</div>
 			<p className="font-bold">{project}</p>
-			<p className="mt-1 text-xs text-muted-foreground dark:text-gray-400">
+			<p className="text-muted-foreground mt-1 text-xs dark:text-gray-400">
 				{t("sidebar.status.codingAt", { time: new Date(eventTime).toLocaleString() })}
 			</p>
-			<p className="mt-1 text-xs text-muted-foreground dark:text-gray-400">
+			<p className="text-muted-foreground mt-1 text-xs dark:text-gray-400">
 				{t("sidebar.status.usingEditorOnPlatform", { editor, platform })}
 			</p>
 		</div>
@@ -210,14 +210,14 @@ export const SidebarAvatar = () => {
 						<TooltipProvider delayDuration={300}>
 							<Tooltip>
 								<TooltipTrigger asChild>
-									<Avatar className="transition-transform hover:scale-105 rounded-full">
+									<Avatar className="rounded-full transition-transform hover:scale-105">
 										<AvatarImage src={SiteConfig.Avatar} alt={t("sidebar.status.avatarAlt")} loading="lazy" />
 										<AvatarFallback>{t(SiteConfig.master)[0]}</AvatarFallback>
 									</Avatar>
 								</TooltipTrigger>
-								<TooltipContent side="right" sideOffset={10} className="w-72 p-0 dark:bg-gray-800 dark:border-gray-700">
+								<TooltipContent side="right" sideOffset={10} className="w-72 p-0 dark:border-gray-700 dark:bg-gray-800">
 									<Card className="border-none shadow-lg dark:bg-gray-800">
-										<CardContent className="p-4 space-y-4">
+										<CardContent className="space-y-4 p-4">
 
 											{reportMessage && (
 												<div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-3 text-sm dark:text-gray-200">
@@ -232,33 +232,33 @@ export const SidebarAvatar = () => {
 													<div className="flex items-center space-x-4">
 														{albumImage
 															? (
-																	<div className="relative w-16 h-16">
-																		{imageLoading && <Skeleton className="absolute inset-0 w-full h-full rounded-md" />}
+																	<div className="relative size-16">
+																		{imageLoading && <Skeleton className="absolute inset-0 size-full rounded-md" />}
 																		<img
 																			ref={imgRef}
 																			src={albumImage || "/placeholder.svg"}
 																			alt={t("sidebar.status.albumAlt")}
-																			className={`w-16 h-16 rounded-md object-cover ${imageLoading ? "hidden" : "block"}`}
+																			className={`size-16 rounded-md object-cover ${imageLoading ? "hidden" : "block"}`}
 																			onLoad={() => setImageLoading(false)}
 																			onError={() => setImageLoading(false)}
 																		/>
 																	</div>
 																)
 															: (
-																	<div className="w-16 h-16 rounded-md">
+																	<div className="size-16 rounded-md">
 																		<SelfIcon name="MyGO!!!!!_Icon" />
 																	</div>
 																)}
 
-														<div className="flex-1 min-w-0">
-															<p className="text-base font-semibold truncate">{mediaInfo.title}</p>
+														<div className="min-w-0 flex-1">
+															<p className="truncate text-base font-semibold">{mediaInfo.title}</p>
 															{mediaInfo.artist && (
-																<p className="text-sm text-muted-foreground dark:text-gray-400 truncate">
+																<p className="text-muted-foreground truncate text-sm dark:text-gray-400">
 																	{mediaInfo.artist}
 																</p>
 															)}
 															{mediaInfo.AlbumTitle && (
-																<p className="text-xs text-muted-foreground dark:text-gray-500 truncate">
+																<p className="text-muted-foreground truncate text-xs dark:text-gray-500">
 																	{mediaInfo.AlbumTitle}
 																</p>
 															)}
@@ -273,14 +273,14 @@ export const SidebarAvatar = () => {
 						</TooltipProvider>
 					)
 				: (
-						<Avatar className="transition-transform hover:scale-105 rounded-full">
+						<Avatar className="rounded-full transition-transform hover:scale-105">
 							<AvatarImage src={SiteConfig.Avatar} alt={t("sidebar.status.avatarAlt")} loading="lazy" />
 							<AvatarFallback>{t(SiteConfig.master)[0]}</AvatarFallback>
 						</Avatar>
 					)}
 			{SiteConfig.Features.StatusDot && (
-				<span className="absolute top-0 right-0">
-					<span className="relative flex h-2.5 w-2.5">
+				<span className="absolute right-0 top-0">
+					<span className="relative flex size-2.5">
 						{/* 脉冲动画层 */}
 						<span
 							className={cn(

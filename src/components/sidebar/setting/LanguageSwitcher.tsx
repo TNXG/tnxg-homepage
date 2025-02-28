@@ -1,5 +1,6 @@
 "use client";
 
+import type { Locale } from "@/locales";
 import { Button } from "@/components/ui/button";
 import {
 	Command,
@@ -12,7 +13,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserLocale, setUserLocale } from "@/lib/server-utils";
-import { type Locale, locales } from "@/locales";
+import { locales } from "@/locales";
 import { Icon } from "@iconify/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -96,9 +97,9 @@ export function LanguageSwitcher() {
 					variant="outline"
 					role="combobox"
 					aria-expanded={open}
-					className="justify-between dark:text-gray-300 dark:bg-gray-900"
+					className="justify-between dark:bg-gray-900 dark:text-gray-300"
 				>
-					<Icon icon="mingcute:translate-line" className="h-4 w-4 mr-2" />
+					<Icon icon="mingcute:translate-line" className="mr-2 size-4" />
 					{`${t("currentLanguage")}: ${t(`languages.${locale}`)}`}
 					<Icon icon="mingcute:align-arrow-down-line" className="opacity-50" />
 				</Button>

@@ -32,7 +32,7 @@ export default async function Page() {
 	const friends = await getFriends();
 
 	return (
-		<div className="flex justify-center items-center min-h-screen">
+		<div className="flex min-h-screen items-center justify-center">
 			<FriendsLayout friends={friends} />
 		</div>
 	);
