@@ -1,19 +1,29 @@
 import { APIConfig } from "@/config";
-import { NextResponse } from "next/server";
 
 export const GET = async () => {
-	// 发起第一个请求
-	return fetch(APIConfig.endpoints.status, {
-		method: "POST",
-	}).then(response => response.json()).then((returndata) => {
-		if (!returndata.mediaInfo) {
-			return fetch(`${APIConfig.endpoints.space_status}/?s=n`)
-				.then(fallbackResponse => fallbackResponse.json())
-				.then((fallbackData) => {
-					if (fallbackData.data?.user?.active === true) {
-						const formattedData = {
-							processName: returndata.processName,
-							mediaInfo: {
+	const encoder = new TextEncoder();
+	let isConnectionActive = true;
+
+	const stream = new ReadableStream({
+		async start(controller) {
+			const fetchAndSendData = async () => {
+				if (!isConnectionActive)
+					return;
+
+				try {
+					// 获取主状态数据
+					const response = await fetch(APIConfig.endpoints.status, {
+						method: "POST",
+					});
+					const returndata = await response.json();
+
+					// 如果没有 mediaInfo，尝试从 space_status 获取
+					if (!returndata.mediaInfo) {
+						const fallbackResponse = await fetch(`${APIConfig.endpoints.space_status}/?s=n`);
+						const fallbackData = await fallbackResponse.json();
+
+						if (fallbackData.data?.user?.active === true) {
+							returndata.mediaInfo = {
 								AlbumArtist: fallbackData.data.song.artists
 									.map((artist: any) => artist.name)
 									.join(" / "),
@@ -24,22 +34,47 @@ export const GET = async () => {
 									.join(" / "),
 								title: fallbackData.data.song.name,
 								AlbumThumbnail: fallbackData.data.song.album.image,
-							},
-						};
-						return NextResponse.json(formattedData);
+							};
+						}
 					}
-					else {
-						return NextResponse.json(returndata);
+
+					if (isConnectionActive) {
+						controller.enqueue(encoder.encode(`data: ${JSON.stringify(returndata)}\n\n`));
 					}
-				});
-		}
-		return NextResponse.json(returndata);
-	}).catch((error) => {
-		// 错误处理
-		console.error("Fetch error:", error);
-		return NextResponse.json(
-			{ error: "Failed to fetch data" },
-			{ status: 500 },
-		);
+				}
+				catch (error) {
+					console.error("Fetch error:", error);
+					if (isConnectionActive) {
+						controller.enqueue(
+							encoder.encode(`data: ${JSON.stringify({ error: "Failed to fetch data" })}\n\n`),
+						);
+					}
+				}
+			};
+
+			// 立即执行一次
+			await fetchAndSendData();
+
+			// 每 5 秒执行一次
+			const interval = setInterval(fetchAndSendData, 5000);
+
+			// 清理函数
+			return () => {
+				isConnectionActive = false;
+				clearInterval(interval);
+				controller.close(); // Ensure the controller is closed
+			};
+		},
+		cancel() {
+			isConnectionActive = false;
+		},
+	});
+
+	return new Response(stream, {
+		headers: {
+			"Content-Type": "text/event-stream",
+			"Cache-Control": "no-cache",
+			"Connection": "keep-alive",
+		},
 	});
 };

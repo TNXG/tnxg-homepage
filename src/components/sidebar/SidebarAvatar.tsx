@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -89,33 +90,33 @@ export const SidebarAvatar = () => {
 	const [codeEvent, setCodeEvent] = useState<CodeEvent | null>(null);
 	const imgRef = useRef<HTMLImageElement | null>(null);
 
-	const fetchAppDesc = async () => {
-		if (!appDescCache) {
-			try {
-				const response = await fetch(`https://cdn.jsdelivr.net/gh/Innei/reporter-assets@main/app-desc.json`);
-				if (!response.ok)
-					throw new Error("Failed to fetch app description");
-				const appdesc = await response.json();
-				setAppDescCache(appdesc);
-				return appdesc;
-			}
-			catch (error) {
-				console.error(error);
-			}
-		}
-		return appDescCache;
-	};
-
-	const fixProcessMessage = async (process: string) => {
-		const appdesc = await fetchAppDesc();
-		let message = process;
-		if (appdesc && appdesc[process]) {
-			message = `${process} ${appdesc[process]}`;
-		}
-		return message;
-	};
-
 	useEffect(() => {
+		const fetchAppDesc = async () => {
+			if (!appDescCache) {
+				try {
+					const response = await fetch(`https://cdn.jsdelivr.net/gh/Innei/reporter-assets@main/app-desc.json`);
+					if (!response.ok)
+						throw new Error("Failed to fetch app description");
+					const appdesc = await response.json();
+					setAppDescCache(appdesc);
+					return appdesc;
+				}
+				catch (error) {
+					console.error(error);
+				}
+			}
+			return appDescCache;
+		};
+
+		const fixProcessMessage = async (process: string) => {
+			const appdesc = await fetchAppDesc();
+			let message = process;
+			if (appdesc && appdesc[process]) {
+				message = `${process} ${appdesc[process]}`;
+			}
+			return message;
+		};
+
 		if (!SiteConfig.Features.StatusAPI) {
 			return;
 		}
@@ -128,50 +129,60 @@ export const SidebarAvatar = () => {
 
 		initializeAppDesc();
 
-		const fetchReportMessage = async () => {
-			try {
-				const [reportResponse, codeEventResponse] = await Promise.all([
-					fetch("/api/getReportMsg"),
-					fetch(APIConfig.endpoints.space_status),
-				]);
-				if (!reportResponse.ok) {
-					console.error("Failed to fetch report message:", reportResponse.statusText);
-					return;
-				}
-				if (!codeEventResponse.ok) {
-					console.error("Failed to fetch code event:", codeEventResponse.statusText);
-					return;
-				}
-				const data: ProcessData = await reportResponse.json();
-				const codeEventData: CodeEvent | null = (await codeEventResponse.json()).data;
+		// 创建 SSE 连接
+		const timeoutId = setTimeout(() => {
+			const reportEventSource: EventSource = new EventSource("/api/getReportMsg");
+			const codeEventSource: EventSource = new EventSource(`${APIConfig.endpoints.space_status}/?sse=true&interval=5000`);
 
-				if (codeEventData) {
-					setCodeEvent(codeEventData);
+			reportEventSource.onmessage = async (event) => {
+				try {
+					const data: ProcessData = JSON.parse(event.data);
+					if (data.processName) {
+						const message = await fixProcessMessage(data.processName);
+						setReportMessage(t("sidebar.status.masterUsing", { master: t(SiteConfig.master), message }));
+					}
+
+					if (data.mediaInfo) {
+						setMediaInfo(data.mediaInfo);
+					}
 				}
-
-				if (data.processName) {
-					const message = await fixProcessMessage(data.processName);
-					setReportMessage(t("sidebar.status.masterUsing", { master: t(SiteConfig.master), message }));
+				catch (error) {
+					console.error("Error parsing report message:", error);
 				}
+			};
 
-				if (data.mediaInfo) {
-					setMediaInfo(data.mediaInfo);
+			codeEventSource.onmessage = async (event) => {
+				try {
+					const response = JSON.parse(event.data);
+					const codeEventData: CodeEvent | null = response;
+					if (codeEventData) {
+						setCodeEvent(codeEventData);
+					}
 				}
-			}
-			catch (error) {
-				console.error("Error fetching media info:", error);
-				setReportMessage(null);
-				setMediaInfo(null);
-			}
-		};
-		fetchReportMessage();
+				catch (error) {
+					console.error("Error parsing code event:", error);
+				}
+			};
 
-		const intervalId = setInterval(fetchReportMessage, 7000);
+			// 错误处理
+			reportEventSource.onerror = () => {
+				console.error("Report EventSource failed");
+				reportEventSource.close();
+			};
 
-		return () => {
-			clearInterval(intervalId);
-		};
-	}, [appDescCache, SiteConfig.Features.StatusAPI]);
+			codeEventSource.onerror = () => {
+				console.error("Code EventSource failed");
+				codeEventSource.close();
+			};
+
+			// 清理函数
+			return () => {
+				clearTimeout(timeoutId);
+				reportEventSource?.close();
+				codeEventSource?.close();
+			};
+		}, 1000);
+	});
 
 	useEffect(() => {
 		if (imgRef.current) {
@@ -183,7 +194,7 @@ export const SidebarAvatar = () => {
 
 			return () => observer.disconnect();
 		}
-	}, [imgRef.current]);
+	}, []);
 
 	const getAlbumImage = () => {
 		if (!mediaInfo?.AlbumThumbnail)
