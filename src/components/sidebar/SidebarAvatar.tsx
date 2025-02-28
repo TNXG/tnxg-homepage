@@ -182,8 +182,7 @@ export const SidebarAvatar = () => {
 				codeEventSource?.close();
 			};
 		}, 1000);
-	});
-
+	}, []);
 	useEffect(() => {
 		if (imgRef.current) {
 			const observer = new MutationObserver(() => {
