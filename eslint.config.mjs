@@ -22,6 +22,7 @@ export default antfu({
 	rules: {
 		// 忽略 antfu/top-level-function 规则
 		"antfu/top-level-function": "off",
+		"react-hooks/exhaustive-deps": "off",
 	},
 }, [
 	...tailwind.configs["flat/recommended"],

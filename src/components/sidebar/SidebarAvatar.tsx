@@ -183,6 +183,7 @@ export const SidebarAvatar = () => {
 			};
 		}, 1000);
 	}, []);
+
 	useEffect(() => {
 		if (imgRef.current) {
 			const observer = new MutationObserver(() => {
@@ -193,7 +194,7 @@ export const SidebarAvatar = () => {
 
 			return () => observer.disconnect();
 		}
-	}, []);
+	}, [imgRef.current]);
 
 	const getAlbumImage = () => {
 		if (!mediaInfo?.AlbumThumbnail)
