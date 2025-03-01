@@ -131,7 +131,7 @@ export const SidebarAvatar = () => {
 
 		// 创建 SSE 连接
 		const timeoutId = setTimeout(() => {
-			const reportEventSource: EventSource = new EventSource("/api/getReportMsg");
+			const reportEventSource: EventSource = new EventSource(APIConfig.endpoints.status);
 			const codeEventSource: EventSource = new EventSource(`${APIConfig.endpoints.space_status}/?sse=true&interval=5000`);
 
 			reportEventSource.onmessage = async (event) => {
