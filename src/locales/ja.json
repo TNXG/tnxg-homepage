@@ -60,6 +60,27 @@
 			},
 			"suffix": "を作成しました。リーダーにインポートするか",
 			"followList": "Follow List. を購読する"
+		},
+		"submit": {
+			"button": "フレンドリンクを提出",
+			"title": "フレンドリンクを提出",
+			"description": "以下のフォームに記入して、あなたのウェブサイトをフレンドリンクとして提出してください。",
+			"form": {
+				"name": "サイト名",
+				"url": "サイトURL",
+				"avatar": "アバターURL",
+				"description": "サイトの説明",
+				"email": "メールアドレス",
+				"verify": "確認",
+				"code": "確認コード",
+				"rss": "RSS URL",
+				"techstack": "技術スタック",
+				"optional": "任意",
+				"techstackHint": "サイトで使用している技術をカンマで区切って入力してください",
+				"cancel": "キャンセル",
+				"submit": "提出",
+				"submitting": "提出中..."
+			}
 		}
 	},
 	"recently": {

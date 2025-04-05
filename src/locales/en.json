@@ -60,6 +60,56 @@
 			},
 			"suffix": "which can be imported into a reader or",
 			"followList": "subscribe to the Follow List."
+		},
+		"submit": {
+			"button": "Submit Friend Link",
+			"title": "Submit Friend Link",
+			"description": "Fill out the form below to submit your website as a friend link.",
+			"form": {
+				"name": "Website Name",
+				"url": "Website URL",
+				"avatar": "Avatar URL",
+				"description": "Description",
+				"email": "Email",
+				"verify": "Verify",
+				"sent": "Sent",
+				"code": "Verification Code",
+				"rss": "RSS URL",
+				"techstack": "Tech Stack",
+				"optional": "optional",
+				"techstackHint": "Comma separated list of technologies used on your site",
+				"cancel": "Cancel",
+				"submit": "Submit",
+				"submitting": "Submitting..."
+			},
+			"validation": {
+				"nameMin": "Name must be at least 2 characters",
+				"urlValid": "Please enter a valid URL",
+				"avatarValid": "Please enter a valid avatar URL",
+				"descriptionMin": "Description must be at least 10 characters",
+				"emailValid": "Please enter a valid email",
+				"codeRequired": "Please enter the verification code",
+				"rssValid": "Please enter a valid RSS URL"
+			},
+			"placeholder": {
+				"name": "My Awesome Site",
+				"url": "https://example.com",
+				"avatar": "https://example.com/avatar.png",
+				"description": "A brief description of your website",
+				"email": "your@email.com",
+				"code": "123456",
+				"rss": "https://example.com/feed",
+				"techstack": "React, Next.js, Tailwind (comma separated)"
+			},
+			"toast": {
+				"verificationSent": "Verification code sent",
+				"checkEmail": "Please check your email for the verification code",
+				"error": "Error",
+				"verificationFailed": "Failed to send verification code",
+				"success": "Success",
+				"submitSuccess": "Your friend link has been submitted successfully",
+				"submitFailed": "Failed to submit friend link"
+			}
 		}
 	},
 	"recently": {

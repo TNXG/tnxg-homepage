@@ -1,12 +1,8 @@
 import antfu from "@antfu/eslint-config";
-import eslintPluginNext from "@next/eslint-plugin-next";
 import tailwind from "eslint-plugin-tailwindcss";
 
 export default antfu({
 	react: true,
-	plugins: {
-		"@next/next": eslintPluginNext,
-	},
 	formatters: {
 		css: true,
 		html: true,
@@ -29,6 +25,9 @@ export default antfu({
 	{
 		settings: {
 			tailwindcss: {
+				rules: {
+					"tailwindcss/no-custom-classname": "off",
+				},
 				callees: ["classnames", "clsx", "ctl"],
 				config: "tailwind.config.js",
 				cssFiles: [

@@ -129,7 +129,6 @@ export const APIConfig = {
 	},
 	baseURL: "https://mx.tnxg.top/api/v2",
 	endpoints: {
-		ncm: "https://api-ncm.prts.top", // 某个还能用的网易云音乐API
 		// 自制的后端api，详见https://github.com/TNXG/space-api/
 		friends: "https://api-space.tnxg.top/links",
 		space_status: "https://api-space.tnxg.top/status", // 实际获取无参和带s=n的状态

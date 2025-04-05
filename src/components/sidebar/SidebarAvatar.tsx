@@ -154,6 +154,14 @@ export const SidebarAvatar = () => {
 			codeEventSource.onmessage = async (event) => {
 				try {
 					const response = JSON.parse(event.data);
+					// 检查响应是否包含错误信息
+					if (response && response.error) {
+						console.error("Code event error:", response.error);
+						// 收到错误信息时，确保状态为离线
+						setCodeEvent(null);
+						return;
+					}
+
 					const codeEventData: CodeEvent | null = response;
 					if (codeEventData) {
 						setCodeEvent(codeEventData);
