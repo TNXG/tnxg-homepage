@@ -39,22 +39,22 @@ export const SiteConfig = {
 			{
 				name: "site.home.socialLinks.blog",
 				icon: "mingcute:book-line",
-				url: "https://tnxgmoe.com",
+				href: "https://tnxgmoe.com",
 			},
 			{
 				name: "site.home.socialLinks.github",
 				icon: "mingcute:github-line",
-				url: "https://github.com/TNXG",
+				href: "https://github.com/TNXG",
 			},
 			{
 				name: "site.home.socialLinks.twitter",
 				icon: "mingcute:twitter-line",
-				url: "https://twitter.com/iykrzu",
+				href: "https://twitter.com/iykrzu",
 			},
 			{
 				name: "site.home.socialLinks.telegram",
 				icon: "mingcute:telegram-line",
-				url: "https://telegram.me/iykrzu",
+				href: "https://telegram.me/iykrzu",
 			},
 		],
 	},
@@ -131,6 +131,7 @@ export const APIConfig = {
 	endpoints: {
 		// 自制的后端api，详见https://github.com/TNXG/space-api/
 		friends: "https://api-space.tnxg.top/links",
+		space: "https://api-space.tnxg.top",
 		space_status: "https://api-space.tnxg.top/status", // 实际获取无参和带s=n的状态
 		// misskeyapi接口
 		misskey: "https://afhub.top",

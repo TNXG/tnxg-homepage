@@ -15,7 +15,7 @@ export const HomeLayout: React.FC = () => {
 		<div className="mb-6 flex w-full flex-col items-start px-4 sm:px-6 lg:px-8">
 			<div className="mx-auto flex flex-col items-start justify-center px-4 py-8 pt-16 font-[moonbridge] md:flex-row">
 				<div className="avatar">
-					<Avatar className="mask mask-squircle -z-1 size-24">
+					<Avatar className="-z-1 mask mask-squircle size-24">
 						<AvatarImage src={SiteConfig.Avatar} alt={t(SiteConfig.master)} loading="lazy" className="size-24 object-cover" />
 						<AvatarFallback className="mask mask-squircle">{t(SiteConfig.master)[0]}</AvatarFallback>
 					</Avatar>
@@ -40,7 +40,7 @@ export const HomeLayout: React.FC = () => {
 								asChild
 								className="gap-2"
 							>
-								<a href={link.url} target="_blank" rel="noopener noreferrer">
+								<a href={link.href} target="_blank" rel="noopener noreferrer">
 									<Icon icon={link.icon} width="24" height="24" />
 									<span>{t(link.name)}</span>
 								</a>

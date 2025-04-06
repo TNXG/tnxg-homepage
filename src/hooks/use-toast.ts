@@ -18,6 +18,7 @@ type ToasterToast = ToastProps & {
 	action?: ToastActionElement;
 };
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const actionTypes = {
 	ADD_TOAST: "ADD_TOAST",
 	UPDATE_TOAST: "UPDATE_TOAST",
@@ -97,8 +98,7 @@ export const reducer = (state: State, action: Action): State => {
 			// but I'll keep it here for simplicity
 			if (toastId) {
 				addToRemoveQueue(toastId);
-			}
-			else {
+			} else {
 				state.toasts.forEach((toast) => {
 					addToRemoveQueue(toast.id);
 				});

@@ -78,7 +78,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 				transition={{ duration: 0.5 }}
 			>
 				<mark className="line">{t(FriendsConfig.title)}</mark>
-				<p className="text-muted-foreground mt-6 max-w-2xl text-sm leading-relaxed">
+				<p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
 					{t(FriendsConfig.description.text)}
 					{" "}
 					<mark>
@@ -121,7 +121,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 					<SubmitFriendForm />
 				</div>
 			</motion.h1>
-			<div className="animate-in fade-in container mx-auto mt-2 flex flex-col items-center px-4 py-12 duration-500">
+			<div className="container mx-auto mt-2 flex flex-col items-center px-4 py-12 duration-500 animate-in fade-in">
 				<div id="friend-card" className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
 					{shuffledFriends.map(friend => (
 						<Card
@@ -143,12 +143,12 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 									>
 										<h3 className="text-shadow-sm mb-2 text-base font-semibold sm:text-lg">{friend.name}</h3>
 										<p
-											className="text-muted-foreground text-shadow-sm mb-2 overflow-hidden text-ellipsis text-xs sm:mb-4 sm:text-sm"
+											className="text-shadow-sm mb-2 overflow-hidden text-ellipsis text-xs text-muted-foreground sm:mb-4 sm:text-sm"
 											style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical" }}
 										>
 											{friend.description}
 										</p>
-										<p className="text-muted-foreground text-shadow-sm mb-2 max-w-full truncate text-xs sm:mb-4">
+										<p className="text-shadow-sm mb-2 max-w-full truncate text-xs text-muted-foreground sm:mb-4">
 											{friend.url}
 										</p>
 										<div className="mt-2 flex flex-wrap justify-center gap-2">
@@ -156,7 +156,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 												<TooltipProvider key={index} delayDuration={100}>
 													<Tooltip>
 														<TooltipTrigger>
-															<Icon icon={getArchIcon(tech as Arch)} className="text-primary size-6" />
+															<Icon icon={getArchIcon(tech as Arch)} className="size-6 text-primary" />
 														</TooltipTrigger>
 														<TooltipContent>
 															<p>{tech}</p>

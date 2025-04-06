@@ -13,10 +13,7 @@
 			"nameEN": "TiaNXianG",
 			"motto": "Tomorrow has yet to come, may hope remain in the heart",
 			"socialLinks": {
-				"blog": "Blog",
-				"github": "GitHub",
-				"twitter": "Twitter",
-				"telegram": "Telegram"
+				"blog": "Blog"
 			}
 		}
 	},
@@ -27,12 +24,10 @@
 			"friends": "Links"
 		},
 		"copyright": {
-			"text": "© {date} TiaNXianG."
 		},
 		"externalLinks": {
 			"qq": "QQ Group",
 			"blog": "Blog",
-			"github": "GitHub",
 			"telegram": "Telegram Group"
 		},
 		"status": {
@@ -82,6 +77,13 @@
 				"submit": "Submit",
 				"submitting": "Submitting..."
 			},
+			"terms": {
+				"title": "Submission Guidelines",
+				"description": "Before submitting, please read our guidelines and terms of service.",
+				"readMore": "Read full guidelines",
+				"agree": "I agree to the terms and conditions",
+				"agreeDescription": "By checking this box, you agree to our friend link guidelines."
+			},
 			"validation": {
 				"nameMin": "Name must be at least 2 characters",
 				"urlValid": "Please enter a valid URL",
@@ -89,7 +91,8 @@
 				"descriptionMin": "Description must be at least 10 characters",
 				"emailValid": "Please enter a valid email",
 				"codeRequired": "Please enter the verification code",
-				"rssValid": "Please enter a valid RSS URL"
+				"rssValid": "Please enter a valid RSS URL",
+				"termsRequired": "You must agree to the terms and conditions"
 			},
 			"placeholder": {
 				"name": "My Awesome Site",
@@ -109,6 +112,12 @@
 				"success": "Success",
 				"submitSuccess": "Your friend link has been submitted successfully",
 				"submitFailed": "Failed to submit friend link"
+			},
+			"step": "Step",
+			"of": "of",
+			"optional": {
+				"title": "Optional Information",
+				"description": "These fields are optional but help us better understand your site."
 			}
 		}
 	},
@@ -120,16 +129,13 @@
 		"switchLanguage": "Switch Language"
 	},
 	"languages": {
-		"en": "English",
 		"zh": "Chinese",
 		"ja": "Japanese",
 		"searchLanguages": "Search Languages",
 		"noLanguageFound": "Language not found"
 	},
 	"currentLanguage": "Current Language",
-	"settings": "Settings",
 	"settingsDescription": "Choose your preferences here",
-	"theme": "Theme",
 	"themes": {
 		"light": "Light",
 		"dark": "Dark",
@@ -137,7 +143,5 @@
 		"noThemeFound": "Theme not found",
 		"searchThemes": "Search Themes",
 		"selectTheme": "Select Theme"
-	},
-	"currentTheme": "Current Theme",
-	"language": "Language"
+	}
 }

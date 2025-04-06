@@ -78,8 +78,7 @@ const getRecentlies = cache(async (): Promise<RecentlyModel[]> => {
 		);
 
 		return RecentliesData;
-	}
-	catch (error) {
+	} catch (error) {
 		console.error("Error fetching data:", error);
 		return [];
 	}

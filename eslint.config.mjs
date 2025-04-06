@@ -1,7 +1,7 @@
 import antfu from "@antfu/eslint-config";
 import tailwind from "eslint-plugin-tailwindcss";
 
-export default antfu({
+const atf = antfu({
 	react: true,
 	formatters: {
 		css: true,
@@ -16,20 +16,25 @@ export default antfu({
 		semi: true,
 	},
 	rules: {
-		// 忽略 antfu/top-level-function 规则
 		"antfu/top-level-function": "off",
 		"react-hooks/exhaustive-deps": "off",
+		"eslinttailwindcss/no-custom-classname": "off",
+		"no-console": ["warn", { allow: ["warn", "error"] }],
+		"brace-style": ["error", "1tbs", { allowSingleLine: true }],
 	},
-}, [
+});
+
+export default [
+	...await atf,
 	...tailwind.configs["flat/recommended"],
 	{
+		rules: {
+			"tailwindcss/no-custom-classname": "off",
+		},
 		settings: {
 			tailwindcss: {
-				rules: {
-					"tailwindcss/no-custom-classname": "off",
-				},
 				callees: ["classnames", "clsx", "ctl"],
-				config: "tailwind.config.js",
+				config: "tailwind.config.ts",
 				cssFiles: [
 					"**/*.css",
 					"!**/node_modules",
@@ -46,4 +51,7 @@ export default antfu({
 			},
 		},
 	},
-]);
+	{
+		ignores: ["src/components/ui/*"],
+	},
+];

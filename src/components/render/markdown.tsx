@@ -37,8 +37,7 @@ async function getBilibiliVideoInfo(url: string) {
 			author: owner.name,
 			cover: pic,
 		};
-	}
-	catch (error) {
+	} catch (error) {
 		console.error("获取Bilibili视频信息失败:", error);
 		return null;
 	}
@@ -146,8 +145,7 @@ export const MarkdownRender = cache(async (content: string): Promise<string> => 
 						const url = node.properties.href;
 						if (url.includes("bilibili.com")) {
 							bilibiliLinks.push({ node, url });
-						}
-						else {
+						} else {
 							node.properties.target = "_blank";
 							node.properties.rel = "noopener noreferrer";
 						}
@@ -213,8 +211,7 @@ export const MarkdownRender = cache(async (content: string): Promise<string> => 
 		}
 
 		return htmlContent;
-	}
-	catch (error) {
+	} catch (error) {
 		console.error("处理 Markdown 内容时出错:", error);
 		throw error;
 	}

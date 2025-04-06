@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -59,22 +58,22 @@ const CodeEventStatus = ({ codeEvent }: { codeEvent: CodeEvent }) => {
 	const { platform, editor, project, language, eventTime } = codeEvent;
 
 	return (
-		<div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-3 text-sm dark:text-gray-200">
+		<div className="rounded-lg bg-primary/10 p-3 text-sm dark:bg-primary/20 dark:text-gray-200">
 			<div>
 				{t(SiteConfig.master)}
 				{" "}
 				<Icon icon={getLangIcon(language)} className="inline-block text-lg" />
 				{" "}
-				<span className="text-muted-foreground text-xs dark:text-gray-400">{language}</span>
+				<span className="text-xs text-muted-foreground dark:text-gray-400">{language}</span>
 				{" "}
 				{t("sidebar.status.busy")}
 				{" "}
 			</div>
 			<p className="font-bold">{project}</p>
-			<p className="text-muted-foreground mt-1 text-xs dark:text-gray-400">
+			<p className="mt-1 text-xs text-muted-foreground dark:text-gray-400">
 				{t("sidebar.status.codingAt", { time: new Date(eventTime).toLocaleString() })}
 			</p>
-			<p className="text-muted-foreground mt-1 text-xs dark:text-gray-400">
+			<p className="mt-1 text-xs text-muted-foreground dark:text-gray-400">
 				{t("sidebar.status.usingEditorOnPlatform", { editor, platform })}
 			</p>
 		</div>
@@ -100,8 +99,7 @@ export const SidebarAvatar = () => {
 					const appdesc = await response.json();
 					setAppDescCache(appdesc);
 					return appdesc;
-				}
-				catch (error) {
+				} catch (error) {
 					console.error(error);
 				}
 			}
@@ -145,8 +143,7 @@ export const SidebarAvatar = () => {
 					if (data.mediaInfo) {
 						setMediaInfo(data.mediaInfo);
 					}
-				}
-				catch (error) {
+				} catch (error) {
 					console.error("Error parsing report message:", error);
 				}
 			};
@@ -156,8 +153,6 @@ export const SidebarAvatar = () => {
 					const response = JSON.parse(event.data);
 					// 检查响应是否包含错误信息
 					if (response && response.error) {
-						console.error("Code event error:", response.error);
-						// 收到错误信息时，确保状态为离线
 						setCodeEvent(null);
 						return;
 					}
@@ -166,9 +161,8 @@ export const SidebarAvatar = () => {
 					if (codeEventData) {
 						setCodeEvent(codeEventData);
 					}
-				}
-				catch (error) {
-					console.error("Error parsing code event:", error);
+				} catch {
+					console.warn("Error parsing code event message:", event.data);
 				}
 			};
 
@@ -239,7 +233,7 @@ export const SidebarAvatar = () => {
 										<CardContent className="space-y-4 p-4">
 
 											{reportMessage && (
-												<div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-3 text-sm dark:text-gray-200">
+												<div className="rounded-lg bg-primary/10 p-3 text-sm dark:bg-primary/20 dark:text-gray-200">
 													{reportMessage}
 												</div>
 											)}
@@ -247,7 +241,7 @@ export const SidebarAvatar = () => {
 											{codeEvent && <CodeEventStatus codeEvent={codeEvent} />}
 
 											{mediaInfo && (
-												<div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-3 text-sm dark:text-gray-200">
+												<div className="rounded-lg bg-primary/10 p-3 text-sm dark:bg-primary/20 dark:text-gray-200">
 													<div className="flex items-center space-x-4">
 														{albumImage
 															? (
@@ -272,12 +266,12 @@ export const SidebarAvatar = () => {
 														<div className="min-w-0 flex-1">
 															<p className="truncate text-base font-semibold">{mediaInfo.title}</p>
 															{mediaInfo.artist && (
-																<p className="text-muted-foreground truncate text-sm dark:text-gray-400">
+																<p className="truncate text-sm text-muted-foreground dark:text-gray-400">
 																	{mediaInfo.artist}
 																</p>
 															)}
 															{mediaInfo.AlbumTitle && (
-																<p className="text-muted-foreground truncate text-xs dark:text-gray-500">
+																<p className="truncate text-xs text-muted-foreground dark:text-gray-500">
 																	{mediaInfo.AlbumTitle}
 																</p>
 															)}

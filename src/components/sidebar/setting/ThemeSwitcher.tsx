@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
+import { ChevronsUpDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import * as React from "react";
@@ -54,18 +55,20 @@ export function ThemeSwitcher() {
 					variant="outline"
 					role="combobox"
 					aria-expanded={open}
-					className="justify-between dark:bg-gray-900 dark:text-gray-300"
+					className="w-full justify-between dark:bg-gray-900 dark:text-gray-300"
 				>
-					<Icon
-						icon={
-							themes.find(themeItem => themeItem.value === value)?.icon
-							|| "mingcute:sun-line"
-						}
-						className="mr-2 size-4"
-					/>
-					{`${t("currentTheme")}: ${t(`themes.${themes.find(themeItem => themeItem.value === value)?.value}`)
-					}`}
-					<Icon icon="mingcute:align-arrow-down-line" className="opacity-50" />
+					<div className="flex items-center">
+						<Icon
+							icon={
+								themes.find(themeItem => themeItem.value === value)?.icon
+								?? "mingcute:question-line"
+							}
+							className="mr-2 size-4"
+						/>
+						{`${t("currentTheme")}: ${t(`themes.${themes.find(themeItem => themeItem.value === value)?.value}`)
+						|| t("themes.system")}`}
+					</div>
+					<ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-[200px] p-0">

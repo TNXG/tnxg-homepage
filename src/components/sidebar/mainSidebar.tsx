@@ -85,7 +85,7 @@ export default function SidebarLayout({
 						<SettingsModal />
 					</div>
 					<Separator className="dark:bg-gray-600" />
-					<div className="mb-2 mt-5 text-center text-sm lg:text-base dark:text-gray-300">
+					<div className="mb-2 mt-5 text-center text-sm dark:text-gray-300 lg:text-base">
 						<p>{t(SidebarConfig.copyright.text, { date: new Date().getFullYear() })}</p>
 						<p className="text-sm">
 							Designed by
