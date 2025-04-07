@@ -1,4 +1,5 @@
 "use client";
+import type React from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -21,8 +22,7 @@ import { Icon } from "@iconify/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import React, { useCallback, useState } from "react";
-
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -42,58 +42,19 @@ const formSchema = (t: any) =>
 		rssurl: z
 			.string()
 			.url({ message: t("friends.submit.validation.rssValid") })
-			.optional(),
+			.optional()
+			.or(z.literal("")),
 		techstack: z.string().optional(),
 	});
 
-function useMultiStepForm({
-	initialSteps,
-	onStepValidation,
-}: {
-	initialSteps: any[];
-	onStepValidation?: (step: any) => Promise<boolean> | boolean;
-}) {
-	const steps = initialSteps;
-	const [currentStep, setCurrentStep] = useState(1);
-
-	const goToNext = useCallback(async () => {
-		const currentStepData = initialSteps[currentStep - 1];
-
-		if (onStepValidation) {
-			const isValid = await onStepValidation(currentStepData);
-			if (!isValid)
-				return false;
-		}
-
-		if (currentStep < steps.length) {
-			setCurrentStep(prev => prev + 1);
-			return true;
-		}
-		return false;
-	}, [currentStep, steps, onStepValidation, initialSteps]);
-
-	const goToPrevious = useCallback(() => {
-		if (currentStep > 1) {
-			setCurrentStep(prev => prev - 1);
-		}
-	}, [currentStep]);
-
-	return {
-		steps,
-		currentStep,
-		currentStepData: steps[currentStep - 1],
-		progress: (currentStep / steps.length) * 100,
-		isFirstStep: currentStep === 1,
-		isLastStep: currentStep === steps.length,
-		goToNext,
-		goToPrevious,
-	};
-}
 export function SubmitFriendForm() {
 	const t = useTranslations();
 	const [open, setOpen] = useState(false);
 	const [isVerifying, setIsVerifying] = useState(false);
 	const [verificationSent, setVerificationSent] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [currentStep, setCurrentStep] = useState(1);
+	const totalSteps = 4;
 
 	const form = useForm({
 		resolver: zodResolver(formSchema(t)),
@@ -108,89 +69,89 @@ export function SubmitFriendForm() {
 			rssurl: "",
 			techstack: "",
 		},
+		mode: "onSubmit",
 	});
 
-	const totalSteps = 4;
-	const { currentStep, isLastStep, goToNext, goToPrevious, progress } = useMultiStepForm({
-		initialSteps: Array.from({ length: totalSteps }, (_, i) => i + 1),
-		onStepValidation: () => {
-			if (currentStep === 1) {
-				const termsAgreed = form.getValues("termsAgreed");
-				if (!termsAgreed) {
-					form.setError("termsAgreed", {
-						message: t("friends.submit.validation.termsRequired"),
-					});
-					return false;
-				}
-			} else if (currentStep === 2) {
-				const email = form.getValues("email");
-				const code = form.getValues("code");
+	const progress = (currentStep / totalSteps) * 100;
+	const isLastStep = currentStep === totalSteps;
+	const _isFirstStep = currentStep === 1;
 
-				if (!email || !z.string().email().safeParse(email).success) {
-					form.setError("email", {
-						message: t("friends.submit.validation.emailValid"),
-					});
-					return false;
-				}
+	const goToNext = async () => {
+		let isValid = true;
 
-				if (!code || code.length < 4) {
-					form.setError("code", {
-						message: t("friends.submit.validation.codeRequired"),
-					});
-					return false;
-				}
-			} else if (currentStep === 3) {
-				const name = form.getValues("name");
-				const url = form.getValues("url");
-				const avatar = form.getValues("avatar");
-				const description = form.getValues("description");
-
-				let isValid = true;
-
-				if (!name || name.length < 2) {
-					form.setError("name", {
-						message: t("friends.submit.validation.nameMin"),
-					});
-					isValid = false;
-				}
-
-				if (!url || !z.string().url().safeParse(url).success) {
-					form.setError("url", {
-						message: t("friends.submit.validation.urlValid"),
-					});
-					isValid = false;
-				}
-
-				if (!avatar || !z.string().url().safeParse(avatar).success) {
-					form.setError("avatar", {
-						message: t("friends.submit.validation.avatarValid"),
-					});
-					isValid = false;
-				}
-
-				if (!description || description.length < 10) {
-					form.setError("description", {
-						message: t("friends.submit.validation.descriptionMin"),
-					});
-					isValid = false;
-				}
-
-				return isValid;
-			} else if (currentStep === 4) {
-				const rssurl = form.getValues("rssurl");
-
-				if (rssurl && !z.string().url().safeParse(rssurl).success) {
-					form.setError("rssurl", {
-						message: t("friends.submit.validation.rssValid"),
-					});
-					return false;
-				}
+		if (currentStep === 1) {
+			const termsAgreed = form.getValues("termsAgreed");
+			if (!termsAgreed) {
+				form.setError("termsAgreed", {
+					message: t("friends.submit.validation.termsRequired"),
+				});
+				isValid = false;
 			}
-			return true;
-		},
-	});
+		} else if (currentStep === 2) {
+			const email = form.getValues("email");
+			const code = form.getValues("code");
 
-	const [_state, action, isPending] = React.useActionState(serverAction, null);
+			if (!email || !z.string().email().safeParse(email).success) {
+				form.setError("email", {
+					message: t("friends.submit.validation.emailValid"),
+				});
+				isValid = false;
+			}
+
+			if (!code || code.length < 4) {
+				form.setError("code", {
+					message: t("friends.submit.validation.codeRequired"),
+				});
+				isValid = false;
+			}
+		} else if (currentStep === 3) {
+			const name = form.getValues("name");
+			const url = form.getValues("url");
+			const avatar = form.getValues("avatar");
+			const description = form.getValues("description");
+
+			if (!name || name.length < 2) {
+				form.setError("name", {
+					message: t("friends.submit.validation.nameMin"),
+				});
+				isValid = false;
+			}
+
+			if (!url || !z.string().url().safeParse(url).success) {
+				form.setError("url", {
+					message: t("friends.submit.validation.urlValid"),
+				});
+				isValid = false;
+			}
+
+			if (!avatar || !z.string().url().safeParse(avatar).success) {
+				form.setError("avatar", {
+					message: t("friends.submit.validation.avatarValid"),
+				});
+				isValid = false;
+			}
+
+			if (!description || description.length < 10) {
+				form.setError("description", {
+					message: t("friends.submit.validation.descriptionMin"),
+				});
+				isValid = false;
+			}
+		}
+
+		if (isValid && currentStep < totalSteps) {
+			setCurrentStep(prev => prev + 1);
+			return true;
+		}
+
+		return false;
+	};
+
+	const goToPrevious = () => {
+		if (currentStep > 1) {
+			setCurrentStep(prev => prev - 1);
+		}
+	};
 
 	const sendVerificationCode = async () => {
 		const email = form.getValues("email");
@@ -229,16 +190,92 @@ export function SubmitFriendForm() {
 		}
 	};
 
+	const handleSubmit = async () => {
+		const rssurl = form.getValues("rssurl");
+		let isValid = true;
+
+		if (rssurl && rssurl !== "" && !z.string().url().safeParse(rssurl).success) {
+			form.setError("rssurl", {
+				message: t("friends.submit.validation.rssValid"),
+			});
+			isValid = false;
+			return;
+		}
+
+		if (!isValid) {
+			return;
+		}
+
+		setIsSubmitting(true);
+
+		try {
+			const values = form.getValues();
+
+			const techstackArray = values.techstack
+				? values.techstack
+						.split(",")
+						.map(item => item.trim())
+						.filter(Boolean)
+				: [];
+
+			const formData = new FormData();
+
+			Object.entries(values).forEach(([key, value]) => {
+				if (key === "techstack") {
+					return;
+				}
+
+				if (key === "termsAgreed") {
+					formData.append(key, value ? "on" : "off");
+				} else {
+					if (value !== undefined && value !== null) {
+						formData.append(key, value.toString());
+					}
+				}
+			});
+
+			formData.append("techstack", JSON.stringify(techstackArray));
+
+			const result = await serverAction(null, formData);
+
+			if (result.success) {
+				toast({
+					title: t("friends.submit.toast.success"),
+					description: t("friends.submit.toast.submitSuccess"),
+				});
+				form.reset();
+				setOpen(false);
+				setCurrentStep(1);
+			} else {
+				toast({
+					title: t("friends.submit.toast.error"),
+					description: result.message || t("friends.submit.toast.submitFailed"),
+					variant: "destructive",
+				});
+			}
+		} catch {
+			toast({
+				title: t("friends.submit.toast.error"),
+				description: t("friends.submit.toast.submitFailed"),
+				variant: "destructive",
+			});
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
+
 	const handleDialogClose = () => {
 		setOpen(false);
+
 		setTimeout(() => {
 			form.reset();
 			setVerificationSent(false);
+			setCurrentStep(1);
 		}, 300);
 	};
 
 	const stepFormElements: {
-		[key: number]: React.ReactNode;
+		[key: number]: React.JSX.Element;
 	} = {
 		1: (
 			<div className="space-y-4">
@@ -279,11 +316,7 @@ export function SubmitFriendForm() {
 							<FormLabel>{t("friends.submit.form.email")}</FormLabel>
 							<div className="flex w-full gap-2">
 								<FormControl>
-									<Input
-										placeholder={t("friends.submit.placeholder.email")}
-										{...field}
-										className="w-full"
-									/>
+									<Input placeholder={t("friends.submit.placeholder.email")} {...field} className="w-full" />
 								</FormControl>
 								<Button
 									type="button"
@@ -391,12 +424,14 @@ export function SubmitFriendForm() {
 				/>
 			</div>
 		),
+
 		4: (
 			<div className="space-y-5">
 				<div className="mb-4 rounded-lg border p-4">
-					<h3 className="mb-2 font-medium">{t("friends.submit.optional.title")}</h3>
+					<h3 className="mb-2 font-medium">{t("friends.submit.optional.title") || "Optional Information"}</h3>
 					<p className="text-sm text-muted-foreground">
-						{t("friends.submit.optional.description")}
+						{t("friends.submit.optional.description")
+							|| "These fields are optional but help us better understand your site."}
 					</p>
 				</div>
 
@@ -416,7 +451,7 @@ export function SubmitFriendForm() {
 								<Input placeholder={t("friends.submit.placeholder.rss")} {...field} />
 							</FormControl>
 							<FormDescription>
-								{t("friends.submit.form.rssHint")}
+								{t("friends.submit.form.rssHint") || "Add your RSS feed URL to share your latest content."}
 							</FormDescription>
 							<FormMessage />
 						</FormItem>
@@ -492,7 +527,8 @@ export function SubmitFriendForm() {
 					</div>
 
 					<Form {...form}>
-						<form action={action} className="space-y-5">
+						{/* Remove onSubmit to prevent automatic form submission */}
+						<div className="space-y-5">
 							<AnimatePresence mode="wait">
 								<motion.div
 									key={currentStep}
@@ -519,32 +555,34 @@ export function SubmitFriendForm() {
 									)}
 								</div>
 
-								<Button
-									type={isLastStep ? "submit" : "button"}
-									onClick={!isLastStep ? goToNext : undefined}
-									disabled={isPending}
-									className="flex items-center gap-1"
-								>
-									{isPending
-										? (
-												<>
-													<Icon icon="mingcute:loading-line" className="mr-2 size-4 animate-spin" />
-													{t("friends.submit.form.submitting")}
-												</>
-											)
-										: !isLastStep
-												? (
-														<>
-															{t("friends.submit.form.next")}
-															<Icon icon="mingcute:arrow-right-line" className="size-4" />
-														</>
-													)
-												: (
-														t("friends.submit.form.submit")
-													)}
-								</Button>
+								{isLastStep
+									? (
+											<Button
+												type="button"
+												onClick={handleSubmit}
+												disabled={isSubmitting}
+												className="flex items-center gap-1"
+											>
+												{isSubmitting
+													? (
+															<>
+																<Icon icon="mingcute:loading-line" className="mr-2 size-4 animate-spin" />
+																{t("friends.submit.form.submitting")}
+															</>
+														)
+													: (
+															t("friends.submit.form.submit")
+														)}
+											</Button>
+										)
+									: (
+											<Button type="button" onClick={goToNext} className="flex items-center gap-1">
+												{t("friends.submit.form.next")}
+												<Icon icon="mingcute:arrow-right-line" className="size-4" />
+											</Button>
+										)}
 							</DialogFooter>
-						</form>
+						</div>
 					</Form>
 				</DialogContent>
 			</Dialog>

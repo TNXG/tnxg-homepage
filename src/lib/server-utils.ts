@@ -23,16 +23,21 @@ export const serverAction = async (prevState: ActionResponse | null, formData: F
 	for (const key in rawData) {
 		if (rawData[key] === "on") {
 			rawData[key] = true;
+		} else if (rawData[key] === "off") {
+			rawData[key] = false;
 		}
 	}
 
 	try {
 		if (rawData.techstack) {
-			rawData.techstack = rawData.techstack
-				.split(",")
-				.map((item: string) => item.trim())
-				.filter(Boolean);
-			rawData.state = 1;
+			try {
+				rawData.techstack = JSON.parse(rawData.techstack);
+			} catch {
+				rawData.techstack = rawData.techstack
+					.split(",")
+					.map((item: string) => item.trim())
+					.filter(Boolean);
+			}
 		}
 
 		const response = await fetch(`${APIConfig.endpoints.space}/links/submit`, {
@@ -44,6 +49,8 @@ export const serverAction = async (prevState: ActionResponse | null, formData: F
 		});
 
 		const data = await response.json();
+
+		console.info("API response:", data);
 
 		if (data.status === "success") {
 			return {
@@ -58,7 +65,8 @@ export const serverAction = async (prevState: ActionResponse | null, formData: F
 				inputs: rawData,
 			};
 		}
-	} catch {
+	} catch (error) {
+		console.error("Error in serverAction:", error);
 		return {
 			success: false,
 			message: "An error occurred while processing your request",
@@ -95,7 +103,8 @@ export const verifyEmail = async (
 				message: data.message || "Failed to send verification code",
 			};
 		}
-	} catch {
+	} catch (error) {
+		console.error("Error in verifyEmail:", error);
 		return {
 			success: false,
 			message: "An error occurred while sending verification code",
