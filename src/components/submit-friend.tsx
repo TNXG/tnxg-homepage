@@ -36,7 +36,7 @@ const formSchema = (t: any) =>
 		name: z.string().min(2, { message: t("friends.submit.validation.nameMin") }),
 		url: z.string().url({ message: t("friends.submit.validation.urlValid") }),
 		avatar: z.string().url({ message: t("friends.submit.validation.avatarValid") }),
-		description: z.string().min(10, {
+		description: z.string().min(5, {
 			message: t("friends.submit.validation.descriptionMin"),
 		}),
 		rssurl: z

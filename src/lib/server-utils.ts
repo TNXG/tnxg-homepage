@@ -40,6 +40,8 @@ export const serverAction = async (prevState: ActionResponse | null, formData: F
 			}
 		}
 
+		rawData.state = 1;
+
 		const response = await fetch(`${APIConfig.endpoints.space}/links/submit`, {
 			method: "POST",
 			headers: {

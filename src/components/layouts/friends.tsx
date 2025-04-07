@@ -20,6 +20,7 @@ interface Friend {
 	avatar: string;
 	description: string;
 	techstack: string[];
+	state: number;
 }
 
 interface FriendsProps {
@@ -40,7 +41,10 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 
 		const newShuffledFriends = [...friends];
 		shuffleArray(newShuffledFriends);
-		setShuffledFriends(newShuffledFriends);
+		// 使用 setTimeout 来异步设置状态，避免在 useEffect 中直接调用 setState
+		const timerId = setTimeout(() => {
+			setShuffledFriends(newShuffledFriends);
+		}, 0);
 
 		// Add touch device support for hover effect
 		const cards = document.querySelectorAll("#friend-card > *");
@@ -66,6 +70,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 				card.removeEventListener("touchstart", handleTouchStart);
 				card.removeEventListener("touchend", handleTouchEnd);
 			});
+			clearTimeout(timerId);
 		};
 	}, [friends]);
 
