@@ -23,8 +23,7 @@
 			"recently": "動向",
 			"friends": "リンク"
 		},
-		"copyright": {
-		},
+		"copyright": {},
 		"externalLinks": {
 			"qq": "QQ グループ",
 			"blog": "ブログ",
@@ -84,10 +83,10 @@
 				"agreeDescription": "このチェックボックスをオンにすると、フレンドリンクのガイドラインに同意したことになります。"
 			},
 			"validation": {
-				"nameMin": "名前は2文字以上である必要があります",
+				"nameMin": "名前は1文字以上である必要があります",
 				"urlValid": "有効なURLを入力してください",
 				"avatarValid": "有効なアバターURLを入力してください",
-				"descriptionMin": "説明は10文字以上である必要があります",
+				"descriptionMin": "説明は2文字以上である必要があります",
 				"emailValid": "有効なメールアドレスを入力してください",
 				"codeRequired": "確認コードを入力してください",
 				"rssValid": "有効なRSS URLを入力してください",

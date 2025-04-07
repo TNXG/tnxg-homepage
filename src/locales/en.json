@@ -23,8 +23,7 @@
 			"recently": "Recently",
 			"friends": "Links"
 		},
-		"copyright": {
-		},
+		"copyright": {},
 		"externalLinks": {
 			"qq": "QQ Group",
 			"blog": "Blog",
@@ -85,10 +84,10 @@
 				"agreeDescription": "By checking this box, you agree to our friend link guidelines."
 			},
 			"validation": {
-				"nameMin": "Name must be at least 2 characters",
+				"nameMin": "Name must be at least 1 characters",
 				"urlValid": "Please enter a valid URL",
 				"avatarValid": "Please enter a valid avatar URL",
-				"descriptionMin": "Description must be at least 10 characters",
+				"descriptionMin": "Description must be at least 2 characters",
 				"emailValid": "Please enter a valid email",
 				"codeRequired": "Please enter the verification code",
 				"rssValid": "Please enter a valid RSS URL",

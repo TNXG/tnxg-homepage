@@ -102,10 +102,10 @@
 				"rssHint": "添加您的 RSS 源 URL 以分享您的最新内容。"
 			},
 			"validation": {
-				"nameMin": "名称至少需要2个字符",
+				"nameMin": "名称至少需要1个字符",
 				"urlValid": "请输入有效的URL",
 				"avatarValid": "请输入有效的头像URL",
-				"descriptionMin": "描述至少需要5个字符",
+				"descriptionMin": "描述至少需要2个字符",
 				"emailValid": "请输入有效的邮箱",
 				"codeRequired": "请输入验证码",
 				"rssValid": "请输入有效的RSS URL",

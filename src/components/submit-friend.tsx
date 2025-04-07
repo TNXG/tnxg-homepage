@@ -33,10 +33,10 @@ const formSchema = (t: any) =>
 		}),
 		email: z.string().email({ message: t("friends.submit.validation.emailValid") }),
 		code: z.string().min(4, { message: t("friends.submit.validation.codeRequired") }),
-		name: z.string().min(2, { message: t("friends.submit.validation.nameMin") }),
+		name: z.string().min(1, { message: t("friends.submit.validation.nameMin") }),
 		url: z.string().url({ message: t("friends.submit.validation.urlValid") }),
 		avatar: z.string().url({ message: t("friends.submit.validation.avatarValid") }),
-		description: z.string().min(5, {
+		description: z.string().min(2, {
 			message: t("friends.submit.validation.descriptionMin"),
 		}),
 		rssurl: z
