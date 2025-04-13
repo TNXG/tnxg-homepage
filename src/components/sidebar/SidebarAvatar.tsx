@@ -39,20 +39,6 @@ interface ProcessData {
 	mediaInfo?: MediaInfo;
 }
 
-interface CodeEvent {
-	id: number;
-	uid: number;
-	eventTime: number;
-	language: string;
-	project: string;
-	relativeFile: string;
-	absoluteFile: string;
-	editor: string;
-	platform: string;
-	gitOrigin: string;
-	gitBranch: string;
-}
-
 const CodeEventStatus = ({ codeEvent }: { codeEvent: CodeEvent }) => {
 	const t = useTranslations();
 	const { platform, editor, project, language, eventTime } = codeEvent;
