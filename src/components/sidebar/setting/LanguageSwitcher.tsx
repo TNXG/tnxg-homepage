@@ -99,9 +99,11 @@ export function LanguageSwitcher() {
 					aria-expanded={open}
 					className="justify-between dark:bg-gray-900 dark:text-gray-300"
 				>
-					<Icon icon="mingcute:translate-line" className="mr-2 size-4" />
-					{`${t("currentLanguage")}: ${t(`languages.${locale}`)}`}
-					<Icon icon="mingcute:align-arrow-down-line" className="opacity-50" />
+					<div className="flex items-center">
+						<Icon icon="mingcute:translate-line" className="mr-2 size-4" />
+						{`${t("currentLanguage")}: ${t(`languages.${locale}`)}`}
+					</div>
+					<Icon icon="mingcute:align-arrow-down-line" className="ml-2 size-4 shrink-0 opacity-50" />
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-[200px] p-0">

@@ -68,7 +68,7 @@ export function ThemeSwitcher() {
 						{`${t("currentTheme")}: ${t(`themes.${themes.find(themeItem => themeItem.value === value)?.value}`)
 						|| t("themes.system")}`}
 					</div>
-					<ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
+					<Icon icon="mingcute:align-arrow-down-line" className="ml-2 size-4 shrink-0 opacity-50" />
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-[200px] p-0">

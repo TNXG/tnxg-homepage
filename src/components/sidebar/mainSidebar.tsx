@@ -16,16 +16,9 @@ import { usePathname } from "next/navigation";
 
 import * as React from "react";
 
-export default function SidebarLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
-	const t = useTranslations();
+const Navigation = ({ t }: { t: ReturnType<typeof useTranslations> }) => {
 	const pathname = usePathname();
-	const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-
-	const Navigation = () => (
+	return (
 		<Card className="mx-2 dark:bg-gray-700">
 			<CardContent>
 				<SidebarMenu className="mt-2">
@@ -67,7 +60,15 @@ export default function SidebarLayout({
 			</CardContent>
 		</Card>
 	);
+};
 
+export default function SidebarLayout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
+	const t = useTranslations();
+	const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 	return (
 		<SidebarProvider>
 			<Sidebar className="hidden w-60 border-r md:block">
@@ -78,7 +79,7 @@ export default function SidebarLayout({
 					</div>
 				</SidebarHeader>
 				<SidebarContent>
-					<Navigation />
+					<Navigation t={t} />
 				</SidebarContent>
 				<SidebarFooter>
 					<div className="mb-4 flex justify-center space-x-2">
@@ -91,7 +92,11 @@ export default function SidebarLayout({
 							Designed by
 							{" "}
 							<mark>
-								<Link href="https://github.com/TNXG/tnxg-homepage" target="_blank" className="text-[#3388BB] transition-all duration-300 ease-in-out hover:scale-110 hover:text-[#FF5522] dark:text-[#66BBFF] dark:hover:text-[#FF7744]">
+								<Link
+									href="https://github.com/TNXG/tnxg-homepage"
+									target="_blank"
+									className="text-[#3388BB] transition-all duration-300 ease-in-out hover:scale-110 hover:text-[#FF5522] dark:text-[#66BBFF] dark:hover:text-[#FF7744]"
+								>
 									tnxg-homepage
 								</Link>
 							</mark>
@@ -112,7 +117,7 @@ export default function SidebarLayout({
 						<DrawerDescription className="dark:text-gray-300">{t(SiteConfig.description)}</DrawerDescription>
 					</DrawerHeader>
 					<div className="p-4">
-						<Navigation />
+						<Navigation t={t} />
 					</div>
 					<DrawerFooter>
 						<div className="flex w-full justify-between">
