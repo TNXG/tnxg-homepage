@@ -75,22 +75,22 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 	}, [friends]);
 
 	return (
-		<div className="mb-6 mt-5 flex flex-col items-start px-4 sm:px-6 lg:px-8">
+		<div className="mb-6 mt-5 px-4 flex flex-col items-start lg:px-8 sm:px-6">
 			<motion.h1
-				className="mt-10 text-2xl font-bold sm:text-3xl lg:text-4xl"
+				className="text-2xl font-bold mt-10 lg:text-4xl sm:text-3xl"
 				initial={{ opacity: 0, y: -50 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
 			>
 				<mark className="line">{t(FriendsConfig.title)}</mark>
-				<p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+				<p className="text-sm text-muted-foreground leading-relaxed mt-6 max-w-2xl">
 					{t(FriendsConfig.description.text)}
 					{" "}
 					<mark>
 						<Link
 							href={FriendsConfig.description.link.url}
 							target="_blank"
-							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:scale-110 hover:text-[#FF5522]"
+							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
 						>
 							{t(FriendsConfig.description.link.text)}
 						</Link>
@@ -104,7 +104,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 						<Link
 							href={SiteConfig.opmlURL}
 							target="_blank"
-							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:scale-110 hover:text-[#FF5522]"
+							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
 						>
 							{t("friends.opml.link.text")}
 						</Link>
@@ -116,7 +116,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 						<Link
 							href={SiteConfig.followListURL}
 							target="_blank"
-							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:scale-110 hover:text-[#FF5522]"
+							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
 						>
 							{t("friends.opml.followList")}
 						</Link>
@@ -126,42 +126,42 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 					<SubmitFriendForm />
 				</div>
 			</motion.h1>
-			<div className="container mx-auto mt-2 flex flex-col items-center px-4 py-12 duration-500 animate-in fade-in">
-				<div id="friend-card" className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+			<div className="mx-auto mt-2 px-4 py-12 flex flex-col duration-500 items-center animate-in fade-in container">
+				<div id="friend-card" className="gap-4 grid grid-cols-1 sm:gap-6 lg:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
 					{shuffledFriends.map(friend => (
 						<Card
 							key={`${friend.name}`}
-							className="group relative overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95"
+							className="group transition-all duration-300 relative overflow-hidden active:scale-95 hover:scale-105"
 						>
 							<CardContent className="p-4">
 								<a href={friend.url} target="_blank" rel="noopener noreferrer" className="block">
 									<div className="flex flex-col items-center">
-										<Avatar className="mb-3 size-20 rounded-full transition-all duration-300 group-hover:opacity-40 group-hover:blur-sm sm:mb-4 sm:size-24 md:size-28 lg:size-32">
+										<Avatar className="mb-3 rounded-full size-20 transition-all duration-300 sm:mb-4 group-hover:opacity-40 lg:size-32 md:size-28 sm:size-24 group-hover:blur-sm">
 											<AvatarImage src={friend.avatar} alt={friend.name} />
 											<AvatarFallback>{friend.name[0]}</AvatarFallback>
 										</Avatar>
-										<h3 className="text-center text-base font-semibold sm:text-lg">{friend.name}</h3>
+										<h3 className="text-base font-semibold text-center sm:text-lg">{friend.name}</h3>
 									</div>
 									<div
 										id="friend-card-hover"
-										className="absolute inset-0 flex flex-col items-center justify-center bg-[#ffffff] p-4 text-center opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100 dark:bg-[#121212]/60"
+										className="p-4 text-center bg-[#ffffff] opacity-0 flex flex-col transition-opacity duration-300 items-center inset-0 justify-center absolute backdrop-blur-md dark:bg-[#121212]/60 group-hover:opacity-100"
 									>
-										<h3 className="text-shadow-sm mb-2 text-base font-semibold sm:text-lg">{friend.name}</h3>
+										<h3 className="text-base font-semibold text-shadow-sm mb-2 sm:text-lg">{friend.name}</h3>
 										<p
-											className="text-shadow-sm mb-2 overflow-hidden text-ellipsis text-xs text-muted-foreground sm:mb-4 sm:text-sm"
+											className="text-xs text-muted-foreground text-shadow-sm mb-2 text-ellipsis overflow-hidden sm:text-sm sm:mb-4"
 											style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical" }}
 										>
 											{friend.description}
 										</p>
-										<p className="text-shadow-sm mb-2 max-w-full truncate text-xs text-muted-foreground sm:mb-4">
+										<p className="text-xs text-muted-foreground text-shadow-sm mb-2 max-w-full truncate sm:mb-4">
 											{friend.url}
 										</p>
-										<div className="mt-2 flex flex-wrap justify-center gap-2">
+										<div className="mt-2 flex flex-wrap gap-2 justify-center">
 											{friend.techstack.map((tech, index) => (
 												<TooltipProvider key={index} delayDuration={100}>
 													<Tooltip>
 														<TooltipTrigger>
-															<Icon icon={getArchIcon(tech as Arch)} className="size-6 text-primary" />
+															<Icon icon={getArchIcon(tech as Arch)} className="text-primary size-6" />
 														</TooltipTrigger>
 														<TooltipContent>
 															<p>{tech}</p>

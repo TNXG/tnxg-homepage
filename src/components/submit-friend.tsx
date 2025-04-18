@@ -15,7 +15,6 @@ import { Input } from "@/components/ui/input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast";
 import { serverAction, verifyEmail } from "@/lib/server-utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Icon } from "@iconify/react";
@@ -24,6 +23,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import * as z from "zod";
 
 const formSchema = (t: any) =>
@@ -168,23 +168,12 @@ export function SubmitFriendForm() {
 
 			if (result.success) {
 				setVerificationSent(true);
-				toast({
-					title: t("friends.submit.toast.verificationSent"),
-					description: t("friends.submit.toast.checkEmail"),
-				});
+				toast.success(t("friends.submit.toast.checkEmail"));
 			} else {
-				toast({
-					title: t("friends.submit.toast.error"),
-					description: result.message || t("friends.submit.toast.verificationFailed"),
-					variant: "destructive",
-				});
+				toast.error(t("friends.submit.toast.verificationFailed"));
 			}
 		} catch {
-			toast({
-				title: t("friends.submit.toast.error"),
-				description: t("friends.submit.toast.verificationFailed"),
-				variant: "destructive",
-			});
+			toast.error(t("friends.submit.toast.verificationFailed"));
 		} finally {
 			setIsVerifying(false);
 		}
@@ -239,26 +228,15 @@ export function SubmitFriendForm() {
 			const result = await serverAction(null, formData);
 
 			if (result.success) {
-				toast({
-					title: t("friends.submit.toast.success"),
-					description: t("friends.submit.toast.submitSuccess"),
-				});
+				toast.success(t("friends.submit.toast.submitSuccess"));
 				form.reset();
 				setOpen(false);
 				setCurrentStep(1);
 			} else {
-				toast({
-					title: t("friends.submit.toast.error"),
-					description: result.message || t("friends.submit.toast.submitFailed"),
-					variant: "destructive",
-				});
+				toast.error(result.message || t("friends.submit.toast.submitFailed"));
 			}
 		} catch {
-			toast({
-				title: t("friends.submit.toast.error"),
-				description: t("friends.submit.toast.submitFailed"),
-				variant: "destructive",
-			});
+			toast.error(t("friends.submit.toast.submitFailed"));
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -279,10 +257,10 @@ export function SubmitFriendForm() {
 	} = {
 		1: (
 			<div className="space-y-4">
-				<div className="rounded-lg border p-4">
-					<h3 className="mb-2 font-medium">{t("friends.submit.terms.title")}</h3>
-					<p className="mb-4 text-sm text-muted-foreground">{t("friends.submit.terms.description")}</p>
-					<Link href="/terms" className="inline-flex items-center text-sm text-primary hover:underline" target="_blank">
+				<div className="p-4 border rounded-lg">
+					<h3 className="font-medium mb-2">{t("friends.submit.terms.title")}</h3>
+					<p className="text-sm text-muted-foreground mb-4">{t("friends.submit.terms.description")}</p>
+					<Link href="/terms" className="text-sm text-primary inline-flex items-center hover:underline" target="_blank">
 						{t("friends.submit.terms.readMore")}
 						<Icon icon="mingcute:external-link-line" className="ml-1 size-3" />
 					</Link>
@@ -292,11 +270,11 @@ export function SubmitFriendForm() {
 					control={form.control}
 					name="termsAgreed"
 					render={({ field }: { field: any }) => (
-						<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+						<FormItem className="p-4 border rounded-md flex flex-row items-start space-x-3 space-y-0">
 							<FormControl>
 								<Checkbox checked={field.value} onCheckedChange={field.onChange} />
 							</FormControl>
-							<div className="space-y-1 leading-none">
+							<div className="leading-none space-y-1">
 								<FormLabel>{t("friends.submit.terms.agree")}</FormLabel>
 								<FormDescription>{t("friends.submit.terms.agreeDescription")}</FormDescription>
 								<FormMessage />
@@ -314,7 +292,7 @@ export function SubmitFriendForm() {
 					render={({ field }: { field: any }) => (
 						<FormItem>
 							<FormLabel>{t("friends.submit.form.email")}</FormLabel>
-							<div className="flex w-full gap-2">
+							<div className="flex gap-2 w-full">
 								<FormControl>
 									<Input placeholder={t("friends.submit.placeholder.email")} {...field} className="w-full" />
 								</FormControl>
@@ -427,8 +405,8 @@ export function SubmitFriendForm() {
 
 		4: (
 			<div className="space-y-5">
-				<div className="mb-4 rounded-lg border p-4">
-					<h3 className="mb-2 font-medium">{t("friends.submit.optional.title") || "Optional Information"}</h3>
+				<div className="mb-4 p-4 border rounded-lg">
+					<h3 className="font-medium mb-2">{t("friends.submit.optional.title") || "Optional Information"}</h3>
 					<p className="text-sm text-muted-foreground">
 						{t("friends.submit.optional.description")
 							|| "These fields are optional but help us better understand your site."}
@@ -483,13 +461,13 @@ export function SubmitFriendForm() {
 
 	return (
 		<>
-			<Button className="mt-6 flex items-center gap-2" onClick={() => setOpen(true)}>
+			<Button className="mt-6 flex gap-2 items-center" onClick={() => setOpen(true)}>
 				<Icon icon="mingcute:add-line" className="size-4" />
 				{t("friends.submit.button")}
 			</Button>
 
 			<Dialog open={open} onOpenChange={handleDialogClose}>
-				<DialogContent className="w-full sm:max-w-[500px] md:max-w-[550px]">
+				<DialogContent className="w-full md:max-w-[550px] sm:max-w-[500px]">
 					<DialogHeader>
 						<DialogTitle>{t("friends.submit.title")}</DialogTitle>
 						<DialogDescription>{t("friends.submit.description")}</DialogDescription>
@@ -541,14 +519,14 @@ export function SubmitFriendForm() {
 								</motion.div>
 							</AnimatePresence>
 
-							<DialogFooter className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-between sm:gap-0">
+							<DialogFooter className="flex flex-col-reverse gap-2 sm:flex-row sm:gap-0 sm:justify-between">
 								<div className="flex gap-2">
 									<Button type="button" variant="outline" onClick={handleDialogClose}>
 										{t("friends.submit.form.cancel")}
 									</Button>
 
 									{currentStep > 1 && (
-										<Button type="button" variant="outline" onClick={goToPrevious} className="flex items-center gap-1">
+										<Button type="button" variant="outline" onClick={goToPrevious} className="flex gap-1 items-center">
 											<Icon icon="mingcute:arrow-left-line" className="size-4" />
 											{t("friends.submit.form.back")}
 										</Button>
@@ -561,7 +539,7 @@ export function SubmitFriendForm() {
 												type="button"
 												onClick={handleSubmit}
 												disabled={isSubmitting}
-												className="flex items-center gap-1"
+												className="flex gap-1 items-center"
 											>
 												{isSubmitting
 													? (
@@ -576,7 +554,7 @@ export function SubmitFriendForm() {
 											</Button>
 										)
 									: (
-											<Button type="button" onClick={goToNext} className="flex items-center gap-1">
+											<Button type="button" onClick={goToNext} className="flex gap-1 items-center">
 												{t("friends.submit.form.next")}
 												<Icon icon="mingcute:arrow-right-line" className="size-4" />
 											</Button>

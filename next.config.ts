@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
 		ignoreDuringBuilds: true,
 	},
 	images: {
-		domains: ["api-space.tnxg.top", "cdn.tnxg.top"], // 添加你需要的域名
+		domains: ["api-space.tnxg.top", "cdn.tnxg.top"],
 	},
 };
 

@@ -97,16 +97,16 @@ export function LanguageSwitcher() {
 					variant="outline"
 					role="combobox"
 					aria-expanded={open}
-					className="justify-between dark:bg-gray-900 dark:text-gray-300"
+					className="justify-between dark:text-gray-300 dark:bg-gray-900"
 				>
 					<div className="flex items-center">
 						<Icon icon="mingcute:translate-line" className="mr-2 size-4" />
 						{`${t("currentLanguage")}: ${t(`languages.${locale}`)}`}
 					</div>
-					<Icon icon="mingcute:align-arrow-down-line" className="ml-2 size-4 shrink-0 opacity-50" />
+					<Icon icon="mingcute:align-arrow-down-line" className="ml-2 opacity-50 shrink-0 size-4" />
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="w-[200px] p-0">
+			<PopoverContent className="p-0 w-[200px]">
 				<Command>
 					<CommandInput placeholder={t("languages.searchLanguages")} />
 					<CommandList>

@@ -1,14 +1,14 @@
 {
 	"compilerOptions": {
 		"incremental": true,
-		"target": "ESNext",
+		"target": "ES2017",
 		"jsx": "preserve",
 		"lib": [
 			"dom",
 			"dom.iterable",
-			"ESNext"
+			"esnext"
 		],
-		"module": "ESNext",
+		"module": "esnext",
 		"moduleResolution": "bundler",
 		"paths": {
 			"@/*": [
@@ -32,8 +32,7 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		".next/types/**/*.ts",
-		"eslint.config.mjs"
+		".next/types/**/*.ts"
 	],
 	"exclude": [
 		"node_modules"

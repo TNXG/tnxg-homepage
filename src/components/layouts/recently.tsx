@@ -17,27 +17,27 @@ interface RecentliesProps {
 export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }) => {
 	const t = useTranslations();
 	return (
-		<div className="mb-6 mt-5 flex w-full flex-col items-start px-2 sm:px-4 lg:px-6">
+		<div className="mb-6 mt-5 px-2 flex flex-col w-full items-start lg:px-6 sm:px-4">
 			<motion.h1
-				className="mt-8 text-2xl font-bold sm:mt-10 sm:text-3xl lg:text-4xl"
+				className="text-2xl font-bold mt-8 lg:text-4xl sm:text-3xl sm:mt-10"
 				initial={{ opacity: 0, y: -50 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
 			>
 				<mark className="line">{t(RecentlyConfig.title)}</mark>
-				<div className="mt-4 max-w-full whitespace-pre-wrap break-words text-sm text-muted-foreground sm:max-w-[80%]">
+				<div className="text-sm text-muted-foreground mt-4 max-w-full whitespace-pre-wrap break-words sm:max-w-[80%]">
 					{t(RecentlyConfig.description)}
 				</div>
 			</motion.h1>
 
-			<div className="mx-auto ml-4 w-full max-w-[95%] px-2 py-6 sm:ml-8 sm:max-w-2xl sm:px-4 sm:py-8 lg:max-w-4xl">
-				<div className="relative mt-5">
-					<div className="absolute left-0 h-full w-0.5 bg-gray-200" />
+			<div className="mx-auto ml-4 px-2 py-6 max-w-[95%] w-full sm:ml-8 sm:px-4 sm:py-8 lg:max-w-4xl sm:max-w-2xl">
+				<div className="mt-5 relative">
+					<div className="bg-gray-200 h-full w-0.5 left-0 absolute" />
 
 					{Recentlies.map((recently, index) => (
 						<motion.div
 							key={recently.id}
-							className="relative mb-6 flex w-full items-start pl-6 sm:mb-8 sm:pl-8"
+							className="mb-6 pl-6 flex w-full items-start relative sm:mb-8 sm:pl-8"
 							initial={{ opacity: 0, x: -50 }}
 							animate={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -53,7 +53,7 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 											<div>
 												<p className="text-sm font-medium">{t(SiteConfig.master)}</p>
 												<p className="text-xs text-muted-foreground">
-													<Clock className="mr-1 inline-block size-3" />
+													<Clock className="mr-1 size-3 inline-block" />
 													{new Date(recently.created).toLocaleString()}
 												</p>
 											</div>
@@ -75,7 +75,7 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 									</CardFooter>
 								</Card>
 							</div>
-							<div className="absolute left-0 top-6 size-4 -translate-x-1/2 rounded-full bg-primary" />
+							<div className="rounded-full bg-primary size-4 left-0 top-6 absolute -translate-x-1/2" />
 						</motion.div>
 					))}
 				</div>

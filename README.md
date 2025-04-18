@@ -8,8 +8,8 @@
 
 ### 环境要求
 
-- Node.js 版本 19.0.0
-- pnpm 版本 9.15.0
+- Node.js 版本 22.14.0
+- pnpm 版本 10.8.0
 
 ### 本地开发
 
@@ -72,7 +72,7 @@ pnpm start
 
 - 个人博客: [tnxgmoe.com](https://tnxgmoe.com/about-me#:re:%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F)
 
-2024 © TNXG 本项目遵循 AGPL 3.0 license 开源
+2025 © TNXG 本项目遵循 AGPL 3.0 license 开源
 
 如有任何问题或建议，欢迎通过以上方式联系我们。感谢您的支持！
 

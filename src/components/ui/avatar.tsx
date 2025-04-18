@@ -5,37 +5,49 @@ import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
 import * as React from "react";
 
-const Avatar = ({ ref, className, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> & { ref?: React.RefObject<React.ElementRef<typeof AvatarPrimitive.Root> | null> }) => (
-	<AvatarPrimitive.Root
-		ref={ref}
-		className={cn(
-			"relative flex h-10 w-10 shrink-0 overflow-hidden", // 这里被天翔修改过
-			className,
-		)}
-		{...props}
-	/>
-);
-Avatar.displayName = AvatarPrimitive.Root.displayName;
+function Avatar({
+	className,
+	...props
+}: React.ComponentProps<typeof AvatarPrimitive.Root>) {
+	return (
+		<AvatarPrimitive.Root
+			data-slot="avatar"
+			className={cn(
+				"relative flex size-10 shrink-0 overflow-hidden",
+				className,
+			)}
+			{...props}
+		/>
+	);
+}
 
-const AvatarImage = ({ ref, className, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> & { ref?: React.RefObject<React.ElementRef<typeof AvatarPrimitive.Image> | null> }) => (
-	<AvatarPrimitive.Image
-		ref={ref}
-		className={cn("h-full w-full", className)}
-		{...props}
-	/>
-);
-AvatarImage.displayName = AvatarPrimitive.Image.displayName;
+function AvatarImage({
+	className,
+	...props
+}: React.ComponentProps<typeof AvatarPrimitive.Image>) {
+	return (
+		<AvatarPrimitive.Image
+			data-slot="avatar-image"
+			className={cn("aspect-square size-full", className)}
+			{...props}
+		/>
+	);
+}
 
-const AvatarFallback = ({ ref, className, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> & { ref?: React.RefObject<React.ElementRef<typeof AvatarPrimitive.Fallback> | null> }) => (
-	<AvatarPrimitive.Fallback
-		ref={ref}
-		className={cn(
-			"flex h-full w-full items-center justify-center bg-muted",
-			className,
-		)}
-		{...props}
-	/>
-);
-AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
+function AvatarFallback({
+	className,
+	...props
+}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+	return (
+		<AvatarPrimitive.Fallback
+			data-slot="avatar-fallback"
+			className={cn(
+				"bg-muted flex size-full items-center justify-center rounded-full",
+				className,
+			)}
+			{...props}
+		/>
+	);
+}
 
 export { Avatar, AvatarFallback, AvatarImage };

@@ -1,7 +1,9 @@
-/** @type {import('postcss-load-config').Config} */
 const config = {
 	plugins: {
-		tailwindcss: {},
+		"@unocss/postcss": {
+			content: ["./src/app/**/*.{html,ts,tsx}"],
+		},
+		"@tailwindcss/postcss": {},
 	},
 };
 

@@ -90,7 +90,7 @@ export default async function Page() {
 
 	return (
 		<div className="flex min-h-screen items-center justify-center">
-			<div className="w-full max-w-4xl">
+			<div className="max-w-4xl w-full">
 				<RecentlyLayout Recentlies={recentlies} />
 			</div>
 		</div>

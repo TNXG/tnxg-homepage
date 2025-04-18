@@ -47,7 +47,7 @@ const Navigation = ({ t }: { t: ReturnType<typeof useTranslations> }) => {
 							<SidebarMenuButton
 								asChild
 								isActive={pathname === item.href}
-								className="flex h-10 w-full items-center justify-center text-lg dark:text-gray-300 dark:hover:bg-gray-600"
+								className="text-lg flex h-10 w-full items-center justify-center dark:text-gray-300 dark:hover:bg-gray-600"
 							>
 								<Link href={item.href} className="flex items-center">
 									<Icon icon={item.icon} className="mr-2 size-6" />
@@ -71,7 +71,7 @@ export default function SidebarLayout({
 	const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 	return (
 		<SidebarProvider>
-			<Sidebar className="hidden w-60 border-r md:block">
+			<Sidebar className="border-r w-60 hidden md:block">
 				<SidebarHeader className="p-4">
 					<div className="flex items-center space-x-2">
 						<SidebarAvatar />
@@ -86,7 +86,7 @@ export default function SidebarLayout({
 						<SettingsModal />
 					</div>
 					<Separator className="dark:bg-gray-600" />
-					<div className="mb-2 mt-5 text-center text-sm dark:text-gray-300 lg:text-base">
+					<div className="text-sm mb-2 mt-5 text-center lg:text-base dark:text-gray-300">
 						<p>{t(SidebarConfig.copyright.text, { date: new Date().getFullYear() })}</p>
 						<p className="text-sm">
 							Designed by
@@ -95,7 +95,7 @@ export default function SidebarLayout({
 								<Link
 									href="https://github.com/TNXG/tnxg-homepage"
 									target="_blank"
-									className="text-[#3388BB] transition-all duration-300 ease-in-out hover:scale-110 hover:text-[#FF5522] dark:text-[#66BBFF] dark:hover:text-[#FF7744]"
+									className="text-[#3388BB] transition-all duration-300 ease-in-out dark:text-[#66BBFF] hover:text-[#FF5522] hover:scale-110 dark:hover:text-[#FF7744]"
 								>
 									tnxg-homepage
 								</Link>
@@ -107,7 +107,7 @@ export default function SidebarLayout({
 
 			<Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
 				<DrawerTrigger asChild>
-					<Button variant="outline" size="icon" className="fixed left-4 top-4 z-10 md:hidden">
+					<Button variant="outline" size="icon" className="left-4 top-4 fixed z-10 md:hidden">
 						<Icon icon="mingcute:menu-line" className="size-[1.2rem]" />
 					</Button>
 				</DrawerTrigger>
@@ -123,7 +123,7 @@ export default function SidebarLayout({
 						<div className="flex w-full justify-between">
 							<SettingsModal />
 							<DrawerClose asChild>
-								<Button variant="outline" className="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">Close</Button>
+								<Button variant="outline" className="dark:text-white dark:bg-gray-700 dark:hover:bg-gray-600">Close</Button>
 							</DrawerClose>
 						</div>
 					</DrawerFooter>

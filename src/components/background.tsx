@@ -52,7 +52,7 @@ export function Background() {
 	return (
 		<motion.div
 			ref={backgroundRef}
-			className="custom-clip-path fixed bottom-0 right-0 -z-[1] aspect-[0.5] h-full w-auto max-w-[50vw] bg-transparent bg-cover bg-center bg-no-repeat object-cover"
+			className="custom-clip-path bg-transparent h-full max-w-[50vw] w-auto aspect-[0.5] bottom-0 right-0 fixed bg-cover bg-center bg-no-repeat object-cover -z-[1]"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: SiteConfig.BackgroundConfig.opacity }}
 			transition={{ duration: 1 }}

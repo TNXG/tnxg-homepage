@@ -44,11 +44,11 @@ const CodeEventStatus = ({ codeEvent }: { codeEvent: CodeEvent }) => {
 	const { platform, editor, project, language, eventTime } = codeEvent;
 
 	return (
-		<div className="rounded-lg bg-primary/10 p-3 text-sm dark:bg-primary/20 dark:text-gray-200">
+		<div className="text-sm p-3 rounded-lg bg-primary/10 dark:text-gray-200 dark:bg-primary/20">
 			<div>
 				{t(SiteConfig.master)}
 				{" "}
-				<Icon icon={getLangIcon(language)} className="inline-block text-lg" />
+				<Icon icon={getLangIcon(language)} className="text-lg inline-block" />
 				{" "}
 				<span className="text-xs text-muted-foreground dark:text-gray-400">{language}</span>
 				{" "}
@@ -56,10 +56,10 @@ const CodeEventStatus = ({ codeEvent }: { codeEvent: CodeEvent }) => {
 				{" "}
 			</div>
 			<p className="font-bold">{project}</p>
-			<p className="mt-1 text-xs text-muted-foreground dark:text-gray-400">
+			<p className="text-xs text-muted-foreground mt-1 dark:text-gray-400">
 				{t("sidebar.status.codingAt", { time: new Date(eventTime).toLocaleString() })}
 			</p>
-			<p className="mt-1 text-xs text-muted-foreground dark:text-gray-400">
+			<p className="text-xs text-muted-foreground mt-1 dark:text-gray-400">
 				{t("sidebar.status.usingEditorOnPlatform", { editor, platform })}
 			</p>
 		</div>
@@ -214,12 +214,12 @@ export const SidebarAvatar = () => {
 										<AvatarFallback>{t(SiteConfig.master)[0]}</AvatarFallback>
 									</Avatar>
 								</TooltipTrigger>
-								<TooltipContent side="right" sideOffset={10} className="w-72 p-0 dark:border-gray-700 dark:bg-gray-800">
+								<TooltipContent side="right" sideOffset={10} className="p-0 w-72 dark:border-gray-700 dark:bg-gray-800">
 									<Card className="border-none shadow-lg dark:bg-gray-800">
-										<CardContent className="space-y-4 p-4">
+										<CardContent className="p-4 space-y-4">
 
 											{reportMessage && (
-												<div className="rounded-lg bg-primary/10 p-3 text-sm dark:bg-primary/20 dark:text-gray-200">
+												<div className="text-sm p-3 rounded-lg bg-primary/10 dark:text-gray-200 dark:bg-primary/20">
 													{reportMessage}
 												</div>
 											)}
@@ -227,12 +227,12 @@ export const SidebarAvatar = () => {
 											{codeEvent && <CodeEventStatus codeEvent={codeEvent} />}
 
 											{mediaInfo && (
-												<div className="rounded-lg bg-primary/10 p-3 text-sm dark:bg-primary/20 dark:text-gray-200">
+												<div className="text-sm p-3 rounded-lg bg-primary/10 dark:text-gray-200 dark:bg-primary/20">
 													<div className="flex items-center space-x-4">
 														{albumImage
 															? (
-																	<div className="relative size-16">
-																		{imageLoading && <Skeleton className="absolute inset-0 size-full rounded-md" />}
+																	<div className="size-16 relative">
+																		{imageLoading && <Skeleton className="rounded-md size-full inset-0 absolute" />}
 																		<img
 																			ref={imgRef}
 																			src={albumImage || "/placeholder.svg"}
@@ -244,20 +244,20 @@ export const SidebarAvatar = () => {
 																	</div>
 																)
 															: (
-																	<div className="size-16 rounded-md">
+																	<div className="rounded-md size-16">
 																		<SelfIcon name="MyGO!!!!!_Icon" />
 																	</div>
 																)}
 
-														<div className="min-w-0 flex-1">
-															<p className="truncate text-base font-semibold">{mediaInfo.title}</p>
+														<div className="flex-1 min-w-0">
+															<p className="text-base font-semibold truncate">{mediaInfo.title}</p>
 															{mediaInfo.artist && (
-																<p className="truncate text-sm text-muted-foreground dark:text-gray-400">
+																<p className="text-sm text-muted-foreground truncate dark:text-gray-400">
 																	{mediaInfo.artist}
 																</p>
 															)}
 															{mediaInfo.AlbumTitle && (
-																<p className="truncate text-xs text-muted-foreground dark:text-gray-500">
+																<p className="text-xs text-muted-foreground truncate dark:text-gray-500">
 																	{mediaInfo.AlbumTitle}
 																</p>
 															)}
@@ -278,8 +278,8 @@ export const SidebarAvatar = () => {
 						</Avatar>
 					)}
 			{SiteConfig.Features.StatusDot && (
-				<span className="absolute right-0 top-0">
-					<span className="relative flex size-2.5">
+				<span className="right-0 top-0 absolute">
+					<span className="flex size-2.5 relative">
 						{/* 脉冲动画层 */}
 						<span
 							className={cn(

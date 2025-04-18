@@ -1,15 +1,9 @@
 import antfu from "@antfu/eslint-config";
-import tailwind from "eslint-plugin-tailwindcss";
 
 const atf = antfu({
+	unocss: true,
 	react: true,
-	formatters: {
-		css: true,
-		html: true,
-		prettierOptions: {
-			plugins: ["prettier-plugin-tailwindcss"],
-		},
-	},
+	formatters: true,
 	stylistic: {
 		indent: "tab",
 		quotes: "double",
@@ -24,34 +18,4 @@ const atf = antfu({
 	},
 });
 
-export default [
-	...await atf,
-	...tailwind.configs["flat/recommended"],
-	{
-		rules: {
-			"tailwindcss/no-custom-classname": "off",
-		},
-		settings: {
-			tailwindcss: {
-				callees: ["classnames", "clsx", "ctl"],
-				config: "tailwind.config.ts",
-				cssFiles: [
-					"**/*.css",
-					"!**/node_modules",
-					"!**/.*",
-					"!**/dist",
-					"!**/build",
-				],
-				cssFilesRefreshRate: 5_000,
-				removeDuplicates: true,
-				skipClassAttribute: false,
-				whitelist: [],
-				tags: [],
-				classRegex: "^class(Name)?$",
-			},
-		},
-	},
-	{
-		ignores: ["src/components/ui/*"],
-	},
-];
+export default atf;

@@ -3,6 +3,7 @@ import { Background } from "@/components/background";
 import { SidebarLayout } from "@/components/sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Favicon } from "@/components/ui/favicon";
+import { Toaster } from "@/components/ui/sonner";
 import { SiteConfig } from "@/config";
 import { NextIntlClientProvider } from "next-intl";
 
@@ -45,6 +46,7 @@ export async function RootLayout({ children }: { children: React.ReactNode }) {
 						</SidebarLayout>
 					</NextIntlClientProvider>
 				</ThemeProvider>
+				<Toaster />
 			</body>
 		</html>
 	);
