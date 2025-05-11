@@ -2,9 +2,13 @@
 
 import type { ActionResponse } from "@/hooks/form-schema";
 import type { Locale } from "@/locales";
+import fs from "node:fs/promises";
+import process from "node:process";
 import { APIConfig } from "@/config";
 import { defaultLocale } from "@/locales";
 import { cookies } from "next/headers";
+
+import "server-only";
 
 const COOKIE_NAME = "NEXT_LOCALE";
 
@@ -39,8 +43,6 @@ export const serverAction = async (prevState: ActionResponse | null, formData: F
 					.filter(Boolean);
 			}
 		}
-
-		rawData.state = 1;
 
 		const response = await fetch(`${APIConfig.endpoints.space}/links/submit`, {
 			method: "POST",
@@ -111,5 +113,19 @@ export const verifyEmail = async (
 			success: false,
 			message: "An error occurred while sending verification code",
 		};
+	}
+};
+
+export const getContentFile = async (filename: string): Promise<string> => {
+	try {
+		const filePath = `${process.cwd()}/src/content/${filename}`;
+		const content = await fs.readFile(filePath, "utf-8");
+		if (!content || content.trim() === "") {
+			console.warn(`文件 ${filename} 内容为空`);
+		}
+		return content;
+	} catch (error) {
+		console.error(`Error reading file ${filename}:`, error);
+		return "";
 	}
 };

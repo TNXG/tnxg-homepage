@@ -5,6 +5,7 @@
 
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "../styles/typography.css";
 
 @plugin "daisyui";
 
@@ -17,10 +18,7 @@
 
 	body {
 		@apply text-foreground;
-	}
-
-	body {
-		font-family: "Noto Sans SC", "HarmonyOS_Regular";
+		font-family: "Noto Sans SC", "HarmonyOS_Regular", sans-serif;
 	}
 
 	@font-face {
@@ -221,6 +219,6 @@ body.drawer-open {
 	}
 	body {
 		@apply text-foreground;
-		font-family: "Noto Sans SC", "HarmonyOS_Regular";
+		font-family: "Noto Sans SC", "HarmonyOS_Regular", sans-serif;
 	}
 }

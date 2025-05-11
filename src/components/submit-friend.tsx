@@ -131,7 +131,7 @@ export function SubmitFriendForm() {
 				isValid = false;
 			}
 
-			if (!description || description.length < 10) {
+			if (!description || description.length < 2) {
 				form.setError("description", {
 					message: t("friends.submit.validation.descriptionMin"),
 				});
@@ -259,8 +259,8 @@ export function SubmitFriendForm() {
 			<div className="space-y-4">
 				<div className="p-4 border rounded-lg">
 					<h3 className="font-medium mb-2">{t("friends.submit.terms.title")}</h3>
-					<p className="text-sm text-muted-foreground mb-4">{t("friends.submit.terms.description")}</p>
-					<Link href="/terms" className="text-sm text-primary inline-flex items-center hover:underline" target="_blank">
+					<p className="text-muted-foreground text-sm mb-4">{t("friends.submit.terms.description")}</p>
+					<Link href="/terms#%E4%B9%9D-%E5%8F%8B%E9%93%BE%E7%94%B3%E8%AF%B7%E6%9D%A1%E6%AC%BE" className="text-primary text-sm inline-flex items-center hover:underline" target="_blank">
 						{t("friends.submit.terms.readMore")}
 						<Icon icon="mingcute:external-link-line" className="ml-1 size-3" />
 					</Link>
@@ -407,7 +407,7 @@ export function SubmitFriendForm() {
 			<div className="space-y-5">
 				<div className="mb-4 p-4 border rounded-lg">
 					<h3 className="font-medium mb-2">{t("friends.submit.optional.title") || "Optional Information"}</h3>
-					<p className="text-sm text-muted-foreground">
+					<p className="text-muted-foreground text-sm">
 						{t("friends.submit.optional.description")
 							|| "These fields are optional but help us better understand your site."}
 					</p>
@@ -491,7 +491,7 @@ export function SubmitFriendForm() {
 									</div>
 								))}
 							</div>
-							<div className="text-sm text-muted-foreground">
+							<div className="text-muted-foreground text-sm">
 								{t("friends.submit.step")}
 								{" "}
 								{currentStep}

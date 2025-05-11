@@ -15,17 +15,32 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // 获取朋友数据
-const getFriends = async (): Promise<Friend[]> => {
-	const response = cache(async () => {
-		const res = await fetch(APIConfig.endpoints.friends);
-		const data: Friend[] = (await res.json()).data;
-		return data;
-	});
+const getFriends = cache(async (): Promise<Friend[]> => {
+	try {
+		const res = await fetch(APIConfig.endpoints.friends, {
+			next: { revalidate: 60 },
+		});
 
-	const friendsData: Friend[] = await response();
-	const filteredFriends = friendsData.filter(friend => friend.state === 0);
-	return filteredFriends;
-};
+		if (!res.ok) {
+			throw new Error(`Failed to fetch friends data: ${res.status}`);
+		}
+
+		const data = await res.json();
+		if (!data || !data.data) {
+			throw new Error("Invalid response format");
+		}
+
+		const friendsData: Friend[] = data.data;
+		const filteredFriends = friendsData.filter(friend => friend.state === 0);
+		return filteredFriends;
+	} catch (error) {
+		console.error("Error fetching friends data:", error);
+		const locale = await getLocale();
+		const t = await getTranslations({ locale });
+		console.warn(t("common.errors.content_load_failed"));
+		return [];
+	}
+});
 
 // 异步获取并渲染好友列表
 export default async function Page() {

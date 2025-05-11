@@ -25,7 +25,7 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 				transition={{ duration: 0.5 }}
 			>
 				<mark className="line">{t(RecentlyConfig.title)}</mark>
-				<div className="text-sm text-muted-foreground mt-4 max-w-full whitespace-pre-wrap break-words sm:max-w-[80%]">
+				<div className="text-muted-foreground text-sm mt-4 max-w-full whitespace-pre-wrap break-words sm:max-w-[80%]">
 					{t(RecentlyConfig.description)}
 				</div>
 			</motion.h1>
@@ -52,7 +52,7 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 											</Avatar>
 											<div>
 												<p className="text-sm font-medium">{t(SiteConfig.master)}</p>
-												<p className="text-xs text-muted-foreground">
+												<p className="text-muted-foreground text-xs">
 													<Clock className="mr-1 size-3 inline-block" />
 													{new Date(recently.created).toLocaleString()}
 												</p>
@@ -61,12 +61,16 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 									</CardHeader>
 									<CardContent>
 										<div
+
 											className="prose max-w-none"
-											dangerouslySetInnerHTML={{ __html: recently.content }}
+											// eslint-disable-next-line react-dom/no-dangerously-set-innerhtml
+											dangerouslySetInnerHTML={{
+												__html: (recently.content || "文章获取失败"),
+											}}
 										/>
 									</CardContent>
 									<Separator className="my-2" />
-									<CardFooter className="text-sm text-muted-foreground">
+									<CardFooter className="text-muted-foreground text-sm">
 										<MessageCircle className="mr-2 size-4" />
 										<span>
 											ID:
@@ -75,7 +79,7 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 									</CardFooter>
 								</Card>
 							</div>
-							<div className="rounded-full bg-primary size-4 left-0 top-6 absolute -translate-x-1/2" />
+							<div className="bg-primary rounded-full size-4 left-0 top-6 absolute -translate-x-1/2" />
 						</motion.div>
 					))}
 				</div>

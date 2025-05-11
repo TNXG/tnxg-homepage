@@ -28,7 +28,12 @@ const getRecentlies = cache(async (): Promise<RecentlyModel[]> => {
 			throw new Error(`Failed to fetch recently data: ${res.status}`);
 		}
 
-		const originalData: RecentlyModel[] = (await res.json()).data;
+		const data = await res.json();
+		if (!data || !data.data) {
+			throw new Error("Invalid response format");
+		}
+
+		const originalData: RecentlyModel[] = data.data;
 
 		// 获取 Misskey 数据
 		const misskeyRes = await fetch(`${APIConfig.endpoints.misskey}/api/users/notes`, {
@@ -79,7 +84,11 @@ const getRecentlies = cache(async (): Promise<RecentlyModel[]> => {
 
 		return RecentliesData;
 	} catch (error) {
-		console.error("Error fetching data:", error);
+		console.error("Error fetching recently data:", error);
+		// 返回空数组，但记录详细错误信息
+		const locale = await getLocale();
+		const t = await getTranslations({ locale });
+		console.warn(t("common.errors.content_load_failed"));
 		return [];
 	}
 });

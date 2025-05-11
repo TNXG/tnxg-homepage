@@ -18,17 +18,25 @@ import { visit } from "unist-util-visit";
 // Bilibili视频信息获取
 async function getBilibiliVideoInfo(url: string) {
 	const videoIdMatch = url.match(/bilibili\.com\/video\/([a-zA-Z0-9]+)/);
-	if (!videoIdMatch)
+	if (!videoIdMatch) {
 		return null;
+	}
 
 	const videoId = videoIdMatch[1];
 	const apiUrl = `https://api.bilibili.com/x/web-interface/view?bvid=${videoId}`;
 
 	try {
 		const response = await fetch(apiUrl);
+
+		if (!response.ok) {
+			throw new Error(`Failed to fetch Bilibili video info: ${response.status}`);
+		}
+
 		const data = await response.json();
-		if (data.code !== 0)
+		if (data.code !== 0) {
+			console.warn(`Bilibili API returned error code: ${data.code}`);
 			return null;
+		}
 
 		const { title, desc, owner, pic } = data.data;
 		return {
@@ -38,13 +46,22 @@ async function getBilibiliVideoInfo(url: string) {
 			cover: pic,
 		};
 	} catch (error) {
-		console.error("获取Bilibili视频信息失败:", error);
+		console.error("Error fetching Bilibili video info:", error);
 		return null;
 	}
 }
 
 export const MarkdownRender = cache(async (content: string): Promise<string> => {
 	try {
+		// 检查内容是否为空
+		if (!content || content.trim() === "") {
+			console.warn("Empty content passed to MarkdownRender");
+			return "<div class=\"prose-custom dark:prose-custom-dark\"><p>No content available.</p></div>";
+		}
+
+		// 添加自定义排版样式的包装器
+		const wrapWithTypography = (html: string) => `<div class="prose-custom dark:prose-custom-dark">${html}</div>`;
+
 		const options: RehypeShikiOptions = {
 			theme: "dark-plus",
 			langs: SiteConfig.Shiki.langs as BundledLanguage[],
@@ -120,7 +137,7 @@ export const MarkdownRender = cache(async (content: string): Promise<string> => 
 
 		const processor = unified()
 			.use(remarkParse)
-			.use(remarkGfm) // 移动到 remarkParse 后面
+			.use(remarkGfm)
 			.use(remarkRehype, { allowDangerousHtml: true })
 			.use(rehypeRaw)
 			.use(remarkMath)
@@ -148,6 +165,23 @@ export const MarkdownRender = cache(async (content: string): Promise<string> => 
 						} else {
 							node.properties.target = "_blank";
 							node.properties.rel = "noopener noreferrer";
+						}
+					}
+
+					// 新增标题ID处理
+					if (/^h[1-6]$/.test(node.tagName)) {
+						const textContent = node.children
+							.filter((child: any) => child.type === "text")
+							.map((child: any) => child.value)
+							.join("")
+							.trim()
+							.toLowerCase()
+							.replace(/[^\w\u4E00-\u9FA5]+/g, "-")
+							.replace(/^-|-$/g, "");
+
+						if (textContent) {
+							node.properties = node.properties || {};
+							node.properties.id = `${textContent}`;
 						}
 					}
 				});
@@ -210,7 +244,8 @@ export const MarkdownRender = cache(async (content: string): Promise<string> => 
 			}
 		}
 
-		return htmlContent;
+		// 使用自定义排版样式包装HTML内容
+		return wrapWithTypography(htmlContent);
 	} catch (error) {
 		console.error("处理 Markdown 内容时出错:", error);
 		throw error;

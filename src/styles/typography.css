@@ -1,0 +1,111 @@
+@layer components {
+	.prose-custom {
+		@apply max-w-none text-foreground;
+		/* 标题 */
+		& h1,
+		& h2,
+		& h3,
+		& h4,
+		& h5,
+		& h6 {
+			@apply font-sans font-semibold text-foreground mt-8 mb-4 scroll-mt-20;
+		}
+		& h1 {
+			@apply text-3xl;
+		}
+		& h2 {
+			@apply text-2xl border-b pb-1 border-border;
+		}
+		& h3 {
+			@apply text-xl;
+		}
+		& h4 {
+			@apply text-lg;
+		}
+		/* 段落和列表 */
+		& p,
+		& ul,
+		& ol {
+			@apply my-4 leading-7;
+		}
+		& ul,
+		& ol {
+			@apply pl-6;
+		}
+		& ul {
+			@apply list-disc;
+		}
+		& ol {
+			@apply list-decimal;
+		}
+		& li {
+			@apply my-1;
+		}
+		/* 链接 */
+		& a {
+			@apply text-primary underline underline-offset-4 hover:text-primary/80 transition-colors;
+		}
+		/* 引用 */
+		& blockquote {
+			@apply border-l-4 border-border pl-4 italic my-6;
+		}
+		/* 代码 */
+		& code:not(pre code) {
+			@apply bg-secondary text-secondary-foreground rounded px-1.5 py-0.5 font-mono text-sm;
+		}
+		& pre {
+			@apply bg-[#1E1E1E] text-white p-4 rounded-lg overflow-x-auto my-6;
+			& code {
+				@apply bg-transparent text-inherit p-0;
+			}
+		}
+		/* 表格 */
+		& table {
+			@apply w-full border-collapse my-6;
+		}
+		& th {
+			@apply bg-muted text-muted-foreground font-semibold p-2 text-left border border-border;
+		}
+		& td {
+			@apply p-2 border border-border;
+		}
+		/* 水平线 */
+		& hr {
+			@apply my-8 border-t border-border;
+		}
+		/* 图片 */
+		& img {
+			@apply rounded-lg max-w-full h-auto my-6;
+		}
+	}
+
+	.prose-custom-dark {
+		@apply text-foreground;
+		& h1,
+		& h2,
+		& h3,
+		& h4,
+		& h5,
+		& h6 {
+			@apply text-foreground;
+		}
+		& a {
+			@apply text-primary hover:text-primary/80;
+		}
+		& code:not(pre code) {
+			@apply bg-secondary text-secondary-foreground;
+		}
+		& blockquote {
+			@apply border-border;
+		}
+		& th {
+			@apply bg-muted text-muted-foreground border-border;
+		}
+		& td {
+			@apply border-border;
+		}
+		& hr {
+			@apply border-border;
+		}
+	}
+}

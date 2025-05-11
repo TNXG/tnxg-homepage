@@ -125,7 +125,10 @@
 		"description": "Every step is a search for my own light.\n\nOn this path, I quietly walk through every dawn | No need to announce loudly, nor fear loneliness\nNo rush to chase the distant, as my steps already dance gently in my heart | Every turn I take is a firm belief deep within me\nSometimes lost, but it's only to find a better version of myself | In ordinary days, I quietly await the moment when things feel different\nIt's those small, persistent efforts that make everything real and warm | Until one day, all the little pieces come together to form my story.\n\nToday, I am taking one step closer to the person I will be tomorrow"
 	},
 	"common": {
-		"switchLanguage": "Switch Language"
+		"switchLanguage": "Switch Language",
+		"errors": {
+			"content_load_failed": "Failed to load content. Please try again later."
+		}
 	},
 	"languages": {
 		"zh": "Chinese",

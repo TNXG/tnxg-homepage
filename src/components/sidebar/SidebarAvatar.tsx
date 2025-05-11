@@ -44,22 +44,22 @@ const CodeEventStatus = ({ codeEvent }: { codeEvent: CodeEvent }) => {
 	const { platform, editor, project, language, eventTime } = codeEvent;
 
 	return (
-		<div className="text-sm p-3 rounded-lg bg-primary/10 dark:text-gray-200 dark:bg-primary/20">
+		<div className="bg-primary/10 dark:bg-primary/20 text-sm p-3 rounded-lg dark:text-gray-200">
 			<div>
 				{t(SiteConfig.master)}
 				{" "}
 				<Icon icon={getLangIcon(language)} className="text-lg inline-block" />
 				{" "}
-				<span className="text-xs text-muted-foreground dark:text-gray-400">{language}</span>
+				<span className="text-muted-foreground text-xs dark:text-gray-400">{language}</span>
 				{" "}
 				{t("sidebar.status.busy")}
 				{" "}
 			</div>
 			<p className="font-bold">{project}</p>
-			<p className="text-xs text-muted-foreground mt-1 dark:text-gray-400">
+			<p className="text-muted-foreground text-xs mt-1 dark:text-gray-400">
 				{t("sidebar.status.codingAt", { time: new Date(eventTime).toLocaleString() })}
 			</p>
-			<p className="text-xs text-muted-foreground mt-1 dark:text-gray-400">
+			<p className="text-muted-foreground text-xs mt-1 dark:text-gray-400">
 				{t("sidebar.status.usingEditorOnPlatform", { editor, platform })}
 			</p>
 		</div>
@@ -219,7 +219,7 @@ export const SidebarAvatar = () => {
 										<CardContent className="p-4 space-y-4">
 
 											{reportMessage && (
-												<div className="text-sm p-3 rounded-lg bg-primary/10 dark:text-gray-200 dark:bg-primary/20">
+												<div className="bg-primary/10 dark:bg-primary/20 text-sm p-3 rounded-lg dark:text-gray-200">
 													{reportMessage}
 												</div>
 											)}
@@ -227,7 +227,7 @@ export const SidebarAvatar = () => {
 											{codeEvent && <CodeEventStatus codeEvent={codeEvent} />}
 
 											{mediaInfo && (
-												<div className="text-sm p-3 rounded-lg bg-primary/10 dark:text-gray-200 dark:bg-primary/20">
+												<div className="bg-primary/10 dark:bg-primary/20 text-sm p-3 rounded-lg dark:text-gray-200">
 													<div className="flex items-center space-x-4">
 														{albumImage
 															? (
@@ -252,12 +252,12 @@ export const SidebarAvatar = () => {
 														<div className="flex-1 min-w-0">
 															<p className="text-base font-semibold truncate">{mediaInfo.title}</p>
 															{mediaInfo.artist && (
-																<p className="text-sm text-muted-foreground truncate dark:text-gray-400">
+																<p className="text-muted-foreground text-sm truncate dark:text-gray-400">
 																	{mediaInfo.artist}
 																</p>
 															)}
 															{mediaInfo.AlbumTitle && (
-																<p className="text-xs text-muted-foreground truncate dark:text-gray-500">
+																<p className="text-muted-foreground text-xs truncate dark:text-gray-500">
 																	{mediaInfo.AlbumTitle}
 																</p>
 															)}

@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	};
 }
 
-export async function RootLayout({ children }: { children: React.ReactNode }) {
+export async function RootLayout({ children }: { readonly children: React.ReactNode }) {
 	const locale = await getLocale();
 	const messages = await getMessages();
 

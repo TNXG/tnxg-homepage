@@ -14,15 +14,6 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-interface Friend {
-	name: string;
-	url: string;
-	avatar: string;
-	description: string;
-	techstack: string[];
-	state: number;
-}
-
 interface FriendsProps {
 	friends: Friend[];
 }
@@ -83,7 +74,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 				transition={{ duration: 0.5 }}
 			>
 				<mark className="line">{t(FriendsConfig.title)}</mark>
-				<p className="text-sm text-muted-foreground leading-relaxed mt-6 max-w-2xl">
+				<p className="text-muted-foreground text-sm leading-relaxed mt-6 max-w-2xl">
 					{t(FriendsConfig.description.text)}
 					{" "}
 					<mark>
@@ -126,7 +117,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 					<SubmitFriendForm />
 				</div>
 			</motion.h1>
-			<div className="mx-auto mt-2 px-4 py-12 flex flex-col duration-500 items-center animate-in fade-in container">
+			<div className="animate-in fade-in mx-auto mt-2 px-4 py-12 flex flex-col duration-500 items-center container">
 				<div id="friend-card" className="gap-4 grid grid-cols-1 sm:gap-6 lg:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
 					{shuffledFriends.map(friend => (
 						<Card
@@ -148,12 +139,12 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 									>
 										<h3 className="text-base font-semibold text-shadow-sm mb-2 sm:text-lg">{friend.name}</h3>
 										<p
-											className="text-xs text-muted-foreground text-shadow-sm mb-2 text-ellipsis overflow-hidden sm:text-sm sm:mb-4"
+											className="text-muted-foreground text-xs text-shadow-sm mb-2 text-ellipsis overflow-hidden sm:text-sm sm:mb-4"
 											style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical" }}
 										>
 											{friend.description}
 										</p>
-										<p className="text-xs text-muted-foreground text-shadow-sm mb-2 max-w-full truncate sm:mb-4">
+										<p className="text-muted-foreground text-xs text-shadow-sm mb-2 max-w-full truncate sm:mb-4">
 											{friend.url}
 										</p>
 										<div className="mt-2 flex flex-wrap gap-2 justify-center">
