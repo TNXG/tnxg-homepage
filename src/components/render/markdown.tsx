@@ -120,6 +120,16 @@ export const MarkdownRender = cache(async (content: string): Promise<string> => 
 												"text-xs",
 											],
 											"data-code-content": codeContent.replace(/`/g, "\\`"),
+											"onclick": `(function() {
+												const content = this.getAttribute('data-code-content');
+												navigator.clipboard.writeText(content).then(() => {
+													const originalText = this.textContent;
+													this.textContent = '已复制';
+													setTimeout(() => { this.textContent = originalText; }, 2000);
+												}).catch(() => {
+													alert('复制失败，请手动选择文本复制');
+												});
+											}).call(this)`,
 										},
 										children: [{ type: "text", value: "复制" }],
 									},

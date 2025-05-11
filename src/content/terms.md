@@ -85,4 +85,13 @@
 
 ## 十、本站信息
 
-本站持续致力于构建清爽、安全、分享优质内容的个人站点，感谢您的理解与支持。
+```yaml
+
+地址: https://tnxg.top / https://tnxgmoe.com
+头像: https://api-space.tnxg.top/avatar?s=qq
+名称: 天翔TNXGの空间站
+博主: 天翔TNXG
+简介: 明日尚未到来，希望凝于心上
+主题: #77BBDD
+邮箱: tnxg@outlook.jp
+```
