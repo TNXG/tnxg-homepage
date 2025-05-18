@@ -144,9 +144,12 @@
 		}
 	},
 	"languages": {
-		"en": "English",
-		"zh": "中文",
+		"en": "英語",
+		"zh": "中国語",
 		"ja": "日本語",
+		"en-US": "English",
+		"zh-CN": "中文",
+		"ja-JP": "日本語",
 		"searchLanguages": "搜索语言",
 		"noLanguageFound": "语言不存在"
 	},

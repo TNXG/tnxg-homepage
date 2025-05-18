@@ -13,7 +13,14 @@ import "server-only";
 const COOKIE_NAME = "NEXT_LOCALE";
 
 export async function getUserLocale() {
-	return (await cookies()).get(COOKIE_NAME)?.value || defaultLocale;
+	const cookieLocale = (await cookies()).get(COOKIE_NAME)?.value;
+	// 如果cookie中的locale是旧格式（如zh、ja、en），则映射到新格式
+	if (cookieLocale) {
+		// 从locales模块导入的localeMapping
+		const { localeMapping } = await import("@/locales");
+		return localeMapping[cookieLocale] || cookieLocale;
+	}
+	return defaultLocale;
 }
 
 export async function setUserLocale(locale: Locale) {

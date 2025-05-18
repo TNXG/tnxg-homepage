@@ -23,7 +23,7 @@ function switchLanguage(locale: Locale) {
 }
 
 const alias = {
-	zh: [
+	"zh-CN": [
 		"中文",
 		"汉语",
 		"简体中文",
@@ -42,7 +42,7 @@ const alias = {
 		"汉字",
 		"简体",
 	],
-	ja: [
+	"ja-JP": [
 		"日本語",
 		"日语",
 		"にほんご",
@@ -53,7 +53,7 @@ const alias = {
 		"nihongo",
 		"nippon-go",
 	],
-	en: [
+	"en-US": [
 		"English",
 		"英语",
 		"en",

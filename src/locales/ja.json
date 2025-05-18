@@ -147,6 +147,9 @@
 		"en": "英語",
 		"zh": "中国語",
 		"ja": "日本語",
+		"en-US": "English",
+		"zh-CN": "中文",
+		"ja-JP": "日本語",
 		"searchLanguages": "言語を検索",
 		"noLanguageFound": "言語が存在しません"
 	},
