@@ -29,7 +29,7 @@ export function SettingsModal() {
 			<DialogContent className="p-6 rounded-lg bg-white max-w-[90vw] shadow-lg dark:bg-gray-800 sm:max-w-[425px]">
 				<DialogHeader>
 					<DialogTitle className="text-lg font-semibold sm:text-xl dark:text-white">
-						Settings
+						{t("settings")}
 					</DialogTitle>
 					<DialogDescription className="text-sm mt-2 sm:text-base dark:text-gray-300">
 						{t("settingsDescription")}
@@ -38,13 +38,13 @@ export function SettingsModal() {
 				<div className="py-4 gap-6 grid sm:gap-8">
 					<div className="flex flex-col gap-4">
 						<h3 className="text-sm text-gray-700 font-medium sm:text-base dark:text-white">
-							Language
+							{t("language")}
 						</h3>
 						<LanguageSwitcher />
 					</div>
 					<div className="flex flex-col gap-4">
 						<h3 className="text-sm text-gray-700 font-medium sm:text-base dark:text-white">
-							Theme
+							{t("theme")}
 						</h3>
 						<ThemeSwitcher />
 					</div>

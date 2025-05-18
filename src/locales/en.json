@@ -13,7 +13,10 @@
 			"nameEN": "TiaNXianG",
 			"motto": "Tomorrow has yet to come, may hope remain in the heart",
 			"socialLinks": {
-				"blog": "Blog"
+				"blog": "Blog",
+				"github": "GitHub",
+				"twitter": "Twitter",
+				"telegram": "Telegram"
 			}
 		}
 	},
@@ -21,12 +24,16 @@
 		"sections": {
 			"home": "Home",
 			"recently": "Recently",
-			"friends": "Links"
+			"friends": "Links",
+			"terms": "Terms & Conditions"
 		},
-		"copyright": {},
+		"copyright": {
+			"text": "© {date} 天翔TNXG."
+		},
 		"externalLinks": {
 			"qq": "QQ Group",
 			"blog": "Blog",
+			"github": "GitHub",
 			"telegram": "Telegram Group"
 		},
 		"status": {
@@ -59,6 +66,8 @@
 			"button": "Submit Friend Link",
 			"title": "Submit Friend Link",
 			"description": "Fill out the form below to submit your website as a friend link.",
+			"step": "Step",
+			"of": "of",
 			"form": {
 				"name": "Website Name",
 				"url": "Website URL",
@@ -71,17 +80,27 @@
 				"rss": "RSS URL",
 				"techstack": "Tech Stack",
 				"optional": "optional",
+				"optionalFields": "Optional Fields",
+				"optionalDescription": "These fields are optional but help us better understand your site.",
 				"techstackHint": "Comma separated list of technologies used on your site",
 				"cancel": "Cancel",
 				"submit": "Submit",
-				"submitting": "Submitting..."
+				"submitting": "Submitting...",
+				"next": "Next",
+				"back": "Back",
+				"rssHint": "Add your RSS feed URL to share your latest content."
+			},
+			"optional": {
+				"title": "Optional Information",
+				"description": "These fields are optional but help us better understand your site."
 			},
 			"terms": {
 				"title": "Submission Guidelines",
 				"description": "Before submitting, please read our guidelines and terms of service.",
 				"readMore": "Read full guidelines",
 				"agree": "I agree to the terms and conditions",
-				"agreeDescription": "By checking this box, you agree to our friend link guidelines."
+				"agreeDescription": "By checking this box, you agree to our friend link guidelines.",
+				"rssHint": "Add your RSS feed URL to share your latest content."
 			},
 			"validation": {
 				"nameMin": "Name must be at least 1 characters",
@@ -111,12 +130,6 @@
 				"success": "Success",
 				"submitSuccess": "Your friend link has been submitted successfully",
 				"submitFailed": "Failed to submit friend link"
-			},
-			"step": "Step",
-			"of": "of",
-			"optional": {
-				"title": "Optional Information",
-				"description": "These fields are optional but help us better understand your site."
 			}
 		}
 	},
@@ -131,13 +144,16 @@
 		}
 	},
 	"languages": {
+		"en": "English",
 		"zh": "Chinese",
 		"ja": "Japanese",
 		"searchLanguages": "Search Languages",
 		"noLanguageFound": "Language not found"
 	},
 	"currentLanguage": "Current Language",
+	"settings": "Settings",
 	"settingsDescription": "Choose your preferences here",
+	"theme": "Theme",
 	"themes": {
 		"light": "Light",
 		"dark": "Dark",
@@ -145,5 +161,7 @@
 		"noThemeFound": "Theme not found",
 		"searchThemes": "Search Themes",
 		"selectTheme": "Select Theme"
-	}
+	},
+	"currentTheme": "Current Theme",
+	"language": "Language"
 }
