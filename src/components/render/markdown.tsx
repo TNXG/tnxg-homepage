@@ -2,7 +2,6 @@ import type { ShikiTransformerContext } from "@shikijs/core";
 import type { RehypeShikiOptions } from "@shikijs/rehype";
 import type { Element } from "hast";
 import type { BundledLanguage } from "shiki";
-import { SiteConfig } from "@/config";
 import rehypeShiki from "@shikijs/rehype";
 import { cache } from "react";
 import rehypeKatex from "rehype-katex";
@@ -14,6 +13,7 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
+import { SiteConfig } from "@/config";
 
 // Bilibili视频信息获取
 async function getBilibiliVideoInfo(url: string) {
@@ -210,16 +210,25 @@ export const MarkdownRender = cache(async (content: string): Promise<string> => 
 					: videoInfo.desc.trim();
 
 				const videoHtml = `
-					<div class="mt-6 relative rounded-lg border bg-card text-card-foreground shadow-sm mb-4">
+					<div class="mt-6 relative rounded-lg border bg-card text-card-foreground shadow-sm mb-4 overflow-hidden hover:shadow-md transition-shadow duration-200">
 						<div class="flex flex-col sm:flex-row">
-							<div class="w-full sm:w-[180px] h-[200px] sm:h-[160px] flex-shrink-0 relative overflow-hidden">
-								<img 
-									src="${videoInfo.cover}" 
-									alt="${videoInfo.title}" 
-									class="absolute inset-0 w-full h-full object-cover object-center rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none" 
-									referrerpolicy="no-referrer"
-									loading="lazy"
-								/>
+							<div class="sm:w-[220px] aspect-video sm:aspect-square flex-shrink-0 overflow-hidden sm:rounded-l-lg bg-card">
+								<a href="${url}" class="block relative w-full h-full" target="_blank" rel="noopener noreferrer">
+									<div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 flex items-center justify-center z-10 transition-opacity duration-200">
+										<div class="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center">
+											<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+												<polygon points="5 3 19 12 5 21 5 3"/>
+											</svg>
+										</div>
+									</div>
+									<img 
+										src="${videoInfo.cover}" 
+										alt="${videoInfo.title}" 
+										class="w-full h-full object-cover" 
+										referrerpolicy="no-referrer"
+										loading="lazy"
+									/>
+								</a>
 							</div>
 							<div class="flex-1 p-3 sm:p-4 min-h-0">
 								<div class="flex flex-col h-full">
@@ -227,7 +236,7 @@ export const MarkdownRender = cache(async (content: string): Promise<string> => 
 										<h3 class="font-semibold leading-tight text-base mb-1 line-clamp-1">${videoInfo.title}</h3>
 										<p class="text-sm text-muted-foreground line-clamp-2 sm:line-clamp-3 overflow-hidden">${processedDesc}</p>
 									</div>
-									<div class="flex items-center gap-2 mt-2 pt-2 border-t">
+									<div class="flex items-center flex-wrap gap-2 mt-2 pt-2 border-t">
 										<span class="inline-flex items-center text-xs text-muted-foreground">
 											<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-3 w-3">
 												<circle cx="12" cy="12" r="10"/>

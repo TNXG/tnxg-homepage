@@ -1,6 +1,9 @@
 "use client";
 
 import type { Locale } from "@/locales";
+import { Icon } from "@iconify/react";
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
 	Command,
@@ -14,9 +17,6 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserLocale, setUserLocale } from "@/lib/server-utils";
 import { locales } from "@/locales";
-import { Icon } from "@iconify/react";
-import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
 
 function switchLanguage(locale: Locale) {
 	setUserLocale(locale);

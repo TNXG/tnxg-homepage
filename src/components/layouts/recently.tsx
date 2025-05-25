@@ -1,14 +1,14 @@
 "use client";
 
 import type { RecentlyModel } from "@mx-space/api-client";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { RecentlyConfig, SiteConfig } from "@/config";
 import { motion } from "framer-motion";
 import { Clock, MessageCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { RecentlyConfig, SiteConfig } from "@/config";
 
 interface RecentliesProps {
 	Recentlies: RecentlyModel[];
@@ -16,6 +16,7 @@ interface RecentliesProps {
 
 export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }) => {
 	const t = useTranslations();
+
 	return (
 		<div className="mb-6 mt-5 px-2 flex flex-col w-full items-start lg:px-6 sm:px-4">
 			<motion.h1

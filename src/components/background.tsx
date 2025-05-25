@@ -1,8 +1,8 @@
 "use client";
 
-import { SiteConfig } from "@/config";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { SiteConfig } from "@/config";
 
 export function Background() {
 	const [randomImage] = useState(

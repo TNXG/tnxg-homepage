@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import FriendsLayout from "@/components/layouts/friends";
-import { APIConfig } from "@/config";
 import { getLocale, getTranslations } from "next-intl/server";
 import { cache } from "react";
+import FriendsLayout from "@/components/layouts/friends";
+import { APIConfig } from "@/config";
 import "server-only";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -33,7 +33,8 @@ const getFriends = cache(async (): Promise<Friend[]> => {
 		const friendsData: Friend[] = data.data;
 		const filteredFriends = friendsData.filter(friend => friend.state === 0);
 		return filteredFriends;
-	} catch (error) {
+	}
+ catch (error) {
 		console.error("Error fetching friends data:", error);
 		const locale = await getLocale();
 		const t = await getTranslations({ locale });

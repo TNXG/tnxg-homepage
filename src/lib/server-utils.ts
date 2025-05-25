@@ -4,9 +4,9 @@ import type { ActionResponse } from "@/hooks/form-schema";
 import type { Locale } from "@/locales";
 import fs from "node:fs/promises";
 import process from "node:process";
+import { cookies } from "next/headers";
 import { APIConfig } from "@/config";
 import { defaultLocale } from "@/locales";
-import { cookies } from "next/headers";
 
 import "server-only";
 
@@ -34,7 +34,8 @@ export const serverAction = async (prevState: ActionResponse | null, formData: F
 	for (const key in rawData) {
 		if (rawData[key] === "on") {
 			rawData[key] = true;
-		} else if (rawData[key] === "off") {
+		}
+ else if (rawData[key] === "off") {
 			rawData[key] = false;
 		}
 	}
@@ -43,7 +44,8 @@ export const serverAction = async (prevState: ActionResponse | null, formData: F
 		if (rawData.techstack) {
 			try {
 				rawData.techstack = JSON.parse(rawData.techstack);
-			} catch {
+			}
+ catch {
 				rawData.techstack = rawData.techstack
 					.split(",")
 					.map((item: string) => item.trim())
@@ -69,14 +71,16 @@ export const serverAction = async (prevState: ActionResponse | null, formData: F
 				message: "Data saved successfully",
 				inputs: rawData,
 			};
-		} else {
+		}
+ else {
 			return {
 				success: false,
 				message: data.message || "Failed to submit data",
 				inputs: rawData,
 			};
 		}
-	} catch (error) {
+	}
+ catch (error) {
 		console.error("Error in serverAction:", error);
 		return {
 			success: false,
@@ -108,13 +112,15 @@ export const verifyEmail = async (
 				success: true,
 				message: "Verification code sent successfully",
 			};
-		} else {
+		}
+ else {
 			return {
 				success: false,
 				message: data.message || "Failed to send verification code",
 			};
 		}
-	} catch (error) {
+	}
+ catch (error) {
 		console.error("Error in verifyEmail:", error);
 		return {
 			success: false,
@@ -131,7 +137,8 @@ export const getContentFile = async (filename: string): Promise<string> => {
 			console.warn(`文件 ${filename} 内容为空`);
 		}
 		return content;
-	} catch (error) {
+	}
+ catch (error) {
 		console.error(`Error reading file ${filename}:`, error);
 		return "";
 	}

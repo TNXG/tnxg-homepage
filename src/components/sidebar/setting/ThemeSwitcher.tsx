@@ -1,5 +1,9 @@
 "use client";
 
+import { Icon } from "@iconify/react";
+import { useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
+import * as React from "react";
 import { Button } from "@/components/ui/button";
 import {
 	Command,
@@ -15,10 +19,6 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { Icon } from "@iconify/react";
-import { useTranslations } from "next-intl";
-import { useTheme } from "next-themes";
-import * as React from "react";
 
 const themes = [
 	{

@@ -1,5 +1,10 @@
 "use client";
 
+import { Icon } from "@iconify/react";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import * as React from "react";
 import { SettingsModal } from "@/components/sidebar/setting/SettingsModal";
 import { SidebarAvatar } from "@/components/sidebar/SidebarAvatar";
 import { Button } from "@/components/ui/button";
@@ -8,13 +13,8 @@ import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, Dr
 import { Separator } from "@/components/ui/separator";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider } from "@/components/ui/sidebar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { SidebarConfig, SiteConfig } from "@/config";
-import { Icon } from "@iconify/react";
-import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 
-import * as React from "react";
+import { SidebarConfig, SiteConfig } from "@/config";
 
 const Navigation = ({ t }: { t: ReturnType<typeof useTranslations> }) => {
 	const pathname = usePathname();

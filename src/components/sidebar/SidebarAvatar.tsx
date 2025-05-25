@@ -1,5 +1,8 @@
 "use client";
 
+import { Icon } from "@iconify/react";
+import { useTranslations } from "next-intl";
+import { useEffect, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -7,9 +10,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { APIConfig, SiteConfig } from "@/config";
 import { getLangIcon, SelfIcon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
-import { Icon } from "@iconify/react";
-import { useTranslations } from "next-intl";
-import { useEffect, useRef, useState } from "react";
 
 interface MediaInfo {
 	SourceAppName: string;
@@ -85,7 +85,8 @@ export const SidebarAvatar = () => {
 					const appdesc = await response.json();
 					setAppDescCache(appdesc);
 					return appdesc;
-				} catch (error) {
+				}
+ catch (error) {
 					console.error(error);
 				}
 			}
@@ -129,7 +130,8 @@ export const SidebarAvatar = () => {
 					if (data.mediaInfo) {
 						setMediaInfo(data.mediaInfo);
 					}
-				} catch (error) {
+				}
+ catch (error) {
 					console.error("Error parsing report message:", error);
 				}
 			};
@@ -147,7 +149,8 @@ export const SidebarAvatar = () => {
 					if (codeEventData) {
 						setCodeEvent(codeEventData);
 					}
-				} catch {
+				}
+ catch {
 					console.warn("Error parsing code event message:", event.data);
 				}
 			};

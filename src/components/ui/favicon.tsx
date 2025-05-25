@@ -1,7 +1,7 @@
 "use client";
 
-import { SiteConfig } from "@/config";
 import { useEffect } from "react";
+import { SiteConfig } from "@/config";
 
 export function Favicon() {
 	useEffect(() => {

@@ -1,5 +1,14 @@
 "use client";
 import type React from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Icon } from "@iconify/react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -16,15 +25,6 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
 import { serverAction, verifyEmail } from "@/lib/server-utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Icon } from "@iconify/react";
-import { AnimatePresence, motion } from "framer-motion";
-import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import * as z from "zod";
 
 const formSchema = (t: any) =>
 	z.object({
@@ -87,7 +87,8 @@ export function SubmitFriendForm() {
 				});
 				isValid = false;
 			}
-		} else if (currentStep === 2) {
+		}
+ else if (currentStep === 2) {
 			const email = form.getValues("email");
 			const code = form.getValues("code");
 
@@ -104,7 +105,8 @@ export function SubmitFriendForm() {
 				});
 				isValid = false;
 			}
-		} else if (currentStep === 3) {
+		}
+ else if (currentStep === 3) {
 			const name = form.getValues("name");
 			const url = form.getValues("url");
 			const avatar = form.getValues("avatar");
@@ -169,12 +171,15 @@ export function SubmitFriendForm() {
 			if (result.success) {
 				setVerificationSent(true);
 				toast.success(t("friends.submit.toast.checkEmail"));
-			} else {
+			}
+ else {
 				toast.error(t("friends.submit.toast.verificationFailed"));
 			}
-		} catch {
+		}
+ catch {
 			toast.error(t("friends.submit.toast.verificationFailed"));
-		} finally {
+		}
+ finally {
 			setIsVerifying(false);
 		}
 	};
@@ -216,7 +221,8 @@ export function SubmitFriendForm() {
 
 				if (key === "termsAgreed") {
 					formData.append(key, value ? "on" : "off");
-				} else {
+				}
+ else {
 					if (value !== undefined && value !== null) {
 						formData.append(key, value.toString());
 					}
@@ -232,12 +238,15 @@ export function SubmitFriendForm() {
 				form.reset();
 				setOpen(false);
 				setCurrentStep(1);
-			} else {
+			}
+ else {
 				toast.error(result.message || t("friends.submit.toast.submitFailed"));
 			}
-		} catch {
+		}
+ catch {
 			toast.error(t("friends.submit.toast.submitFailed"));
-		} finally {
+		}
+ finally {
 			setIsSubmitting(false);
 		}
 	};

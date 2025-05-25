@@ -1,10 +1,10 @@
 "use client";
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 interface TermsProps {
 	content?: string;
@@ -62,29 +62,31 @@ export const TermsLayout: React.FC<TermsProps> = ({ content }) => {
 	}, []);
 
 	return (
-		<div className="mb-6 mt-5 px-2 flex flex-col w-full items-start lg:px-6 sm:px-4">
-			<motion.h1
-				className="text-2xl font-bold mt-8 lg:text-4xl sm:text-3xl sm:mt-10"
-				initial={{ opacity: 0, y: -50 }}
+		<div className="mx-auto px-4 py-8 sm:py-12 container">
+			<motion.div
+				className="mb-8 sm:mb-12"
+				initial={{ opacity: 0, y: -30 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.6, ease: "easeOut" }}
 			>
-				<mark className="line">网站须知</mark>
+				<h1 className="text-2xl font-bold lg:text-4xl sm:text-3xl">
+					<mark className="line">网站须知</mark>
+				</h1>
 				<div className="text-muted-foreground text-sm mt-4 max-w-full whitespace-pre-wrap break-words sm:max-w-[80%]">
 					请仔细阅读以下内容，了解本站的使用条款、隐私政策和免责声明。
 				</div>
-			</motion.h1>
+			</motion.div>
 
-			<div className="mx-auto px-2 py-6 max-w-[95%] w-full sm:px-4 sm:py-8 lg:max-w-4xl sm:max-w-2xl">
+			<div className="mx-auto max-w-4xl">
 				<motion.div
-					className="mt-5"
-					initial={{ opacity: 0, y: 50 }}
+					className="mb-8"
+					initial={{ opacity: 0, y: 30 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5, ease: "easeOut" }}
+					transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
 				>
-					<Card className="w-full shadow-sm">
+					<Card className="w-full shadow-sm transition-shadow duration-300 hover:shadow-md">
 						<CardHeader>
-							<div className="flex items-center space-x-4">
+							<div className="flex gap-3 items-center">
 								<Icon
 									icon="mingcute:file-more-line"
 									className="text-primary size-6"

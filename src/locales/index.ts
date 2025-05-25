@@ -1,6 +1,6 @@
-import { getUserLocale } from "@/lib/server-utils";
-
 import { getRequestConfig } from "next-intl/server";
+
+import { getUserLocale } from "@/lib/server-utils";
 
 export default getRequestConfig(async () => {
 	const locale = await getUserLocale();

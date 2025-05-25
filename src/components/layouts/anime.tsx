@@ -24,12 +24,10 @@ const getCollectionName = (collectionType: number, subjectType: number) => {
 	if (subjectType === 1 || subjectType === 2 || subjectType === 6) {
 		prefix = "想";
 		suffix = "看";
-	}
- else if (subjectType === 3) {
+	} else if (subjectType === 3) {
 		prefix = "想";
 		suffix = "听";
-	}
- else if (subjectType === 4) {
+	} else if (subjectType === 4) {
 		prefix = "想";
 		suffix = "玩";
 	}

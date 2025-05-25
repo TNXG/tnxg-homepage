@@ -1,12 +1,12 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { SiteConfig } from "@/config";
 import { Icon } from "@iconify/react";
 import { useTranslations } from "next-intl";
-
 import React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+
+import { SiteConfig } from "@/config";
 
 export const HomeLayout: React.FC = () => {
 	const t = useTranslations();

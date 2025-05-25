@@ -1,18 +1,18 @@
 "use client";
 
-import type { Arch } from "@/lib/icon";
 import type React from "react";
+import type { Arch } from "@/lib/icon";
+import { Icon } from "@iconify/react";
+import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { SubmitFriendForm } from "@/components/submit-friend";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { FriendsConfig, SiteConfig } from "@/config";
 import { getArchIcon } from "@/lib/icon";
-import { Icon } from "@iconify/react";
-import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { useEffect, useState } from "react";
 
 interface FriendsProps {
 	friends: Friend[];
@@ -117,7 +117,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 					<SubmitFriendForm />
 				</div>
 			</motion.h1>
-			<div className="animate-in fade-in mx-auto mt-2 px-4 py-12 flex flex-col duration-500 items-center container">
+			<div className="fade-in animate-in mx-auto mt-2 px-4 py-12 flex flex-col duration-500 items-center container">
 				<div id="friend-card" className="gap-4 grid grid-cols-1 sm:gap-6 lg:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
 					{shuffledFriends.map(friend => (
 						<Card

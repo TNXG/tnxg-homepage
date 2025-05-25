@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { Background } from "@/components/background";
 import { SidebarLayout } from "@/components/sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Favicon } from "@/components/ui/favicon";
 import { Toaster } from "@/components/ui/sonner";
-import { SiteConfig } from "@/config";
-import { NextIntlClientProvider } from "next-intl";
 
-import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { SiteConfig } from "@/config";
 
 import "./globals.css";
 
