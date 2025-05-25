@@ -1,7 +1,7 @@
-import { APIConfig, SiteConfig } from "@/config";
 import { XMLBuilder } from "fast-xml-parser";
 import { getTranslations } from "next-intl/server";
 import { cache } from "react";
+import { APIConfig, SiteConfig } from "@/config";
 
 const getFriends = async (): Promise<Friend[]> => {
 	const response = cache(async () => {

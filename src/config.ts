@@ -47,14 +47,14 @@ export const SiteConfig = {
 				href: "https://github.com/TNXG",
 			},
 			{
-				name: "site.home.socialLinks.twitter",
-				icon: "mingcute:twitter-line",
-				href: "https://twitter.com/iykrzu",
+				name: "site.home.socialLinks.bilibili",
+				icon: "mingcute:bilibili-line",
+				href: "https://space.bilibili.com/175424674",
 			},
 			{
-				name: "site.home.socialLinks.telegram",
-				icon: "mingcute:telegram-line",
-				href: "https://telegram.me/iykrzu",
+				name: "site.home.socialLinks.neteasemusic",
+				icon: "mingcute:netease-music-line",
+				href: "https://music.163.com/#/user/home?id=515522946",
 			},
 		],
 	},
@@ -87,6 +87,7 @@ export const SidebarConfig = {
 		{ name: "sidebar.sections.home", icon: "mingcute:home-6-line", href: "/" },
 		{ name: "sidebar.sections.recently", icon: "mingcute:bubble-line", href: "/recently" },
 		{ name: "sidebar.sections.friends", icon: "mingcute:link-fill", href: "/friends" },
+		{ name: "sidebar.sections.anime", icon: "mingcute:tv-2-line", href: "/anime" },
 	],
 	copyright: {
 		StartDate: 2019,
@@ -100,7 +101,8 @@ export const SidebarConfig = {
 		{ name: "sidebar.externalLinks.qq", icon: "mingcute:qq-line", href: "https://jq.qq.com/?_wv=1027&k=hc3OKNED" },
 		{ name: "sidebar.externalLinks.blog", icon: "mingcute:book-6-line", href: "https://tnxgmoe.com" },
 		{ name: "sidebar.externalLinks.github", icon: "mingcute:github-line", href: "https://github.com/TNXG" },
-		{ name: "sidebar.externalLinks.telegram", icon: "mingcute:telegram-line", href: "https://t.me/illusion_ash" },
+		{ name: "site.home.socialLinks.bilibili", icon: "mingcute:bilibili-line", href: "https://space.bilibili.com/175424674" },
+
 	],
 };
 
@@ -126,6 +128,9 @@ export const APIConfig = {
 		user: "a3yf78qadjmq0009",
 		// eslint-disable-next-line node/prefer-global/process
 		token: process.env.MISSKEY_TOKEN,
+	},
+	bangumi: {
+		username: "tnxg",
 	},
 	baseURL: "https://mx.tnxg.top/api/v2",
 	endpoints: {

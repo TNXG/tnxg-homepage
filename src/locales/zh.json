@@ -16,7 +16,9 @@
 				"blog": "Blog",
 				"github": "GitHub",
 				"twitter": "Twitter",
-				"telegram": "Telegram"
+				"telegram": "Telegram",
+				"bilibili": "Bilibili",
+				"neteasemusic": "网易云音乐"
 			}
 		}
 	},
@@ -25,7 +27,8 @@
 			"home": "首页",
 			"recently": "动态",
 			"friends": "友链",
-			"terms": "条款与条件"
+			"terms": "条款与条件",
+			"anime": "动画"
 		},
 		"copyright": {
 			"text": "© {date} 天翔TNXG."

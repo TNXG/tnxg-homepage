@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import { getLocale, getTranslations } from "next-intl/server";
+import { cache } from "react";
 import TermsLayout from "@/components/layouts/terms";
 import { MarkdownRender } from "@/components/render/markdown";
 import { getContentFile } from "@/lib/server-utils";
-import { getLocale, getTranslations } from "next-intl/server";
-import { cache } from "react";
 import "server-only";
 
 export async function generateMetadata(): Promise<Metadata> {

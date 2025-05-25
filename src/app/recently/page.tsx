@@ -1,10 +1,10 @@
 import type { RecentlyModel } from "@mx-space/api-client";
 import type { Metadata } from "next";
+import { getLocale, getTranslations } from "next-intl/server";
+import { cache } from "react";
 import RecentlyLayout from "@/components/layouts/recently";
 import { MarkdownRender } from "@/components/render/markdown";
 import { APIConfig } from "@/config";
-import { getLocale, getTranslations } from "next-intl/server";
-import { cache } from "react";
 import "server-only";
 
 export async function generateMetadata(): Promise<Metadata> {
