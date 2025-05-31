@@ -171,45 +171,45 @@
 	"currentTheme": "当前主题",
 	"language": "语言",
 	"learning": {
-		"sectionTitle": "学习之旅",
+		"sectionTitle": "学习之旅✨",
 		"currentlyStudying": {
 			"title": "正在进一步学习",
-			"description": "深入核心技术知识"
+			"description": "探索她们更多的小秘密呀~"
 		},
 		"exploring": {
 			"title": "尝试学习",
-			"description": "探索新兴技术"
+			"description": "探索更多她们的可爱之处~"
 		},
 		"frameworks": {
 			"title": "或许可以掌握的框架",
-			"description": "学习管道中的框架和工具"
+			"description": "学习更多好玩的玩具呀~"
 		}
 	},
 	"home": {
 		"wakatime": {
-			"title": "编程活动",
-			"allTime": "全部时间",
-			"recentActivity": "最近活动",
-			"totalTime": "总时间",
-			"dailyAvg": "日均",
-			"bestDay": "最佳日",
-			"topLanguages": "常用语言",
-			"mostUsedLanguages": "最常用的编程语言",
-			"operatingSystems": "操作系统",
-			"environmentUsage": "开发环境使用情况",
-			"activitySummary": "活动摘要",
-			"activityOverview": "编程活动概览",
-			"activeDays": "活跃天数",
-			"totalDays": "总天数",
-			"period": "时间段",
-			"days": "天",
-			"unableToLoad": "无法加载编程统计数据",
-			"checkSettings": "请检查您的WakaTime共享设置或稍后再试",
-			"keyStats": "核心数据",
-			"activityInsights": "活动洞察",
-			"codingHabits": "编程习惯分析",
-			"dailyAverage": "日均编程时间",
-			"productivityScore": "生产力得分"
+			"title": "敲代码的小日常~",
+			"allTime": "所有的码码时光",
+			"recentActivity": "最近的忙碌时刻",
+			"totalTime": "总共敲了多久呢",
+			"dailyAvg": "每天平均摸鱼时间",
+			"bestDay": "最卷的一天",
+			"topLanguages": "最喜欢的语言们",
+			"mostUsedLanguages": "经常用的小伙伴们",
+			"operatingSystems": "用的啥系统呢",
+			"environmentUsage": "开发环境使用情况喵~",
+			"activitySummary": "忙碌小总结",
+			"activityOverview": "码码生活全景图",
+			"activeDays": "真正卷起来的天数",
+			"totalDays": "总共多少天啦",
+			"period": "这段时间里",
+			"days": "天呀",
+			"unableToLoad": "哎呀加载不出来了",
+			"checkSettings": "检查一下WakaTime设置或者稍后再来吧~",
+			"keyStats": "重要的小数据",
+			"activityInsights": "活动小分析",
+			"codingHabits": "敲代码的小习惯",
+			"dailyAverage": "每天平均敲多久",
+			"productivityScore": "效率小评分"
 		}
 	}
 }

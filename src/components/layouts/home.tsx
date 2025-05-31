@@ -29,7 +29,6 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 
 	return (
 		<div className="py-8 flex flex-col min-h-screen items-center justify-start">
-			{/* Original Hero Section */}
 			<div className="font-moonbridge mx-auto px-4 py-8 pt-16 flex flex-col items-start justify-center md:flex-row">
 				<div className="avatar">
 					<Avatar className="mask mask-squircle size-24 -z-1">
@@ -68,9 +67,7 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 				</div>
 			</div>
 
-			{/* Enhanced Information Section */}
 			<div className="mx-auto px-4 max-w-6xl w-full space-y-8">
-				{/* Learning Status Section */}
 				<section>
 					<div className="mb-6 flex gap-2 items-center">
 						<Icon icon="mingcute:book-open-line" className="text-[#77BBDD] h-6 w-6" />
@@ -78,21 +75,25 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 					</div>
 
 					<div className="gap-6 grid grid-cols-1 md:grid-cols-2">
-						{/* Currently Studying */}
-						<Card className="transition-shadow hover:shadow-lg">
+						<Card className="bg-white/70 transition-shadow backdrop-blur-md dark:border-gray-700 dark:bg-gray-800/70 hover:shadow-lg">
 							<CardHeader>
-								<CardTitle className="flex gap-2 items-center">
+								<CardTitle className="text-gray-900 flex gap-2 items-center dark:text-gray-100">
 									{SiteConfig.LearningConfig.sections.currentlyStudying.icon === "TrendingUp" && (
-										<Icon icon="mingcute:trending-up-line" className={`${SiteConfig.LearningConfig.sections.currentlyStudying.iconColor} h-5 w-5`} />
+										<Icon
+											icon="mingcute:trending-up-line"
+											className={`${SiteConfig.LearningConfig.sections.currentlyStudying.iconColor} h-5 w-5`}
+										/>
 									)}
 									{t(`${SiteConfig.LearningConfig.sections.currentlyStudying.title}`)}
 								</CardTitle>
-								<CardDescription>{t(`${SiteConfig.LearningConfig.sections.currentlyStudying.description}`)}</CardDescription>
+								<CardDescription className="text-gray-600 dark:text-gray-300">
+									{t(`${SiteConfig.LearningConfig.sections.currentlyStudying.description}`)}
+								</CardDescription>
 							</CardHeader>
 							<CardContent>
 								<div className="flex flex-wrap gap-2">
 									{SiteConfig.LearningConfig.sections.currentlyStudying.languages.map(language => (
-										<Badge key={language.name} variant="default" className={language.color}>
+										<Badge key={language.name} variant="outline" className={language.color}>
 											<Icon icon={language.icon} className="mr-1 h-4 w-4" />
 											{language.name}
 										</Badge>
@@ -101,16 +102,20 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 							</CardContent>
 						</Card>
 
-						{/* Exploring New Technologies */}
-						<Card className="transition-shadow hover:shadow-lg">
+						<Card className="bg-white/70 transition-shadow backdrop-blur-md dark:border-gray-700 dark:bg-gray-800/70 hover:shadow-lg">
 							<CardHeader>
-								<CardTitle className="flex gap-2 items-center">
+								<CardTitle className="text-gray-900 flex gap-2 items-center dark:text-gray-100">
 									{SiteConfig.LearningConfig.sections.exploring.icon === "Code" && (
-										<Icon icon="mingcute:code-line" className={`${SiteConfig.LearningConfig.sections.exploring.iconColor} h-5 w-5`} />
+										<Icon
+											icon="mingcute:code-line"
+											className={`${SiteConfig.LearningConfig.sections.exploring.iconColor} h-5 w-5`}
+										/>
 									)}
 									{t(`${SiteConfig.LearningConfig.sections.exploring.title}`)}
 								</CardTitle>
-								<CardDescription>{t(`${SiteConfig.LearningConfig.sections.exploring.description}`)}</CardDescription>
+								<CardDescription className="text-gray-600 dark:text-gray-300">
+									{t(`${SiteConfig.LearningConfig.sections.exploring.description}`)}
+								</CardDescription>
 							</CardHeader>
 							<CardContent>
 								<div className="flex flex-wrap gap-2">
@@ -124,23 +129,30 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 							</CardContent>
 						</Card>
 
-						{/* Framework Mastery */}
-						<Card className="transition-shadow md:col-span-2 hover:shadow-lg">
+						<Card className="bg-white/70 transition-all backdrop-blur-md dark:border-gray-700 dark:bg-gray-800/70 md:col-span-2 hover:shadow-lg dark:hover:shadow-black/20">
 							<CardHeader>
-								<CardTitle className="flex gap-2 items-center">
+								<CardTitle className="text-gray-900 flex gap-2 items-center dark:text-gray-100">
 									{SiteConfig.LearningConfig.sections.frameworks.icon === "Award" && (
-										<Icon icon="mingcute:trophy-line" className={`${SiteConfig.LearningConfig.sections.frameworks.iconColor} h-5 w-5`} />
+										<Icon
+											icon="mingcute:trophy-line"
+											className={`${SiteConfig.LearningConfig.sections.frameworks.iconColor} h-5 w-5`}
+										/>
 									)}
 									{t(`${SiteConfig.LearningConfig.sections.frameworks.title}`)}
 								</CardTitle>
-								<CardDescription>{t(`${SiteConfig.LearningConfig.sections.frameworks.description}`)}</CardDescription>
+								<CardDescription className="text-gray-600 dark:text-gray-300">
+									{t(`${SiteConfig.LearningConfig.sections.frameworks.description}`)}
+								</CardDescription>
 							</CardHeader>
 							<CardContent>
 								<div className="gap-4 grid grid-cols-2 md:grid-cols-3">
 									{SiteConfig.LearningConfig.sections.frameworks.frameworks.map(framework => (
-										<div key={framework.name} className={`p-2 rounded-lg ${framework.color} flex gap-2 transition-colors items-center`}>
-											<Icon icon={framework.icon} className={`${framework.iconColor || ""} h-5 w-5`} />
-											<span className="text-sm font-medium">{framework.name}</span>
+										<div
+											key={framework.name}
+											className="p-3 border border-gray-200 rounded-lg bg-gray-50 flex gap-2 transition-colors items-center dark:border-gray-600 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700"
+										>
+											<Icon icon={framework.icon} className="h-5 w-5" />
+											<span className="text-sm text-gray-900 font-medium dark:text-gray-100">{framework.name}</span>
 										</div>
 									))}
 								</div>
@@ -149,14 +161,18 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 					</div>
 				</section>
 
-				{/* WakaTime Stats Section */}
 				<section>
 					<div className="mb-6 flex gap-2 items-center">
-						<Icon icon="mingcute:code-line" className="text-[#77BBDD] h-6 w-6" />
-						<h2 className="text-3xl font-bold">{t("home.wakatime.title")}</h2>
-						<Badge variant="outline" className="ml-2">
+						<Icon icon="mingcute:code-line" className="text-[#77BBDD] h-6 w-6 dark:text-[#88CCEE]" />
+						<h2 className="text-3xl text-gray-900 font-bold dark:text-gray-100">{t("home.wakatime.title")}</h2>
+						<Badge
+							variant="outline"
+							className="text-gray-700 ml-2 border-gray-300 dark:text-gray-300 dark:border-gray-600"
+						>
 							<Icon icon="mingcute:time-line" className="mr-1 h-3 w-3" />
-							{wakaTimeData?.timeTrackingData.data.range.range === "all_time" ? t("home.wakatime.allTime") : t("home.wakatime.recentActivity")}
+							{wakaTimeData?.timeTrackingData.data.range.range === "all_time"
+								? t("home.wakatime.allTime")
+								: t("home.wakatime.recentActivity")}
 						</Badge>
 					</div>
 
@@ -164,10 +180,10 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 						? (
 								<div className="gap-4 grid grid-cols-1 lg:grid-cols-4">
 									{/* First Row: Key Stats */}
-									<Card className="lg:col-span-2">
+									<Card className="bg-white/70 backdrop-blur-md dark:border-gray-700 dark:bg-gray-800/70 lg:col-span-2">
 										<CardHeader className="pb-2">
-											<CardTitle className="flex gap-2 items-center">
-												<Icon icon="mingcute:data-2-line" className="text-[#77BBDD] h-5 w-5" />
+											<CardTitle className="text-gray-900 flex gap-2 items-center dark:text-gray-100">
+												<Icon icon="mingcute:data-2-line" className="text-[#77BBDD] h-5 w-5 dark:text-[#88CCEE]" />
 												{t("home.wakatime.keyStats")}
 											</CardTitle>
 										</CardHeader>
@@ -176,13 +192,15 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 												{/* Total Time */}
 												<div className="flex flex-col space-y-1">
 													<div className="flex gap-2 items-center">
-														<Icon icon="mingcute:trending-up-line" className="text-[#77BBDD] h-4 w-4" />
-														<span className="text-sm font-medium">{t("home.wakatime.totalTime")}</span>
+														<Icon icon="mingcute:trending-up-line" className="text-[#77BBDD] h-4 w-4 dark:text-[#88CCEE]" />
+														<span className="text-sm text-gray-700 font-medium dark:text-gray-300">
+															{t("home.wakatime.totalTime")}
+														</span>
 													</div>
-													<div className="text-xl text-[#77BBDD] font-bold">
+													<div className="text-xl text-[#77BBDD] font-bold dark:text-[#88CCEE]">
 														{wakaTimeData.timeTrackingData.data.grand_total.human_readable_total}
 													</div>
-													<p className="text-muted-foreground text-xs flex gap-1 items-center">
+													<p className="text-xs text-gray-500 flex gap-1 items-center dark:text-gray-400">
 														<span>
 															{t("home.wakatime.dailyAvg")}
 															:
@@ -194,13 +212,15 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 												{/* Best Day */}
 												<div className="flex flex-col space-y-1">
 													<div className="flex gap-2 items-center">
-														<Icon icon="mingcute:trophy-line" className="text-[#77BBDD] h-4 w-4" />
-														<span className="text-sm font-medium">{t("home.wakatime.bestDay")}</span>
+														<Icon icon="mingcute:trophy-line" className="text-[#77BBDD] h-4 w-4 dark:text-[#88CCEE]" />
+														<span className="text-sm text-gray-700 font-medium dark:text-gray-300">
+															{t("home.wakatime.bestDay")}
+														</span>
 													</div>
-													<div className="text-xl text-[#77BBDD] font-bold">
+													<div className="text-xl text-[#77BBDD] font-bold dark:text-[#88CCEE]">
 														{wakaTimeData.timeTrackingData.data.best_day.text}
 													</div>
-													<p className="text-muted-foreground text-xs">
+													<p className="text-xs text-gray-500 dark:text-gray-400">
 														{formatDate(wakaTimeData.timeTrackingData.data.best_day.date)}
 													</p>
 												</div>
@@ -208,14 +228,16 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 												{/* Active Days */}
 												<div className="flex flex-col space-y-1">
 													<div className="flex gap-2 items-center">
-														<Icon icon="mingcute:calendar-line" className="text-[#77BBDD] h-4 w-4" />
-														<span className="text-sm font-medium">{t("home.wakatime.activeDays")}</span>
+														<Icon icon="mingcute:calendar-line" className="text-[#77BBDD] h-4 w-4 dark:text-[#88CCEE]" />
+														<span className="text-sm text-gray-700 font-medium dark:text-gray-300">
+															{t("home.wakatime.activeDays")}
+														</span>
 													</div>
-													<div className="text-xl text-[#77BBDD] font-bold flex gap-1 items-center">
+													<div className="text-xl text-[#77BBDD] font-bold flex gap-1 items-center dark:text-[#88CCEE]">
 														<span>{wakaTimeData.timeTrackingData.data.range.days_minus_holidays}</span>
 														<span>{t("home.wakatime.days")}</span>
 													</div>
-													<p className="text-muted-foreground text-xs flex gap-1 items-center">
+													<p className="text-xs text-gray-500 flex gap-1 items-center dark:text-gray-400">
 														<span>
 															{t("home.wakatime.totalDays")}
 															:
@@ -228,10 +250,12 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 												{/* Period */}
 												<div className="flex flex-col space-y-1">
 													<div className="flex gap-2 items-center">
-														<Icon icon="mingcute:time-line" className="text-[#77BBDD] h-4 w-4" />
-														<span className="text-sm font-medium">{t("home.wakatime.period")}</span>
+														<Icon icon="mingcute:time-line" className="text-[#77BBDD] h-4 w-4 dark:text-[#88CCEE]" />
+														<span className="text-sm text-gray-700 font-medium dark:text-gray-300">
+															{t("home.wakatime.period")}
+														</span>
 													</div>
-													<div className="text-sm font-medium flex gap-1 items-center">
+													<div className="text-sm text-gray-600 font-medium flex gap-1 items-center dark:text-gray-300">
 														<span>{formatDate(wakaTimeData.timeTrackingData.data.range.start)}</span>
 														<span>-</span>
 														<span>{formatDate(wakaTimeData.timeTrackingData.data.range.end)}</span>
@@ -242,10 +266,12 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 									</Card>
 
 									{/* Languages Card */}
-									<Card className="lg:col-span-2">
+									<Card className="bg-white/70 backdrop-blur-md dark:border-gray-700 dark:bg-gray-800/70 lg:col-span-2">
 										<CardHeader className="pb-2">
-											<CardTitle>{t("home.wakatime.topLanguages")}</CardTitle>
-											<CardDescription>{t("home.wakatime.mostUsedLanguages")}</CardDescription>
+											<CardTitle className="text-gray-900 dark:text-gray-100">{t("home.wakatime.topLanguages")}</CardTitle>
+											<CardDescription className="text-gray-600 dark:text-gray-300">
+												{t("home.wakatime.mostUsedLanguages")}
+											</CardDescription>
 										</CardHeader>
 										<CardContent>
 											<div className="space-y-3">
@@ -257,9 +283,9 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 															<div className="flex h-6 w-6 items-center justify-center">
 																<Icon icon={getLangIcon(lang.name.toLowerCase())} width="20" height="20" />
 															</div>
-															<div className="text-sm font-medium w-20">{lang.name}</div>
-															<Progress value={lang.percent} className="flex-1 h-2" />
-															<div className="text-muted-foreground text-sm text-right w-12">
+															<div className="text-sm text-gray-700 font-medium w-20 dark:text-gray-300">{lang.name}</div>
+															<Progress value={lang.percent} className="bg-gray-200 flex-1 h-2 dark:bg-gray-700" />
+															<div className="text-sm text-gray-500 text-right w-12 dark:text-gray-400">
 																{lang.percent.toFixed(1)}
 																%
 															</div>
@@ -270,13 +296,15 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 									</Card>
 
 									{/* Operating Systems Card */}
-									<Card className="lg:col-span-2">
+									<Card className="bg-white/70 backdrop-blur-md dark:border-gray-700 dark:bg-gray-800/70 lg:col-span-2">
 										<CardHeader className="pb-2">
-											<CardTitle className="flex gap-2 items-center">
+											<CardTitle className="text-gray-900 flex gap-2 items-center dark:text-gray-100">
 												<Icon icon="mingcute:laptop-line" className="h-5 w-5" />
 												{t("home.wakatime.operatingSystems")}
 											</CardTitle>
-											<CardDescription>{t("home.wakatime.environmentUsage")}</CardDescription>
+											<CardDescription className="text-gray-600 dark:text-gray-300">
+												{t("home.wakatime.environmentUsage")}
+											</CardDescription>
 										</CardHeader>
 										<CardContent>
 											<div className="space-y-3">
@@ -301,9 +329,9 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 																					<Icon icon="mingcute:cpu-line" className="h-4 w-4" />
 																				)}
 															</div>
-															<div className="text-sm font-medium w-20">{os.name}</div>
-															<Progress value={os.percent} className="flex-1 h-2" />
-															<div className="text-muted-foreground text-sm text-right w-12">
+															<div className="text-sm text-gray-700 font-medium w-20 dark:text-gray-300">{os.name}</div>
+															<Progress value={os.percent} className="bg-gray-200 flex-1 h-2 dark:bg-gray-700" />
+															<div className="text-sm text-gray-500 text-right w-12 dark:text-gray-400">
 																{os.percent.toFixed(1)}
 																%
 															</div>
@@ -314,47 +342,66 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 									</Card>
 
 									{/* Activity Insights Card */}
-									<Card className="lg:col-span-2">
+									<Card className="bg-white/70 backdrop-blur-md dark:border-gray-700 dark:bg-gray-800/70 lg:col-span-2">
 										<CardHeader className="pb-2">
-											<CardTitle className="flex gap-2 items-center">
+											<CardTitle className="text-gray-900 flex gap-2 items-center dark:text-gray-100">
 												<Icon icon="mingcute:trending-up-line" className="h-5 w-5" />
 												{t("home.wakatime.activityInsights")}
 											</CardTitle>
-											<CardDescription>{t("home.wakatime.codingHabits")}</CardDescription>
+											<CardDescription className="text-gray-600 dark:text-gray-300">
+												{t("home.wakatime.codingHabits")}
+											</CardDescription>
 										</CardHeader>
 										<CardContent>
 											<div className="space-y-4">
 												{/* Daily Average */}
 												<div className="flex flex-col gap-1">
 													<div className="flex items-center justify-between">
-														<span className="text-sm font-medium">{t("home.wakatime.dailyAverage")}</span>
-														<span className="text-[#77BBDD] font-bold">
+														<span className="text-sm text-gray-700 font-medium dark:text-gray-300">
+															{t("home.wakatime.dailyAverage")}
+														</span>
+														<span className="text-[#77BBDD] font-bold dark:text-[#88CCEE]">
 															{wakaTimeData.timeTrackingData.data.grand_total.human_readable_daily_average}
 														</span>
 													</div>
 													<Progress
 														value={Math.min(
-															(Number.parseFloat(wakaTimeData.timeTrackingData.data.grand_total.human_readable_daily_average.replace(/[^0-9.]/g, "")) / 8) * 100,
+															(Number.parseFloat(
+																wakaTimeData.timeTrackingData.data.grand_total.human_readable_daily_average.replace(
+																	/[^0-9.]/g,
+																	"",
+																),
+															)
+															/ 8)
+														* 100,
 															100,
 														)}
-														className="h-2"
+														className="bg-gray-200 h-2 dark:bg-gray-700"
 													/>
 												</div>
 
 												{/* Productivity Score - Calculated based on consistency */}
 												<div className="flex flex-col gap-1">
 													<div className="flex items-center justify-between">
-														<span className="text-sm font-medium">{t("home.wakatime.productivityScore")}</span>
-														<span className="text-[#77BBDD] font-bold">
-															{Math.round((wakaTimeData.timeTrackingData.data.range.days_minus_holidays
-																/ wakaTimeData.timeTrackingData.data.range.days_including_holidays) * 100)}
+														<span className="text-sm text-gray-700 font-medium dark:text-gray-300">
+															{t("home.wakatime.productivityScore")}
+														</span>
+														<span className="text-[#77BBDD] font-bold dark:text-[#88CCEE]">
+															{Math.round(
+																(wakaTimeData.timeTrackingData.data.range.days_minus_holidays
+																	/ wakaTimeData.timeTrackingData.data.range.days_including_holidays)
+																* 100,
+															)}
 															%
 														</span>
 													</div>
 													<Progress
-														value={(wakaTimeData.timeTrackingData.data.range.days_minus_holidays
-															/ wakaTimeData.timeTrackingData.data.range.days_including_holidays) * 100}
-														className="h-2"
+														value={
+															(wakaTimeData.timeTrackingData.data.range.days_minus_holidays
+																/ wakaTimeData.timeTrackingData.data.range.days_including_holidays)
+															* 100
+														}
+														className="bg-gray-200 h-2 dark:bg-gray-700"
 													/>
 												</div>
 											</div>
@@ -363,12 +410,10 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 								</div>
 							)
 						: (
-								<Card>
+								<Card className="transition-all dark:border-gray-700 dark:bg-gray-800/50 hover:shadow-md dark:hover:shadow-black/20 dark:hover:shadow-lg">
 									<CardContent className="py-8 text-center">
-										<p className="text-muted-foreground">{t("home.wakatime.unableToLoad")}</p>
-										<p className="text-muted-foreground text-sm mt-2">
-											{t("home.wakatime.checkSettings")}
-										</p>
+										<p className="text-gray-500 dark:text-gray-400">{t("home.wakatime.unableToLoad")}</p>
+										<p className="text-sm text-gray-500 mt-2 dark:text-gray-400">{t("home.wakatime.checkSettings")}</p>
 									</CardContent>
 								</Card>
 							)}
