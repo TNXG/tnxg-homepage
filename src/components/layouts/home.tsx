@@ -247,7 +247,6 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 													</p>
 												</div>
 
-												{/* Period */}
 												<div className="flex flex-col space-y-1">
 													<div className="flex gap-2 items-center">
 														<Icon icon="mingcute:time-line" className="text-[#77BBDD] h-4 w-4 dark:text-[#88CCEE]" />
@@ -255,10 +254,8 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 															{t("home.wakatime.period")}
 														</span>
 													</div>
-													<div className="text-sm text-gray-600 font-medium flex gap-1 items-center dark:text-gray-300">
-														<span>{formatDate(wakaTimeData.timeTrackingData.data.range.start)}</span>
-														<span>-</span>
-														<span>{formatDate(wakaTimeData.timeTrackingData.data.range.end)}</span>
+													<div className="text-sm text-gray-600 font-medium dark:text-gray-300">
+														<span>{t("home.wakatime.periodDescription", { start: formatDate(wakaTimeData.timeTrackingData.data.range.start), end: formatDate(wakaTimeData.timeTrackingData.data.range.end) })}</span>
 													</div>
 												</div>
 											</div>
@@ -354,7 +351,6 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 										</CardHeader>
 										<CardContent>
 											<div className="space-y-4">
-												{/* Daily Average */}
 												<div className="flex flex-col gap-1">
 													<div className="flex items-center justify-between">
 														<span className="text-sm text-gray-700 font-medium dark:text-gray-300">
@@ -362,25 +358,32 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 														</span>
 														<span className="text-[#77BBDD] font-bold dark:text-[#88CCEE]">
 															{wakaTimeData.timeTrackingData.data.grand_total.human_readable_daily_average}
+															{" "}
+															/ 24 hrs
 														</span>
 													</div>
 													<Progress
 														value={Math.min(
-															(Number.parseFloat(
-																wakaTimeData.timeTrackingData.data.grand_total.human_readable_daily_average.replace(
-																	/[^0-9.]/g,
-																	"",
-																),
-															)
-															/ 8)
-														* 100,
+															(() => {
+																// 提取每日平均编码时间（小时）
+																const dailyAvgStr = wakaTimeData.timeTrackingData.data.grand_total.human_readable_daily_average;
+																// 提取数字部分（小时）
+																const hourMatch = dailyAvgStr.match(/([\d.]+)\s*hrs?/);
+																const minMatch = dailyAvgStr.match(/([\d.]+)\s*mins?/);
+
+																let totalHours = 0;
+																if (hourMatch)
+																	totalHours += Number.parseFloat(hourMatch[1]);
+																if (minMatch)
+																	totalHours += Number.parseFloat(minMatch[1]) / 60;
+																return (totalHours / 24) * 100;
+															})(),
 															100,
 														)}
 														className="bg-gray-200 h-2 dark:bg-gray-700"
 													/>
 												</div>
 
-												{/* Productivity Score - Calculated based on consistency */}
 												<div className="flex flex-col gap-1">
 													<div className="flex items-center justify-between">
 														<span className="text-sm text-gray-700 font-medium dark:text-gray-300">

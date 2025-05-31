@@ -85,8 +85,7 @@ export const SidebarAvatar = () => {
 					const appdesc = await response.json();
 					setAppDescCache(appdesc);
 					return appdesc;
-				}
- catch (error) {
+				} catch (error) {
 					console.error(error);
 				}
 			}
@@ -130,8 +129,7 @@ export const SidebarAvatar = () => {
 					if (data.mediaInfo) {
 						setMediaInfo(data.mediaInfo);
 					}
-				}
- catch (error) {
+				} catch (error) {
 					console.error("Error parsing report message:", error);
 				}
 			};
@@ -149,8 +147,7 @@ export const SidebarAvatar = () => {
 					if (codeEventData) {
 						setCodeEvent(codeEventData);
 					}
-				}
- catch {
+				} catch {
 					console.warn("Error parsing code event message:", event.data);
 				}
 			};
