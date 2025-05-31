@@ -16,7 +16,9 @@
 				"blog": "ブログ",
 				"github": "GitHub",
 				"twitter": "Twitter",
-				"telegram": "Telegram"
+				"telegram": "Telegram",
+				"bilibili": "Bilibili",
+				"neteasemusic": "网易云音乐"
 			}
 		}
 	},
@@ -25,7 +27,8 @@
 			"home": "ホーム",
 			"recently": "動向",
 			"friends": "リンク",
-			"terms": "規約と条件"
+			"terms": "規約と条件",
+			"anime": "アニメ"
 		},
 		"copyright": {
 			"text": "© {date} 天翔TNXG."
@@ -166,5 +169,48 @@
 		"selectTheme": "テーマを選択"
 	},
 	"currentTheme": "現在のテーマ",
-	"language": "言語"
+	"language": "言語",
+	"learning": {
+		"sectionTitle": "学習の旅✨",
+		"currentlyStudying": {
+			"title": "さらに学習中",
+			"description": "彼女たちのより多くの小さな秘密を探求しましょう~"
+		},
+		"exploring": {
+			"title": "学習を試みる",
+			"description": "彼女たちのより多くの可愛らしさを探求しましょう~"
+		},
+		"frameworks": {
+			"title": "習得できるかもしれないフレームワーク",
+			"description": "もっと面白いおもちゃを学びましょう~"
+		}
+	},
+	"home": {
+		"wakatime": {
+			"title": "コーディングの日常~",
+			"allTime": "すべてのコーディング時間",
+			"recentActivity": "最近の活動",
+			"totalTime": "合計コーディング時間",
+			"dailyAvg": "1日の平均作業時間",
+			"bestDay": "最も集中した日",
+			"topLanguages": "よく使う言語",
+			"mostUsedLanguages": "最も使用する言語",
+			"operatingSystems": "使用OS",
+			"environmentUsage": "開発環境の使用状況ニャ~",
+			"activitySummary": "活動概要",
+			"activityOverview": "コーディング生活の全体像",
+			"activeDays": "実際に作業した日数",
+			"totalDays": "総日数",
+			"period": "統計期間",
+			"periodDescription": "大体 {start} から {end} までだよ~",
+			"days": "日",
+			"unableToLoad": "読み込みに失敗しました",
+			"checkSettings": "WakaTimeの設定を確認するか、後でもう一度試してください~",
+			"keyStats": "主要な統計",
+			"activityInsights": "アクティビティの洞察",
+			"codingHabits": "コーディングの習慣",
+			"dailyAverage": "1日の平均コーディング時間",
+			"productivityScore": "生産性スコア"
+		}
+	}
 }

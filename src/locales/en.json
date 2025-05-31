@@ -16,7 +16,9 @@
 				"blog": "Blog",
 				"github": "GitHub",
 				"twitter": "Twitter",
-				"telegram": "Telegram"
+				"telegram": "Telegram",
+				"bilibili": "Bilibili",
+				"neteasemusic": "网易云音乐"
 			}
 		}
 	},
@@ -25,7 +27,8 @@
 			"home": "Home",
 			"recently": "Recently",
 			"friends": "Links",
-			"terms": "Terms & Conditions"
+			"terms": "Terms & Conditions",
+			"anime": "Anime"
 		},
 		"copyright": {
 			"text": "© {date} 天翔TNXG."
@@ -166,5 +169,48 @@
 		"selectTheme": "Select Theme"
 	},
 	"currentTheme": "Current Theme",
-	"language": "Language"
+	"language": "Language",
+	"learning": {
+		"sectionTitle": "Learning Journey✨",
+		"currentlyStudying": {
+			"title": "Currently Studying",
+			"description": "Explore more of their little secrets~"
+		},
+		"exploring": {
+			"title": "Trying to Learn",
+			"description": "Explore more of their cuteness~"
+		},
+		"frameworks": {
+			"title": "Frameworks I Might Master",
+			"description": "Learn more fun toys~"
+		}
+	},
+	"home": {
+		"wakatime": {
+			"title": "Coding Daily Life~",
+			"allTime": "All Time Coding",
+			"recentActivity": "Recent Busy Time",
+			"totalTime": "Total Coding Time",
+			"dailyAvg": "Daily Average Idle Time",
+			"bestDay": "Busiest Day",
+			"topLanguages": "Favorite Languages",
+			"mostUsedLanguages": "Most Used Languages",
+			"operatingSystems": "Operating Systems Used",
+			"environmentUsage": "Development Environment Usage Meow~",
+			"activitySummary": "Busy Little Summary",
+			"activityOverview": "Overview of Coding Life",
+			"activeDays": "Days Actually Worked",
+			"totalDays": "Total Days",
+			"period": "Statistics Period",
+			"periodDescription": "Roughly from {start} to {end}喔~",
+			"days": "days",
+			"unableToLoad": "Oops, failed to load",
+			"checkSettings": "Check WakaTime settings or try again later~",
+			"keyStats": "Key Stats",
+			"activityInsights": "Activity Insights",
+			"codingHabits": "Coding Habits",
+			"dailyAverage": "Daily Average Coding Time",
+			"productivityScore": "Productivity Score"
+		}
+	}
 }
