@@ -17,7 +17,7 @@
 				"github": "GitHub",
 				"twitter": "Twitter",
 				"telegram": "Telegram",
-				"bilibili": "Bilibili",
+				"bilibili": "ビリビリ",
 				"neteasemusic": "网易云音乐"
 			}
 		}
@@ -132,7 +132,7 @@
 			},
 			"optional": {
 				"title": "オプション情報",
-				"description": "これらのフィールドはオプションですが、サイトをよりよく理解するのに役立ちます。"
+				"description": "これらのフィールドはオプションですが、サイトをより良く理解するのに役立ちます。"
 			}
 		}
 	},
@@ -171,25 +171,25 @@
 	"currentTheme": "現在のテーマ",
 	"language": "言語",
 	"learning": {
-		"sectionTitle": "学習の旅✨",
+		"sectionTitle": "お勉強の旅✨",
 		"currentlyStudying": {
-			"title": "さらに学習中",
-			"description": "彼女たちのより多くの小さな秘密を探求しましょう~"
+			"title": "もっと知りたいこと",
+			"description": "彼女たちの小さな秘密をもっと探検しちゃおう～"
 		},
 		"exploring": {
-			"title": "学習を試みる",
-			"description": "彼女たちのより多くの可愛らしさを探求しましょう~"
+			"title": "ちょっとお勉強",
+			"description": "彼女たちの可愛いところをもっと見つけちゃおう～"
 		},
 		"frameworks": {
-			"title": "習得できるかもしれないフレームワーク",
-			"description": "もっと面白いおもちゃを学びましょう~"
+			"title": "使えるようになるかもなフレームワーク",
+			"description": "もっと面白いおもちゃを学ぼう～"
 		}
 	},
 	"home": {
 		"wakatime": {
-			"title": "コーディングの日常~",
+			"title": "カタカタの毎日～",
 			"allTime": "すべてのコーディング時間",
-			"recentActivity": "最近の活動",
+			"recentActivity": "最近の忙碌时刻",
 			"totalTime": "合計コーディング時間",
 			"dailyAvg": "1日の平均作業時間",
 			"bestDay": "最も集中した日",
@@ -202,10 +202,10 @@
 			"activeDays": "実際に作業した日数",
 			"totalDays": "総日数",
 			"period": "統計期間",
-			"periodDescription": "大体 {start} から {end} までだよ~",
+			"periodDescription": "大体 {start} から {end} までだよ～",
 			"days": "日",
-			"unableToLoad": "読み込みに失敗しました",
-			"checkSettings": "WakaTimeの設定を確認するか、後でもう一度試してください~",
+			"unableToLoad": "あれれ、読み込めない...",
+			"checkSettings": "WakaTimeの設定を確認するか、後でもう一度試してください～",
 			"keyStats": "主要な統計",
 			"activityInsights": "アクティビティの洞察",
 			"codingHabits": "コーディングの習慣",
