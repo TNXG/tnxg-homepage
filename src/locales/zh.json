@@ -169,5 +169,47 @@
 		"selectTheme": "选择主题"
 	},
 	"currentTheme": "当前主题",
-	"language": "语言"
+	"language": "语言",
+	"learning": {
+		"sectionTitle": "学习之旅",
+		"currentlyStudying": {
+			"title": "正在进一步学习",
+			"description": "深入核心技术知识"
+		},
+		"exploring": {
+			"title": "尝试学习",
+			"description": "探索新兴技术"
+		},
+		"frameworks": {
+			"title": "或许可以掌握的框架",
+			"description": "学习管道中的框架和工具"
+		}
+	},
+	"home": {
+		"wakatime": {
+			"title": "编程活动",
+			"allTime": "全部时间",
+			"recentActivity": "最近活动",
+			"totalTime": "总时间",
+			"dailyAvg": "日均",
+			"bestDay": "最佳日",
+			"topLanguages": "常用语言",
+			"mostUsedLanguages": "最常用的编程语言",
+			"operatingSystems": "操作系统",
+			"environmentUsage": "开发环境使用情况",
+			"activitySummary": "活动摘要",
+			"activityOverview": "编程活动概览",
+			"activeDays": "活跃天数",
+			"totalDays": "总天数",
+			"period": "时间段",
+			"days": "天",
+			"unableToLoad": "无法加载编程统计数据",
+			"checkSettings": "请检查您的WakaTime共享设置或稍后再试",
+			"keyStats": "核心数据",
+			"activityInsights": "活动洞察",
+			"codingHabits": "编程习惯分析",
+			"dailyAverage": "日均编程时间",
+			"productivityScore": "生产力得分"
+		}
+	}
 }

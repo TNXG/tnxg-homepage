@@ -80,6 +80,87 @@ export const SiteConfig = {
 	Shiki: {
 		langs: ["bat", "c", "cpp", "css", "diff", "html", "ini", "java", "js", "json", "log", "makefile", "matlab", "md", "mdc", "powershell", "python", "sh", "sql", "ssh-config", "toml", "ts", "tsx", "vb", "vue", "xml", "yaml"],
 	},
+	LearningConfig: {
+		sections: {
+			currentlyStudying: {
+				title: "learning.currentlyStudying.title",
+				description: "learning.currentlyStudying.description",
+				icon: "TrendingUp",
+				iconColor: "text-green-500",
+				languages: [
+					{
+						name: "Python",
+						icon: "logos:python",
+						color: "bg-blue-500 hover:bg-blue-600",
+					},
+					{
+						name: "JavaScript",
+						icon: "logos:javascript",
+						color: "bg-yellow-500 hover:bg-yellow-600",
+					},
+					{
+						name: "TypeScript",
+						icon: "logos:typescript-icon",
+						color: "bg-blue-600 hover:bg-blue-700",
+					},
+				],
+			},
+			exploring: {
+				title: "learning.exploring.title",
+				description: "learning.exploring.description",
+				icon: "Code",
+				iconColor: "text-orange-500",
+				languages: [
+					{
+						name: "Rust",
+						icon: "logos:rust",
+						color: "text-orange-500 border-orange-500 hover:bg-orange-50",
+					},
+					{
+						name: "Golang",
+						icon: "logos:go",
+						color: "text-cyan-500 border-cyan-500 hover:bg-cyan-50",
+					},
+				],
+			},
+			frameworks: {
+				title: "learning.frameworks.title",
+				description: "learning.frameworks.description",
+				icon: "Award",
+				iconColor: "text-purple-500",
+				frameworks: [
+					{
+						name: "Flask",
+						icon: "simple-icons:flask",
+						color: "bg-gray-50 hover:bg-gray-100",
+						iconColor: "text-gray-700",
+					},
+					{
+						name: "Nuxt (Vue)",
+						icon: "logos:nuxt-icon",
+						color: "bg-green-50 hover:bg-green-100",
+					},
+					{
+						name: "Next (React)",
+						icon: "logos:nextjs-icon",
+						color: "bg-blue-50 hover:bg-blue-100",
+					},
+					{
+						name: "Flutter",
+						icon: "logos:flutter",
+						color: "bg-cyan-50 hover:bg-cyan-100",
+					},
+					{
+						name: "Tauri",
+						icon: "simple-icons:tauri",
+						color: "bg-orange-50 hover:bg-orange-100",
+						iconColor: "text-orange-600",
+					},
+				],
+			},
+		},
+		sectionTitle: "learning.sectionTitle",
+	},
 };
 
 export const SidebarConfig = {
@@ -132,8 +213,8 @@ export const APIConfig = {
 	bangumi: {
 		username: "tnxg",
 	},
-	baseURL: "https://mx.tnxg.top/api/v2",
 	endpoints: {
+		baseURL: "https://mx.tnxg.top/api/v2",
 		// 自制的后端api，详见https://github.com/TNXG/space-api/
 		friends: "https://api-space.tnxg.top/links",
 		space: "https://api-space.tnxg.top",
@@ -143,5 +224,10 @@ export const APIConfig = {
 		// 实际上以下的api都是Mix-Space提供的，这里提供一个方便更换的接口
 		recently: "https://mx.tnxg.top/api/v2/recently/all",
 		status: "https://api-space.tnxg.top/status/getReportMsg",
+		wakatime: {
+			TimeTracking: "https://wakatime.com/share/@TNXG/2c1b5024-665a-48b3-a349-593e38ed5662.json",
+			Language: "https://wakatime.com/share/@TNXG/fc9f392a-373e-4826-9ab1-074c4bb241b2.json	",
+			OSUsage: "https://wakatime.com/share/@TNXG/bab66e06-f956-4807-833e-9e825ba1f7e3.json",
+		},
 	},
 };

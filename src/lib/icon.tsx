@@ -106,6 +106,7 @@ const ext2lang: Record<string, string> = {
 	"jsx": "javascript-react",
 	"javascriptreact": "javascript-react",
 	"vb": "visual-studio",
+	"vue.js": "vue",
 };
 
 export function getLangIcon(extension?: string): string {

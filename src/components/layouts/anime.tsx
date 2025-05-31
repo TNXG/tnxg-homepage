@@ -78,7 +78,9 @@ const CollectionBadge = ({ type, subjectType }: { type: number; subjectType: num
 
 const AnimeCard = ({ item }: { item: BangumiCollectionItem }) => {
 	const { subject, type, rate, ep_status, vol_status } = item;
-	const progress = subject.eps ? Math.round((ep_status / subject.eps) * 100) : 0;
+	const progress = subject.eps
+		? Math.round((ep_status / subject.eps) * 100)
+		: 0;
 
 	return (
 		<Card className="mx-auto w-[80%] transition-shadow duration-300 overflow-hidden sm:w-full hover:shadow-md">
@@ -240,7 +242,9 @@ export const BangumiLayout = ({ collections, userInfo }: { collections: BangumiC
 	};
 
 	// 默认显示的标签（如果有"在看"的内容，则默认显示"在看"，否则显示"看过"）
-	const defaultTab = collectionsByType[3].length > 0 ? "3" : "2";
+	const defaultTab = collectionsByType[3].length > 0
+		? "3"
+		: "2";
 
 	return (
 		<div className="space-y-6">
