@@ -226,7 +226,7 @@ export const APIConfig = {
 		misskey: "https://afhub.top",
 		// 实际上以下的api都是Mix-Space提供的，这里提供一个方便更换的接口
 		recently: "https://mx.tnxg.top/api/v2/recently/all",
-		status: "https://api-space.tnxg.top/status/getReportMsg",
+		status: "https://api-space.tnxg.top/status",
 		wakatime: {
 			TimeTracking: "https://wakatime.com/share/@TNXG/2c1b5024-665a-48b3-a349-593e38ed5662.json",
 			Language: "https://wakatime.com/share/@TNXG/fc9f392a-373e-4826-9ab1-074c4bb241b2.json	",
