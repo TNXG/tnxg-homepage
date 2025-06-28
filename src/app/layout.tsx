@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { Background } from "@/components/background";
+import { ScrollToTop } from "@/components/scroll-to-top";
 import { SidebarLayout } from "@/components/sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Favicon } from "@/components/ui/favicon";
@@ -47,6 +48,7 @@ export async function RootLayout({ children }: { readonly children: React.ReactN
 					</NextIntlClientProvider>
 				</ThemeProvider>
 				<Toaster />
+				<ScrollToTop />
 			</body>
 		</html>
 	);

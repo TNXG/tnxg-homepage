@@ -3,6 +3,7 @@
 import type React from "react";
 import type { WakaTimeData } from "@/app/page";
 import { Icon } from "@iconify/react";
+import LiquidGlass from "liquid-glass-react";
 import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
