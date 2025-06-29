@@ -24,7 +24,7 @@ import { Input } from "@/components/ui/input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
-import { serverAction, verifyEmail } from "@/lib/server-utils";
+import { sendVerificationCode as sendEmailVerificationCode, serverAction } from "@/lib/server-utils";
 
 const formSchema = (t: any) =>
 	z.object({
@@ -164,7 +164,7 @@ export function SubmitFriendForm() {
 		setIsVerifying(true);
 
 		try {
-			const result = await verifyEmail(email);
+			const result = await sendEmailVerificationCode(email, "links");
 
 			if (result.success) {
 				setVerificationSent(true);

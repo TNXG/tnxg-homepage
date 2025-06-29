@@ -212,5 +212,48 @@
 			"dailyAverage": "每天平均敲多久",
 			"productivityScore": "效率小评分"
 		}
+	},
+	"login": {
+		"title": "欢迎回来",
+		"subtitle": "登录你的账户",
+		"email_label": "邮箱地址",
+		"email_placeholder": "请输入你的邮箱",
+		"code_label": "验证码",
+		"code_placeholder": "请输入6位验证码",
+		"get_code": "获取验证码",
+		"sending": "发送中...",
+		"verifying": "验证中...",
+		"login_btn": "登录",
+		"resend": "重新发送",
+		"resend_with_countdown": "重新发送（{s}秒）",
+		"back_to_email": "返回邮箱输入",
+		"or_continue_with": "或使用以下方式登录",
+		"google": "谷歌",
+		"github": "GitHub",
+		"errors": {
+			"empty_email": "请输入邮箱地址",
+			"empty_code": "请输入验证码",
+			"send_code_failed": "验证码发送失败",
+			"oauth_not_implemented": "{{provider}} 登录暂未实现",
+			"email_invalid": "未知的邮箱格式，请检查输入"
+		},
+		"name": "登录",
+		"toast": {
+			"loginSuccess": "登录成功"
+		}
+	},
+	"api": {
+		"email": {
+			"send": {
+				"success": "邮件发送成功！",
+				"error": "验证码发送时发生错误",
+				"service_error": "发送验证码时发生错误"
+			},
+			"verify": {
+				"success": "验证码验证成功！",
+				"error": "验证码验证时发生错误",
+				"service_error": "验证码验证时发生错误"
+			}
+		}
 	}
 }

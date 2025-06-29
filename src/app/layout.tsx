@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { headers } from "next/headers";
 import { Background } from "@/components/background";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { SidebarLayout } from "@/components/sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Favicon } from "@/components/ui/favicon";
+
 import { Toaster } from "@/components/ui/sonner";
 
 import { SiteConfig } from "@/config";
@@ -29,9 +31,14 @@ export async function generateMetadata(): Promise<Metadata> {
 	};
 }
 
-export async function RootLayout({ children }: { readonly children: React.ReactNode }) {
+export default async function RootLayout({ children }: { readonly children: React.ReactNode }) {
+	const headersList = await headers();
+	const pathname = headersList.get("x-pathname") || "";
 	const locale = await getLocale();
 	const messages = await getMessages();
+
+	const excludedPaths = ["/login", "/dashboard"];
+	const hideComponents = excludedPaths.includes(pathname);
 
 	return (
 		<html lang={locale} suppressHydrationWarning>
@@ -39,19 +46,29 @@ export async function RootLayout({ children }: { readonly children: React.ReactN
 				<Favicon />
 			</head>
 			<body>
-				<ThemeProvider attribute={["class", "data-theme"]} defaultTheme="system" enableSystem storageKey="theme" disableTransitionOnChange>
+				<ThemeProvider
+					attribute={["class", "data-theme"]}
+					defaultTheme="system"
+					enableSystem
+					storageKey="theme"
+					disableTransitionOnChange
+				>
 					<NextIntlClientProvider messages={messages}>
-						<SidebarLayout>
-							{children}
-							<Background />
-						</SidebarLayout>
+						{hideComponents
+							? (
+									<>{children}</>
+								)
+							: (
+									<SidebarLayout>
+										{children}
+										<Background />
+									</SidebarLayout>
+								)}
 					</NextIntlClientProvider>
 				</ThemeProvider>
 				<Toaster />
-				<ScrollToTop />
+				{!hideComponents && <ScrollToTop />}
 			</body>
 		</html>
 	);
 }
-
-export default RootLayout;

@@ -3,7 +3,6 @@
 import type React from "react";
 import type { WakaTimeData } from "@/app/page";
 import { Icon } from "@iconify/react";
-import LiquidGlass from "liquid-glass-react";
 import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -34,7 +33,7 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 				<div className="avatar">
 					<Avatar className="mask mask-squircle size-24 -z-1">
 						<AvatarImage
-							src={SiteConfig.Avatar || "/placeholder.svg"}
+							src={SiteConfig.Avatar}
 							alt={t(SiteConfig.master)}
 							loading="lazy"
 							className="size-24 object-cover"

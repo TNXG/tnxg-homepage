@@ -1,216 +1,225 @@
 {
-	"site": {
-		"title": "TNXG's Space",
-		"master": "天翔TNXG",
-		"description": "Tomorrow has yet to come, may hope remain in the heart",
-		"author": {
-			"name": "天翔TNXG"
-		},
-		"home": {
-			"greeting": "Hello",
-			"namePrefix": "I'm",
-			"nameJP": "いゆくるず iykrzu",
-			"nameEN": "TiaNXianG",
-			"motto": "Tomorrow has yet to come, may hope remain in the heart",
-			"socialLinks": {
-				"blog": "Blog",
-				"github": "GitHub",
-				"twitter": "Twitter",
-				"telegram": "Telegram",
-				"bilibili": "Bilibili",
-				"neteasemusic": "网易云音乐"
-			}
-		}
-	},
-	"sidebar": {
-		"sections": {
-			"home": "Home",
-			"recently": "Recently",
-			"friends": "Links",
-			"terms": "Terms & Conditions",
-			"anime": "Anime"
-		},
-		"copyright": {
-			"text": "© {date} 天翔TNXG."
-		},
-		"externalLinks": {
-			"qq": "QQ Group",
-			"blog": "Blog",
-			"github": "GitHub",
-			"telegram": "Telegram Group"
-		},
-		"status": {
-			"masterUsing": "{master} is using {message}",
-			"avatarAlt": "Avatar",
-			"albumAlt": "Album Cover",
-			"busy": "is busy with",
-			"codingAt": "Coding at {time}",
-			"usingEditorOnPlatform": "Using {editor} on {platform}"
-		}
-	},
-	"friends": {
-		"title": "Links",
-		"description": {
-			"text": "You can click",
-			"link": {
-				"text": "朋友们 - 天翔TNXGの空间站"
-			},
-			"suffix": "to apply for a link!"
-		},
-		"opml": {
-			"text": "I created the site's",
-			"link": {
-				"text": "Friend Link Source OPML Aggregation"
-			},
-			"suffix": "which can be imported into a reader or",
-			"followList": "subscribe to the Follow List."
-		},
-		"submit": {
-			"button": "Submit Friend Link",
-			"title": "Submit Friend Link",
-			"description": "Fill out the form below to submit your website as a friend link.",
-			"step": "Step",
-			"of": "of",
-			"form": {
-				"name": "Website Name",
-				"url": "Website URL",
-				"avatar": "Avatar URL",
-				"description": "Description",
-				"email": "Email",
-				"verify": "Verify",
-				"sent": "Sent",
-				"code": "Verification Code",
-				"rss": "RSS URL",
-				"techstack": "Tech Stack",
-				"optional": "optional",
-				"optionalFields": "Optional Fields",
-				"optionalDescription": "These fields are optional but help us better understand your site.",
-				"techstackHint": "Comma separated list of technologies used on your site",
-				"cancel": "Cancel",
-				"submit": "Submit",
-				"submitting": "Submitting...",
-				"next": "Next",
-				"back": "Back",
-				"rssHint": "Add your RSS feed URL to share your latest content."
-			},
-			"optional": {
-				"title": "Optional Information",
-				"description": "These fields are optional but help us better understand your site."
-			},
-			"terms": {
-				"title": "Submission Guidelines",
-				"description": "Before submitting, please read our guidelines and terms of service.",
-				"readMore": "Read full guidelines",
-				"agree": "I agree to the terms and conditions",
-				"agreeDescription": "By checking this box, you agree to our friend link guidelines.",
-				"rssHint": "Add your RSS feed URL to share your latest content."
-			},
-			"validation": {
-				"nameMin": "Name must be at least 1 characters",
-				"urlValid": "Please enter a valid URL",
-				"avatarValid": "Please enter a valid avatar URL",
-				"descriptionMin": "Description must be at least 2 characters",
-				"emailValid": "Please enter a valid email",
-				"codeRequired": "Please enter the verification code",
-				"rssValid": "Please enter a valid RSS URL",
-				"termsRequired": "You must agree to the terms and conditions"
-			},
-			"placeholder": {
-				"name": "My Awesome Site",
-				"url": "https://example.com",
-				"avatar": "https://example.com/avatar.png",
-				"description": "A brief description of your website",
-				"email": "your@email.com",
-				"code": "123456",
-				"rss": "https://example.com/feed",
-				"techstack": "React, Next.js, Tailwind (comma separated)"
-			},
-			"toast": {
-				"verificationSent": "Verification code sent",
-				"checkEmail": "Please check your email for the verification code",
-				"error": "Error",
-				"verificationFailed": "Failed to send verification code",
-				"success": "Success",
-				"submitSuccess": "Your friend link has been submitted successfully",
-				"submitFailed": "Failed to submit friend link"
-			}
-		}
-	},
-	"recently": {
-		"title": "Recently",
-		"description": "Every step is a search for my own light.\n\nOn this path, I quietly walk through every dawn | No need to announce loudly, nor fear loneliness\nNo rush to chase the distant, as my steps already dance gently in my heart | Every turn I take is a firm belief deep within me\nSometimes lost, but it's only to find a better version of myself | In ordinary days, I quietly await the moment when things feel different\nIt's those small, persistent efforts that make everything real and warm | Until one day, all the little pieces come together to form my story.\n\nToday, I am taking one step closer to the person I will be tomorrow"
-	},
-	"common": {
-		"switchLanguage": "Switch Language",
-		"errors": {
-			"content_load_failed": "Failed to load content. Please try again later."
-		}
-	},
-	"languages": {
-		"en": "英語",
-		"zh": "中国語",
-		"ja": "日本語",
-		"en-US": "English",
-		"zh-CN": "中文",
-		"ja-JP": "日本語",
-		"searchLanguages": "Search Languages",
-		"noLanguageFound": "Language not found"
-	},
-	"currentLanguage": "Current Language",
-	"settings": "Settings",
-	"settingsDescription": "Choose your preferences here",
-	"theme": "Theme",
-	"themes": {
-		"light": "Light",
-		"dark": "Dark",
-		"system": "Follow System",
-		"noThemeFound": "Theme not found",
-		"searchThemes": "Search Themes",
-		"selectTheme": "Select Theme"
-	},
-	"currentTheme": "Current Theme",
-	"language": "Language",
-	"learning": {
-		"sectionTitle": "Learning Journey✨",
-		"currentlyStudying": {
-			"title": "Currently Studying",
-			"description": "Explore more of their little secrets~"
-		},
-		"exploring": {
-			"title": "Trying to Learn",
-			"description": "Explore more of their cuteness~"
-		},
-		"frameworks": {
-			"title": "Frameworks I Might Master",
-			"description": "Learn more fun toys~"
-		}
-	},
-	"home": {
-		"wakatime": {
-			"title": "Coding Daily Life~",
-			"allTime": "All Time Coding",
-			"recentActivity": "Recent Busy Time",
-			"totalTime": "Total Coding Time",
-			"dailyAvg": "Daily Average Idle Time",
-			"bestDay": "Busiest Day",
-			"topLanguages": "Favorite Languages",
-			"mostUsedLanguages": "Most Used Languages",
-			"operatingSystems": "Operating Systems Used",
-			"environmentUsage": "Development Environment Usage Meow~",
-			"activitySummary": "Busy Little Summary",
-			"activityOverview": "Overview of Coding Life",
-			"activeDays": "Days Actually Worked",
-			"totalDays": "Total Days",
-			"period": "Statistics Period",
-			"periodDescription": "Roughly from {start} to {end}喔~",
-			"days": "days",
-			"unableToLoad": "Oops, failed to load",
-			"checkSettings": "Check WakaTime settings or try again later~",
-			"keyStats": "Key Stats",
-			"activityInsights": "Activity Insights",
-			"codingHabits": "Coding Habits",
-			"dailyAverage": "Daily Average Coding Time",
-			"productivityScore": "Productivity Score"
-		}
-	}
+  "site": {
+    "title": "TNXG's Space",
+    "master": "天翔TNXG",
+    "description": "Tomorrow has yet to come, may hope remain in the heart",
+    "author": {
+      "name": "天翔TNXG"
+    },
+    "home": {
+      "greeting": "Hello",
+      "namePrefix": "I'm",
+      "nameJP": "いゆくるず iykrzu",
+      "nameEN": "TiaNXianG",
+      "motto": "Tomorrow has yet to come, may hope remain in the heart",
+      "socialLinks": {
+        "blog": "Blog",
+        "github": "GitHub",
+        "twitter": "Twitter",
+        "telegram": "Telegram",
+        "bilibili": "Bilibili",
+        "neteasemusic": "网易云音乐"
+      }
+    }
+  },
+  "sidebar": {
+    "sections": {
+      "home": "Home",
+      "recently": "Recently",
+      "friends": "Links",
+      "terms": "Terms & Conditions",
+      "anime": "Anime"
+    },
+    "copyright": {
+      "text": "© {date} 天翔TNXG."
+    },
+    "externalLinks": {
+      "qq": "QQ Group",
+      "blog": "Blog",
+      "github": "GitHub",
+      "telegram": "Telegram Group"
+    },
+    "status": {
+      "masterUsing": "{master} is using {message}",
+      "avatarAlt": "Avatar",
+      "albumAlt": "Album Cover",
+      "busy": "is busy with",
+      "codingAt": "Coding at {time}",
+      "usingEditorOnPlatform": "Using {editor} on {platform}"
+    }
+  },
+  "friends": {
+    "title": "Links",
+    "description": {
+      "text": "You can click",
+      "link": {
+        "text": "朋友们 - 天翔TNXGの空间站"
+      },
+      "suffix": "to apply for a link!"
+    },
+    "opml": {
+      "text": "I created the site's",
+      "link": {
+        "text": "Friend Link Source OPML Aggregation"
+      },
+      "suffix": "which can be imported into a reader or",
+      "followList": "subscribe to the Follow List."
+    },
+    "submit": {
+      "button": "Submit Friend Link",
+      "title": "Submit Friend Link",
+      "description": "Fill out the form below to submit your website as a friend link.",
+      "step": "Step",
+      "of": "of",
+      "form": {
+        "name": "Website Name",
+        "url": "Website URL",
+        "avatar": "Avatar URL",
+        "description": "Description",
+        "email": "Email",
+        "verify": "Verify",
+        "sent": "Sent",
+        "code": "Verification Code",
+        "rss": "RSS URL",
+        "techstack": "Tech Stack",
+        "optional": "optional",
+        "optionalFields": "Optional Fields",
+        "optionalDescription": "These fields are optional but help us better understand your site.",
+        "techstackHint": "Comma separated list of technologies used on your site",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "submitting": "Submitting...",
+        "next": "Next",
+        "back": "Back",
+        "rssHint": "Add your RSS feed URL to share your latest content."
+      },
+      "optional": {
+        "title": "Optional Information",
+        "description": "These fields are optional but help us better understand your site."
+      },
+      "terms": {
+        "title": "Submission Guidelines",
+        "description": "Before submitting, please read our guidelines and terms of service.",
+        "readMore": "Read full guidelines",
+        "agree": "I agree to the terms and conditions",
+        "agreeDescription": "By checking this box, you agree to our friend link guidelines.",
+        "rssHint": "Add your RSS feed URL to share your latest content."
+      },
+      "validation": {
+        "nameMin": "Name must be at least 1 characters",
+        "urlValid": "Please enter a valid URL",
+        "avatarValid": "Please enter a valid avatar URL",
+        "descriptionMin": "Description must be at least 2 characters",
+        "emailValid": "Please enter a valid email",
+        "codeRequired": "Please enter the verification code",
+        "rssValid": "Please enter a valid RSS URL",
+        "termsRequired": "You must agree to the terms and conditions"
+      },
+      "placeholder": {
+        "name": "My Awesome Site",
+        "url": "https://example.com",
+        "avatar": "https://example.com/avatar.png",
+        "description": "A brief description of your website",
+        "email": "your@email.com",
+        "code": "123456",
+        "rss": "https://example.com/feed",
+        "techstack": "React, Next.js, Tailwind (comma separated)"
+      },
+      "toast": {
+        "verificationSent": "Verification code sent",
+        "checkEmail": "Please check your email for the verification code",
+        "error": "Error",
+        "verificationFailed": "Failed to send verification code",
+        "success": "Success",
+        "submitSuccess": "Your friend link has been submitted successfully",
+        "submitFailed": "Failed to submit friend link"
+      }
+    }
+  },
+  "recently": {
+    "title": "Recently",
+    "description": "Every step is a search for my own light.\n\nOn this path, I quietly walk through every dawn | No need to announce loudly, nor fear loneliness\nNo rush to chase the distant, as my steps already dance gently in my heart | Every turn I take is a firm belief deep within me\nSometimes lost, but it's only to find a better version of myself | In ordinary days, I quietly await the moment when things feel different\nIt's those small, persistent efforts that make everything real and warm | Until one day, all the little pieces come together to form my story.\n\nToday, I am taking one step closer to the person I will be tomorrow"
+  },
+  "common": {
+    "switchLanguage": "Switch Language",
+    "errors": {
+      "content_load_failed": "Failed to load content. Please try again later."
+    }
+  },
+  "languages": {
+    "en": "英語",
+    "zh": "中国語",
+    "ja": "日本語",
+    "en-US": "English",
+    "zh-CN": "中文",
+    "ja-JP": "日本語",
+    "searchLanguages": "Search Languages",
+    "noLanguageFound": "Language not found"
+  },
+  "currentLanguage": "Current Language",
+  "settings": "Settings",
+  "settingsDescription": "Choose your preferences here",
+  "theme": "Theme",
+  "themes": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "Follow System",
+    "noThemeFound": "Theme not found",
+    "searchThemes": "Search Themes",
+    "selectTheme": "Select Theme"
+  },
+  "currentTheme": "Current Theme",
+  "language": "Language",
+  "learning": {
+    "sectionTitle": "Learning Journey✨",
+    "currentlyStudying": {
+      "title": "Currently Studying",
+      "description": "Explore more of their little secrets~"
+    },
+    "exploring": {
+      "title": "Trying to Learn",
+      "description": "Explore more of their cuteness~"
+    },
+    "frameworks": {
+      "title": "Frameworks I Might Master",
+      "description": "Learn more fun toys~"
+    }
+  },
+  "home": {
+    "wakatime": {
+      "title": "Coding Daily Life~",
+      "allTime": "All Time Coding",
+      "recentActivity": "Recent Busy Time",
+      "totalTime": "Total Coding Time",
+      "dailyAvg": "Daily Average Idle Time",
+      "bestDay": "Busiest Day",
+      "topLanguages": "Favorite Languages",
+      "mostUsedLanguages": "Most Used Languages",
+      "operatingSystems": "Operating Systems Used",
+      "environmentUsage": "Development Environment Usage Meow~",
+      "activitySummary": "Busy Little Summary",
+      "activityOverview": "Overview of Coding Life",
+      "activeDays": "Days Actually Worked",
+      "totalDays": "Total Days",
+      "period": "Statistics Period",
+      "periodDescription": "Roughly from {start} to {end}喔~",
+      "days": "days",
+      "unableToLoad": "Oops, failed to load",
+      "checkSettings": "Check WakaTime settings or try again later~",
+      "keyStats": "Key Stats",
+      "activityInsights": "Activity Insights",
+      "codingHabits": "Coding Habits",
+      "dailyAverage": "Daily Average Coding Time",
+      "productivityScore": "Productivity Score"
+    }
+  },
+  "api": {
+    "email": {
+      "send": {
+        "success": "Verification code sent successfully",
+        "error": "Failed to send verification code",
+        "service_error": "An error occurred while sending verification code"
+      }
+    }
+  }
 }

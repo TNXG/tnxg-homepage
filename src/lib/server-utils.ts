@@ -6,6 +6,7 @@ import fs from "node:fs/promises";
 import process from "node:process";
 import { cookies } from "next/headers";
 import { APIConfig } from "@/config";
+import { signToken } from "@/lib/jwt";
 import { defaultLocale } from "@/locales";
 
 import "server-only";
@@ -86,19 +87,20 @@ export const serverAction = async (prevState: ActionResponse | null, formData: F
 	}
 };
 
-export const verifyEmail = async (
+export const sendVerificationCode = async (
 	email: string,
+	method: "links" | "login",
 ): Promise<{
 	success: boolean;
 	message: string;
 }> => {
 	try {
-		const response = await fetch(`${APIConfig.endpoints.space}/links/verify`, {
+		const response = await fetch(`${APIConfig.endpoints.space}/email/send`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({ email }),
+			body: JSON.stringify({ email, method }),
 		});
 
 		const data = await response.json();
@@ -106,19 +108,67 @@ export const verifyEmail = async (
 		if (data.status === "success") {
 			return {
 				success: true,
-				message: "Verification code sent successfully",
+				message: "api.email.send.success",
 			};
 		} else {
+			console.error("Error in sendVerificationCode:", data);
 			return {
 				success: false,
-				message: data.message || "Failed to send verification code",
+				message: data.message || "api.email.send.error",
 			};
 		}
 	} catch (error) {
 		console.error("Error in verifyEmail:", error);
 		return {
 			success: false,
-			message: "An error occurred while sending verification code",
+			message: "api.email.send.service_error",
+		};
+	}
+};
+
+export const verifyEmailSign = async (
+	email: string,
+	code: string,
+): Promise<{
+	success: boolean;
+	message: string;
+}> => {
+	try {
+		const response = await fetch(`${APIConfig.endpoints.space}/email/verify`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ email, code }),
+		});
+
+		const data = await response.json();
+
+		const token = await signToken({ email });
+
+		if (data.status === "success") {
+			const cookieStore = await cookies();
+			cookieStore.set("auth-token", token, {
+				httpOnly: true,
+				secure: process.env.NODE_ENV === "production",
+				sameSite: "lax",
+				maxAge: 24 * 60 * 60 * 7,
+			});
+			return {
+				success: true,
+				message: "api.email.verify.success",
+			};
+		} else {
+			return {
+				success: false,
+				message: "api.email.verify.error",
+			};
+		}
+	} catch (error: any) {
+		console.error("[verifyEmailSign] Error:", error);
+		return {
+			success: false,
+			message: error?.message || "api.email.verify.service_error",
 		};
 	}
 };
