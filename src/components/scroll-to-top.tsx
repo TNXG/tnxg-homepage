@@ -1,6 +1,5 @@
 "use client";
 
-import LiquidGlass from "liquid-glass-react";
 import { ChevronUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
