@@ -182,7 +182,7 @@ export const SidebarConfig = {
 		},
 	},
 	beian: {
-		text: "sidebar.beian.text",
+		text: "新ICP备2025023032号-1",
 		url: "https://beian.miit.gov.cn/",
 	},
 	externalLinks: [

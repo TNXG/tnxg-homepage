@@ -33,9 +33,6 @@
 		"copyright": {
 			"text": "© {date} 天翔TNXG."
 		},
-		"beian": {
-			"text": "新ICP备2025023032号"
-		},
 		"externalLinks": {
 			"qq": "QQ グループ",
 			"blog": "ブログ",
@@ -214,6 +211,49 @@
 			"codingHabits": "コーディングの習慣",
 			"dailyAverage": "1日の平均コーディング時間",
 			"productivityScore": "生産性スコア"
+		}
+	},
+	"login": {
+		"title": "おかえりなさい",
+		"subtitle": "アカウントにログイン",
+		"email_label": "メールアドレス",
+		"email_placeholder": "メールアドレスを入力",
+		"code_label": "認証コード",
+		"code_placeholder": "6桁の認証コードを入力",
+		"get_code": "コードを取得",
+		"sending": "送信中...",
+		"verifying": "認証中...",
+		"login_btn": "ログイン",
+		"resend": "再送信",
+		"resend_with_countdown": "再送信（{s}秒）",
+		"back_to_email": "メールアドレス入力に戻る",
+		"or_continue_with": "または以下で続行",
+		"google": "Google",
+		"github": "GitHub",
+		"errors": {
+			"empty_email": "メールアドレスを入力してください",
+			"empty_code": "認証コードを入力してください",
+			"send_code_failed": "認証コードの送信に失敗しました",
+			"oauth_not_implemented": "{{provider}} でのログインはまだ実装されていません",
+			"email_invalid": "無効なメール形式です。入力内容を確認してください"
+		},
+		"name": "ログイン",
+		"toast": {
+			"loginSuccess": "ログインに成功しました"
+		}
+	},
+	"api": {
+		"email": {
+			"send": {
+				"success": "認証コードを送信しました！",
+				"error": "認証コードの送信中にエラーが発生しました",
+				"service_error": "認証コードの送信中にサービスエラーが発生しました"
+			},
+			"verify": {
+				"success": "認証コードの検証に成功しました！",
+				"error": "認証コードの検証中にエラーが発生しました",
+				"service_error": "認証コードの検証中にサービスエラーが発生しました"
+			}
 		}
 	}
 }
