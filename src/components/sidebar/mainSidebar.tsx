@@ -101,6 +101,7 @@ export default function SidebarLayout({
 								</Link>
 							</mark>
 						</p>
+						<a className="text-sm" href={t(SidebarConfig.beian.url)}>{t(SidebarConfig.beian.text)}</a>
 					</div>
 				</SidebarFooter>
 			</Sidebar>
