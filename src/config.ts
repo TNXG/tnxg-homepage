@@ -181,6 +181,10 @@ export const SidebarConfig = {
 			url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
 		},
 	},
+	beian: {
+		text: "sidebar.beian.text",
+		url: "https://beian.miit.gov.cn/",
+	},
 	externalLinks: [
 		{ name: "sidebar.externalLinks.qq", icon: "mingcute:qq-line", href: "https://jq.qq.com/?_wv=1027&k=hc3OKNED" },
 		{ name: "sidebar.externalLinks.blog", icon: "mingcute:book-6-line", href: "https://tnxgmoe.com" },
