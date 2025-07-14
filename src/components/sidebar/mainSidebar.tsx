@@ -133,6 +133,31 @@ export default function SidebarLayout({
 								<Button variant="outline" className="dark:text-white dark:bg-gray-700 dark:hover:bg-gray-600">Close</Button>
 							</DrawerClose>
 						</div>
+						{/* 在移动端添加备案信息 */}
+						<Separator className="my-2 dark:bg-gray-600" />
+						<div className="text-sm text-center dark:text-gray-300">
+							<p>{t(SidebarConfig.copyright.text, { date: new Date().getFullYear() })}</p>
+							<p className="text-sm">
+								Designed by
+								{" "}
+								<mark>
+									<Link
+										href="https://github.com/TNXG/tnxg-homepage"
+										target="_blank"
+										className="text-[#3388BB] transition-all duration-300 ease-in-out dark:text-[#66BBFF] hover:text-[#FF5522] hover:scale-110 dark:hover:text-[#FF7744]"
+									>
+										tnxg-homepage
+									</Link>
+								</mark>
+							</p>
+							<Link
+								className="text-sm text-[#3388BB] transition-all duration-300 ease-in-out dark:text-[#66BBFF] hover:text-[#FF5522] hover:scale-110 dark:hover:text-[#FF7744]"
+								target="_blank"
+								href={SidebarConfig.beian.url}
+							>
+								{SidebarConfig.beian.text}
+							</Link>
+						</div>
 					</DrawerFooter>
 				</DrawerContent>
 			</Drawer>
@@ -142,4 +167,4 @@ export default function SidebarLayout({
 			</SidebarInset>
 		</SidebarProvider>
 	);
-}
+};
