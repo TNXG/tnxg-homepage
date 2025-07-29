@@ -1,4 +1,3 @@
-// page.tsx
 import { getLocale, getTranslations } from "next-intl/server";
 import { LoginLayout } from "@/components/layouts/login";
 

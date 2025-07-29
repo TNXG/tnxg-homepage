@@ -35,59 +35,39 @@ const getRecentlies = cache(async (): Promise<RecentlyModel[]> => {
 
 		const originalData: RecentlyModel[] = data.data;
 
-		// // 获取 Misskey 数据
-		// const misskeyRes = await fetch(`${APIConfig.endpoints.misskey}/api/users/notes`, {
-		// 	method: "POST",
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// 	body: JSON.stringify({
-		// 		userId: APIConfig.misskey.user,
-		// 		limit: 40,
-		// 		i: APIConfig.misskey.token,
-		// 	}),
-		// });
+		// 获取 Blinko 数据
+		const blinkoRes = await fetch(`${APIConfig.endpoints.blinko}/v1/note/list`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${APIConfig.blinko.token}`,
+			},
+			next: { revalidate: 60 },
+		});
 
-		// let combinedData = [...originalData];
+		let combinedData = [...originalData];
 
-		// if (misskeyRes.ok) {
-		// 	const misskeyData = await misskeyRes.json();
-		// 	const misskeyRecentlies: RecentlyModel[] = misskeyData.map((note: any) => {
-		// 		// 处理图片
-		// 		const imageUrls = note.files?.map((file: any) => file.url) || [];
-		// 		const imageMarkdown = imageUrls.length
-		// 			? `\n\n${imageUrls.map((url: string) => `![image](${url})`).join("\n")}`
-		// 			: "";
+		if (blinkoRes.ok) {
+			const blinkoData = await blinkoRes.json();
+			const blinkoRecentlies: RecentlyModel[] = blinkoData
+				.filter((note: BlinkoNote) => note.type === 0)
+				.map((note: BlinkoNote) => ({
+					id: `blinko-${note.id}`,
+					content: note.content,
+					created: new Date(note.createdAt),
+					modified: new Date(note.updatedAt),
+				}));
+			combinedData = [...combinedData, ...blinkoRecentlies];
+		}
 
-		// 		return {
-		// 			id: `misskey-${note.id}`,
-		// 			content: (note.text || "") + imageMarkdown,
-		// 			created: new Date(note.createdAt).toISOString(),
-		// 			modified: new Date(note.createdAt).toISOString(),
-		// 		};
-		// 	});
-		// 	combinedData = [...combinedData, ...misskeyRecentlies];
-		// }
-
-		// // 按时间排序
-		// combinedData.sort((a, b) =>
-		// 	new Date(b.created).getTime() - new Date(a.created).getTime(),
-		// );
-
-		// // 处理 markdown 内容
-		// const RecentliesData = await Promise.all(
-		// 	combinedData.map(async recently => ({
-		// 		...recently,
-		// 		content: await MarkdownRender(recently.content),
-		// 	})),
-		// );
-
-		// 按照时间排序
-		originalData.sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime());
+		// 按时间排序
+		combinedData.sort((a, b) =>
+			new Date(b.created).getTime() - new Date(a.created).getTime(),
+		);
 
 		// 处理 markdown 内容
 		const RecentliesData = await Promise.all(
-			originalData.map(async recently => ({
+			combinedData.map(async recently => ({
 				...recently,
 				content: await MarkdownRender(recently.content),
 			})),

@@ -212,10 +212,9 @@ export const RecentlyConfig = {
 };
 
 export const APIConfig = {
-	misskey: {
-		user: "a3yf78qadjmq0009",
+	blinko: {
 		// eslint-disable-next-line node/prefer-global/process
-		token: process.env.MISSKEY_TOKEN,
+		token: process.env.BLINKO_TOKEN,
 	},
 	bangumi: {
 		username: "tnxg",
@@ -226,8 +225,8 @@ export const APIConfig = {
 		friends: "https://api-space.tnxg.top/links",
 		space: "https://api-space.tnxg.top",
 		space_status: "https://api-space.tnxg.top/status", // 实际获取无参和带s=n的状态
-		// misskeyapi接口
-		misskey: "https://afhub.top",
+		// blinko接口
+		blinko: "https://b.tnxg.top/api",
 		// 实际上以下的api都是Mix-Space提供的，这里提供一个方便更换的接口
 		recently: "https://mx.tnxg.top/api/v2/recently/all",
 		status: "https://api-space.tnxg.top/status",

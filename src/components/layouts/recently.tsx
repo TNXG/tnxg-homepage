@@ -1,6 +1,8 @@
 "use client";
 
 import type { RecentlyModel } from "@mx-space/api-client";
+
+import { format } from "date-fns";
 import { motion } from "framer-motion";
 import { Clock, MessageCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -55,14 +57,13 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 												<p className="text-sm font-medium">{t(SiteConfig.master)}</p>
 												<p className="text-muted-foreground text-xs">
 													<Clock className="mr-1 size-3 inline-block" />
-													{new Date(recently.created).toLocaleString()}
+													{format(new Date(recently.created), "yyyy-MM-dd HH:mm:ss")}
 												</p>
 											</div>
 										</div>
 									</CardHeader>
 									<CardContent>
 										<div
-
 											className="prose max-w-none"
 											// eslint-disable-next-line react-dom/no-dangerously-set-innerhtml
 											dangerouslySetInnerHTML={{
