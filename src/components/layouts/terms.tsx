@@ -62,7 +62,7 @@ export const TermsLayout: React.FC<TermsProps> = ({ content }) => {
 	}, []);
 
 	return (
-		<div className="mx-auto px-4 py-8 sm:py-12 container">
+		<div className="mx-auto px-4 py-8 container sm:py-12">
 			<motion.div
 				className="mb-8 sm:mb-12"
 				initial={{ opacity: 0, y: -30 }}

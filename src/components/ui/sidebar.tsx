@@ -79,7 +79,8 @@ function SidebarProvider({
 			const openState = typeof value === "function" ? value(open) : value;
 			if (setOpenProp) {
 				setOpenProp(openState);
-			} else {
+			}
+ else {
 				_setOpen(openState);
 			}
 
@@ -188,7 +189,7 @@ function Sidebar({
 					data-sidebar="sidebar"
 					data-slot="sidebar"
 					data-mobile="true"
-					className="w---sidebar-width bg-sidebar text-sidebar-foreground p-0 [&>button]:hidden"
+					className="bg-sidebar text-sidebar-foreground p-0 w---sidebar-width [&>button]:hidden"
 					style={
 						{
 							"--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -626,7 +627,7 @@ function SidebarMenuSkeleton({
 				/>
 			)}
 			<Skeleton
-				className="max-w---skeleton-width flex-1 h-4"
+				className="flex-1 h-4 max-w---skeleton-width"
 				data-sidebar="menu-skeleton-text"
 				style={
 					{

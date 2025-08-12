@@ -230,6 +230,7 @@
 		"or_continue_with": "或使用以下方式登录",
 		"google": "谷歌",
 		"github": "GitHub",
+		"qq": "QQ",
 		"errors": {
 			"empty_email": "请输入邮箱地址",
 			"empty_code": "请输入验证码",

@@ -230,6 +230,7 @@
 		"or_continue_with": "または以下で続行",
 		"google": "Google",
 		"github": "GitHub",
+		"qq": "QQ",
 		"errors": {
 			"empty_email": "メールアドレスを入力してください",
 			"empty_code": "認証コードを入力してください",

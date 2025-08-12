@@ -318,6 +318,16 @@ export const LoginLayout: React.FC<{ blurhash: string; backgroundImage: string }
 									<Icon icon="mingcute:github-fill" className="mr-2 h-4 w-4" />
 									{t("login.github")}
 								</Button>
+								<Separator orientation="vertical" className="bg-white/20" />
+								<Button
+									variant="outline"
+									onClick={() => handleOAuthLogin("QQ")}
+									disabled={isPending}
+									className="text-white/90 border-white/20 rounded-xl bg-white/10 h-12 transition-all duration-200 backdrop-blur-sm hover:text-white hover:bg-white/20 hover:scale-[1.02]"
+								>
+									<Icon icon="simple-icons:tencentqq" className="mr-2 h-4 w-4" />
+									{t("login.qq")}
+								</Button>
 							</div>
 						</div>
 					</div>

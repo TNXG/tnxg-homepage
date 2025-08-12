@@ -117,7 +117,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 					<SubmitFriendForm />
 				</div>
 			</motion.h1>
-			<div className="fade-in animate-in mx-auto mt-2 px-4 py-12 flex flex-col duration-500 items-center container">
+			<div className="fade-in animate-in mx-auto mt-2 px-4 py-12 container flex flex-col duration-500 items-center">
 				<div id="friend-card" className="gap-4 grid grid-cols-1 sm:gap-6 lg:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
 					{shuffledFriends.map(friend => (
 						<Card
