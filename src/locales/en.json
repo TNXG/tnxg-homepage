@@ -230,6 +230,7 @@
 		"or_continue_with": "Or continue with",
 		"google": "Google",
 		"github": "GitHub",
+		"qq": "QQ",
 		"errors": {
 			"empty_email": "Please enter your email address",
 			"empty_code": "Please enter the verification code",

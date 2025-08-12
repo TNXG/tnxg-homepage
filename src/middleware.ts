@@ -10,18 +10,18 @@ export async function middleware(request: NextRequest) {
 
 	// 只对特定路径执行认证逻辑
 	const isDashboardPath = pathname.startsWith("/dashboard");
-	const isLoginPath = pathname === "/login";
+	const isLoginPath = pathname === "/signin";
 
 	if (isDashboardPath) {
 		// Dashboard 路径需要认证
 		if (!token) {
-			return NextResponse.redirect(new URL("/login", request.url));
+			return NextResponse.redirect(new URL("/signin", request.url));
 		}
 
 		try {
 			const payload = await verifyToken(token);
 			if (!payload) {
-				const redirectResponse = NextResponse.redirect(new URL("/login", request.url));
+				const redirectResponse = NextResponse.redirect(new URL("/signin", request.url));
 				redirectResponse.cookies.delete("auth-token");
 				return redirectResponse;
 			}
@@ -29,7 +29,7 @@ export async function middleware(request: NextRequest) {
 			// 认证成功
 			response = NextResponse.next();
 		} catch {
-			const redirectResponse = NextResponse.redirect(new URL("/login", request.url));
+			const redirectResponse = NextResponse.redirect(new URL("/signin", request.url));
 			redirectResponse.cookies.delete("auth-token");
 			return redirectResponse;
 		}
