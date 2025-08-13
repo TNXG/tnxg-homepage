@@ -236,7 +236,15 @@
 			"empty_code": "Please enter the verification code",
 			"send_code_failed": "Failed to send verification code",
 			"oauth_not_implemented": "{{provider}} login is not yet implemented",
-			"email_invalid": "Invalid email format, please check your input"
+			"email_invalid": "Invalid email format, please check your input",
+			"oauth_state_mismatch": "OAuth state verification failed, please try again",
+			"oauth_failed": "OAuth authorization failed: {{error}}",
+			"oauth_get_user_failed": "Failed to get user information: {{error}}",
+			"oauth_request_failed": "Network request failed: {{error}}"
+		},
+		"oauth": {
+			"handling": "Handling...",
+			"success": "QQ login successful"
 		},
 		"name": "Login",
 		"toast": {

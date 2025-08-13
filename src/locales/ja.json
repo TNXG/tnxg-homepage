@@ -236,7 +236,15 @@
 			"empty_code": "認証コードを入力してください",
 			"send_code_failed": "認証コードの送信に失敗しました",
 			"oauth_not_implemented": "{{provider}} でのログインはまだ実装されていません",
-			"email_invalid": "無効なメール形式です。入力内容を確認してください"
+			"email_invalid": "無効なメール形式です。入力内容を確認してください",
+			"oauth_state_mismatch": "OAuth状態の検証に失敗しました。再試行してください",
+			"oauth_failed": "OAuth認証に失敗しました：{{error}}",
+			"oauth_get_user_failed": "ユーザー情報の取得に失敗しました：{{error}}",
+			"oauth_request_failed": "ネットワークリクエストに失敗しました：{{error}}"
+		},
+		"oauth": {
+			"handling": "処理中...",
+			"success": "QQログインが成功しました"
 		},
 		"name": "ログイン",
 		"toast": {

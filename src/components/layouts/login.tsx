@@ -2,7 +2,7 @@
 
 import { Icon } from "@iconify/react";
 import { useTranslations } from "next-intl";
-import { useState, useTransition } from "react";
+import { useCallback, useEffect, useState, useTransition } from "react";
 import { toast } from "sonner";
 import { BackgroundImage } from "@/components/ui/background-image";
 import { BlurhashImage } from "@/components/ui/blurhash-image";
@@ -33,6 +33,9 @@ export const LoginLayout: React.FC<{ blurhash: string; backgroundImage: string }
 	// 背景状态管理
 	const [backgroundLoaded, setBackgroundLoaded] = useState(false);
 	const [showBlurhash, setShowBlurhash] = useState(false);
+
+	// OAuth状态管理
+	const [isHandlingOAuth, setIsHandlingOAuth] = useState(false);
 
 	// 处理背景图片加载
 	const handleBackgroundLoad = () => {
@@ -96,9 +99,19 @@ export const LoginLayout: React.FC<{ blurhash: string; backgroundImage: string }
 		});
 	};
 
-	const handleOAuthLogin = (provider: string) => {
-		console.log(`Login with ${provider}`);
-		setMessage(t("login.errors.oauth_not_implemented", { provider }));
+	const handleOAuthLogin = async (provider: string) => {
+		if (provider === "QQ") {
+			const returnUrl = encodeURIComponent(window.location.origin + window.location.pathname);
+			const state = `qq_oauth_${Date.now()}`;
+			const authUrl = `https://api-space.tnxg.top/oauth/qq/authorize?redirect=true&return_url=${returnUrl}&state=${state}`;
+
+			// 保存state用于验证
+			localStorage.setItem("oauth_state", state);
+
+			window.location.href = authUrl;
+		} else {
+			setMessage(t("login.errors.oauth_not_implemented", { provider }));
+		}
 	};
 
 	// 处理验证码输入完成
@@ -110,6 +123,70 @@ export const LoginLayout: React.FC<{ blurhash: string; backgroundImage: string }
 			// handleLogin();
 		}
 	};
+
+	// 处理OAuth回调
+	const handleOAuthCallback = useCallback(async (code: string, state: string) => {
+		setIsHandlingOAuth(true);
+
+		try {
+			// 验证state
+			const savedState = localStorage.getItem("oauth_state");
+			if (!savedState || savedState !== state) {
+				setMessage(t("login.errors.oauth_state_mismatch"));
+				return;
+			}
+
+			// 使用临时代码获取用户信息
+			const response = await fetch(`https://api-space.tnxg.top/api/user/info?code=${code}`);
+			const data = await response.json();
+
+			if (data.status === "success") {
+				const userInfo = data.data;
+				// 保存用户信息到localStorage
+				localStorage.setItem("user", JSON.stringify(userInfo));
+
+				// 清理OAuth状态
+				localStorage.removeItem("oauth_state");
+
+				// 提示登录成功
+				toast.success(t("login.oauth.success"));
+
+				// 重新加载页面或跳转
+				window.location.reload();
+			} else {
+				setMessage(t("login.errors.oauth_get_user_failed", { error: data.message || "Unknown error" }));
+			}
+		} catch (error) {
+			setMessage(t("login.errors.oauth_request_failed", { error: error instanceof Error ? error.message : "Network error" }));
+		} finally {
+			setIsHandlingOAuth(false);
+		}
+	}, [t]);
+
+	// 初始化时检查OAuth回调
+	useEffect(() => {
+		const urlParams = new URLSearchParams(window.location.search);
+		const code = urlParams.get("code");
+		const state = urlParams.get("state");
+		const error = urlParams.get("error");
+
+		if (error) {
+			const errorDescription = urlParams.get("error_description") || error;
+			// 使用 startTransition 来避免 ESLint 警告
+			startTransition(() => {
+				setMessage(t("login.errors.oauth_failed", { error: errorDescription }));
+			});
+
+			// 清理URL参数
+			window.history.replaceState({}, document.title, window.location.pathname);
+		} else if (code && state) {
+			// 处理OAuth回调
+			handleOAuthCallback(code, state);
+
+			// 清理URL参数
+			window.history.replaceState({}, document.title, window.location.pathname);
+		}
+	}, [t, handleOAuthCallback, startTransition]);
 
 	return (
 		<>
@@ -322,11 +399,11 @@ export const LoginLayout: React.FC<{ blurhash: string; backgroundImage: string }
 								<Button
 									variant="outline"
 									onClick={() => handleOAuthLogin("QQ")}
-									disabled={isPending}
+									disabled={isPending || isHandlingOAuth}
 									className="text-white/90 border-white/20 rounded-xl bg-white/10 h-12 transition-all duration-200 backdrop-blur-sm hover:text-white hover:bg-white/20 hover:scale-[1.02]"
 								>
 									<Icon icon="simple-icons:tencentqq" className="mr-2 h-4 w-4" />
-									{t("login.qq")}
+									{isHandlingOAuth ? t("login.oauth.handling") : t("login.qq")}
 								</Button>
 							</div>
 						</div>

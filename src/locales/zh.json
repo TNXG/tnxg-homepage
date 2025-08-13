@@ -236,7 +236,15 @@
 			"empty_code": "请输入验证码",
 			"send_code_failed": "验证码发送失败",
 			"oauth_not_implemented": "{{provider}} 登录暂未实现",
-			"email_invalid": "未知的邮箱格式，请检查输入"
+			"email_invalid": "未知的邮箱格式，请检查输入",
+			"oauth_state_mismatch": "OAuth 状态验证失败，请重试",
+			"oauth_failed": "OAuth 授权失败：{{error}}",
+			"oauth_get_user_failed": "获取用户信息失败：{{error}}",
+			"oauth_request_failed": "网络请求失败：{{error}}"
+		},
+		"oauth": {
+			"handling": "处理中...",
+			"success": "QQ 登录成功"
 		},
 		"name": "登录",
 		"toast": {
@@ -255,6 +263,91 @@
 				"error": "验证码验证时发生错误",
 				"service_error": "验证码验证时发生错误"
 			}
+		}
+	},
+	"dashboard": {
+		"title": "控制面板",
+		"description": "管理您的友链和个人信息",
+		"sidebar": {
+			"overview": "总览",
+			"friendLinks": "友链管理",
+			"adminReview": "审核友链"
+		},
+		"user": {
+			"info": "用户信息",
+			"adminBadge": "管理员"
+		},
+		"logout": "退出登录",
+		"stats": {
+			"totalLinks": "总友链数",
+			"totalLinksDesc": "您提交的友链总数",
+			"pendingLinks": "待审核",
+			"pendingLinksDesc": "等待审核的友链",
+			"approvedLinks": "已通过",
+			"approvedLinksDesc": "已通过审核的友链"
+		},
+		"quickActions": {
+			"title": "快速操作",
+			"description": "常用功能的快捷入口"
+		},
+		"actions": {
+			"submitLink": "提交友链",
+			"submitLinkDesc": "添加新的友情链接",
+			"manageLinks": "管理友链",
+			"manageLinksDesc": "查看和编辑您的友链"
+		},
+		"friendLinks": {
+			"title": "友链管理",
+			"description": "管理您提交的友情链接",
+			"fetchError": "获取友链失败",
+			"updateSuccess": "友链更新成功",
+			"updateError": "友链更新失败",
+			"addNew": "添加新友链",
+			"noLinks": "暂无友链",
+			"noLinksDescription": "您还没有提交任何友链，点击上方按钮开始添加",
+			"myLinks": "我的友链",
+			"myLinksDescription": "您提交的所有友链列表",
+			"edit": "编辑友链",
+			"add": "添加友链",
+			"editDescription": "编辑您的友链信息，修改后需要重新审核",
+			"save": "保存",
+			"status": {
+				"pending": "待审核",
+				"approved": "已通过",
+				"rejected": "已拒绝"
+			},
+			"table": {
+				"name": "网站名称",
+				"url": "网站地址",
+				"status": "状态",
+				"submitted": "提交时间",
+				"actions": "操作"
+			}
+		},
+		"admin": {
+			"title": "友链审核管理",
+			"description": "审核和管理所有友链申请",
+			"fetchError": "获取友链列表失败",
+			"pendingLinks": "待审核友链",
+			"pendingDescription": "以下友链正在等待您的审核",
+			"noPendingLinks": "暂无待审核的友链",
+			"reviewedLinks": "已审核友链",
+			"reviewedDescription": "已经处理过的友链记录",
+			"noReviewedLinks": "暂无已审核的友链",
+			"submittedBy": "提交者",
+			"submittedAt": "提交时间",
+			"reviewedAt": "审核时间",
+			"approve": "通过",
+			"reject": "拒绝",
+			"approveSuccess": "友链审核通过",
+			"rejectSuccess": "友链已拒绝",
+			"approveError": "审核通过失败",
+			"rejectError": "拒绝审核失败",
+			"approveTitle": "通过友链审核",
+			"rejectTitle": "拒绝友链申请",
+			"reviewDescription": "您正在审核 {name} 的友链申请",
+			"reviewMessage": "审核备注",
+			"reviewMessagePlaceholder": "可以添加一些审核意见或建议..."
 		}
 	}
 }
