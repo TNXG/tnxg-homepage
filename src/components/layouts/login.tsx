@@ -192,7 +192,7 @@ export const LoginLayout: React.FC<{ blurhash: string; backgroundImage: string }
 		<>
 			<div className="inset-0 fixed z-0">
 				<div
-					className={`absolute inset-0 transition-all duration-1000 ${backgroundLoaded ? "blur-md opacity-30" : "blur-2xl opacity-100"
+					className={`transition-all duration-1000 inset-0 absolute ${backgroundLoaded ? "blur-md opacity-30" : "blur-2xl opacity-100"
 					}`}
 				/>
 				<BackgroundImage
@@ -207,7 +207,7 @@ export const LoginLayout: React.FC<{ blurhash: string; backgroundImage: string }
 				<div className="transform transition-all duration-500 relative hover:scale-[1.02]">
 					<div className="rounded-3xl inset-0 absolute overflow-hidden">
 						<div
-							className={`absolute inset-0 transition-all duration-1000 ${showBlurhash ? "opacity-100 scale-100" : "opacity-0 scale-110"
+							className={`transition-all duration-1000 inset-0 absolute ${showBlurhash ? "opacity-100 scale-100" : "opacity-0 scale-110"
 							}`}
 						>
 							<BlurhashImage
@@ -219,12 +219,12 @@ export const LoginLayout: React.FC<{ blurhash: string; backgroundImage: string }
 						</div>
 
 						<div
-							className={`absolute inset-0 bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-xl transition-all duration-1000 ${showBlurhash ? "opacity-0" : "opacity-100"
+							className={`transition-all duration-1000 inset-0 absolute from-white/30 to-white/10 bg-gradient-to-br backdrop-blur-xl ${showBlurhash ? "opacity-0" : "opacity-100"
 							}`}
 						/>
 
 						<div
-							className={`absolute inset-0 bg-black/30 backdrop-blur-sm transition-all duration-1000 ${showBlurhash ? "opacity-100" : "opacity-0"
+							className={`bg-black/30 transition-all duration-1000 inset-0 absolute backdrop-blur-sm ${showBlurhash ? "opacity-100" : "opacity-0"
 							}`}
 						/>
 					</div>
@@ -358,7 +358,7 @@ export const LoginLayout: React.FC<{ blurhash: string; backgroundImage: string }
 
 							{message && (
 								<div
-									className={`text-sm text-center p-3 rounded-xl backdrop-blur-sm border transition-all duration-300 ${message.includes("success") || message.includes("sent")
+									className={`text-sm p-3 text-center border rounded-xl transition-all duration-300 backdrop-blur-sm ${message.includes("success") || message.includes("sent")
 										? "text-green-200 bg-green-500/20 border-green-400/30"
 										: "text-red-200 bg-red-500/20 border-red-400/30"
 									}`}

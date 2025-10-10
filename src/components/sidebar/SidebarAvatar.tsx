@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { APIConfig, SiteConfig } from "@/config";
-import { getLangIcon, SelfIcon } from "@/lib/icon";
+import { getLangIcon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
 
 interface SongInfo {
@@ -77,7 +77,8 @@ export const SidebarAvatar = () => {
 				if (data.song) {
 					setSongInfo(data.song);
 				}
-			} catch (error) {
+			}
+ catch (error) {
 				console.error("Error parsing song message:", error);
 			}
 		};
@@ -88,7 +89,8 @@ export const SidebarAvatar = () => {
 				if (data) {
 					setCodeEvent(data);
 				}
-			} catch {
+			}
+ catch {
 				console.warn("Error parsing code event message:", event.data);
 			}
 		};
@@ -166,7 +168,7 @@ export const SidebarAvatar = () => {
 																			ref={imgRef}
 																			src={albumImage}
 																			alt={t("sidebar.status.albumAlt")}
-																			className={`size-16 rounded-md object-cover ${imageLoading ? "hidden" : "block"}`}
+																			className={`rounded-md size-16 object-cover ${imageLoading ? "hidden" : "block"}`}
 																			onLoad={() => setImageLoading(false)}
 																			onError={() => setImageLoading(false)}
 																		/>
@@ -174,7 +176,7 @@ export const SidebarAvatar = () => {
 																)
 															: (
 																	<div className="rounded-md size-16">
-																		<SelfIcon name="MyGO!!!!!_Icon" />
+																		<Skeleton className="rounded-md size-full" />
 																	</div>
 																)}
 
