@@ -144,6 +144,10 @@
 		"switchLanguage": "切换语言",
 		"errors": {
 			"content_load_failed": "内容加载失败，请稍后再试。"
+		},
+		"empty": {
+			"title": "暂无信息",
+			"description": "暂时没有可展示的信息，请稍后再来~"
 		}
 	},
 	"languages": {
