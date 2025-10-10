@@ -84,7 +84,7 @@ export const TermsLayout: React.FC<TermsProps> = ({ content }) => {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
 				>
-					<Card className="w-full shadow-sm transition-shadow duration-300 hover:shadow-md">
+					<Card className="bg-white/70 w-full shadow-sm transition-shadow duration-300 backdrop-blur-md dark:bg-gray-800/70 hover:shadow-md">
 						<CardHeader>
 							<div className="flex gap-3 items-center">
 								<Icon

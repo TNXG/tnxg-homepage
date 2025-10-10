@@ -24,10 +24,12 @@ const getCollectionName = (collectionType: number, subjectType: number) => {
 	if (subjectType === 1 || subjectType === 2 || subjectType === 6) {
 		prefix = "想";
 		suffix = "看";
-	} else if (subjectType === 3) {
+	}
+ else if (subjectType === 3) {
 		prefix = "想";
 		suffix = "听";
-	} else if (subjectType === 4) {
+	}
+ else if (subjectType === 4) {
 		prefix = "想";
 		suffix = "玩";
 	}
@@ -83,7 +85,7 @@ const AnimeCard = ({ item }: { item: BangumiCollectionItem }) => {
 		: 0;
 
 	return (
-		<Card className="mx-auto w-[80%] transition-shadow duration-300 overflow-hidden sm:w-full hover:shadow-md">
+		<Card className="mx-auto bg-white/70 w-[80%] transition-shadow duration-300 overflow-hidden backdrop-blur-md dark:bg-gray-800/70 sm:w-full hover:shadow-md">
 			<div className="h-40 w-full relative overflow-hidden">
 				{subject.images?.common && (
 					<img
@@ -93,7 +95,7 @@ const AnimeCard = ({ item }: { item: BangumiCollectionItem }) => {
 						style={{ objectPosition: "center" }}
 					/>
 				)}
-				<div className="bg-gradient-to-t opacity-70 inset-0 absolute from-black/60 to-transparent"></div>
+				<div className="opacity-70 inset-0 absolute from-black/60 to-transparent bg-gradient-to-t"></div>
 				<div className="flex gap-2 right-2 top-2 absolute">
 					<Badge variant="secondary" className="flex gap-1 items-center">
 						<SubjectTypeIcon type={subject.type} />
@@ -203,7 +205,7 @@ const AnimeCard = ({ item }: { item: BangumiCollectionItem }) => {
 
 const UserProfile = ({ userInfo }: { userInfo: BangumiUserData }) => {
 	return (
-		<Card className="mb-6">
+		<Card className="mb-6 bg-white/70 backdrop-blur-md dark:bg-gray-800/70">
 			<CardContent className="pt-6 flex gap-4 items-center">
 				<Avatar className="h-16 w-16">
 					<AvatarImage src={userInfo.avatar.large} alt={userInfo.nickname} />

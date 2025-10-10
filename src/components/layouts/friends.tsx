@@ -1,18 +1,14 @@
 "use client";
 
 import type React from "react";
-import type { Arch } from "@/lib/icon";
-import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FriendCard } from "@/components/friend-card";
 import { SubmitFriendForm } from "@/components/submit-friend";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent } from "@/components/ui/card";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { FriendsConfig, SiteConfig } from "@/config";
-import { getArchIcon } from "@/lib/icon";
 
 interface FriendsProps {
 	friends: Friend[];
@@ -32,43 +28,19 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 
 		const newShuffledFriends = [...friends];
 		shuffleArray(newShuffledFriends);
-		// 使用 setTimeout 来异步设置状态，避免在 useEffect 中直接调用 setState
 		const timerId = setTimeout(() => {
 			setShuffledFriends(newShuffledFriends);
 		}, 0);
 
-		// Add touch device support for hover effect
-		const cards = document.querySelectorAll("#friend-card > *");
-
-		// Define named functions for event listeners
-		const handleTouchStart = (e: Event) => {
-			const element = e.currentTarget as HTMLElement;
-			element.classList.add("group-hover");
-		};
-
-		const handleTouchEnd = (e: Event) => {
-			const element = e.currentTarget as HTMLElement;
-			element.classList.remove("group-hover");
-		};
-
-		cards.forEach((card) => {
-			card.addEventListener("touchstart", handleTouchStart);
-			card.addEventListener("touchend", handleTouchEnd);
-		});
-
 		return () => {
-			cards.forEach((card) => {
-				card.removeEventListener("touchstart", handleTouchStart);
-				card.removeEventListener("touchend", handleTouchEnd);
-			});
 			clearTimeout(timerId);
 		};
 	}, [friends]);
 
 	return (
-		<div className="mb-6 mt-5 px-4 flex flex-col items-start lg:px-8 sm:px-6">
+		<div className="mx-auto mb-10 mt-6 px-4 flex flex-col max-w-6xl items-start lg:px-10 sm:px-6">
 			<motion.h1
-				className="text-2xl font-bold mt-10 lg:text-4xl sm:text-3xl"
+				className="text-3xl tracking-tight font-bold mt-12 lg:text-5xl sm:text-4xl"
 				initial={{ opacity: 0, y: -50 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
@@ -81,7 +53,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 						<Link
 							href={FriendsConfig.description.link.url}
 							target="_blank"
-							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
+							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-105"
 						>
 							{t(FriendsConfig.description.link.text)}
 						</Link>
@@ -95,7 +67,7 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 						<Link
 							href={SiteConfig.opmlURL}
 							target="_blank"
-							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
+							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-105"
 						>
 							{t("friends.opml.link.text")}
 						</Link>
@@ -107,66 +79,34 @@ export const FriendsLayout: React.FC<FriendsProps> = ({ friends }) => {
 						<Link
 							href={SiteConfig.followListURL}
 							target="_blank"
-							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-110"
+							className="text-[#3388BB] transition-all duration-300 ease-in-out hover:text-[#FF5522] hover:scale-105"
 						>
 							{t("friends.opml.followList")}
 						</Link>
 					</mark>
 				</p>
-				<div className="flex justify-start">
+				<div className="mt-2 flex justify-start">
 					<SubmitFriendForm />
 				</div>
 			</motion.h1>
-			<div className="fade-in animate-in mx-auto mt-2 px-4 py-12 container flex flex-col duration-500 items-center">
-				<div id="friend-card" className="gap-4 grid grid-cols-1 sm:gap-6 lg:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
-					{shuffledFriends.map(friend => (
-						<Card
-							key={`${friend.name}`}
-							className="group transition-all duration-300 relative overflow-hidden active:scale-95 hover:scale-105"
-						>
-							<CardContent className="p-4">
-								<a href={friend.url} target="_blank" rel="noopener noreferrer" className="block">
-									<div className="flex flex-col items-center">
-										<Avatar className="mb-3 rounded-full size-20 transition-all duration-300 sm:mb-4 group-hover:opacity-40 lg:size-32 md:size-28 sm:size-24 group-hover:blur-sm">
-											<AvatarImage src={friend.avatar} alt={friend.name} />
-											<AvatarFallback>{friend.name[0]}</AvatarFallback>
-										</Avatar>
-										<h3 className="text-base font-semibold text-center sm:text-lg">{friend.name}</h3>
-									</div>
-									<div
-										id="friend-card-hover"
-										className="p-4 text-center bg-[#ffffff] opacity-0 flex flex-col transition-opacity duration-300 items-center inset-0 justify-center absolute backdrop-blur-md dark:bg-[#121212]/60 group-hover:opacity-100"
-									>
-										<h3 className="text-base font-semibold text-shadow-sm mb-2 sm:text-lg">{friend.name}</h3>
-										<p
-											className="text-muted-foreground text-xs text-shadow-sm mb-2 text-ellipsis overflow-hidden sm:text-sm sm:mb-4"
-											style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical" }}
-										>
-											{friend.description}
-										</p>
-										<p className="text-muted-foreground text-xs text-shadow-sm mb-2 max-w-full truncate sm:mb-4">
-											{friend.url}
-										</p>
-										<div className="mt-2 flex flex-wrap gap-2 justify-center">
-											{friend.techstack.map((tech, index) => (
-												<TooltipProvider key={index} delayDuration={100}>
-													<Tooltip>
-														<TooltipTrigger>
-															<Icon icon={getArchIcon(tech as Arch)} className="text-primary size-6" />
-														</TooltipTrigger>
-														<TooltipContent>
-															<p>{tech}</p>
-														</TooltipContent>
-													</Tooltip>
-												</TooltipProvider>
-											))}
-										</div>
-									</div>
-								</a>
-							</CardContent>
-						</Card>
-					))}
-				</div>
+			<div className="fade-in animate-in mx-auto mt-2 px-2 py-10 flex flex-col max-w-6xl w-full duration-500 items-center sm:px-4">
+				{shuffledFriends.length === 0
+					? (
+							<div className="border-border/50 px-6 py-10 text-center border rounded-2xl bg-white/70 max-w-2xl w-full transition-all backdrop-blur-md dark:bg-gray-800/70 hover:shadow-lg dark:hover:shadow-black/20 hover:-translate-y-1">
+								<h2 className="text-xl tracking-tight font-semibold">{t("common.empty.title", { default: "暂无友链" })}</h2>
+								<p className="text-muted-foreground mt-2">{t("common.empty.description", { default: "暂时没有可展示的友链，请稍后再来或提交你的站点～" })}</p>
+								<div className="mt-4 flex justify-center"><SubmitFriendForm /></div>
+							</div>
+						)
+					: (
+							<TooltipProvider delayDuration={200}>
+								<div id="friend-card" className="gap-6 grid grid-cols-1 w-full sm:gap-8 2xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1">
+									{shuffledFriends.map(friend => (
+										<FriendCard key={friend.id ?? friend.name} friend={friend} />
+									))}
+								</div>
+							</TooltipProvider>
+						)}
 			</div>
 		</div>
 	);

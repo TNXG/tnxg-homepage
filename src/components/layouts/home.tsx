@@ -413,7 +413,7 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ wakaTimeData }) => {
 								</div>
 							)
 						: (
-								<Card className="transition-all dark:border-gray-700 dark:bg-gray-800/50 hover:shadow-md dark:hover:shadow-black/20 dark:hover:shadow-lg">
+								<Card className="bg-white/70 transition-all backdrop-blur-md dark:border-gray-700 dark:bg-gray-800/70 hover:shadow-md dark:hover:shadow-black/20 dark:hover:shadow-lg">
 									<CardContent className="py-8 text-center">
 										<p className="text-gray-500 dark:text-gray-400">{t("home.wakatime.unableToLoad")}</p>
 										<p className="text-sm text-gray-500 mt-2 dark:text-gray-400">{t("home.wakatime.checkSettings")}</p>

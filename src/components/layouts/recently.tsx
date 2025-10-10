@@ -46,7 +46,7 @@ export const TimelineRecentlyLayout: React.FC<RecentliesProps> = ({ Recentlies }
 							transition={{ duration: 0.5, delay: index * 0.1 }}
 						>
 							<div className="w-full">
-								<Card className="w-full">
+								<Card className="bg-white/70 w-full backdrop-blur-md dark:bg-gray-800/70">
 									<CardHeader>
 										<div className="flex items-center space-x-4">
 											<Avatar className="rounded-full">
