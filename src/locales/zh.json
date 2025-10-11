@@ -146,9 +146,47 @@
 			"content_load_failed": "内容加载失败，请稍后再试。"
 		},
 		"empty": {
-			"title": "暂无信息",
-			"description": "暂时没有可展示的信息，请稍后再来~"
+			"title": "",
+			"description": ""
 		}
+	},
+	"anime": {
+		"tabs": {
+			"plan": "计划",
+			"done": "完成",
+			"doing": "进行中",
+			"onHold": "搁置",
+			"dropped": "抛弃"
+		},
+		"subjectTypes": {
+			"1": "书籍",
+			"2": "动画",
+			"3": "音乐",
+			"4": "游戏",
+			"6": "三次元"
+		},
+		"collection": {
+			"actions": {
+				"watch": "看",
+				"listen": "听",
+				"play": "玩"
+			},
+			"states": {
+				"want": "想{action}",
+				"done": "{action}过",
+				"doing": "在{action}",
+				"onHold": "搁置",
+				"dropped": "抛弃"
+			}
+		},
+		"myRating": "我的评分",
+		"score": "评分",
+		"progress": "进度",
+		"episodesUnit": "集",
+		"volumesUnit": "卷",
+		"empty": "暂无内容",
+		"profileEmptySign": "这个人很懒，什么都没留下",
+		"linkOnBangumi": "在 Bangumi 查看"
 	},
 	"languages": {
 		"en": "英語",

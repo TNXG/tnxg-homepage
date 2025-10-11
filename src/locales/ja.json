@@ -146,6 +146,44 @@
 			"content_load_failed": "内容の読み込みに失敗しました。"
 		}
 	},
+	"anime": {
+		"tabs": {
+			"plan": "計画中",
+			"done": "完了",
+			"doing": "進行中",
+			"onHold": "保留",
+			"dropped": "中止"
+		},
+		"subjectTypes": {
+			"1": "書籍",
+			"2": "アニメ",
+			"3": "音楽",
+			"4": "ゲーム",
+			"6": "三次元"
+		},
+		"collection": {
+			"actions": {
+				"watch": "見る",
+				"listen": "聴く",
+				"play": "遊ぶ"
+			},
+			"states": {
+				"want": "{action}したい",
+				"done": "{action}した",
+				"doing": "{action}中",
+				"onHold": "保留",
+				"dropped": "中止"
+			}
+		},
+		"myRating": "マイ評価",
+		"score": "スコア",
+		"progress": "進捗",
+		"episodesUnit": "話",
+		"volumesUnit": "巻",
+		"empty": "まだコンテンツがありません",
+		"profileEmptySign": "まだ何もありません",
+		"linkOnBangumi": "Bangumi で見る"
+	},
 	"languages": {
 		"en": "英語",
 		"zh": "中国語",

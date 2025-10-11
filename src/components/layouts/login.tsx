@@ -229,7 +229,7 @@ export const LoginLayout: React.FC<{ blurhash: string; backgroundImage: string }
 						/>
 					</div>
 
-					<div className="bg-gradient-to-br rounded-3xl inset-0 absolute from-white/20 to-transparent via-white/5" />
+					<div className="rounded-3xl inset-0 absolute from-white/20 to-transparent via-white/5 bg-gradient-to-br" />
 
 					<div className="p-8 relative space-y-6">
 						<div className="text-center space-y-2">
@@ -370,7 +370,7 @@ export const LoginLayout: React.FC<{ blurhash: string; backgroundImage: string }
 							<div className="my-6 relative">
 								<Separator className="bg-white/20" />
 								<div className="flex items-center inset-0 justify-center absolute">
-									<span className="bg-gradient-to-r text-xs text-white/60 font-medium px-4 uppercase from-transparent to-transparent backdrop-blur-sm">
+									<span className="text-xs text-white/60 font-medium px-4 uppercase from-transparent to-transparent bg-gradient-to-r backdrop-blur-sm">
 										{t("login.or_continue_with")}
 									</span>
 								</div>

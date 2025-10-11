@@ -146,6 +146,44 @@
 			"content_load_failed": "Failed to load content. Please try again later."
 		}
 	},
+	"anime": {
+		"tabs": {
+			"plan": "Planned",
+			"done": "Completed",
+			"doing": "In Progress",
+			"onHold": "On Hold",
+			"dropped": "Dropped"
+		},
+		"subjectTypes": {
+			"1": "Book",
+			"2": "Anime",
+			"3": "Music",
+			"4": "Game",
+			"6": "Live Action"
+		},
+		"collection": {
+			"actions": {
+				"watch": "watch",
+				"listen": "listen",
+				"play": "play"
+			},
+			"states": {
+				"want": "Want to {action}",
+				"done": "{action}ed",
+				"doing": "{action}ing",
+				"onHold": "On Hold",
+				"dropped": "Dropped"
+			}
+		},
+		"myRating": "My rating",
+		"score": "Score",
+		"progress": "Progress",
+		"episodesUnit": "eps",
+		"volumesUnit": "vols",
+		"empty": "No content yet",
+		"profileEmptySign": "Nothing here yet",
+		"linkOnBangumi": "View on Bangumi"
+	},
 	"languages": {
 		"en": "英語",
 		"zh": "中国語",

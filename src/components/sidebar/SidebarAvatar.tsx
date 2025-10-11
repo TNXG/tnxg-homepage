@@ -77,8 +77,7 @@ export const SidebarAvatar = () => {
 				if (data.song) {
 					setSongInfo(data.song);
 				}
-			}
- catch (error) {
+			} catch (error) {
 				console.error("Error parsing song message:", error);
 			}
 		};
@@ -89,8 +88,7 @@ export const SidebarAvatar = () => {
 				if (data) {
 					setCodeEvent(data);
 				}
-			}
- catch {
+			} catch {
 				console.warn("Error parsing code event message:", event.data);
 			}
 		};

@@ -18,6 +18,16 @@ import { SidebarConfig, SiteConfig } from "@/config";
 
 const Navigation = ({ t }: { t: ReturnType<typeof useTranslations> }) => {
 	const pathname = usePathname();
+
+	const handleNavigationClick = (href: string, e: React.MouseEvent) => {
+		// 如果当前路径与目标路径相同，阻止导航
+		if (pathname === href) {
+			e.preventDefault();
+		}
+		// 平滑滚动到顶部
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	};
+
 	return (
 		<Card className="mx-2 dark:bg-gray-700">
 			<CardContent>
@@ -49,7 +59,11 @@ const Navigation = ({ t }: { t: ReturnType<typeof useTranslations> }) => {
 								isActive={pathname === item.href}
 								className="text-lg flex h-10 w-full items-center justify-center dark:text-gray-300 dark:hover:bg-gray-600"
 							>
-								<Link href={item.href} className="flex items-center">
+								<Link
+									href={item.href}
+									className="flex items-center"
+									onClick={e => handleNavigationClick(item.href, e)}
+								>
 									<Icon icon={item.icon} className="mr-2 size-6" />
 									<span>{t(item.name)}</span>
 								</Link>

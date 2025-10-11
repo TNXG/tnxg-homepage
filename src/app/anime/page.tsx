@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
+import { cache } from "react";
 import { BangumiLayout } from "@/components/layouts/anime";
 import { APIConfig } from "@/config";
 import "server-only";
@@ -81,14 +82,39 @@ export interface BangumiCollectionsResponse {
 	offset: number;
 }
 
-const getBangumiUserData = async (): Promise<BangumiUserData> => {
-	return fetch(`https://api.bgm.tv/v0/users/${APIConfig.bangumi.username}`, {
+// 获取用户数据的缓存函数
+const getBangumiUserData = cache(async (): Promise<BangumiUserData> => {
+	const response = await fetch(`https://api.bgm.tv/v0/users/${APIConfig.bangumi.username}`, {
 		headers: {
 			"User-Agent": "TNXG/tnxg-homepage (https://github.com/tnxg/tnxg-homepage)",
 		},
-	}).then(res => res.json()) as Promise<BangumiUserData>;
-};
+		next: { revalidate: 60 * 30 }, // 30 分钟缓存
+	});
 
+	if (!response.ok) {
+		throw new Error(`Failed to fetch user data: ${response.status}`);
+	}
+
+	return response.json() as Promise<BangumiUserData>;
+});
+
+// 获取单页收藏数据的缓存函数
+const getBangumiCollectionsPage = cache(async (offset: number, limit: number): Promise<BangumiCollectionsResponse> => {
+	const response = await fetch(`https://api.bgm.tv/v0/users/${APIConfig.bangumi.username}/collections?offset=${offset}&limit=${limit}`, {
+		headers: {
+			"User-Agent": "TNXG/tnxg-homepage (https://github.com/tnxg/tnxg-homepage)",
+		},
+		next: { revalidate: 1800 }, // 30 分钟缓存
+	});
+
+	if (!response.ok) {
+		throw new Error(`Failed to fetch collections: ${response.status}`);
+	}
+
+	return response.json() as Promise<BangumiCollectionsResponse>;
+});
+
+// 获取所有收藏数据
 const getBangumiCollections = async (): Promise<BangumiCollectionItem[]> => {
 	const allCollections: BangumiCollectionItem[] = [];
 	let offset = 0;
@@ -96,11 +122,7 @@ const getBangumiCollections = async (): Promise<BangumiCollectionItem[]> => {
 	let hasMore = true;
 
 	while (hasMore) {
-		const response = await fetch(`https://api.bgm.tv/v0/users/${APIConfig.bangumi.username}/collections?offset=${offset}&limit=${limit}`, {
-			headers: {
-				"User-Agent": "TNXG/tnxg-homepage (https://github.com/tnxg/tnxg-homepage)",
-			},
-		}).then(res => res.json()) as BangumiCollectionsResponse;
+		const response = await getBangumiCollectionsPage(offset, limit);
 
 		allCollections.push(...response.data);
 
