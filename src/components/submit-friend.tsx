@@ -477,17 +477,17 @@ export function SubmitFriendForm() {
 					<div className="mb-6 space-y-2">
 						<div className="flex items-center justify-between">
 							<div className="flex items-center space-x-2">
-								{Array.from({ length: totalSteps }).map((_, index) => (
+								{Array.from({ length: totalSteps }, (_, i) => i + 1).map(step => (
 									<div
-										key={index}
-										className={`text-xs font-medium border rounded-full flex size-8 items-center justify-center ${currentStep > index + 1
+										key={`step-${step}`}
+										className={`text-xs font-medium border rounded-full flex size-8 items-center justify-center ${currentStep > step
 											? "border-primary bg-primary text-primary-foreground"
-											: currentStep === index + 1
+											: currentStep === step
 												? "border-primary bg-primary/10 text-primary"
 												: "border-muted-foreground/30 text-muted-foreground"
 										}`}
 									>
-										{index + 1}
+										{step}
 									</div>
 								))}
 							</div>

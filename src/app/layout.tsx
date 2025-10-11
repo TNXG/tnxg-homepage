@@ -1,18 +1,28 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { JetBrains_Mono, Noto_Sans_SC } from "next/font/google";
 import { headers } from "next/headers";
 import { Background } from "@/components/background";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { SidebarLayout } from "@/components/sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
+
 import { Favicon } from "@/components/ui/favicon";
-
 import { Toaster } from "@/components/ui/sonner";
-
 import { SiteConfig } from "@/config";
 
 import "./globals.css";
+
+const notoSans = Noto_Sans_SC({
+	variable: "--font-sans",
+	subsets: ["latin"],
+});
+
+const jetBrainsMono = JetBrains_Mono({
+	variable: "--font-mono",
+	subsets: ["latin"],
+});
 
 export async function generateMetadata(): Promise<Metadata> {
 	const locale = await getLocale();
@@ -45,7 +55,7 @@ export default async function RootLayout({ children }: { readonly children: Reac
 			<head>
 				<Favicon />
 			</head>
-			<body>
+			<body className={`${notoSans.variable}  ${jetBrainsMono.variable}`}>
 				<ThemeProvider
 					attribute={["class", "data-theme"]}
 					defaultTheme="system"

@@ -21,7 +21,7 @@ const getRecentlies = cache(async (): Promise<RecentlyModel[]> => {
 	try {
 		// 获取原有数据
 		const res = await fetch(APIConfig.endpoints.recently, {
-			next: { revalidate: 60 },
+			next: { revalidate: 60 * 10 }, // 10 分钟缓存
 		});
 
 		if (!res.ok) {
@@ -42,7 +42,7 @@ const getRecentlies = cache(async (): Promise<RecentlyModel[]> => {
 				"Content-Type": "application/json",
 				"Authorization": `Bearer ${APIConfig.blinko.token}`,
 			},
-			next: { revalidate: 60 },
+			next: { revalidate: 60 * 10 },
 		});
 
 		let combinedData = [...originalData];

@@ -1,7 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap");
 @import url("https://fontsapi.zeoseven.com/442/main/result.css");
-@import url("https://cdn.tnxg.top/fonts/HarmonyOS_Regular.css");
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -14,11 +11,6 @@
 @layer base {
 	* {
 		@apply border-border;
-	}
-
-	body {
-		@apply text-foreground;
-		font-family: "Noto Sans SC", "HarmonyOS_Regular", sans-serif;
 	}
 
 	@font-face {
@@ -103,7 +95,7 @@ body.drawer-open {
 @theme {
 	--font-moonbridge: "moonbridge";
 	--font-mono: "Maple Mono NF CN", "JetBrains Mono", monospace;
-	--font-sans: "Noto Sans SC", "HarmonyOS_Regular", sans-serif;
+	--font-sans: "Noto Sans SC", sans-serif;
 }
 
 @theme inline {

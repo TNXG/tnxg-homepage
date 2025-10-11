@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const getFriends = cache(async (): Promise<Friend[]> => {
 	try {
 		const res = await fetch(APIConfig.endpoints.friends, {
-			next: { revalidate: 60 },
+			next: { revalidate: 2 * 60 * 60 },
 		});
 
 		if (!res.ok) {

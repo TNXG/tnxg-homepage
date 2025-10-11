@@ -2,48 +2,34 @@
 
 import type { BangumiCollectionItem, BangumiUserData } from "@/app/anime/page";
 import { Icon } from "@iconify/react";
+import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-// 根据不同的媒体类型和收藏状态返回对应的文本
-const getCollectionName = (collectionType: number, subjectType: number) => {
-	// 对于搁置和抛弃状态，直接返回
+// 根据不同的媒体类型和收藏状态返回对应的文本（i18n）
+const getCollectionName = (
+	collectionType: number,
+	subjectType: number,
+	t: ReturnType<typeof useTranslations>,
+) => {
+	const actionKey = subjectType === 3 ? "listen" : subjectType === 4 ? "play" : "watch";
 	if (collectionType === 4)
-		return "搁置";
+		return t("anime.collection.states.onHold");
 	if (collectionType === 5)
-		return "抛弃";
-
-	// 根据媒体类型确定动词
-	let prefix = "";
-	let suffix = "";
-
-	// 默认为看（书籍、动画、三次元）
-	if (subjectType === 1 || subjectType === 2 || subjectType === 6) {
-		prefix = "想";
-		suffix = "看";
-	}
- else if (subjectType === 3) {
-		prefix = "想";
-		suffix = "听";
-	}
- else if (subjectType === 4) {
-		prefix = "想";
-		suffix = "玩";
-	}
-
-	// 根据收藏类型组合词语
+		return t("anime.collection.states.dropped");
+	const action = t(`anime.collection.actions.${actionKey}`);
 	switch (collectionType) {
-		case 1: // 想看/想听/想玩
-			return prefix + suffix;
-		case 2: // 看过/听过/玩过
-			return `${suffix}过`;
-		case 3: // 在看/在听/在玩
-			return `在${suffix}`;
+		case 1:
+			return t("anime.collection.states.want", { action });
+		case 2:
+			return t("anime.collection.states.done", { action });
+		case 3:
+			return t("anime.collection.states.doing", { action });
 		default:
-			return "未知";
+			return "";
 	}
 };
 
@@ -56,36 +42,36 @@ const COLLECTION_COLORS = {
 };
 
 const SUBJECT_TYPES = {
-	1: { name: "书籍", icon: "mingcute:book-6-line" },
-	2: { name: "动画", icon: "mingcute:tv-2-line" },
-	3: { name: "音乐", icon: "mingcute:music-line" },
-	4: { name: "游戏", icon: "mingcute:game-1-line" },
-	6: { name: "三次元", icon: "mingcute:user-heart-line" },
-};
+	1: { key: "1", icon: "mingcute:book-6-line" },
+	2: { key: "2", icon: "mingcute:tv-2-line" },
+	3: { key: "3", icon: "mingcute:music-line" },
+	4: { key: "4", icon: "mingcute:game-1-line" },
+	6: { key: "6", icon: "mingcute:user-heart-line" },
+} as const;
 
 const SubjectTypeIcon = ({ type }: { type: number }) => {
 	const iconName = SUBJECT_TYPES[type as keyof typeof SUBJECT_TYPES]?.icon || "mingcute:star-line";
-	return <Icon icon={iconName} className="h-4 w-4" />;
+	return <Icon icon={iconName} className="h-4 w-4" aria-hidden="true" />;
 };
 
-const CollectionBadge = ({ type, subjectType }: { type: number; subjectType: number }) => {
+const CollectionBadge = ({ type, subjectType, t }: { type: number; subjectType: number; t: ReturnType<typeof useTranslations> }) => {
 	const color = COLLECTION_COLORS[type as keyof typeof COLLECTION_COLORS];
-	const name = getCollectionName(type, subjectType);
+	const name = getCollectionName(type, subjectType, t);
 	return (
-		<Badge className={color}>
+		<Badge className={color} aria-label={name}>
 			{name}
 		</Badge>
 	);
 };
 
-const AnimeCard = ({ item }: { item: BangumiCollectionItem }) => {
+const AnimeCard = ({ item, t }: { item: BangumiCollectionItem; t: ReturnType<typeof useTranslations> }) => {
 	const { subject, type, rate, ep_status, vol_status } = item;
 	const progress = subject.eps
 		? Math.round((ep_status / subject.eps) * 100)
 		: 0;
 
 	return (
-		<Card className="mx-auto bg-white/70 w-[80%] transition-shadow duration-300 overflow-hidden backdrop-blur-md dark:bg-gray-800/70 sm:w-full hover:shadow-md">
+		<Card className="bg-white/70 w-full transition-shadow duration-300 overflow-hidden backdrop-blur-md dark:bg-gray-800/70 hover:shadow-md">
 			<div className="h-40 w-full relative overflow-hidden">
 				{subject.images?.common && (
 					<img
@@ -93,15 +79,22 @@ const AnimeCard = ({ item }: { item: BangumiCollectionItem }) => {
 						alt={subject.name_cn || subject.name}
 						className="h-full w-full object-cover"
 						style={{ objectPosition: "center" }}
+						loading="lazy"
 					/>
 				)}
 				<div className="opacity-70 inset-0 absolute from-black/60 to-transparent bg-gradient-to-t"></div>
 				<div className="flex gap-2 right-2 top-2 absolute">
-					<Badge variant="secondary" className="flex gap-1 items-center">
-						<SubjectTypeIcon type={subject.type} />
-						{SUBJECT_TYPES[subject.type as keyof typeof SUBJECT_TYPES]?.name}
-					</Badge>
-					<CollectionBadge type={type} subjectType={subject.type} />
+					{(() => {
+						const typeKey = SUBJECT_TYPES[subject.type as keyof typeof SUBJECT_TYPES]?.key ?? "";
+						const label = t(`anime.subjectTypes.${typeKey}`);
+						return (
+							<Badge variant="secondary" className="flex gap-1 items-center" aria-label={label}>
+								<SubjectTypeIcon type={subject.type} />
+								{label}
+							</Badge>
+						);
+					})()}
+					<CollectionBadge type={type} subjectType={subject.type} t={t} />
 				</div>
 			</div>
 			<CardHeader className="pb-2">
@@ -111,6 +104,7 @@ const AnimeCard = ({ item }: { item: BangumiCollectionItem }) => {
 						target="_blank"
 						rel="noopener noreferrer"
 						className="transition-colors hover:text-blue-600 hover:underline"
+						aria-label={`${subject.name_cn || subject.name} - ${t("anime.linkOnBangumi")}`}
 					>
 						{subject.name_cn || subject.name}
 					</a>
@@ -118,19 +112,24 @@ const AnimeCard = ({ item }: { item: BangumiCollectionItem }) => {
 				<CardDescription className="flex gap-2 items-center">
 					{subject.score > 0 && (
 						<span className="flex gap-1 items-center">
-							<Icon icon="mingcute:star-fill" className="text-yellow-400 h-4 w-4" />
-							{subject.score.toFixed(1)}
+							<Icon icon="mingcute:star-fill" className="text-yellow-400 h-4 w-4" aria-hidden="true" />
+							<span aria-label={t("anime.score")}>
+								{subject.score.toFixed(1)}
+							</span>
 						</span>
 					)}
 					{rate > 0 && (
 						<span className="flex gap-1 items-center">
-							<span className="text-muted-foreground text-sm">我的评分:</span>
+							<span className="text-muted-foreground text-sm">
+								{t("anime.myRating")}
+								:
+							</span>
 							{rate}
 						</span>
 					)}
 					{subject.date && (
 						<span className="flex gap-1 items-center">
-							<Icon icon="mingcute:calendar-line" className="h-4 w-4" />
+							<Icon icon="mingcute:calendar-line" className="h-4 w-4" aria-hidden="true" />
 							{subject.date}
 						</span>
 					)}
@@ -144,11 +143,12 @@ const AnimeCard = ({ item }: { item: BangumiCollectionItem }) => {
 					<div className="mt-2">
 						<div className="text-xs mb-1 flex justify-between">
 							<span>
-								进度:
+								{t("anime.progress")}
+								:
 								{ep_status}
 								/
 								{subject.eps}
-								集
+								{t("anime.episodesUnit")}
 							</span>
 							<span>
 								{progress}
@@ -162,11 +162,12 @@ const AnimeCard = ({ item }: { item: BangumiCollectionItem }) => {
 					<div className="mt-2">
 						<div className="text-xs mb-1 flex justify-between">
 							<span>
-								进度:
+								{t("anime.progress")}
+								:
 								{vol_status}
 								/
 								{subject.volumes}
-								卷
+								{t("anime.volumesUnit")}
 							</span>
 							<span>
 								{Math.round((vol_status / subject.volumes) * 100)}
@@ -203,7 +204,7 @@ const AnimeCard = ({ item }: { item: BangumiCollectionItem }) => {
 	);
 };
 
-const UserProfile = ({ userInfo }: { userInfo: BangumiUserData }) => {
+const UserProfile = ({ userInfo, t }: { userInfo: BangumiUserData; t: ReturnType<typeof useTranslations> }) => {
 	return (
 		<Card className="mb-6 bg-white/70 backdrop-blur-md dark:bg-gray-800/70">
 			<CardContent className="pt-6 flex gap-4 items-center">
@@ -213,18 +214,19 @@ const UserProfile = ({ userInfo }: { userInfo: BangumiUserData }) => {
 				</Avatar>
 				<div>
 					<h2 className="text-xl font-bold">{userInfo.nickname}</h2>
-					<p className="text-muted-foreground text-sm">{userInfo.sign || "这个人很懒，什么都没留下"}</p>
+					<p className="text-muted-foreground text-sm">{userInfo.sign || t("anime.profileEmptySign")}</p>
 					<div className="mt-1">
 						<a
 							href={`https://bgm.tv/user/${userInfo.username}`}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="text-xs text-blue-500 hover:underline"
+							aria-label={t("anime.linkOnBangumi")}
 						>
 							@
 							{userInfo.username}
 							{" "}
-							on Bangumi
+							{t("anime.linkOnBangumi")}
 						</a>
 					</div>
 				</div>
@@ -234,6 +236,7 @@ const UserProfile = ({ userInfo }: { userInfo: BangumiUserData }) => {
 };
 
 export const BangumiLayout = ({ collections, userInfo }: { collections: BangumiCollectionItem[]; userInfo: BangumiUserData }) => {
+	const t = useTranslations();
 	// 按照收藏类型分组
 	const collectionsByType = {
 		1: collections.filter(item => item.type === 1), // 想看
@@ -249,51 +252,55 @@ export const BangumiLayout = ({ collections, userInfo }: { collections: BangumiC
 		: "2";
 
 	return (
-		<div className="space-y-6">
-			<UserProfile userInfo={userInfo} />
+		<div className="space-y-6" role="region" aria-label={t("sidebar.sections.anime")}>
+			<UserProfile userInfo={userInfo} t={t} />
 
 			<Tabs defaultValue={defaultTab} className="w-full">
-				<TabsList className="grid grid-cols-5 w-full">
-					<TabsTrigger value="1">
-						计划
-						{" "}
-						<Badge variant="secondary" className="ml-1">{collectionsByType[1].length}</Badge>
-					</TabsTrigger>
-					<TabsTrigger value="2">
-						完成
-						{" "}
-						<Badge variant="secondary" className="ml-1">{collectionsByType[2].length}</Badge>
-					</TabsTrigger>
-					<TabsTrigger value="3">
-						进行中
-						{" "}
-						<Badge variant="secondary" className="ml-1">{collectionsByType[3].length}</Badge>
-					</TabsTrigger>
-					<TabsTrigger value="4">
-						搁置
-						{" "}
-						<Badge variant="secondary" className="ml-1">{collectionsByType[4].length}</Badge>
-					</TabsTrigger>
-					<TabsTrigger value="5">
-						抛弃
-						{" "}
-						<Badge variant="secondary" className="ml-1">{collectionsByType[5].length}</Badge>
-					</TabsTrigger>
-				</TabsList>
+				<nav aria-label="Tabs">
+					<TabsList className="w-full">
+						<TabsTrigger value="1" aria-label={`${t("anime.tabs.plan")} ${collectionsByType[1].length}`}>
+							{t("anime.tabs.plan")}
+							{" "}
+							<Badge variant="secondary" className="ml-1" aria-hidden="true">{collectionsByType[1].length}</Badge>
+						</TabsTrigger>
+						<TabsTrigger value="2" aria-label={`${t("anime.tabs.done")} ${collectionsByType[2].length}`}>
+							{t("anime.tabs.done")}
+							{" "}
+							<Badge variant="secondary" className="ml-1" aria-hidden="true">{collectionsByType[2].length}</Badge>
+						</TabsTrigger>
+						<TabsTrigger value="3" aria-label={`${t("anime.tabs.doing")} ${collectionsByType[3].length}`}>
+							{t("anime.tabs.doing")}
+							{" "}
+							<Badge variant="secondary" className="ml-1" aria-hidden="true">{collectionsByType[3].length}</Badge>
+						</TabsTrigger>
+						<TabsTrigger value="4" aria-label={`${t("anime.tabs.onHold")} ${collectionsByType[4].length}`}>
+							{t("anime.tabs.onHold")}
+							{" "}
+							<Badge variant="secondary" className="ml-1" aria-hidden="true">{collectionsByType[4].length}</Badge>
+						</TabsTrigger>
+						<TabsTrigger value="5" aria-label={`${t("anime.tabs.dropped")} ${collectionsByType[5].length}`}>
+							{t("anime.tabs.dropped")}
+							{" "}
+							<Badge variant="secondary" className="ml-1" aria-hidden="true">{collectionsByType[5].length}</Badge>
+						</TabsTrigger>
+					</TabsList>
+				</nav>
 
 				{Object.entries(collectionsByType).map(([type, items]) => (
 					<TabsContent key={type} value={type} className="mt-6">
 						{items.length > 0
 							? (
-									<div className="gap-4 grid grid-cols-1 place-items-center lg:grid-cols-3 md:grid-cols-2 sm:place-items-start">
+									<div className="columns-1 lg:columns-3 md:columns-2" style={{ columnGap: "1rem" }}>
 										{items.map(item => (
-											<AnimeCard key={item.subject_id} item={item} />
+											<div key={item.subject_id} className="mb-4" style={{ breakInside: "avoid" }}>
+												<AnimeCard item={item} t={t} />
+											</div>
 										))}
 									</div>
 								)
 							: (
 									<div className="py-12 text-center">
-										<p className="text-muted-foreground">暂无内容</p>
+										<p className="text-muted-foreground">{t("anime.empty")}</p>
 									</div>
 								)}
 					</TabsContent>
