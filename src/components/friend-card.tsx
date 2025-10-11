@@ -3,7 +3,7 @@
 import type { Arch } from "@/lib/icon";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-import React, { useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -16,6 +16,40 @@ export interface FriendCardProps {
 }
 
 export const FriendCard = React.memo<FriendCardProps>(({ friend, className }) => {
+	// 受控 Tooltip：在页面滚动时禁止打开，并在滚动发生时立刻关闭
+	const [open, setOpen] = useState(false);
+	const isScrollingRef = useRef(false);
+	const scrollTimerRef = useRef<number | null>(null);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			// 标记正在滚动并关闭已打开的 Tooltip
+			isScrollingRef.current = true;
+			setOpen(false);
+			if (scrollTimerRef.current)
+				window.clearTimeout(scrollTimerRef.current);
+			// 停止滚动一小段时间后再允许打开
+			scrollTimerRef.current = window.setTimeout(() => {
+				isScrollingRef.current = false;
+			}, 10);
+		};
+
+		// 监听整个窗口的滚动（页面滚动）
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+			if (scrollTimerRef.current)
+				window.clearTimeout(scrollTimerRef.current);
+		};
+	}, []);
+
+	const handleOpenChange = useCallback((nextOpen: boolean) => {
+		// 滚动中拒绝打开
+		if (nextOpen && isScrollingRef.current)
+			return;
+		setOpen(nextOpen);
+	}, []);
+
 	const memoizedData = useMemo(() => ({
 		title: friend.name,
 		domainTip: getMainDomain(friend.url, true),
@@ -43,7 +77,7 @@ export const FriendCard = React.memo<FriendCardProps>(({ friend, className }) =>
 	const { title, domainTip, domainIcon, siteIcon, domain, formattedDate, techStackIcons } = memoizedData;
 
 	return (
-		<Tooltip>
+		<Tooltip open={open} onOpenChange={handleOpenChange} delayDuration={100}>
 			<TooltipTrigger asChild>
 				<Link
 					href={friend.url}
