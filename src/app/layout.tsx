@@ -47,7 +47,7 @@ export default async function RootLayout({ children }: { readonly children: Reac
 	const locale = await getLocale();
 	const messages = await getMessages();
 
-	const excludedPaths = ["/signin", "/dashboard"];
+	const excludedPaths = ["/signin"];
 	const hideComponents = excludedPaths.includes(pathname);
 
 	return (
