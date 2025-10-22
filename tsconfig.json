@@ -1,8 +1,8 @@
 {
 	"compilerOptions": {
 		"incremental": true,
-		"target": "ES2017",
-		"jsx": "preserve",
+		"target": "ESNext",
+		"jsx": "react-jsx",
 		"lib": [
 			"dom",
 			"dom.iterable",
@@ -16,9 +16,11 @@
 			]
 		},
 		"resolveJsonModule": true,
+		"allowImportingTsExtensions": true,
 		"allowJs": true,
 		"strict": true,
 		"noEmit": true,
+		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"isolatedModules": true,
 		"skipLibCheck": true,
@@ -32,7 +34,8 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		".next/types/**/*.ts"
+		".next/types/**/*.ts",
+		".next/dev/types/**/*.ts"
 	],
 	"exclude": [
 		"node_modules"

@@ -1,16 +1,12 @@
 // 部分代码来自Zhilu(L33Z22L11)
-
+// @keep-sorted
 const archIcons = {
-	"服务器": "ph:hard-drives-fill",
-	"Server": "ph:hard-drives-fill",
-	"国内 CDN": "ph:cloud-check-fill",
-	"虚拟主机": "ph:file-cloud-bold",
 	"Astro": "simple-icons:astro",
 	"Cloudflare": "simple-icons:cloudflare",
 	"Deno Deploy": "simple-icons:deno",
 	"GitHub Pages": "simple-icons:github",
-	"Gridea": "tabler:circle-letter-g", // 不准确
-	"Halo": "tabler:square-letter-h-filled", // 不准确
+	"Gridea": "tabler:square-rounded-letter-g-filled", // 不准确
+	"Halo": "material-symbols:h-mobiledata-badge", // 不准确
 	"Hexo": "simple-icons:hexo",
 	"HTML": "simple-icons:html5",
 	"Hugo": "simple-icons:hugo",
@@ -19,12 +15,18 @@ const archIcons = {
 	"Netlify": "simple-icons:netlify",
 	"Next.js": "simple-icons:nextdotjs",
 	"Nuxt": "simple-icons:nuxtdotjs",
+	"Python": "simple-icons:python",
 	"Typecho": "icon-park-solid:align-text-left-one", // 不准确
 	"Vercel": "simple-icons:vercel",
 	"VitePress": "simple-icons:vitepress",
 	"Vue": "uim:vuejs",
 	"WordPress": "simple-icons:wordpress",
-	"Zebaur": "tabler:square-letter-z-filled", // 不准确
+	"ZBlog": "mynaui:letter-z-hexagon-solid", // 不准确
+	"Zebaur": "tabler:square-letter-z-filled",
+	"国内 CDN": "ph:cloud-check-fill",
+	"服务器": "ph:hard-drives-fill",
+
+	"虚拟主机": "ph:file-cloud-bold", // 不准确
 };
 
 export type Arch = keyof typeof archIcons;
