@@ -6,9 +6,6 @@ const withNextIntl = createNextIntlPlugin(
 );
 
 const nextConfig: NextConfig = {
-	eslint: {
-		ignoreDuringBuilds: true,
-	},
 	images: {
 		domains: ["api-space.tnxg.top", "cdn.tnxg.top"],
 	},
