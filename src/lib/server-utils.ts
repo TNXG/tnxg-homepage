@@ -62,8 +62,6 @@ export const serverAction = async (prevState: ActionResponse | null, formData: F
 
 		const data = await response.json();
 
-		console.info("API response:", data);
-
 		if (data.status === "success") {
 			return {
 				success: true,

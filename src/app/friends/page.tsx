@@ -34,7 +34,7 @@ const getFriends = cache(async (): Promise<Friend[]> => {
 		const filteredFriends = friendsData.filter(friend => friend.state === 0);
 		return filteredFriends;
 	} catch (error) {
-		console.error("Error fetching friends data:", error);
+		console.warn("Error fetching friends data:", error);
 		const locale = await getLocale();
 		const t = await getTranslations({ locale });
 		console.warn(t("common.errors.content_load_failed"));

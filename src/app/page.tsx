@@ -70,7 +70,7 @@ const fetchCodesInfo = async (): Promise<WakaTimeData | null> => {
 		]);
 
 		if (!codemessageResponse.ok || !systemUsageResponse.ok || !languageUsageResponse.ok) {
-			console.error("Failed to fetch WakaTime data");
+			console.warn("Failed to fetch WakaTime data");
 			return null;
 		}
 
@@ -86,7 +86,7 @@ const fetchCodesInfo = async (): Promise<WakaTimeData | null> => {
 			languageData,
 		};
 	} catch (error) {
-		console.error("Error fetching WakaTime data:", error);
+		console.warn("Error fetching WakaTime data:", error);
 		return null;
 	}
 };

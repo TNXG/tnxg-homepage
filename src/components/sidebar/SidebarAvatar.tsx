@@ -38,6 +38,13 @@ const CodeEventStatus = ({ codeEvent }: { codeEvent: CodeEvent }) => {
 	const t = useTranslations();
 	const { platform, editor, project, language, eventTime } = codeEvent;
 
+	// 验证日期是否有效
+	const date = new Date(eventTime);
+	const isValidDate = eventTime && !Number.isNaN(date.getTime());
+
+	// 检查编辑器和平台信息是否有效
+	const hasEditorInfo = editor && platform;
+
 	return (
 		<div className="bg-primary/10 dark:bg-primary/20 text-sm p-3 rounded-lg dark:text-gray-200">
 			<div>
@@ -50,12 +57,16 @@ const CodeEventStatus = ({ codeEvent }: { codeEvent: CodeEvent }) => {
 				{t("sidebar.status.busy")}
 			</div>
 			<p className="font-bold">{project}</p>
-			<p className="text-muted-foreground text-xs mt-1 dark:text-gray-400">
-				{t("sidebar.status.codingAt", { time: new Date(eventTime).toLocaleString() })}
-			</p>
-			<p className="text-muted-foreground text-xs mt-1 dark:text-gray-400">
-				{t("sidebar.status.usingEditorOnPlatform", { editor, platform })}
-			</p>
+			{isValidDate && (
+				<p className="text-muted-foreground text-xs mt-1 dark:text-gray-400">
+					{t("sidebar.status.codingAt", { time: date.toLocaleString() })}
+				</p>
+			)}
+			{hasEditorInfo && (
+				<p className="text-muted-foreground text-xs mt-1 dark:text-gray-400">
+					{t("sidebar.status.usingEditorOnPlatform", { editor, platform })}
+				</p>
+			)}
 		</div>
 	);
 };
@@ -94,12 +105,12 @@ export const SidebarAvatar = () => {
 		};
 
 		songEventSource.onerror = () => {
-			console.error("Song EventSource failed");
+			console.warn("Song EventSource failed");
 			songEventSource.close();
 		};
 
 		codeEventSource.onerror = () => {
-			console.error("Code EventSource failed");
+			console.warn("Code EventSource failed");
 			codeEventSource.close();
 		};
 
