@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	const locale = await getLocale();
 	const t = await getTranslations({ locale });
 
-	const title = `${t(SiteConfig.title)} - ${t(SiteConfig.description)}`;
+	const title = `${t(SiteConfig.title)} | ${t(SiteConfig.description)}`;
 	const description = t(SiteConfig.description);
 
 	return {

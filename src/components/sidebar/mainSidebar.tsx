@@ -115,13 +115,15 @@ export default function SidebarLayout({
 								</Link>
 							</mark>
 						</p>
-						<Link
-							className="text-sm text-[#3388BB] transition-all duration-300 ease-in-out dark:text-[#66BBFF] hover:text-[#FF5522] hover:scale-110 dark:hover:text-[#FF7744]"
-							target="_blank"
-							href={SidebarConfig.beian.url}
-						>
-							{SidebarConfig.beian.text}
-						</Link>
+						{SiteConfig.Features.Beian && (
+							<Link
+								className="text-sm text-[#3388BB] transition-all duration-300 ease-in-out dark:text-[#66BBFF] hover:text-[#FF5522] hover:scale-110 dark:hover:text-[#FF7744]"
+								target="_blank"
+								href={SidebarConfig.beian.url}
+							>
+								{SidebarConfig.beian.text}
+							</Link>
+						)}
 					</div>
 				</SidebarFooter>
 			</Sidebar>
@@ -164,13 +166,15 @@ export default function SidebarLayout({
 									</Link>
 								</mark>
 							</p>
-							<Link
-								className="text-sm text-[#3388BB] transition-all duration-300 ease-in-out dark:text-[#66BBFF] hover:text-[#FF5522] hover:scale-110 dark:hover:text-[#FF7744]"
-								target="_blank"
-								href={SidebarConfig.beian.url}
-							>
-								{SidebarConfig.beian.text}
-							</Link>
+							{SiteConfig.Features.Beian && (
+								<Link
+									className="text-sm text-[#3388BB] transition-all duration-300 ease-in-out dark:text-[#66BBFF] hover:text-[#FF5522] hover:scale-110 dark:hover:text-[#FF7744]"
+									target="_blank"
+									href={SidebarConfig.beian.url}
+								>
+									{SidebarConfig.beian.text}
+								</Link>
+							)}
 						</div>
 					</DrawerFooter>
 				</DrawerContent>

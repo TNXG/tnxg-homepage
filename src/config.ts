@@ -10,6 +10,7 @@ export const SiteConfig = {
 	Features: {
 		StatusDot: true,
 		StatusAPI: true,
+		Beian: false,
 	},
 	keywords: ["天翔TNXG", "TNXG", "个人主页", "天翔TNXGの自留地", "homepage", "nextjs"],
 	Author: {
