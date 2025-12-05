@@ -36,7 +36,7 @@ export const SiteConfig = {
 			{
 				name: "site.home.socialLinks.blog",
 				icon: "mingcute:book-line",
-				href: "https://tnxgmoe.com",
+				href: "https://blog.tnxg.moe",
 			},
 			{
 				name: "site.home.socialLinks.github",
@@ -184,7 +184,7 @@ export const SidebarConfig = {
 	},
 	externalLinks: [
 		{ name: "sidebar.externalLinks.qq", icon: "mingcute:qq-line", href: "https://jq.qq.com/?_wv=1027&k=hc3OKNED" },
-		{ name: "sidebar.externalLinks.blog", icon: "mingcute:book-6-line", href: "https://tnxgmoe.com" },
+		{ name: "sidebar.externalLinks.blog", icon: "mingcute:book-6-line", href: "https://blog.tnxg.moe" },
 		{ name: "sidebar.externalLinks.github", icon: "mingcute:github-line", href: "https://github.com/TNXG" },
 		{ name: "site.home.socialLinks.bilibili", icon: "mingcute:bilibili-line", href: "https://space.bilibili.com/175424674" },
 
@@ -197,7 +197,7 @@ export const FriendsConfig = {
 		text: "friends.description.text",
 		link: {
 			text: "friends.description.link.text",
-			url: "https://tnxgmoe.com/friends",
+			url: "https://blog.tnxg.moe/friends",
 		},
 		suffix: "friends.description.suffix",
 	},

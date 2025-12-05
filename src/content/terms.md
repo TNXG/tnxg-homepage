@@ -84,7 +84,7 @@
 ## 十、本站信息
 
 ```yaml
-地址: https://tnxg.top / https://tnxgmoe.com
+地址: https://tnxg.top / https://blog.tnxg.moe
 头像: https://api-space.tnxg.top/avatar?s=qq
 名称: 天翔TNXGの空间站
 博主: 天翔TNXG

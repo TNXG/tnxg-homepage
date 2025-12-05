@@ -70,7 +70,7 @@ pnpm start
 
 ## 联系我们
 
-- 个人博客: [tnxgmoe.com](https://tnxgmoe.com/about-me#:re:%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F)
+- 个人博客: [blog.tnxg.moe](https://blog.tnxg.moe/about-me#:re:%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F)
 
 2025 © TNXG 本项目遵循 AGPL 3.0 license 开源
 
