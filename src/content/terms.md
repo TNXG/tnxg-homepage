@@ -80,15 +80,16 @@
 6. **申请限制**：每个二级域名仅可申请一次，修改信息请通过注册邮箱联系本站。（正在开发自助更新系统）
 7. **类型限制**：不接受商业站点或非个人性质网站申请友链。
 8. **RSS支持**：需提供有效 RSS 链接，格式应为 `/rss.xml`、`/feed`、`/atom.xml` 等常规形式。
+9. **豁免原则**：本站主动申请添加的可以忽略 `5`、`7`、`8` 条规则 
 
 ## 十、本站信息
 
 ```yaml
-地址: https://tnxg.top / https://blog.tnxg.moe
-头像: https://api-space.tnxg.top/avatar?s=qq
-名称: 天翔TNXGの空间站
-博主: 天翔TNXG
-简介: 明日尚未到来，希望凝于心上
-主题: # 77BBDD
-邮箱: tnxg@outlook.jp
+地址: "https://tnxg.moe / https://blog.tnxg.moe"
+头像: "https://api-space.tnxg.top/avatar?s=qq"
+名称: "天翔TNXGの空间站"
+博主: "天翔TNXG"
+简介: "明日尚未到来，希望凝于心上"
+主题: "#77BBDD"
+邮箱: "tnxg@outlook.jp"
 ```

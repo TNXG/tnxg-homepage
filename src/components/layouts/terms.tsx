@@ -97,6 +97,8 @@ export const TermsLayout: React.FC<TermsProps> = ({ content }) => {
 						<CardContent>
 							<div
 								className="prose prose-sm sm:prose-base dark:prose-invert max-w-none"
+								// 这是可信的内部源
+								// eslint-disable-next-line react-dom/no-dangerously-set-innerhtml
 								dangerouslySetInnerHTML={{
 									__html: content || "文章获取失败",
 								}}
