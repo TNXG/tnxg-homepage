@@ -1,5 +1,0 @@
-{
-	"buildCommand": "next build",
-	"outputDirectory": ".next",
-	"includeFiles": ["src/content/**"]
-}

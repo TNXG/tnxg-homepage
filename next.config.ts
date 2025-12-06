@@ -20,6 +20,9 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
+	outputFileTracingIncludes: {
+		"/terms": ["./src/content/**"],
+	},
 };
 
 export default withNextIntl(nextConfig);
